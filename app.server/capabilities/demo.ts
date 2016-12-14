@@ -3,7 +3,7 @@ export const layers = [
   {
     "Name": "Layer 1",
     "Title": "Title 1",
-    "Abstract": "This is a demo layer from my-capabilities.",
+    "Abstract": "This is a demo layer from the web deli.",
   },
   {
     "Name": "Layer 2",

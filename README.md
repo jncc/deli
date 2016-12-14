@@ -1,6 +1,6 @@
 
-my-capabilities
-===============
+d-node deli
+============
 
 A web app to make spatial data products available to GIS users.
 
@@ -17,8 +17,8 @@ To run as a Docker image
 
 For some reason or other.
 
-    docker build -t my-capabilities . 
-    docker run -t -p 8888:80 my-capabilities
+    docker build -t deli . 
+    docker run -t -p 8888:80 deli
 
 Deployment to Elastic Beanstalk
 -------------------------------

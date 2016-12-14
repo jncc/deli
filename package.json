@@ -1,8 +1,8 @@
 {
-  "name": "my-capabilities",
+  "name": "deli",
   "version": "0.0.0",
   "private": true,
-  "description": "my-capabilities",
+  "description": "deli",
   "license": "OGL",
   "scripts": {
     "clean": "rimraf built",

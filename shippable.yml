@@ -20,22 +20,22 @@ build:
     - ls -a
     - pwd
     # DockerHub
-    - docker build -t="sumothecat/my-capabilities:$BRANCH.$BUILD_NUMBER" .
-    - docker push sumothecat/my-capabilities:$BRANCH.$BUILD_NUMBER
+    - docker build -t="sumothecat/deli:$BRANCH.$BUILD_NUMBER" .
+    - docker push sumothecat/deli:$BRANCH.$BUILD_NUMBER
     # Addresses botocore version mismatch errors
     - pip install --upgrade botocore
 
 integrations:
   deploy:
     # AWS Integration to deploy Docker image
-    - integrationName: "aws-integration-my-capabilities"
+    - integrationName: "aws-integration-deli"
       type: aws
-      application_name: "my-capabilities-app"
-      env_name: "my-capabilities-app-dev"
+      application_name: "deli-app"
+      env_name: "deli-app-dev"
       region: "eu-west-1"
-      image_name: "sumothecat/my-capabilities"
+      image_name: "sumothecat/deli"
       image_tag: "$BRANCH.$BUILD_NUMBER"
 
   hub:
-    - integrationName: "docker-integration-my-capabilities"
+    - integrationName: "docker-integration-deli"
       type: docker
