@@ -11,7 +11,7 @@ export function getEnvironmentSettings(env: string) {
   else {
     return {
       name: env,
-      port: 80,
+      port: 8081,
       dir: 'built/app.client'
     };
   }

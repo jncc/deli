@@ -27,4 +27,9 @@ Configure the following environment variables:
 
     NODE_ENV = production 
     
-    
+Setup notes
+-----------
+http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1
+
+    pip install --upgrade --user awsebcli
+    eb --version 
