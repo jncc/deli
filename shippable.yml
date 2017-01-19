@@ -19,7 +19,7 @@ build:
 integrations:
   deploy:
     # guessed - untested
-    - integrationName: "aws-integration-deli"
+    - integrationName: "aws-jncc-prod-subscription-integration"
       type: aws
       target: eb_paas
       platform: "Node.js"
