@@ -12,8 +12,8 @@ branches:
 
 build:
   ci:
-    - sudo npm install
-    - sudo npm run build:prod # todo: run tests too
+    - npm install
+    - npm run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
 
 integrations:
