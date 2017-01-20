@@ -8,8 +8,7 @@ node_js:
 # only build master and all branches beginning with "beta"
 branches:
   only:
-    - master
-    - beta*
+    - master # - beta*
 
 build:
   ci:
@@ -19,7 +18,6 @@ build:
 
 integrations:
   deploy:
-    # guessed - untested
     - integrationName: "aws-jncc-prod-subscription-integration"
       type: aws
       target: eb_paas
