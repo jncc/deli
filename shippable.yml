@@ -3,7 +3,7 @@ language: node_js
 
 # not sure why i used an old node.js - todo update to v6 / latest
 node_js:
-  - 5.3
+  - 4.2.3
 
 # only build master and all branches beginning with "beta"
 branches:
