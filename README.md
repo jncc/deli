@@ -15,7 +15,8 @@ A browser window should open at http://localhost:8080
 To run as a Docker image
 ------------------------
 
-For some reason or other.
+For some reason or other. Might need to `sudo` if Ubuntu isn't set up quite right.
+Make sure to build first, e.g. npm run build:prod
 
     docker build -t deli . 
     docker run -t -p 8888:80 deli
