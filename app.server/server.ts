@@ -2,7 +2,7 @@
 import * as express from "express";
 
 import { getEnvironmentSettings, getWmsUrl } from "./settings";
-import { layers } from "./capabilities/demo";
+import { products } from "./data/products";
 import { getCapabilities } from "./capabilities/capabilities";
 import { handleLayers } from "./layers/layers";
 
@@ -13,7 +13,7 @@ let env = getEnvironmentSettings(app.settings.env);
 
 app.get(`/capabilities`, (req, res) => {
   let wmsUrl = getWmsUrl(req.header(`Host`));
-  let result = getCapabilities(layers, wmsUrl);
+  let result = getCapabilities(products, wmsUrl);
   res.set(`Content-Type`, `text/xml`);
   res.send(result);
 });

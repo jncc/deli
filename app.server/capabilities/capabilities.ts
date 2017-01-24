@@ -1,9 +1,9 @@
 
 
-import { Layer } from "./layer";
+import { Product } from "./product";
 import { template } from "./template";
 
-export function getCapabilities(layers: Layer[], wmsUrl: String): String {
+export function getCapabilities(layers: Product[], wmsUrl: String): String {
 
   // make the xml for the layers
   let layersXml = layers
@@ -18,13 +18,13 @@ export function getCapabilities(layers: Layer[], wmsUrl: String): String {
     .replace("https://eodip.jncc.gov.uk:443/geoserver", "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver");
 }
 
-export function makeLayerXml(layer: Layer): string {
+export function makeLayerXml(product: Product): string {
 
   let xml = `
       <Layer queryable="1" opaque="0">
-        <Name>${layer.Name}</Name>
-        <Title>${layer.Title}</Title>
-        <Abstract>${layer.Abstract == null ? "" : layer.Abstract}</Abstract>
+        <Name>${product.id}</Name>
+        <Title>${product.title}</Title>
+        <Abstract></Abstract>
         <KeywordList>
           <Keyword>WCS</Keyword>
           <Keyword>GeoTIFF</Keyword>
