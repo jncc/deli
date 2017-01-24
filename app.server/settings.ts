@@ -16,3 +16,8 @@ export function getEnvironmentSettings(env: string) {
     };
   }
 }
+
+export function getWmsUrl(hostHeader: string) {
+    let noTrailingSlashes = hostHeader.replace(/\/+$/, "");
+    return noTrailingSlashes + "/geoserver";
+}

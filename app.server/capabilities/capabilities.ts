@@ -3,15 +3,19 @@
 import { Layer } from "./layer";
 import { template } from "./template";
 
-export function getCapabilities(layers: Layer[]): string {
+export function getCapabilities(layers: Layer[], wmsUrl: String): String {
 
   // make the xml for the layers
   let layersXml = layers
     .map((layer) => makeLayerXml(layer))
     .join("\n");
 
-  // replace the {{{layers}}} placeholder in the big xml template
-  return template.replace("{{{layers}}}", layersXml);;
+  // replace the {{{layers}}} placeholder in the GetCapabilities xml template
+  // and the root URL of the WMS server with the
+  // todo: use wmsUrl, if it works
+  return template
+    .replace("{{{layers}}}", layersXml)
+    .replace("https://eodip.jncc.gov.uk:443/geoserver", "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver");
 }
 
 export function makeLayerXml(layer: Layer): string {

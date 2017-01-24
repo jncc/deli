@@ -1,7 +1,7 @@
 
 import * as express from "express";
 
-import { getEnvironmentSettings } from "./settings";
+import { getEnvironmentSettings, getWmsUrl } from "./settings";
 import { layers } from "./capabilities/demo";
 import { getCapabilities } from "./capabilities/capabilities";
 import { handleLayers } from "./layers/layers";
@@ -12,7 +12,8 @@ let env = getEnvironmentSettings(app.settings.env);
 // handle http data requests
 
 app.get(`/capabilities`, (req, res) => {
-  let result = getCapabilities(layers);
+  let wmsUrl = getWmsUrl(req.header(`Host`));
+  let result = getCapabilities(layers, wmsUrl);
   res.set(`Content-Type`, `text/xml`);
   res.send(result);
 });
