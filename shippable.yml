@@ -16,15 +16,14 @@ build:
     - npm install
     - npm run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
-    - pip install setuptools==34.0.1
+    - pip install setuptools==34.0.1 # workaround https://github.com/Shippable/support/issues/3318
 
 integrations:
   deploy:
     - integrationName: "aws-jncc-prod-subscription-integration"
-      type: aws
-      target: eb_paas
-      platform: "Node.js"
-      application_name: deli
-      env_name: deli-live
-      region: "eu-west-1"
-
+    - type: aws
+    - target: eb_paas
+    - platform: "Node.js"
+    - application_name: deli
+    - env_name: deli-live
+    - region: "eu-west-1"
