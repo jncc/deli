@@ -2,7 +2,7 @@
 export interface Product {
     "id": String,
     "title": String,
-    "footprint": String, // geojson
+    "footprint": any, // geojson
     "properties": any,
     "representations": {
         "download": {

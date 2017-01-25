@@ -1,6 +1,6 @@
 
 import * as express from "express";
-
+//import * as _ from "lodash";
 import { getEnvironmentSettings, getWmsUrl } from "./settings";
 import { products } from "./data/products";
 import { getCapabilities } from "./capabilities/capabilities";
