@@ -15,9 +15,9 @@ export function getCapabilities(layers: Product[], wmsUrl: string): String {
   // todo: use wmsUrl, if it works
   return template
     .replace("{{{layers}}}", layersXml)
-    //.replace("https://eodip.jncc.gov.uk:443/geoserver", "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver");
+    .replace("https://eodip.jncc.gov.uk:443/geoserver", "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver");
     // javascript replace all!
-    .split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl)
+    //.split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl)
     ;
 }
 
