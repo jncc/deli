@@ -8,7 +8,7 @@ export const template: string = `
   <Service>
     <Name>OGC:WMS</Name>
     <Title>Web Map Service</Title>
-    <Abstract>A hopefully compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+    <Abstract>A not-very compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
     <KeywordList>
       <Keyword>WFS</Keyword>
       <Keyword>WMS</Keyword>
