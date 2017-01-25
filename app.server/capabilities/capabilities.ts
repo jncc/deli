@@ -17,7 +17,8 @@ export function getCapabilities(layers: Product[], wmsUrl: string): String {
     .replace("{{{layers}}}", layersXml)
     //.replace("https://eodip.jncc.gov.uk:443/geoserver", "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver");
     // javascript replace all!
-    .split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl);
+    .split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl)
+    ;
 }
 
 export function makeLayerXml(product: Product): string {
@@ -25,7 +26,7 @@ export function makeLayerXml(product: Product): string {
   let xml = `
       <Layer queryable="1" opaque="0">
         <Name>${product.id}</Name>
-        <Title>${product.title}</Title>
+        <Title>${product.title + "_rgba"}</Title>
         <Abstract></Abstract>
         <KeywordList>
           <Keyword>WCS</Keyword>
