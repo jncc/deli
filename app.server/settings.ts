@@ -17,7 +17,7 @@ export function getEnvironmentSettings(env: string) {
   }
 }
 
-export function getWmsUrl(hostHeader: string) {
-    let noTrailingSlashes = hostHeader.replace(/\/+$/, "");
-    return noTrailingSlashes + "/geoserver";
+export function getWmsUrl(hostHeader: string, protocol: string) {
+    //let noTrailingSlashes = hostHeader.replace(/\/+$/, "");
+    return protocol + "://" + hostHeader + "/geoserver";
 }

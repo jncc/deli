@@ -11,8 +11,8 @@ let env = getEnvironmentSettings(app.settings.env);
 
 // handle http data requests
 
-app.get(`/capabilities`, (req, res) => {
-  let wmsUrl = getWmsUrl(req.header(`Host`));
+app.get(`/capabilities/:key`, (req, res) => {
+  let wmsUrl = getWmsUrl(req.header(`Host`), req.protocol);
   let result = getCapabilities(products, wmsUrl);
   res.set(`Content-Type`, `text/xml`);
   res.send(result);

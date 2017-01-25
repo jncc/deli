@@ -7,8 +7,8 @@ export const template: string = `
 <WMT_MS_Capabilities version="1.1.1" updateSequence="190">
   <Service>
     <Name>OGC:WMS</Name>
-    <Title>JNCC Web Map Service</Title>
-    <Abstract>A compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+    <Title>Web Map Service</Title>
+    <Abstract>A hopefully compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
     <KeywordList>
       <Keyword>WFS</Keyword>
       <Keyword>WMS</Keyword>
@@ -17,7 +17,7 @@ export const template: string = `
     <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoserver.sourceforge.net/html/index.php"/>
     <ContactInformation>
       <ContactPersonPrimary>
-        <ContactPerson>Paul Radcliff</ContactPerson>
+        <ContactPerson>Data Services</ContactPerson>
         <ContactOrganization>Joint Nature Conservation Committee</ContactOrganization>
       </ContactPersonPrimary>
       <ContactPosition>Administrator</ContactPosition>
@@ -152,8 +152,8 @@ export const template: string = `
     </Exception>
     <UserDefinedSymbolization SupportSLD="1" UserLayer="1" UserStyle="1" RemoteWFS="1"/>
     <Layer>
-      <Title>JNCC Web Map Service</Title>
-      <Abstract>A compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+      <Title>Deli Web Map Service</Title>
+      <Abstract>A hopefully compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
       <!--All supported EPSG projections:-->
       <SRS>AUTO:42001</SRS>
       <SRS>AUTO:42002</SRS>
@@ -6005,214 +6005,6 @@ export const template: string = `
       <SRS>EPSG:42303</SRS>
       <LatLonBoundingBox minx="-10.9569" miny="47.9432" maxx="9.14942562918123" maxy="62.4491"/>
       {{{layers}}}
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:14March2016_80_4_NDVI</Name>
-        <Title>14March2016_80_4_NDVI</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>WCS</Keyword>
-          <Keyword>GeoTIFF</Keyword>
-          <Keyword>14March2016_80_4_NDVI</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-6.12632079353505" miny="51.30238930387951" maxx="-1.3190873002504129" maxy="54.177806778383"/>
-        <BoundingBox SRS="EPSG:27700" minx="130378.85316" miny="163032.59084999998" maxx="444543.80235" maxy="475787.06887"/>
-        <Style>
-          <Name>EODIP:NDVI</Name>
-          <Title>NDVI</Title>
-          <Abstract>NDVI</Abstract>
-          <LegendURL width="63" height="362">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3A14March2016_80_4_NDVI"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:14March2016_80_4_NDWI_c</Name>
-        <Title>14March2016_80_4_NDWI_c</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>WCS</Keyword>
-          <Keyword>GeoTIFF</Keyword>
-          <Keyword>14March2016_80_4_NDWI_c</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-5.6648817509935565" miny="51.28570234617134" maxx="-2.911811752572839" maxy="54.08153598732274"/>
-        <BoundingBox SRS="EPSG:27700" minx="160080.28020376302" miny="159692.00445625908" maxx="336572.5685527491" maxy="465504.7469302283"/>
-        <Style>
-          <Name>EODIP:NDWI</Name>
-          <Title>NDVI</Title>
-          <Abstract>NDVI</Abstract>
-          <LegendURL width="84" height="572">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3A14March2016_80_4_NDWI_c"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:9May2016_23_2_NDVI</Name>
-        <Title>9May2016_23_2_NDVI</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>WCS</Keyword>
-          <Keyword>GeoTIFF</Keyword>
-          <Keyword>9May2016_23_2_NDVI</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-9.490507916430115" miny="53.87507021739951" maxx="-4.309799783441424" maxy="56.92336988800458"/>
-        <BoundingBox SRS="EPSG:27700" minx="-57804.04614" miny="464641.53169" maxx="248901.08596" maxy="784088.09358"/>
-        <Style>
-          <Name>EODIP:NDVI</Name>
-          <Title>NDVI</Title>
-          <Abstract>NDVI</Abstract>
-          <LegendURL width="63" height="362">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3A9May2016_23_2_NDVI"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:full_ihm</Name>
-        <Title>Integrated Height Map</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>WCS</Keyword>
-          <Keyword>ImageMosaic</Keyword>
-          <Keyword>full</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-7.104775741839742" miny="49.8595715581697" maxx="2.1479372135344654" maxy="55.877216357761334"/>
-        <BoundingBox SRS="EPSG:27700" minx="80000.0" miny="5000.0" maxx="660000.0" maxy="665000.0"/>
-        <Style>
-          <Name>EODIP:IHM</Name>
-          <Title>Simple DEM style</Title>
-          <Abstract>Classic elevation color progression</Abstract>
-          <LegendURL width="70" height="632">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Afull_ihm"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:gb_national_forest_inventory</Name>
-        <Title>GB National Forest Inventory</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>features</Keyword>
-          <Keyword>gb_national_forest_inventory</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-7.61033786837925" miny="49.864228116128054" maxx="2.4361587549310673" maxy="58.63688421519057"/>
-        <BoundingBox SRS="EPSG:27700" minx="73485.4140625" miny="5911.29736328125" maxx="658088.875" maxy="972261.4375"/>
-        <Style>
-          <Name>EODIP:gb_national_forest_inventory</Name>
-          <Title>EODIP:gb_national_forest_inventory</Title>
-          <LegendURL width="175" height="560">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Agb_national_forest_inventory"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:landcover_2007</Name>
-        <Title>Landcover Map 2007</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>features</Keyword>
-          <Keyword>landcover_2007</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-8.15033897577065" miny="49.842308937337265" maxx="2.7141562870072473" maxy="60.654166949319944"/>
-        <BoundingBox SRS="EPSG:27700" minx="62713.2421875" miny="4131.57568359375" maxx="658341.6875" maxy="1196982.75"/>
-        <Style>
-          <Name>EODIP:Landcover_2007</Name>
-          <Title>EODIP:Landcover_2007</Title>
-          <LegendURL width="157" height="460">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Alandcover_2007"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:landsat_coverage</Name>
-        <Title>landsatview</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>features</Keyword>
-          <Keyword>landsatview</Keyword>
-        </KeywordList>
-        <SRS>EPSG:4326</SRS>
-        <LatLonBoundingBox minx="-10.9569" miny="47.9432" maxx="7.10748" maxy="62.4491"/>
-        <BoundingBox SRS="EPSG:4326" minx="-10.9569" miny="47.9432" maxx="7.10748" maxy="62.4491"/>
-        <Style>
-          <Name>EODIP:satellite_wireframe</Name>
-          <Title>Satellite Scene Coverage</Title>
-          <LegendURL width="20" height="20">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Alandsat_coverage"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:living_norfolk</Name>
-        <Title>Living Maps for Norfolk</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>living_norfolk</Keyword>
-          <Keyword>features</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="0.1062843552733192" miny="52.32869858233266" maxx="1.7802322273583893" maxy="53.00212021435423"/>
-        <BoundingBox SRS="EPSG:27700" minx="543499.625" miny="276604.5" maxx="653974.4375" maxy="347113.65625"/>
-        <Style>
-          <Name>EODIP:living_maps_for_norfolk</Name>
-          <Title>EODIP:living_maps_for_norfolk</Title>
-          <LegendURL width="371" height="720">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Aliving_norfolk"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:priority_habitats</Name>
-        <Title>Priority Habitats Layer</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>features</Keyword>
-          <Keyword>priority_habitats</Keyword>
-        </KeywordList>
-        <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-7.018768082031012" miny="49.85210152618131" maxx="2.1066428134794597" maxy="55.798607145439085"/>
-        <BoundingBox SRS="EPSG:27700" minx="84780.9765625" miny="3884.4189453125" maxx="657924.9375" maxy="656241.5"/>
-        <Style>
-          <Name>EODIP:priority_habitats</Name>
-          <Title>EODIP:priority_habitats</Title>
-          <LegendURL width="248" height="580">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Apriority_habitats"/>
-          </LegendURL>
-        </Style>
-      </Layer>
-      <Layer queryable="1" opaque="0">
-        <Name>EODIP:sentinelview</Name>
-        <Title>Sentinel Scenes</Title>
-        <Abstract/>
-        <KeywordList>
-          <Keyword>features</Keyword>
-          <Keyword>sentinelview</Keyword>
-        </KeywordList>
-        <SRS>EPSG:4326</SRS>
-        <LatLonBoundingBox minx="-10.6014369143485" miny="49.8694" maxx="9.14942562918123" maxy="58.0424"/>
-        <BoundingBox SRS="EPSG:4326" minx="-10.6014369143485" miny="49.8694" maxx="9.14942562918123" maxy="58.0424"/>
-        <Style>
-          <Name>EODIP:satellite_wireframe</Name>
-          <Title>Satellite Scene Coverage</Title>
-          <LegendURL width="20" height="20">
-            <Format>image/png</Format>
-            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=EODIP%3Asentinelview"/>
-          </LegendURL>
-        </Style>
-      </Layer>
     </Layer>
   </Capability>
 </WMT_MS_Capabilities>
