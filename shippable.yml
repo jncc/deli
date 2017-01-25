@@ -16,9 +16,7 @@ build:
     - npm install
     - npm run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
-    - pip install packaging=16.8 appdirs=1.4.0
     - pip install setuptools==34.0.1
-
 
 integrations:
   deploy:
