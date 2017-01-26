@@ -23,9 +23,10 @@ For some reason or other.
 Deployment to Elastic Beanstalk
 -------------------------------
 
-Configure the following environment variables:
+Make sure you have committed any code you want to deploy to Git, or the beanstalk CLI won't deploy it.
 
-    NODE_ENV = production 
+    npm run build:prod
+    eb deploy
     
 Setup notes
 -----------
