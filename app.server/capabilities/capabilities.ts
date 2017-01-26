@@ -21,19 +21,19 @@ export function getCapabilities(products: Product[], wmsUrl: string): String {
     ;
 }
 
-export function makeLayerXml(product: Product): string {
+export function makeLayerXml(p: Product): string {
 
   let xml = `
       <Layer queryable="1" opaque="0">
-        <Name>${"s2_ard:" + product.title + "_rgba"}</Name>
-        <Title>${product.title + "_rgba"}</Title>
-        <Abstract></Abstract>
+        <Name>${"s2_ard:" + p.title + "_rgba"}</Name>
+        <Title>${p.title + "_rgba"}</Title>
+        <Abstract>The ${p.title + ""}</Abstract>
         <KeywordList>
           <Keyword>GeoTIFF</Keyword>
         </KeywordList>
         <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="${product.bbox[0]}" miny="${product.bbox[1]}" maxx="${product.bbox[2]}" maxy="${product.bbox[3]}"/>
-        <BoundingBox SRS="EPSG:27700" minx="130378.85316" miny="163032.59084999998" maxx="444543.80235" maxy="475787.06887"/>
+        <LatLonBoundingBox minx="${p.bbox[0]}" miny="${p.bbox[1]}" maxx="${p.bbox[2]}" maxy="${p.bbox[3]}"/>
+        <BoundingBox SRS="EPSG:27700" minx="${p.osgbBbox[0]}" miny="${p.osgbBbox[1]}" maxx="${p.osgbBbox[2]}" maxy="${p.osgbBbox[3]}"/>
 
       </Layer>`;
 

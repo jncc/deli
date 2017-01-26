@@ -3,7 +3,8 @@ export interface Product {
     "id": String,
     "title": String,
     "footprint": any, // geojson
-    "bbox": number[]    ,
+    "bbox": number[],
+    "osgbBbox": number[],
     "properties": any,
     "representations": {
         "download": {
