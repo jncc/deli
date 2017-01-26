@@ -23,7 +23,7 @@ For some reason or other.
 Deployment to Elastic Beanstalk
 -------------------------------
 
-Make sure you have committed any code you want to deploy to Git, or the beanstalk CLI won't deploy it.
+Make sure you have committed any code you want to deploy to Git, or the beanstalk CLI won't deploy it!
 
     npm run build:prod
     eb deploy

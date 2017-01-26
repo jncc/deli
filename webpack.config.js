@@ -25,7 +25,7 @@ module.exports = {
     loaders: [
       { test: /\.tsx?$/, loader: "ts-loader" },
       { test: /\.html$/, loader: 'raw' },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') }
+      //{ test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') }
     ],
 
     preLoaders: [
