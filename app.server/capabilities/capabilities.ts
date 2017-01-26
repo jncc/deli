@@ -29,11 +29,10 @@ export function makeLayerXml(product: Product): string {
         <Title>${product.title + "_rgba"}</Title>
         <Abstract></Abstract>
         <KeywordList>
-          <Keyword>WCS</Keyword>
           <Keyword>GeoTIFF</Keyword>
         </KeywordList>
         <SRS>EPSG:27700</SRS>
-        <LatLonBoundingBox minx="-6.12632079353505" miny="51.30238930387951" maxx="-1.3190873002504129" maxy="54.177806778383"/>
+        <LatLonBoundingBox minx="${product.bbox[0]}" miny="${product.bbox[1]}" maxx="${product.bbox[2]}" maxy="${product.bbox[3]}"/>
         <BoundingBox SRS="EPSG:27700" minx="130378.85316" miny="163032.59084999998" maxx="444543.80235" maxy="475787.06887"/>
 
       </Layer>`;
