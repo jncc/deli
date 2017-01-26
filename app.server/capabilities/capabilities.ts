@@ -25,7 +25,7 @@ export function makeLayerXml(product: Product): string {
 
   let xml = `
       <Layer queryable="1" opaque="0">
-        <Name>${product.id}</Name>
+        <Name>${"s2_ard:" + product.title + "_rgba"}</Name>
         <Title>${product.title + "_rgba"}</Title>
         <Abstract></Abstract>
         <KeywordList>
