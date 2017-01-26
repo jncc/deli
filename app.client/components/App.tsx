@@ -48,7 +48,7 @@ export class App extends React.Component<any, AppState> {
     let bbox = `bbox=[${this.state.query.bbox[0]},${this.state.query.bbox[1]},${this.state.query.bbox[2]},${this.state.query.bbox[3]}]`;
     let start = `start=` + this.state.query.start;
     let end = `end=` + this.state.query.end;
-    fetch('/layers?' + bbox + '&' + start + '&' + end)
+    fetch('/products?' + bbox + '&' + start + '&' + end)
       .then(res => res.json())
       .then(json => {
         this.gotData(json);

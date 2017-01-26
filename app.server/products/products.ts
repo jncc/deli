@@ -12,7 +12,7 @@ class Query {
 }
 
 
-export function handleLayers(query: any) {
+export function getProducts(query: any) {
 
   let q = parseQuery(query);
   let boundingBox = turf.bboxPolygon(q.bbox);

@@ -1,5 +1,5 @@
 
-export const layers = [
+export const products = [
   {
     "Name": "Layer 1",
     "Title": "Title 1",

@@ -6004,7 +6004,7 @@ export const template: string = `
       <SRS>EPSG:42304</SRS>
       <SRS>EPSG:42303</SRS>
       <LatLonBoundingBox minx="-10.9569" miny="47.9432" maxx="9.14942562918123" maxy="62.4491"/>
-      {{{layers}}}
+      {{{products}}}
     </Layer>
   </Capability>
 </WMT_MS_Capabilities>

@@ -4,22 +4,22 @@ import * as express from "express";
 import { getEnvironmentSettings, getWmsUrl } from "./settings";
 import { products } from "./data/products";
 import { getCapabilities } from "./capabilities/capabilities";
-import { handleLayers } from "./layers/layers";
+import { getProducts } from "./products/products";
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
 
-// handle http data requests
-
-app.get(`/capabilities/:key`, (req, res) => {
+// wms GetCapabilites handler
+app.get(`/gc/:key`, (req, res) => {
   let wmsUrl = getWmsUrl(req.header(`Host`), req.protocol);
   let result = getCapabilities(products, wmsUrl);
   res.set(`Content-Type`, `text/xml`);
   res.send(result);
 });
 
-app.get(`/layers`, (req, res) => {
-  let result = handleLayers(req.query);
+// query handler for ui
+app.get(`/products`, (req, res) => {
+  let result = getProducts(req.query);
   res.json(result);
 });
 
