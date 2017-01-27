@@ -12,25 +12,20 @@ Local development
 
 A browser window should open at http://localhost:8080
 
-To run as a Docker image
-------------------------
+You can also run `tsc` to quickly compile and check for typescript errors.
+Pushing to `master` will deploy via Shippable to the live environment.
 
-For some reason or other.
+Manual deployment to Elastic Beanstalk
+--------------------------------------
 
-    docker build -t deli . 
-    docker run -t -p 8888:80 deli
+You'll need to set up the AWS command line interface.
+See http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1
 
-Deployment to Elastic Beanstalk
--------------------------------
+    pip install --upgrade --user awsebcli
+    eb --version 
 
 Make sure you have committed any code you want to deploy to Git, or the beanstalk CLI won't deploy it!
 
     npm run build:prod
     eb deploy
     
-Setup notes
------------
-http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1
-
-    pip install --upgrade --user awsebcli
-    eb --version 

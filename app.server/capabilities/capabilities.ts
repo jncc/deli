@@ -1,6 +1,6 @@
 
 
-import { Product } from "./product";
+import { Product } from "./../products/product";
 import { template } from "./template";
 
 export function getCapabilities(products: Product[], wmsUrl: string): String {

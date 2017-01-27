@@ -1,7 +1,7 @@
 
 let turf = require("turf");
 
-import { Product } from "./../capabilities/product";
+import { Product } from "./product";
 import { products } from "./../data/data";
 import { Query } from "./../query/query";
 
