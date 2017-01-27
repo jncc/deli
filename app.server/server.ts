@@ -2,7 +2,6 @@
 import * as express from "express";
 //import * as _ from "lodash";
 import { getEnvironmentSettings, getWmsUrl } from "./settings";
-import { products } from "./data/products";
 import { getCapabilities } from "./capabilities/capabilities";
 import { getProducts } from "./products/products";
 
@@ -12,6 +11,7 @@ let env = getEnvironmentSettings(app.settings.env);
 // wms GetCapabilites handler
 app.get(`/gc/:key`, (req, res) => {
   let wmsUrl = getWmsUrl(req.header(`Host`), req.protocol);
+  let products = getProducts(req.query);
   let result = getCapabilities(products, wmsUrl);
   res.set(`Content-Type`, `text/xml`);
   res.send(result);

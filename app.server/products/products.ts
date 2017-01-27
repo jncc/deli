@@ -1,7 +1,8 @@
 
 let turf = require("turf");
 
-import { SCENES } from "./scenes";
+
+import { products } from "./../data/data";
 
 
 class Query {
@@ -17,10 +18,10 @@ export function getProducts(query: any) {
   let q = parseQuery(query);
   let boundingBox = turf.bboxPolygon(q.bbox);
 
-  let results = SCENES
-    .filter(s => turf.intersect(s.polygon, boundingBox))
-    .filter(s => {
-      let date = new Date(s.date);
+  let results = products
+    .filter(p => turf.intersect(p.footprint, boundingBox))
+    .filter(p => {
+      let date = new Date(p.properties.capturedate);
       return date > q.start && date <= q.end;
     });
 
