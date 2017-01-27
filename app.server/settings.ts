@@ -17,7 +17,12 @@ export function getEnvironmentSettings(env: string) {
   }
 }
 
-export function getWmsUrl(hostHeader: string, protocol: string) {
-    //let noTrailingSlashes = hostHeader.replace(/\/+$/, "");
+export function getRealWmsUrl(env, hostHeader: string, protocol: string) {
+  if (env === 'development') {
+    // no local dev geoserver (yet), so use the live one for convenience
+    return "http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver";
+  }
+  else {
     return protocol + "://" + hostHeader + "/geoserver";
+  }
 }

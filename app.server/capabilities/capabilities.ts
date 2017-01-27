@@ -11,14 +11,11 @@ export function getCapabilities(products: Product[], wmsUrl: string): String {
     .join("\n");
 
   // replace the {{{products}}} placeholder in the GetCapabilities xml template
-  // and the root URL of the WMS server with the
-  // todo: use wmsUrl, if it works
+  // and the root URL of the WMS server with the correct url
+  // (split + join is javascript for "String.replaceAll"!)
   return template
     .replace("{{{products}}}", productsXml)
-    // javascript "string.replaceall"!
-    //.split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl)
-    .split("https://eodip.jncc.gov.uk:443/geoserver").join("http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver")
-    ;
+    .split("https://eodip.jncc.gov.uk:443/geoserver").join(wmsUrl);
 }
 
 export function makeLayerXml(p: Product): string {

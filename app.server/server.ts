@@ -1,18 +1,22 @@
 
 import * as express from "express";
-//import * as _ from "lodash";
-import { getEnvironmentSettings, getWmsUrl } from "./settings";
+import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./capabilities/capabilities";
 import { getProducts } from "./products/products";
+import { getQuery } from "./query/queryKeyManager"
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
 
-// wms GetCapabilites handler
-app.get(`/gc/:key`, (req, res) => {
-  let wmsUrl = getWmsUrl(req.header(`Host`), req.protocol);
-  let products = getProducts(req.query);
-  let result = getCapabilities(products, wmsUrl);
+// custom wms GetCapabilites handler
+app.get(`/wms/:key`, (req, res) => {
+
+  let query = getQuery(req.params.key)
+  let products = getProducts(query);
+
+  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`), req.protocol);
+  let result = getCapabilities(products, realWmsUrl);
+
   res.set(`Content-Type`, `text/xml`);
   res.send(result);
 });
