@@ -1,16 +1,14 @@
 
 import { Query } from "./query";
 
-export class None {}
-
-export function parseQuery(o: any): Query | None {
+export function parseQuery(o: any): Query {
 
   let q: Query = { dataset: "", bbox: [0,0,0,0] };
 
   if (o.dataset) {
       q.dataset = o.dataset;
   } else {
-      return None;
+      throw "Query parse failed. NO dataset specified.";
   }
 
   if (o.bbox) {
@@ -18,7 +16,8 @@ export function parseQuery(o: any): Query | None {
     q.bbox = JSON.parse(o.bbox);
   }
   else {
-    return None; // q.bbox = [-5, 53, 2, 57];
+    // q.bbox = [-5, 53, 2, 57];
+    throw "Query parse failed. NO dataset specified.";
   }
 
   if (o.start) {

@@ -8,24 +8,24 @@ export function getKey(query: Query) {
 
 export function getQuery(key: string): Query {
 
-    if (key == "may16demo") {
+    if (key == "may2016demo") {
         return {
             dataset: "s2-ard",
-            bbox:  [-15, 45, 14, 65],
+            bbox:  [-15, 45, 15, 65],
             start: new Date("2016-05-01"),
             end:   new Date("2016-05-31"),
         }
     } else if (key == "fulldemo") {
         return {
             dataset: "s2-ard",
-            bbox:  [-15,45,14,65],
+            bbox:  [-15,45,15,65],
             start: new Date("2014-01-01"),
             end:   new Date("2020-01-01"),
         }
     } else {
         return {
             dataset: "s2-ard",
-            bbox:  [-15,45,14,65],
+            bbox:  [-15,45,15,65],
             start: new Date("2014-01-01"),
             end:   new Date("2020-01-01"),
         }

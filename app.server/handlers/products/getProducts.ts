@@ -2,8 +2,8 @@
 let turf = require("turf");
 
 import { Product } from "./product";
-import { products } from "./../data/data";
-import { Query } from "./../query/query";
+import { products } from "../../data/data";
+import { Query } from "../../query/query";
 
 
 export function getProducts(q: Query): Product[] {

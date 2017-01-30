@@ -1,9 +1,11 @@
 
 import * as express from "express";
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
-import { getCapabilities } from "./capabilities/capabilities";
-import { getProducts } from "./products/products";
-import { getQuery } from "./query/queryKeyManager"
+import { getCapabilities } from "./handlers/wms/getCapabilities";
+import { getProducts } from "./handlers/products/getProducts";
+import { getQuery } from "./query/queryKeyManager";
+import { getKey } from "./query/queryKeyManager";
+import { parseQuery } from "./query/parseQuery";
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
@@ -23,8 +25,15 @@ app.get(`/wms/:key`, (req, res) => {
 
 // query handler for ui
 app.get(`/products`, (req, res) => {
-  let result = getProducts(req.query);
+  let query = parseQuery(req.query);
+  let result = getProducts(query);
   res.json(result);
+});
+
+app.get(`/key`, (req, res) => {
+  let query = parseQuery(req.query);
+  let key = getKey(query);
+  res.json({ key: key });
 });
 
 // serve static files from the following directory
