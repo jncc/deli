@@ -15,14 +15,24 @@ export function getQuery(key: string): Query {
             start: new Date("2016-05-01"),
             end:   new Date("2016-05-31"),
         }
-    } else if (key == "fulldemo") {
+    }
+    else if (key == "june2016demo") {
+        return {
+            dataset: "s2-ard",
+            bbox:  [-15, 45, 15, 65],
+            start: new Date("2016-06-01"),
+            end:   new Date("2016-06-31"),
+        }
+    }
+    else if (key == "fulldemo") {
         return {
             dataset: "s2-ard",
             bbox:  [-15,45,15,65],
             start: new Date("2014-01-01"),
             end:   new Date("2020-01-01"),
         }
-    } else {
+    }
+    else {
         return {
             dataset: "s2-ard",
             bbox:  [-15,45,15,65],
