@@ -1,78 +1,48 @@
 
-var webpack = require('webpack');
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+let HtmlWebpackPlugin = require('html-webpack-plugin')
+let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 
 module.exports = {
-  entry: {
-    app: './app.client/index.tsx',
-    //vendor: ['react']
-  },
 
+  // the entry point for the webpack dependency analysis
+  entry: './app.client/index.tsx',
+
+  // the output bundle(s)
   output: {
-    path: './built/app.client',
+    path: resolveRelativePath('built/app.client'),
     filename: '[name].[hash].js'
   },
 
-  devtool: 'source-map', // todo: check this works
-
-  resolve: {
-    extensions: ['', '.js', '.ts', '.tsx', 'html', 'css', 'scss'] // '' is for folders!
-  },
-
+  // how will different types of modules be processed ("loaded")
   module: {
-    loaders: [
-      { test: /\.tsx?$/, loader: "ts-loader" },
-      { test: /\.html$/, loader: 'raw' },
-      //{ test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') }
-    ],
-
-    preLoaders: [
-      // todo: investigate this. all output '.js' files will have any sourcemaps re-processed by 'source-map-loader'
-      { test: /\.js$/, loader: "source-map-loader" }
+    rules: [
+      // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
+      // enforce: 'pre' runs this loader before any other loaders
+      { enforce: 'pre', test: /\.tsx?$/, use: 'source-map-loader' },
+      { test: /\.tsx?$/, use: 'ts-loader', exclude: '/node_modules/' },
+      { test: /\.css$/, use: 'css-loader' },
     ]
   },
 
+  // tell webpack to use .tsx files
+  resolve: { extensions: [".tsx", ".ts", ".js"] },
+
+   // again, this is needed for typescript source maps
+  // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
+  devtool: 'inline-source-map',
+
+  // plugins are for anything "loaders" can't do
   plugins: [
+    // generate the index.html page (using the actual index.html as the input)
+    // with all the things that we need (use defaults)
     new HtmlWebpackPlugin({
-      template: `./app.client/index.html`
-    }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor'
-    // }),
-    new webpack.DefinePlugin({
-      app: {
-        environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
-      }
-    }),
-    // polyfill for http fetch
-    // http://mts.io/2015/04/08/webpack-shims-polyfills/
-    new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    }),
-    new ExtractTextPlugin('public/style.css', {
-      allChunks: true
-    }),
-    new CopyWebpackPlugin([
-      { from: './app.client/images', to: 'images' }
-    ]),
-    new CopyWebpackPlugin([
-      { from: './app.client/styles/cosmo.bootstrap.min.css', to: 'styles' }
-    ])
+      template: './app.client/index.html'
+    })
   ],
 
-  // externals: {
-  //     "react": "React",
-  //     "react-dom": "ReactDOM"
-  // },
-
-  devServer: {
-    open: true,
-    quiet: true,
-    proxy: {
-      '*': 'http://localhost:5000'
-    }
-  }
+  // configure webpack-dev-server - open a browser window (the default port 8080)
+  // proxy all requests to the backend nodejs server running on port 5000
+  devServer: { open: true, quiet: true, proxy: { '*': 'http://localhost:5000' } }
 
 };
