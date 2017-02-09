@@ -24,10 +24,11 @@ module.exports = {
       { test: /\.tsx?$/, use: 'ts-loader', exclude: '/node_modules/' },
       // https://webpack.js.org/guides/code-splitting-css/
       { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
-      {
-        test: /\.less$/,
-        use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } },
-          'less-loader']
+      // https://webpack.js.org/loaders/less-loader/ (we import the less in index.tsx)
+      { test: /\.less$/, use: [
+        'style-loader',
+        { loader: 'css-loader', options: { importLoaders: 1 } },
+        'less-loader']
       }
     ]
   },
@@ -35,7 +36,7 @@ module.exports = {
   // tell webpack to use .tsx files
   resolve: { extensions: [".tsx", ".ts", ".js"] },
 
-   // again, this is needed for typescript source maps
+   // this is inexplicably needed for typescript source maps
   // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
   devtool: 'inline-source-map',
 
@@ -52,7 +53,7 @@ module.exports = {
   ],
 
   // configure webpack-dev-server - runs on the default port 8080
-  // open a browser window and proxy all requests to the app.server
+  // open a browser window, quietly, and proxy all requests to the app.server
   // nodejs server running on port 5000
   devServer: { open: true, quiet: true, proxy: { '*': 'http://localhost:5000' } }
 };
