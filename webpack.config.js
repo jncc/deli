@@ -24,11 +24,7 @@ module.exports = {
       // https://webpack.js.org/guides/code-splitting-css/
       { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
       // https://webpack.js.org/loaders/less-loader/ (we import the less in index.tsx)
-      { test: /\.less$/, use: [
-        'style-loader',
-        { loader: 'css-loader', options: { importLoaders: 1 } },
-        'less-loader']
-      },
+      { test: /\.less$/, use: [ 'style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'less-loader']},
       // http://survivejs.com/webpack/understanding-loaders/loading-images/
       { test: /\.(jpg|png)$/, loader: 'file-loader', options: { name: '[path][name].[hash].[ext]' }},
     ]

@@ -3,26 +3,26 @@ import * as React from "react";
 import * as moment from "moment";
 let FlipMove = require('react-flip-move');
 
-import { Scene } from "../../app.shared/Scene";
+import { Product } from "./models/Product";
 
 
 interface ListProps {
-  scenes: Scene[];
+  scenes: Product[];
 }
 
 export function List(props: ListProps) {
 
-  let rows = props.scenes.map(scene => {
+  let rows = props.scenes.map(p => {
     return (
-      <div key={scene.name} className="item">
+      <div key={p.id} className="item">
         <div className="item-left">
           <div>
             <div>X</div>
           </div>
         </div>
         <div className="item-main">
-          <div className="item-main-title">{scene.name}</div>
-          <div className="item-main-cell">{moment(scene.date).format("D MMM YYYY")}</div>
+          <div className="item-main-title">{p.title}</div>
+          <div className="item-main-cell">{moment(p.properties.capturedate).format("D MMM YYYY")}</div>
         </div>
         <div className="item-right">
           <div>

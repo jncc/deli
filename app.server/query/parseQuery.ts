@@ -8,7 +8,7 @@ export function parseQuery(o: any): Query {
   if (o.dataset) {
       q.dataset = o.dataset;
   } else {
-      throw "Query parse failed. NO dataset specified.";
+      throw "Query parse failed. No dataset specified.";
   }
 
   if (o.bbox) {
@@ -17,7 +17,7 @@ export function parseQuery(o: any): Query {
   }
   else {
     // q.bbox = [-5, 53, 2, 57];
-    throw "Query parse failed. NO dataset specified.";
+    throw "Query parse failed. No bbox specified.";
   }
 
   if (o.start) {

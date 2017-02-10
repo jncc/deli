@@ -1,7 +1,7 @@
 
 import * as React from "react";
 
-import { Query } from "./Query";
+import { Query } from "./models/Query";
 
 interface FormProps {
   query: Query;

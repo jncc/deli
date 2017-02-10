@@ -1,10 +1,10 @@
 
 import * as React from "react";
 
-import { Scene } from "../../app.shared/Scene";
+import { Product } from "./models/Product";
 
 interface SummaryProps {
-  scenes: Scene[];
+  scenes: Product[];
   getLinkClicked: () => void;
 }
 

@@ -2,10 +2,12 @@
 export interface Product {
     "id": string,
     "title": string,
-    "footprint": any, // geojson
+    "footprint": any, // geojson GeoJSON.Feature<GeoJSON.Polygon>;
     "bbox": number[],
     "osgbBbox": number[],
-    "properties": any,
+    "properties": {
+        capturedate: string
+    },
     "representations": {
         "download": {
             "url": string,
@@ -14,7 +16,7 @@ export interface Product {
         },
         "wms": {
             "name": string,
-            "base_url": string
+            "base_url": String
         }
     }
 }

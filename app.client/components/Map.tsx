@@ -3,10 +3,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom"
 import * as L from "leaflet";
 
-import { Scene } from "../../app.shared/Scene";
+import { Product } from "./models/Product";
 
 interface MapProps {
-  scenes: Scene[];
+  scenes: Product[];
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -47,8 +47,8 @@ export class Map extends React.Component<MapProps, {}> {
     if (this.map) {
       this.layerGroup.clearLayers();
       // add the scenes
-      this.props.scenes.forEach(s => {
-        let layer = L.geoJSON(s.polygon, style);
+      this.props.scenes.forEach(p => {
+        let layer = L.geoJSON(p.footprint, style);
         this.layerGroup.addLayer(layer);
       });
     }
