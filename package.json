@@ -24,6 +24,7 @@
     "moment": "2.17.0",
     "nprogress": "0.2.0",
     "query-string": "4.2.3",
+    "random-key": "0.3.2",
     "react": "15.3.2",
     "react-dom": "15.3.2",
     "react-flip-move": "2.7.0-beta1",
