@@ -1,4 +1,4 @@
-
+"use strict"
 
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
