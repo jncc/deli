@@ -19,8 +19,7 @@ module.exports = {
   module: {
     rules: [
       // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
-      // 'pre' runs this loader before any other loaders
-      { enforce: 'pre', test: /\.tsx?$/, use: 'source-map-loader' },
+      { test: /\.tsx?$/, use: 'source-map-loader', enforce: 'pre' },
       { test: /\.tsx?$/, use: 'ts-loader', exclude: '/node_modules/' },
       // https://webpack.js.org/guides/code-splitting-css/
       { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
@@ -29,7 +28,9 @@ module.exports = {
         'style-loader',
         { loader: 'css-loader', options: { importLoaders: 1 } },
         'less-loader']
-      }
+      },
+      // http://survivejs.com/webpack/understanding-loaders/loading-images/
+      { test: /\.(jpg|png)$/, loader: 'file-loader', options: { name: '[path][name].[hash].[ext]' }},
     ]
   },
 
