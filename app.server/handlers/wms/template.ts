@@ -8,11 +8,10 @@ export const template: string = `
   <Service>
     <Name>OGC:WMS</Name>
     <Title>Web Map Service</Title>
-    <Abstract>A not-very compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
+    <Abstract>An audacious and ambitious custom implementation of WMS.</Abstract>
     <KeywordList>
       <Keyword>WFS</Keyword>
       <Keyword>WMS</Keyword>
-      <Keyword>GEOSERVER</Keyword>
     </KeywordList>
     <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoserver.sourceforge.net/html/index.php"/>
     <ContactInformation>

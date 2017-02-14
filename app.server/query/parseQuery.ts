@@ -5,6 +5,7 @@ export function parseQuery(o: any): Query {
 
   let q: Query = { dataset: "", bbox: [0,0,0,0] };
 
+
   if (o.dataset) {
       q.dataset = o.dataset;
   } else {
@@ -12,11 +13,14 @@ export function parseQuery(o: any): Query {
   }
 
   if (o.bbox) {
-    // todo validate
-    q.bbox = JSON.parse(o.bbox);
+      // todo validate
+      if (Array.isArray(o.bbox) && o.bbox.length === 4) {
+        q.bbox = o.bbox;
+      } else {
+        throw "Query parse failed. Bbox not array or wrong length.";
+      }
   }
   else {
-    // q.bbox = [-5, 53, 2, 57];
     throw "Query parse failed. No bbox specified.";
   }
 
@@ -39,6 +43,7 @@ export function parseQuery(o: any): Query {
 //   else {
 //     q.end = new Date(2016, 4, 3);
 //   }
+  console.log("exiting parseQuery");
 
   return q;
 }

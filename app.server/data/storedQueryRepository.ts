@@ -48,7 +48,7 @@ export class StoredQueryRepository {
 
     store(query: Query): Promise<StoredQuery> {
         return new Promise((resolve, reject) => {
-            let key = randomKey.generate(10); // e.g. chTsdNQdGc
+            let key = randomKey.generate(12); // e.g. 3BOlkkWgWn6z
             let s = new StoredQuery(key, query);
             this.data.push(s);
             resolve(s);
