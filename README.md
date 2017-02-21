@@ -6,6 +6,9 @@ A web app to make spatial data products available to GIS users.
 
 Development
 -----------
+    Ubuntu requires nodejs-legacy package to create node symlink
+    https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+    sudo apt install nodejs-legacy
 
     npm install
     npm run dev
