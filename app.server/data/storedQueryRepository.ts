@@ -6,7 +6,7 @@ export class StoredQuery {
     constructor(public key: string, public query: Query) {}
 }
 
-export class StoredQueryRepository {
+export class FakeStoredQueryRepository {
 
     private data: StoredQuery[] = [
         { key: "may2016demo",
@@ -53,5 +53,16 @@ export class StoredQueryRepository {
             this.data.push(s);
             resolve(s);
         });
+    }
+}
+
+export class StoredQueryRepository {
+
+    load(key: string): Promise<StoredQuery> {
+        throw 'not implemented';
+    }
+
+    store(query: Query): Promise<StoredQuery> {
+        throw 'not implemented';
     }
 }
