@@ -4,7 +4,8 @@ import * as bodyParser from "body-parser"
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
-import { parseQuery } from "./query/parseQuery";
+//import { parseQueryFromUrl } from "./query/parseQueryFromUrl";
+import { validateQuery } from "./query/validateQuery";
 import { StoredQueryRepository } from "./data/storedQueryRepository";
 
 let app = express();
@@ -31,14 +32,18 @@ app.get(`/wms/:key`, async (req, res) => {
 
 // query handler for ui
 app.get(`/products`, (req, res) => {
-  let query = parseQuery(req.query);
-  let result = getProducts(query);
+  console.log(req.query);
+
+  //let query = parseQueryFromUrl(req.query);
+  validateQuery(req.query);
+  let result = getProducts(req.query);
   res.json(result);
 });
 
 // store the query and give me a key for it
 app.post(`/storedQueries`, async (req, res) => {
-  let query = parseQuery(req.body);
+  let query = req.body;
+  validateQuery(query);
   let storedQuery = await storedQueryRepository.store(query);
   res.json({ key: storedQuery.key });
 });

@@ -14,7 +14,9 @@ export function getProducts(q: Query): Product[] {
     .filter(p => turf.intersect(p.footprint, boundingBox))
     .filter(p => {
       let date = new Date(p.properties.capturedate);
-      return date > q.start && date <= q.end;
+      let start = q.start === undefined ? new Date("2000-01-01") : new Date(q.start);
+      let end = q.end === undefined ? new Date("2100-01-01") : new Date(q.end);
+      return date > start && date <= end;
     });
 
   return results;

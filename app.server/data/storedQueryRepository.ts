@@ -13,24 +13,24 @@ export class StoredQueryRepository {
             query: {
                 dataset: "s2-ard",
                 bbox:  [-15, 45, 15, 65],
-                start: new Date("2016-05-01"),
-                end:   new Date("2016-05-31"),
+                start: "2016-05-01",
+                end:   "2016-05-31"
             }
         },
         { key: "june2016demo",
             query: {
                 dataset: "s2-ard",
                 bbox:  [-15, 45, 15, 65],
-                start: new Date("2016-06-01"),
-                end:   new Date("2016-06-31"),
+                start: "2016-06-01",
+                end:   "2016-06-31"
             }
         },
         { key: "fulldemo",
             query: {
                 dataset: "s2-ard",
                 bbox:  [-15,45,15,65],
-                start: new Date("2014-01-01"),
-                end:   new Date("2020-01-01"),
+                start: "2014-01-01",
+                end:   "2020-01-01"
             }
         },
     ];
