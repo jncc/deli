@@ -1,5 +1,6 @@
 
 import * as React from "react";
+import * as qs from "query-string";
 
 import { Main } from "./Main";
 import { Query, defaultQuery } from "./models/Query";
@@ -43,13 +44,7 @@ export class App extends React.Component<any, AppState> {
 
   getData() {
 
-    // todo unparse properly!
-    //queryString.stringify(this.state.query as any))
-    let dataset = "dataset=s2-ard";
-    let bbox = `bbox=[${this.state.query.bbox[0]},${this.state.query.bbox[1]},${this.state.query.bbox[2]},${this.state.query.bbox[3]}]`;
-    let start = `start=` + this.state.query.start;
-    let end = `end=` + this.state.query.end;
-    fetch('/products?' + dataset + '&' + bbox + '&' + start + '&' + end)
+    fetch('/products?' + qs.stringify(this.state.query))
       .then(res => res.json())
       .then(json => {
         this.gotData(json);
@@ -58,4 +53,3 @@ export class App extends React.Component<any, AppState> {
       });
   }
 }
-
