@@ -11,6 +11,7 @@
     "build": "npm run clean && npm run compile && webpack",
     "build:prod": "set NODE_ENV=production && npm run build",
     "dev": "concurrently -k \"npm run compile && nodemon built/app.server/server.js\" \"webpack-dev-server --inline --hot \"",
+    "dev:server": "npm run compile && nodemon built/app.server/server.js",
     "test": "karma start --single-run",
     "test:watch": "karma start",
     "start": "node built/app.server/server.js"
@@ -30,6 +31,7 @@
     "react-dom": "15.3.2",
     "react-flip-move": "2.7.0-beta1",
     "turf": "3.0.14",
+    "url": "0.11.0",
     "whatwg-fetch": "1.0.0"
   },
   "devDependencies": {
