@@ -4,7 +4,6 @@ import * as bodyParser from "body-parser"
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
-//import { parseQueryFromUrl } from "./query/parseQueryFromUrl";
 import { validateQuery } from "./query/validateQuery";
 import { StoredQueryRepository } from "./data/storedQueryRepository";
 
@@ -30,11 +29,8 @@ app.get(`/wms/:key`, async (req, res) => {
   res.send(result);
 });
 
-// query handler for ui
+// return product metadata to the ui
 app.get(`/products`, (req, res) => {
-  console.log(req.query);
-
-  //let query = parseQueryFromUrl(req.query);
   validateQuery(req.query);
   let result = getProducts(req.query);
   res.json(result);
@@ -48,7 +44,7 @@ app.post(`/storedQueries`, async (req, res) => {
   res.json({ key: storedQuery.key });
 });
 
-// serve static files from the following directory
+// serve static files from the specified directory
 app.use(express.static(env.dir));
 
 // start the express web server

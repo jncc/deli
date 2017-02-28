@@ -8,7 +8,7 @@ export const template: string = `
   <Service>
     <Name>OGC:WMS</Name>
     <Title>Web Map Service</Title>
-    <Abstract>An audacious and ambitious custom implementation of WMS.</Abstract>
+    <Abstract>An ambitious custom implementation of WMS.</Abstract>
     <KeywordList>
       <Keyword>WFS</Keyword>
       <Keyword>WMS</Keyword>
