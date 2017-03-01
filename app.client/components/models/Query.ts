@@ -10,8 +10,8 @@ export class Query {
 export function defaultQuery(): Query {
   return {
     dataset:  "s2-ard",
-    bbox:  [-5, 53, 2, 57],
-    start: "2016-05-01",
-    end:   "2016-05-31",
+    bbox:  [-8, 53, 0, 57],
+    start: "2016-06-01",
+    end:   "2016-06-31",
   }
 }

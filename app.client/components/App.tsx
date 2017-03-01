@@ -27,29 +27,30 @@ export class App extends React.Component<any, AppState> {
     // update state.query
     this.setState({ query: query, products: this.state.products });
 
-    this.getData();
+    this.getData(query);
   }
+
+
 
   componentDidMount() {
-    this.getData();
+    // get initial data
+    this.getData(this.state.query);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.query);
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(this.state.query);
+  // }
 
-  gotData(products: any) {
-    this.setState({ query: this.state.query, products: products });
-  }
+  // fetch products data and set state
+  getData(query: Query) {
 
-  getData() {
-
-    fetch('/products?' + qs.stringify(this.state.query))
+    fetch('/products?' + qs.stringify(query))
       .then(res => res.json())
       .then(json => {
-        this.gotData(json);
+        this.setState({ query: this.state.query, products: json });
       }).catch(ex => {
-        console.log('parsing failed', ex);
+        console.log(`couldn't get data`, ex);
       });
   }
+
 }

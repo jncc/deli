@@ -49,7 +49,7 @@ app.use(express.static(env.dir));
 
 // start the express web server
 app.listen(env.port, () => {
-  console.log(`on ` + new Date().toISOString());
+  console.log(`it's ` + new Date().toISOString());
   console.log(`app.server is listening on: http://localhost:${env.port}`);
   console.log(`node environment is ${env.name}`);
 });
