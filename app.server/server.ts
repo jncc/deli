@@ -5,11 +5,11 @@ import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
 import { validateQuery } from "./query/validateQuery";
-import { StoredQueryRepository, FakeStoredQueryRepository } from "./data/storedQueryRepository";
+import { FakeStoredQueryRepository } from "./data/storedQueryRepository";
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
-let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
+let storedQueryRepository = new FakeStoredQueryRepository(); // env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
 
 process.on('unhandledRejection', r => console.log(r));
 
@@ -49,7 +49,8 @@ app.use(express.static(env.dir));
 
 // start the express web server
 app.listen(env.port, () => {
-  console.log(`app.server listening on: http://localhost:${env.port}`);
+  console.log(`on ` + new Date().toISOString());
+  console.log(`app.server is listening on: http://localhost:${env.port}`);
   console.log(`node environment is ${env.name}`);
 });
 
