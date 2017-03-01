@@ -12,8 +12,7 @@ interface MapProps {
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map;
-  layerGroup: L.LayerGroup; // a group for the rectangles
-
+  layerGroup: L.LayerGroup;
 
   componentDidMount() {
     let map = this.map = L.map(ReactDOM.findDOMNode(this) as HTMLElement, {
@@ -41,18 +40,32 @@ export class Map extends React.Component<MapProps, {}> {
   // }
 
 
+  addProductToMap(p: Product) {
+        let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
+
+        let params = {
+          layers: "s2_ard:" + p.title + "_rgba",
+          format: 'image/png',
+          transparent: true
+        };
+
+        // add the product image
+        let image = L.tileLayer.wms(wmsUrl, params);
+        this.layerGroup.addLayer(image);
+
+        // add the product border
+        //let border = L.geoJSON(p.footprint, style);
+        //this.layerGroup.addLayer(border);
+    }
+
   componentDidUpdate(prevProps, prevState) {
     console.log("map component updated");
 
     if (this.map) {
       this.layerGroup.clearLayers();
-      // add the scenes
-      this.props.scenes.forEach(p => {
-        let layer = L.geoJSON(p.footprint, style);
-        this.layerGroup.addLayer(layer);
-      });
+      this.props.scenes.forEach(p => this.addProductToMap(p));
     }
-  }
+ }
 
   onMapClick() {
     console.log('clicked!');
@@ -63,4 +76,4 @@ export class Map extends React.Component<MapProps, {}> {
   }
 }
 
-const style = { fillOpacity: 0.1, weight: 1, color: '#888' };
+const style = { fillOpacity: 0.1, weight: 3, color: '#666' };
