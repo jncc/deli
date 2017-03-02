@@ -8,6 +8,7 @@ import { Product } from "./models/Product";
 
 interface MapProps {
   scenes: Product[];
+  productHovered: (product: Product | undefined) => void;
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -44,21 +45,29 @@ export class Map extends React.Component<MapProps, {}> {
   addProductToMap(p: Product) {
         let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
 
-        let params = {
+        let wmsOptions = {
           layers: "s2_ard:" + p.title + "_rgba",
           format: 'image/png',
           transparent: true
         };
 
+          let x: L.WMSOptions;
+
         // add the product image
-        let image = L.tileLayer.wms(wmsUrl, params);
+        let image = L.tileLayer.wms(wmsUrl, wmsOptions);
         this.layerGroup.addLayer(image);
 
         // add the product border
         //let x : L.StyleFunction
         let border = L.geoJSON(p.footprint, style);
-        border.on('mouseover', () => border.setStyle(() => ({ color: 'red', fillOpacity: 0 })));
-        border.on('mouseout', () => border.setStyle(() => style));
+        border.on('mouseover', () => {
+          border.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+          //this.props.productHovered(p);
+        });
+        border.on('mouseout', () => {
+          border.setStyle(() => style);
+          //this.props.productHovered(undefined);
+        });
         this.layerGroup.addLayer(border);
     }
 
@@ -80,4 +89,4 @@ export class Map extends React.Component<MapProps, {}> {
   }
 }
 
-const style = { fillOpacity: 0.1, weight: 3, color: '#666' }; // className can't get to work right now
+const style = { fillOpacity: 0, weight: 0, color: '#666' }; // className can't get to work right now

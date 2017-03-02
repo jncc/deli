@@ -13,6 +13,8 @@ interface MainProps {
   query:    Query;   // the current query
   products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
   queryChanged: (query: Query) => void;
+  productHovered: (product: Product | undefined) => void;
+  hovered: Product | undefined;
 }
 
 export function Main(props: MainProps) {
@@ -25,13 +27,13 @@ export function Main(props: MainProps) {
       <div className="container-fluid"  >
         <div className="row">
           <div className="col-md-5">
-            <Map scenes={props.products} />
+            <Map scenes={props.products} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
             <h1>EO Collaboration Node</h1>
             <br />
             <Form query={props.query} queryChanged={props.queryChanged} />
-            <List scenes={props.products} />
+            <List scenes={props.products} hovered={props.hovered} />
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { Product } from "./models/Product";
 
 interface ListProps {
   scenes: Product[];
+  hovered: Product | undefined;
 }
 
 export function List(props: ListProps) {
@@ -17,7 +18,7 @@ export function List(props: ListProps) {
       <div key={p.id} className="item">
         <div className="item-left">
           <div>
-            <div>X</div>
+            <div className={props.hovered === p ? 'hoveredx' : ''}>X</div>
           </div>
         </div>
         <div className="item-main">
