@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom"
 import * as L from "leaflet";
+//import { L } from "leaflet";
 
 import { Product } from "./models/Product";
 
@@ -54,8 +55,11 @@ export class Map extends React.Component<MapProps, {}> {
         this.layerGroup.addLayer(image);
 
         // add the product border
-        //let border = L.geoJSON(p.footprint, style);
-        //this.layerGroup.addLayer(border);
+        //let x : L.StyleFunction
+        let border = L.geoJSON(p.footprint, style);
+        border.on('mouseover', () => border.setStyle(() => ({ color: 'red', fillOpacity: 0 })));
+        border.on('mouseout', () => border.setStyle(() => style));
+        this.layerGroup.addLayer(border);
     }
 
   componentDidUpdate(prevProps, prevState) {
@@ -76,4 +80,4 @@ export class Map extends React.Component<MapProps, {}> {
   }
 }
 
-const style = { fillOpacity: 0.1, weight: 3, color: '#666' };
+const style = { fillOpacity: 0.1, weight: 3, color: '#666' }; // className can't get to work right now
