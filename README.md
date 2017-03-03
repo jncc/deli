@@ -6,16 +6,23 @@ A web app to make spatial data products available to GIS users.
 
 Development
 -----------
-    Ubuntu requires nodejs-legacy package to create node symlink
-    https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-    sudo apt install nodejs-legacy
+Install NodeJS. Ubuntu requires nodejs-legacy package to create node symlink
+https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+
+    apt install nodejs-legacy
+
+Install Typescript.
+
+    npm intall -g typescript
+
+You're good to go. 
 
     npm install
     npm run dev
 
-A browser window should open at http://localhost:8080
+A browser window will open at http://localhost:8080
 
-You can also run `tsc` to quickly compile and check for typescript errors.
+Tip: Run `tsc` to quickly compile and check for typescript errors.
 
 Deployment
 ----------

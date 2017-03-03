@@ -18,16 +18,30 @@ export function List(props: ListProps) {
       <div key={p.id} className="item">
         <div className="item-left">
           <div>
-            <div className={props.hovered === p ? 'hoveredx' : ''}>X</div>
+            <div className={props.hovered === p ? 'hoveredx' : ''}>*</div>
           </div>
         </div>
         <div className="item-main">
           <div className="item-main-title">{p.title}</div>
-          <div className="item-main-cell">{moment(p.properties.capturedate).format("D MMM YYYY")}</div>
+          <div className="item-main-cell">
+            <span className="item-main-property-label">capturedate</span>
+            <span>{moment(p.properties.capturedate).format("D MMM YYYY")}</span>
+          </div>
         </div>
         <div className="item-right">
+              <span className="item-right-download-type">{p.representations.download.type}</span>
+              <br />
+              <span>{formatBytes(p.representations.download.size, 0)}</span>
+
+        </div>
+        <div className="item-right">
+              <form method="get" action={p.representations.download.url}>
+                <button className="btn btn-default" type="submit">Download</button>
+              </form>
+
           <div>
-            <div>X</div>
+            <div>
+            </div>
           </div>
         </div>
       </div>
@@ -41,6 +55,16 @@ export function List(props: ListProps) {
       </FlipMove>
     </div>
   );
+}
+
+// http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
+function formatBytes(bytes,decimals) {
+   if(bytes == 0) return '0 Bytes';
+   var k = 1000,
+       dm = decimals + 1 || 3,
+       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+       i = Math.floor(Math.log(bytes) / Math.log(k));
+   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 let flipMoveAnimationProps = {

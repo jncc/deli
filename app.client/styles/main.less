@@ -58,10 +58,19 @@ h1 {
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0 4px 0 4px;
+    .item-main-title {
+      font-size: 130%;
+    }
+    .item-main-property-label {
+      color: #888;
+      padding-right: 0.3em;
+    }
   }
   .item-right {
     flex: 0;
-    padding: 0 4px;
+    padding: 4px 4px;
+    white-space: nowrap;
+    text-align: right;
     > div {
       display: flex;
       align-items: center;
@@ -69,6 +78,9 @@ h1 {
       > div {
         flex:1;
       }
+    }
+    .item-right-download-type {
+      color: #888;
     }
   }
 
