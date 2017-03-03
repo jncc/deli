@@ -28,12 +28,15 @@ export function Form(props: FormProps) {
   return (
     <div className="form-inline form">
       <div className="form-group">
+        <label>From</label>
         <input type="text" value={props.query.start} onChange={startChanged} className="form-control" placeholder="Start date"></input>
       </div>
       <div className="form-group">
+        <label>To</label>
         <input type="text" value={props.query.end} onChange={endChanged} className="form-control" placeholder="End date"></input>
       </div>
       <div className="form-group">
+        <label>Area</label>
         <input type="text" value={JSON.stringify(props.query.bbox)} onChange={bboxChanged} className="form-control" placeholder="Bbox"></input>
       </div>
       <button className="btn btn-danger">Update</button>

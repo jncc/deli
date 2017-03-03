@@ -59,13 +59,13 @@ export function List(props: ListProps) {
 function getPropertiesUI(p: Product) {
   return Object.keys(p.properties).map((key) => {
     let value = p.properties[key];
-    let displayValue = key.includes("date")
+    let displayValue = key.endsWith("date")
       ? moment(value).format("D MMM YYYY")
       : value;
     return (
       <span>
         <span className="item-main-property-label">{key}</span>
-        <span>{value}</span>
+        <span className="item-main-property-value">{displayValue}</span>
       </span>);
     });
 }
