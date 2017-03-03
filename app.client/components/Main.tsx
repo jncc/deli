@@ -1,6 +1,6 @@
 
 import * as React from "react";
-
+import * as ReactModal from "react-modal";
 import { Header } from "./Header";
 import { Form } from "./Form";
 import { List } from "./List";
@@ -12,14 +12,16 @@ import { Product } from "./models/Product";
 interface MainProps {
   query:    Query;   // the current query
   products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
+  hovered: Product | undefined;
+  modal: boolean;
   queryChanged: (query: Query) => void;
   productHovered: (product: Product | undefined) => void;
-  hovered: Product | undefined;
+  modalToggled: () => void;
 }
 
 export function Main(props: MainProps) {
 
-  let handleGetLinkClicked = () => {};
+  let handleGetLinkClicked = () => { props.modalToggled() };
 
   return (
     <div>
@@ -38,6 +40,12 @@ export function Main(props: MainProps) {
         </div>
       </div>
       <Summary scenes={props.products} getLinkClicked={handleGetLinkClicked} />
+      <ReactModal
+           isOpen={props.modal}
+           contentLabel="Minimal Modal Example"
+        >
+          <button >Close Modal</button>
+      </ReactModal>
     </div>
   );
 }

@@ -62,6 +62,7 @@ export class Map extends React.Component<MapProps, {}> {
         let border = L.geoJSON(p.footprint, style);
         border.on('mouseover', () => {
           border.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+          //console.log('mouseover');
           //this.props.productHovered(p);
         });
         border.on('mouseout', () => {
@@ -73,6 +74,8 @@ export class Map extends React.Component<MapProps, {}> {
 
   componentDidUpdate(prevProps, prevState) {
     console.log("map component updated");
+    // console.log(this.props);
+    // console.log(prevProps);
 
     if (this.map) {
       this.layerGroup.clearLayers();

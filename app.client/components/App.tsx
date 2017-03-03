@@ -6,35 +6,51 @@ import { Main } from "./Main";
 import { Query, defaultQuery } from "./models/Query";
 import { Product } from "./models/Product";
 
-
 interface AppState {
   query:    Query;     // the current query
   products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
   hovered: Product | undefined;
+  modal: boolean;
 }
 
 export class App extends React.Component<any, AppState> {
 
   constructor(props: any) {
     super(props);
-    this.state = { query: defaultQuery(), products: new Array(), hovered: undefined };
+    this.state = {
+      query: defaultQuery(),
+      products: new Array(),
+      hovered: undefined,
+      modal: false };
   }
 
   render() {
     return ( <Main {...this.state}
       queryChanged={this.handleQueryChange.bind(this)}
-      productHovered={this.handleProductHovered.bind(this)} /> );
+      productHovered={this.handleProductHovered.bind(this)}
+      modalToggled={this.handleModalToggled.bind(this)} /> );
   }
 
   handleQueryChange(query: Query) {
-    this.setState({ query: query, products: this.state.products, hovered: this.state.hovered });
+    this.setState({ query: query });
     this.getData(query);
   }
 
   handleProductHovered(product: Product) {
-    this.setState({ hovered: product, query: this.state.query, products: this.state.products, });
+    this.setState({ hovered: product });
   }
 
+  handleModalToggled () {
+    this.setState({ modal: !this.state.modal });
+  }
+
+  // handleOpenModal () {
+  //   this.setState({ modal: true });
+  // }
+
+  // handleCloseModal () {
+  //   this.setState({ modal: false });
+  // }
 
   componentDidMount() {
     // get initial data
@@ -50,8 +66,8 @@ export class App extends React.Component<any, AppState> {
 
     fetch('/products?' + qs.stringify(query))
       .then(res => res.json())
-      .then(json => {
-        this.setState({ query: this.state.query, hovered: this.state.hovered, products: json });
+      .then((json: Product[]) => {
+        this.setState({ products: json });
       }).catch(ex => {
         console.log(`couldn't get data`, ex);
       });
