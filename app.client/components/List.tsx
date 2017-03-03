@@ -24,8 +24,7 @@ export function List(props: ListProps) {
         <div className="item-main">
           <div className="item-main-title">{p.title}</div>
           <div className="item-main-cell">
-            <span className="item-main-property-label">capturedate</span>
-            <span>{moment(p.properties.capturedate).format("D MMM YYYY")}</span>
+            {getPropertiesUI(p)}
           </div>
         </div>
         <div className="item-right">
@@ -55,6 +54,20 @@ export function List(props: ListProps) {
       </FlipMove>
     </div>
   );
+}
+
+function getPropertiesUI(p: Product) {
+  return Object.keys(p.properties).map((key) => {
+    let value = p.properties[key];
+    let displayValue = key.includes("date")
+      ? moment(value).format("D MMM YYYY")
+      : value;
+    return (
+      <span>
+        <span className="item-main-property-label">{key}</span>
+        <span>{value}</span>
+      </span>);
+    });
 }
 
 // http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript

@@ -19,8 +19,8 @@ export function Summary(props: SummaryProps) {
   let tooManyScenes = props.scenes.length > MAX_SCENE_COUNT;
 
   let message = tooManyScenes
-    ? (<span>More than <span className="summary-count">{props.scenes.length}</span> scenes selected. Apply filters.</span>)
-    : (<span><span className="summary-count">{props.scenes.length}</span> scenes selected</span>);
+    ? (<span>More than <span className="summary-count">{props.scenes.length}</span> products selected. Apply filters.</span>)
+    : (<span><span className="summary-count">{props.scenes.length}</span> products selected</span>);
 
   return (
     <div className="summary">
