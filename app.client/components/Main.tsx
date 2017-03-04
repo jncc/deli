@@ -17,11 +17,14 @@ interface MainProps {
   queryChanged: (query: Query) => void;
   productHovered: (product: Product | undefined) => void;
   modalToggled: () => void;
+  wmsLink: string;
 }
 
 export function Main(props: MainProps) {
 
-  let handleGetLinkClicked = () => { props.modalToggled() };
+  let handleGetLinkClicked = () => {
+    props.modalToggled()
+};
 
   return (
     <div>
@@ -43,8 +46,12 @@ export function Main(props: MainProps) {
       <ReactModal
            isOpen={props.modal}
            contentLabel="Minimal Modal Example"
+           style={ { style: { overlay: {zIndex: 3000000}}}}
         >
-          <button >Close Modal</button>
+          <h2>Custom WMS link</h2>
+          <p><span>http://deli-live.eu-west-1.elasticbeanstalk.com/wms/{props.wmsLink}</span></p>
+          <p>Copy this WMS link into your GIS client.</p>
+          <button>OK</button>
       </ReactModal>
     </div>
   );

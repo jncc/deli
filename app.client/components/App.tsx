@@ -11,6 +11,7 @@ interface AppState {
   products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
   hovered: Product | undefined;
   modal: boolean;
+  wmsLink: string;
 }
 
 export class App extends React.Component<any, AppState> {
@@ -21,7 +22,8 @@ export class App extends React.Component<any, AppState> {
       query: defaultQuery(),
       products: new Array(),
       hovered: undefined,
-      modal: false };
+      modal: false,
+      wmsLink: "" };
   }
 
   render() {
@@ -42,6 +44,7 @@ export class App extends React.Component<any, AppState> {
 
   handleModalToggled () {
     this.setState({ modal: !this.state.modal });
+    this.getWmsLink();
   }
 
   // handleOpenModal () {
@@ -73,4 +76,17 @@ export class App extends React.Component<any, AppState> {
       });
   }
 
+  getWmsLink() {
+    fetch('/storedQueries', {
+      method: 'post',
+      body: JSON.stringify(this.state.query),
+      headers: { "Content-Type" : "application/json" }
+    })
+      .then(res => res.json()
+        .then((json: { key: string }) => {
+          this.setState({ wmsLink: json.key });
+        }).catch(ex => {
+          console.log(`couldn't get data`, ex);
+        }));
+  }
 }
