@@ -1,6 +1,7 @@
 "use strict"
 
-let HtmlWebpackPlugin = require('html-webpack-plugin')
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 
@@ -46,7 +47,15 @@ module.exports = {
     }),
     // this is necessary for the extract-text loader... baffling!
     // https://webpack.js.org/guides/code-splitting-css/
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    // copy images
+    new CopyWebpackPlugin([
+      { from: './app.client/images', to: 'images' }
+    ]),
+    // temp: copy cosmo bootstrap css
+    new CopyWebpackPlugin([
+      { from: './app.client/styles/cosmo.bootstrap.min.css', to: 'styles' }
+    ])
   ],
 
   // configure webpack-dev-server - runs on the default port 8080
