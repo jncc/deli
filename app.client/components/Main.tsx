@@ -51,7 +51,7 @@ export function Main(props: MainProps) {
           <h2>Custom WMS link</h2>
           <p><span>http://deli-live.eu-west-1.elasticbeanstalk.com/wms/{props.wmsLink}</span></p>
           <p>Copy this WMS link into your GIS client.</p>
-          <button>OK</button>
+          <button onClick={() => props.modalToggled()}>OK</button>
       </ReactModal>
     </div>
   );
