@@ -24,6 +24,10 @@ A browser window will open at http://localhost:8080
 
 Tip: Run `tsc` to quickly compile and check for typescript errors.
 
+Demoing
+-------
+To get all the S2-ARD products, increase the bounding box to [-14,50,4,60] and make the date range 2014 - 2018.
+
 Deployment
 ----------
 

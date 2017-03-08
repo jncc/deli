@@ -42,7 +42,7 @@ export function Main(props: MainProps) {
           </div>
         </div>
       </div>
-      <Summary scenes={props.products} getLinkClicked={handleGetLinkClicked} />
+      <Summary products={props.products} getLinkClicked={handleGetLinkClicked} />
       <ReactModal
            isOpen={props.modal}
            contentLabel="Minimal Modal Example"

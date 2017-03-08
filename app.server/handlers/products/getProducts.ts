@@ -21,6 +21,7 @@ export function getProducts(q: Query): Product[] {
           return date > start && date <= end;
         })
         .orderBy(p => p.properties.capturedate) // there is no decent way to do thenBy title!
+        .take(51) // assuming max 50 in UI
         .value();
 
     return results;
