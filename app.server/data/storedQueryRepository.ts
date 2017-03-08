@@ -11,7 +11,7 @@ export class FakeStoredQueryRepository {
     private data: StoredQuery[] = [
         { key: "may2016demo",
             query: {
-                dataset: "s2-ard",
+                collections: ["s2-ard"],
                 bbox:  [-15, 45, 15, 65],
                 start: "2016-05-01",
                 end:   "2016-05-31"
@@ -19,7 +19,7 @@ export class FakeStoredQueryRepository {
         },
         { key: "june2016demo",
             query: {
-                dataset: "s2-ard",
+                collections: ["s2-ard"],
                 bbox:  [-15, 45, 15, 65],
                 start: "2016-06-01",
                 end:   "2016-06-31"
@@ -27,7 +27,7 @@ export class FakeStoredQueryRepository {
         },
         { key: "fulldemo",
             query: {
-                dataset: "s2-ard",
+                collections: ["s2-ard"],
                 bbox:  [-15,45,15,65],
                 start: "2014-01-01",
                 end:   "2020-01-01"

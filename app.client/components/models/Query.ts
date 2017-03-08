@@ -1,7 +1,7 @@
 
 
 export class Query {
-  dataset: string
+  collections: string[]
   bbox:  [number, number, number, number]
   start: string
   end:   string
@@ -9,7 +9,7 @@ export class Query {
 
 export function defaultQuery(): Query {
   return {
-    dataset:  "s2-ard",
+    collections:  ["s2-ard"],
     bbox:  [-8, 53, 0, 57],
     start: "2016-06-01",
     end:   "2016-06-31",

@@ -4,8 +4,8 @@ import { Query } from "./query";
 /* Throws an exception if the query isn't good. */
 export function validateQuery(o: Query) {
 
-    if (!o.dataset) {
-        throw "Query validation failed. No dataset specified.";
+    if (!o.collections || o.collections.length === 0) {
+        throw "Query validation failed. No collection specified.";
     }
 
     if (!o.bbox) {
