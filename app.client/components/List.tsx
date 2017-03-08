@@ -28,13 +28,13 @@ export function List(props: ListProps) {
           </div>
         </div>
         <div className="item-right">
-              <span className="item-right-download-type">{p.representations.download.type}</span>
+              <span className="item-right-download-type">{p.data.download.type}</span>
               <br />
-              <span>{formatBytes(p.representations.download.size, 0)}</span>
+              <span>{formatBytes(p.data.download.size, 0)}</span>
 
         </div>
         <div className="item-right">
-              <form method="get" action={p.representations.download.url}>
+              <form method="get" action={p.data.download.url}>
                 <button className="btn btn-default" type="submit">Download</button>
               </form>
 

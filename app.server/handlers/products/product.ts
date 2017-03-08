@@ -6,7 +6,7 @@ export interface Product {
     "bbox": number[],
     "osgbBbox": number[],
     "properties": any,
-    "representations": {
+    "data": {
         "download": {
             "url": string,
             "size": number,

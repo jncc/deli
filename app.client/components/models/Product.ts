@@ -8,7 +8,7 @@ export interface Product {
     "properties": {
         capturedate: string
     },
-    "representations": {
+    "data": {
         "download": {
             "url": string,
             "size": number,
