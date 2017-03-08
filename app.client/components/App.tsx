@@ -5,6 +5,7 @@ import * as qs from "query-string";
 import { Main } from "./Main";
 import { Query, defaultQuery } from "./models/Query";
 import { Product } from "./models/Product";
+import { QueryResult } from "../../app.server/handlers/products/models"
 
 interface AppState {
   query:    Query;     // the current query
@@ -69,8 +70,8 @@ export class App extends React.Component<any, AppState> {
 
     fetch('/products?' + qs.stringify(query))
       .then(res => res.json())
-      .then((json: Product[]) => {
-        this.setState({ products: json });
+      .then((json: QueryResult) => {
+        this.setState({ products: json.collections[0].products }); // todo support multiple collections
       }).catch(ex => {
         console.log(`couldn't get data`, ex);
       });

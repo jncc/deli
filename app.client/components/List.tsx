@@ -7,13 +7,13 @@ import { Product } from "./models/Product";
 
 
 interface ListProps {
-  scenes: Product[];
+  products: Product[];
   hovered: Product | undefined;
 }
 
 export function List(props: ListProps) {
 
-  let rows = props.scenes.map(p => {
+  let rows = props.products.map(p => {
     return (
       <div key={p.id} className="item">
         <div className="item-left">

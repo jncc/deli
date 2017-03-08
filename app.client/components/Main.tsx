@@ -11,7 +11,7 @@ import { Product } from "./models/Product";
 
 interface MainProps {
   query:    Query;   // the current query
-  products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
+  products: Product[];
   hovered: Product | undefined;
   modal: boolean;
   queryChanged: (query: Query) => void;
@@ -38,7 +38,7 @@ export function Main(props: MainProps) {
             <h1>EO Collaboration Platform</h1>
             <br />
             <Form query={props.query} queryChanged={props.queryChanged} />
-            <List scenes={props.products} hovered={props.hovered} />
+            <List products={props.products} hovered={props.hovered} />
           </div>
         </div>
       </div>
