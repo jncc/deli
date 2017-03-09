@@ -5,11 +5,11 @@ import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
 import { validateQuery } from "./query/validateQuery";
-import { FakeStoredQueryRepository } from "./data/storedQueryRepository";
+import { StoredQueryRepository } from "./data/storedQueryRepository";
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
-let storedQueryRepository = new FakeStoredQueryRepository(); // env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
+let storedQueryRepository = new StoredQueryRepository(); // env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
 
 process.on('unhandledRejection', r => console.log(r));
 
@@ -44,7 +44,7 @@ app.post(`/storedQueries`, async (req, res) => {
   let query = req.body;
   validateQuery(query);
   let storedQuery = await storedQueryRepository.store(query);
-  res.json({ key: storedQuery.key });
+  res.json({ key: storedQuery.id });
 });
 
 // serve static files from the specified directory
