@@ -1,15 +1,16 @@
 
 import * as express from "express";
 import * as bodyParser from "body-parser"
+
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
 import { validateQuery } from "./query/validateQuery";
-import { StoredQueryRepository } from "./data/storedQueryRepository";
+import { StoredQueryRepository, FakeStoredQueryRepository } from "./data/storedQueryRepository";
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);
-let storedQueryRepository = new StoredQueryRepository(); // env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
+let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
 
 process.on('unhandledRejection', r => console.log(r));
 

@@ -1,10 +1,8 @@
 
 import * as randomKey from "random-key";
-import { IMain, IDatabase } from "pg-promise";
-import * as pgPromise from "pg-promise";
 
 import { Query } from "../query/query";
-
+import { Database } from "./database";
 
 export interface StoredQuery {
     id:    string;
@@ -61,34 +59,18 @@ export class FakeStoredQueryRepository {
     }
 }
 
-
-class database {
-    public readonly connection: IDatabase<any>
-
-    constructor() {
-        let pgp = pgPromise();
-        let dbConnectionString = '';
-        this.connection = pgp(dbConnectionString);
-    }
-}
-
-
 export class StoredQueryRepository {
-
-    static db = new database();
 
     load(key: string): Promise<StoredQuery> {
         let q = 'select * from stored_queries where id = $1';
-        return <Promise<StoredQuery>> StoredQueryRepository.db.connection.one(q, [key])
+        return <Promise<StoredQuery>> Database.instance.connection.one(q, [key])
          .catch(error => console.error('failed to query db', error))
     }
 
     store(query: Query): Promise<StoredQuery> {
         let key = randomKey.generate(12);
         let q = 'insert into stored_queries(id, query) values ($1, $2) returning *';
-        return <Promise<StoredQuery>> StoredQueryRepository.db.connection.one(q,[key, query], (result:StoredQuery) => result)
+        return <Promise<StoredQuery>> Database.instance.connection.one(q,[key, query], (result:StoredQuery) => result)
          .catch(error => console.error('failed to insert into db', error))
     }
 }
-
-
