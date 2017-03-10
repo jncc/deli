@@ -1,28 +1,31 @@
 
-d-node deli
-============
+D-Node Deli
+===========
 
-A web app to make spatial data products available to GIS users.
+Our "deli counter" web app to make spatial data products available to GIS users.
 
 Development
 -----------
-Install NodeJS. Ubuntu requires nodejs-legacy package to create node symlink
-https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+
+The Deli is a Node.js client-server web application written in Typescript.
+
+Install Node.js (Note: Ubuntu requires the `nodejs-legacy` package to create a `node` symlink
+https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 
     apt install nodejs-legacy
 
-Install Typescript.
+Install Typescript
 
-    npm intall -g typescript
+    npm i -g typescript
 
 You're good to go. 
 
-    npm install
+    npm i
     npm run dev
 
 A browser window will open at http://localhost:8080
 
-Tip: Run `tsc` to quickly compile and check for typescript errors.
+Tip: It's often handy to run the Typescript compiler `tsc` to quickly check for compile errors.
 
 Demoing
 -------
@@ -34,16 +37,18 @@ Deployment
 Pushing to `master` will deploy via Shippable to the live Elastic Beanstalk environment.
 
 To deploy manually, without using Shippable, you'll need to set up the AWS command line interface.
-See http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1
+See http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1 which also contains instructions for creating new Elastic Beanstalk environments.
 
     pip install --upgrade --user awsebcli
     eb --version
 
-Make sure you have committed any code you want to deploy to Git, or the beanstalk CLI won't deploy it!
+Make sure you have committed any code you want to deploy to your local Git repo, or the beanstalk CLI will ignore it!
 
     npm run build:prod
     eb deploy
-    
+
+The Deli requires access to two backend services; Postgres database and Geoserver. This is not described here.
+
 Using Postman to access the HTTP API
 ------------------------------------
 
@@ -70,3 +75,4 @@ For a pre-cooked example
 
 - `GET` http://localhost:8080/wms/june2016demo
 
+The pre-cooked examples are available in the development time fake in-memory database as well as the live Postgres database.
