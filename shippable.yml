@@ -5,11 +5,10 @@ language: node_js
 node_js:
   - 4.2.3
 
-# only build master and all branches beginning with "beta"
 branches:
   only:
-    - master # - beta*
-    - dockerless
+    - master
+    - lidar
 
 build:
   ci:
@@ -17,6 +16,8 @@ build:
     - npm run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
     - pip install setuptools==34.0.1
+  post_ci:
+    - if [ "$BRANCH" == "master" ]; then EBENV="master_env"; else EBENV=$BRANCH; fi
 
 integrations:
   deploy:
@@ -25,6 +26,6 @@ integrations:
       target: eb_paas
       platform: "Node.js"
       application_name: deli
-      env_name: deli-$BRANCH
+      env_name: deli-$EBENV
       region: "eu-west-1"
 
