@@ -24,11 +24,11 @@ integrations:
     - branches:
         - only:
           - master
+          - lidar
       integrationName: "aws-jncc-prod-subscription-integration"
       type: aws
       target: eb_paas
       platform: "Node.js"
       application_name: deli
-      env_name: deli-live
+      env_name: deli-$BRANCH
       region: "eu-west-1"
-
