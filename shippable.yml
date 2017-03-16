@@ -19,16 +19,12 @@ build:
     - pip install setuptools==34.0.1
 
 integrations:
-
   deploy:
-    - branches:
-        - only:
-          - master
-          - lidar
-      integrationName: "aws-jncc-prod-subscription-integration"
+    - integrationName: "aws-jncc-prod-subscription-integration"
       type: aws
       target: eb_paas
       platform: "Node.js"
       application_name: deli
       env_name: deli-live
       region: "eu-west-1"
+
