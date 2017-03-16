@@ -32,14 +32,3 @@ integrations:
       env_name: deli-live
       region: "eu-west-1"
 
-  deploy:
-    - branches:
-        - only:
-          - lidar
-      integrationName: "aws-jncc-prod-subscription-integration"
-      type: aws
-      target: eb_paas
-      platform: "Node.js"
-      application_name: deli-lidar
-      env_name: deli-lidar-live
-      region: "eu-west-1"
