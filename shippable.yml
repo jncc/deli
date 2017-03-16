@@ -30,5 +30,5 @@ integrations:
       target: eb_paas
       platform: "Node.js"
       application_name: deli
-      env_name: deli-$BRANCH
+      env_name: deli-live
       region: "eu-west-1"
