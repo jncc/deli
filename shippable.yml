@@ -17,7 +17,7 @@ build:
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
     - pip install setuptools==34.0.1
   post_ci:
-    - if [ "$BRANCH" == "master" ]; then EBENV="master_env"; else EBENV=$BRANCH; fi
+    - if [ "$BRANCH" == "master" ]; then EBENV="live"; else EBENV=$BRANCH; fi
 
 integrations:
   deploy:
