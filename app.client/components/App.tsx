@@ -69,12 +69,12 @@ export class App extends React.Component<any, AppState> {
   getData(query: Query) {
 
     fetch('/products?' + qs.stringify(query))
-      .then(res => res.json())
-      .then((json: QueryResult) => {
-        this.setState({ products: json.collections[0].products }); // todo support multiple collections
-      }).catch(ex => {
-        console.log(`couldn't get data`, ex);
-      });
+      .then(res => res.json()
+        .then((r: QueryResult) => {
+          this.setState({ products: r.collections[0].products }); // todo support multiple collections
+        })).catch(ex => {
+          console.log(`couldn't get data`, ex);
+        });
   }
 
   getWmsLink() {
