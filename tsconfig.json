@@ -3,7 +3,7 @@
     "outDir": "./built/",
     "sourceMap": true,
     "module": "commonjs",
-    "target": "es2015",
+    "target": "ES6", // ES6 === ES2015
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
