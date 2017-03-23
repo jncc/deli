@@ -28,6 +28,22 @@ module.exports = {
       { test: /\.less$/, use: [ 'style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'less-loader']},
       // http://survivejs.com/webpack/understanding-loaders/loading-images/
       { test: /\.(jpg|png)$/, loader: 'file-loader', options: { name: '[path][name].[hash].[ext]' }},
+
+{
+                test: /\.md$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    },
+                    {
+                        loader: "markdown-loader",
+                        options: {
+                            /* your options here */
+                        }
+                    }
+                ]
+            }
+
     ]
   },
 
