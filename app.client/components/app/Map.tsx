@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom"
 import * as L from "leaflet";
 //import { L } from "leaflet";
 
-import { Product } from "./models/Product";
+import { Product } from "../models/Product";
 
 interface MapProps {
   scenes: Product[];

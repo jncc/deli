@@ -1,13 +1,13 @@
 
 import * as React from "react";
 import * as ReactModal from "react-modal";
-import { Header } from "./Header";
+import { Header } from "../shared/Header";
 import { Form } from "./Form";
 import { List } from "./List";
 import { Map } from "./Map";
 import { Summary } from "./Summary";
-import { Query } from "./models/Query";
-import { Product } from "./models/Product";
+import { Query } from "../models/Query";
+import { Product } from "../models/Product";
 
 interface MainProps {
   query:    Query;   // the current query
@@ -35,7 +35,7 @@ export function Main(props: MainProps) {
             <Map scenes={props.products} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
-            <h1>EO Collaboration Platform</h1>
+            <h1>EO Collaboration Platform!</h1>
             <br />
             <Form query={props.query} queryChanged={props.queryChanged} />
             <List products={props.products} hovered={props.hovered} />

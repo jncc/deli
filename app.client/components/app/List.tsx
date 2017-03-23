@@ -3,7 +3,7 @@ import * as React from "react";
 import * as moment from "moment";
 let FlipMove = require('react-flip-move');
 
-import { Product } from "./models/Product";
+import { Product } from "../models/Product";
 
 
 interface ListProps {

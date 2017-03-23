@@ -3,9 +3,9 @@ import * as React from "react";
 import * as qs from "query-string";
 
 import { Main } from "./Main";
-import { Query, defaultQuery } from "./models/Query";
-import { Product } from "./models/Product";
-import { QueryResult } from "../../app.server/handlers/products/models"
+import { Query, defaultQuery } from "../models/Query";
+import { Product } from "../models/Product";
+import { QueryResult } from "../../../app.server/handlers/products/models"
 
 interface AppState {
   query:    Query;     // the current query

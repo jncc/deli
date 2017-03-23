@@ -1,7 +1,7 @@
 
 import * as React from "react";
 
-import { Product } from "./models/Product";
+import { Product } from "../models/Product";
 
 interface SummaryProps {
   products: Product[];
