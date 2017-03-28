@@ -4,15 +4,26 @@ import * as React from "react";
 import { Link } from 'react-router-dom';
 
 import { Header } from "../shared/Header";
+import { data } from "./data";
 
 export function Collections(props: any) {
+
+  let rows = data.map(c => {
+    return (
+    <li>
+        <Link to={ "/app?collections=" + c.id }>{ c.title }</Link>
+    </li>
+    );
+  });
 
   return (
     <div>
       <Header />
-      <div className="container" >
+      <div className="container">
         <h1>Collections</h1>
-        <p><Link to={"/app?collections=s2-ard"}>S2-ARD</Link></p>
+        <ul>
+          { rows }
+        </ul>
       </div>
     </div>
   );

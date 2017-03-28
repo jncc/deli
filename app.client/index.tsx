@@ -10,8 +10,6 @@ import { Home } from "./components/home/Home";
 import { App } from "./components/app/App";
 import { Collections } from "./components/collections/Collections";
 
-
-
 import "./styles/main.less";
 
 ReactDOM.render(
@@ -19,15 +17,9 @@ ReactDOM.render(
     <div>
       <Route exact path="/" component={Home}/>
       <Route exact path="/collections" component={Collections}/>
-      <Route path="/app" component={App}/>
+      <Route exact path="/app" component={App}/>
     </div>
   </Router>,
   document.getElementById('app')
 );
 
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
