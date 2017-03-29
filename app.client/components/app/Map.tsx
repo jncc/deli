@@ -41,21 +41,9 @@ export class Map extends React.Component<MapProps, {}> {
   //   this.map = null;
   // }
 
-
   addProductToMap(p: Product) {
-        let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
 
-        let wmsOptions = {
-          layers: "s2_ard:" + p.title + "_rgba",
-          format: 'image/png',
-          transparent: true
-        };
-
-          let x: L.WMSOptions;
-
-        // add the product image
-        let image = L.tileLayer.wms(wmsUrl, wmsOptions);
-        this.layerGroup.addLayer(image);
+    // console.log(p.id);
 
         // add the product border
         //let x : L.StyleFunction
@@ -80,6 +68,20 @@ export class Map extends React.Component<MapProps, {}> {
     if (this.map) {
       this.layerGroup.clearLayers();
       this.props.scenes.forEach(p => this.addProductToMap(p));
+
+
+      // hackily add the collection-level wms
+      let wmsUrl = 'https://eo.jncc.gov.uk/geoserver/ows';
+      let wmsOptions = {
+        layers: "scotland:lidar-1-dsm",
+        format: 'image/png',
+        transparent: true
+      };
+      let x: L.WMSOptions;
+      let image = L.tileLayer.wms(wmsUrl, wmsOptions);
+      this.layerGroup.addLayer(image);
+
+
     }
  }
 
@@ -92,4 +94,4 @@ export class Map extends React.Component<MapProps, {}> {
   }
 }
 
-const style = { fillOpacity: 0, weight: 0, color: '#666' }; // className can't get to work right now
+const style = { fillOpacity: 0, weight: 1, color: '#666' }; // className can't get to work right now

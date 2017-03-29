@@ -14,9 +14,9 @@ export interface Product {
             "size": number,
             "type": string,
         },
-        "wms": {
-            "name": string,
-            "base_url": String
-        }
+        // "wms": {
+        //     "name": string,
+        //     "base_url": String
+        // }
     }
 }

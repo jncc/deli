@@ -22,10 +22,10 @@ export interface Product {
             size: number,
             type: string,
         },
-        wms: {
-            name:     string,
-            base_url: string
-        }
+        // wms: {
+        //     name:     string,
+        //     base_url: string
+        // }
     }
 }
 
