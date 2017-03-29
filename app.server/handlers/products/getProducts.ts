@@ -14,13 +14,13 @@ export function getProducts(q: Query): QueryResult {
 
     let products = _(collections[0].products)
         .filter(p => turf.intersect(p.footprint, boundingBox))
-        // .filter(p => {
-        //   let date = new Date(p.properties.capturedate);
-        //   let start = q.start === undefined ? new Date("2000-01-01") : new Date(q.start);
-        //   let end = q.end === undefined ? new Date("2100-01-01") : new Date(q.end);
-        //   return date > start && date <= end;
-        // })
-        // .orderBy(p => p.properties.capturedate) // there is no decent way to do thenBy title!
+        //// .filter(p => {
+        ////   let date = new Date(p.properties.capturedate);
+        ////   let start = q.start === undefined ? new Date("2000-01-01") : new Date(q.start);
+        ////   let end = q.end === undefined ? new Date("2100-01-01") : new Date(q.end);
+        ////   return date > start && date <= end;
+        //// })
+        //// .orderBy(p => p.properties.capturedate) //// there is no decent way to do thenBy title!
         .take(51) // assuming max 50 in UI
         .value();
 

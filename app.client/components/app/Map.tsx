@@ -43,7 +43,19 @@ export class Map extends React.Component<MapProps, {}> {
 
   addProductToMap(p: Product) {
 
-    // console.log(p.id);
+        //// let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
+
+        //// let wmsOptions = {
+        ////   layers: "s2_ard:" + p.title + "_rgba",
+        ////   format: 'image/png',
+        ////   transparent: true
+        //// };
+
+        ////   let x: L.WMSOptions;
+
+        //// //// add the product image
+        //// let image = L.tileLayer.wms(wmsUrl, wmsOptions);
+        //// this.layerGroup.addLayer(image);
 
         // add the product border
         //let x : L.StyleFunction
