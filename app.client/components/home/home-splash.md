@@ -1,6 +1,12 @@
 Welcome
 =======
 
-This site has been created to share LiDAR for Scotland data.
+Welcome to the Scottish Remote Sensing Portal. 
 
-The site is in the very early stages of development and we need your help to make it better. As you use this portal, please send us your comments on how to improve the service you receive. We welcome your comments on any aspect of the system: functionality, content, interface and layout, and we will feed these into the development and release cycle.
+Here you can find, share and reuse remote sensed data provided by Scottish public sector organisations. The Portal has been developed as a partnership between Scottish Government and Joint Nature Conservation Committee (JNCC). The site currently serves as hub for Scottish Public Sector LiDAR data which you can download by 10km tiles and web services.
+
+For more information on the LiDAR data please contact [gi-sat@gov.scot](gi-sat@gov.scot).
+ 
+For more information on a particular dataset, please use the contact information provided in the full metadata.
+ 
+For more information about this site, please [contact us](mailto:gi-sat@gov.scot).

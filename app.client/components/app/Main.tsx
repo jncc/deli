@@ -37,12 +37,12 @@ export function Main(props: MainProps) {
           <div className="col-md-7">
             <h1>Scottish Lidar</h1>
             <br />
-            <Form query={props.query} queryChanged={props.queryChanged} />
+            {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
             <List products={props.products} hovered={props.hovered} />
           </div>
         </div>
       </div>
-      <Summary products={props.products} getLinkClicked={handleGetLinkClicked} />
+      {/*<Summary products={props.products} getLinkClicked={handleGetLinkClicked} />*/}
       <ReactModal
            isOpen={props.modal}
            contentLabel="Minimal Modal Example"
