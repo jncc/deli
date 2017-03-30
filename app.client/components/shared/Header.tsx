@@ -1,6 +1,8 @@
 
 import * as React from "react";
 
+import { config } from "../../config";
+
 export class Header extends React.Component<any, {}> {
 
   render() {
@@ -15,7 +17,7 @@ export class Header extends React.Component<any, {}> {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#"><img src={require('../../images/React.js_logo.svg.png')} height={25} width={25} /> &nbsp;</a>
+            <a className="navbar-brand" href="/"><img className="logo" src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;</a>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">

@@ -11,6 +11,7 @@ import { App } from "./components/app/App";
 import { Collections } from "./components/collections/Collections";
 
 import "./styles/main.less";
+import "./styles/config.less";
 
 ReactDOM.render(
   <Router>

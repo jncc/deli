@@ -4,6 +4,7 @@ import * as React from "react";
 import { Link } from 'react-router-dom';
 
 import { Header } from "../shared/Header";
+import { Footer } from "../shared/Footer";
 import { data } from "./data";
 
 export function Collections(props: any) {
@@ -21,10 +22,12 @@ export function Collections(props: any) {
       <Header />
       <div className="container">
         <h1>Collections</h1>
+        <br />
         <ul>
           { rows }
         </ul>
       </div>
+      <Footer />
     </div>
   );
 }

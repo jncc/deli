@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactModal from "react-modal";
 import { Header } from "../shared/Header";
+import { Footer } from "../shared/Footer";
 import { Form } from "./Form";
 import { List } from "./List";
 import { Map } from "./Map";
@@ -35,7 +36,7 @@ export function Main(props: MainProps) {
             <Map scenes={props.products} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
-            <h1>Scottish Lidar</h1>
+            <h1>Scottish Remote Sensing Portal</h1>
             <br />
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
             <List products={props.products} hovered={props.hovered} />
@@ -53,6 +54,7 @@ export function Main(props: MainProps) {
           <p>Copy this WMS link into your GIS client.</p>
           <button onClick={() => props.modalToggled()}>OK</button>
       </ReactModal>
+      <Footer />
     </div>
   );
 }
