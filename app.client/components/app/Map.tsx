@@ -2,8 +2,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom"
 import * as L from "leaflet";
-//import { L } from "leaflet";
 
+import { config } from "../../config";
 import { Product } from "../models/Product";
 
 interface MapProps {
@@ -22,7 +22,7 @@ export class Map extends React.Component<MapProps, {}> {
       maxZoom: 20,
       layers: [
         L.tileLayer(
-          'https://{s}.tiles.mapbox.com/v4/petmon.lp99j25j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGV0bW9uIiwiYSI6ImdjaXJLTEEifQ.cLlYNK1-bfT0Vv4xUHhDBA',
+          config.map.baseLayerUrlTemplate,
           { attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' })
       ],
       attributionControl: false,
@@ -30,10 +30,10 @@ export class Map extends React.Component<MapProps, {}> {
 
     map.on('click', this.onMapClick);
     this.layerGroup = L.layerGroup([]).addTo(map);
-    map.setView([54.50, -4.00], 5)
+    map.setView(config.map.center, config.map.zoom)
 
     // add the bbox
-    L.rectangle([[53, -8], [57, 0]], { fillOpacity: 0.1 }).addTo(this.map);
+    L.rectangle(config.map.bbox, { fillOpacity: 0.1 }).addTo(this.map);
   }
 
   // componentWillUnmount() {

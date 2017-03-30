@@ -6,7 +6,7 @@ export class Header extends React.Component<any, {}> {
   render() {
     return (
       <div>
-      <nav className="navbar navbar-default navbar-fixed-top">
+      <nav className="navbar navbar-default navbar-fixed-top header">
         <div className="container" >
           <div className="navbar-header">
             <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,11 +34,6 @@ export class Header extends React.Component<any, {}> {
                   <li><a href="#">One more separated link</a></li>
                 </ul>
               </li>
-            </ul>
-            <ul className="nav navbar-nav navbar-right">
-              <li><a href="../navbar/">Default</a></li>
-              <li><a href="../navbar-static-top/">Static top</a></li>
-              <li className="active"><a href="./">Fixed top <span className="sr-only">(current)</span></a></li>
             </ul>
           </div>
         </div>
