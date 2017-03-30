@@ -38,6 +38,55 @@ h1 {
   color: #555;
 }
 
+.collection {
+  display: flex;
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 4px;
+  padding: 2px 2px;
+  margin-bottom: 4px;
+  .collection-left {
+    flex: 0;
+    padding: 0 4px;
+    > div {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      > div {
+        flex:1;
+      }
+    }
+  }
+  .collection-main {
+    flex: 1;
+    min-width: 0; // overflow
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 4px 0 4px;
+    .collection-main-title {
+      font-size: 130%;
+    }
+  }
+  .collection-right {
+    flex: 0;
+    padding: 4px 4px;
+    white-space: nowrap;
+    text-align: right;
+    > div {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      > div {
+        flex:1;
+      }
+    }
+    .collection-right-download-type {
+      color: #888;
+    }
+  }
+}
+
 .form {
   margin-bottom: 30px;
   .form-control {

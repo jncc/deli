@@ -4,6 +4,7 @@ import * as moment from "moment";
 let FlipMove = require('react-flip-move');
 
 import { Product } from "../models/Product";
+import { formatBytes } from "../../utility/formatBytes";
 
 
 interface ListProps {
@@ -26,6 +27,9 @@ export function List(props: ListProps) {
           <div className="item-main-cell">
             {getPropertiesUI(p)}
           </div>
+
+
+
         </div>
         <div className="item-right">
               <span className="item-right-download-type">{p.data.download.type}</span>
@@ -37,11 +41,6 @@ export function List(props: ListProps) {
               <form method="get" action={p.data.download.url}>
                 <button className="btn btn-default" type="submit">Download</button>
               </form>
-
-          <div>
-            <div>
-            </div>
-          </div>
         </div>
       </div>
     );
@@ -68,16 +67,6 @@ function getPropertiesUI(p: Product) {
         <span className="item-main-property-value">{displayValue}</span>
       </span>);
     });
-}
-
-// http://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
-function formatBytes(bytes,decimals) {
-   if(bytes == 0) return '0 Bytes';
-   var k = 1000,
-       dm = decimals + 1 || 3,
-       sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-       i = Math.floor(Math.log(bytes) / Math.log(k));
-   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
 let flipMoveAnimationProps = {
