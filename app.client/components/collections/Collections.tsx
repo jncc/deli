@@ -45,10 +45,14 @@ export class Collections extends React.Component<any, CollectionsState> {
           </div>
           <div className="collection-main">
             <div className="collection-main-title">
-              <Link to={"/app?collections=" + c.id}>{c.metadata.title}</Link>
+              <Link to={"/app?collections=" + c.id} title="Click to visualise this collection">
+                {c.metadata.title}
+                &nbsp;&nbsp;&nbsp;
+                <span className="glyphicon glyphicon-hand-right"></span>
+              </Link>
             </div>
             <div >
-              {c.metadata.abstract} &nbsp;
+              {c.metadata.abstract}
               <span>
                 <a href="https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593" target="_blank">More information</a>
               </span>

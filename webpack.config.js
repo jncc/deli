@@ -57,7 +57,11 @@ module.exports = {
     // temp: copy cosmo bootstrap css
     new CopyWebpackPlugin([
       { from: './app.client/styles/cosmo.bootstrap.min.css', to: 'styles' }
-    ])
+    ]),
+    new CopyWebpackPlugin([
+      { from: './app.client/fonts/', to: 'fonts' }
+    ]),
+
   ],
 
   // configure webpack-dev-server - runs on the default port 8080
