@@ -16,7 +16,7 @@ export function Home(props: any) {
         <div dangerouslySetInnerHTML={ {__html: splashText} } ></div>
         <br />
         <br />
-        <p><button> <Link to="/collections">Get Started</Link></button></p>
+        <p><Link to="/collections" className="btn btn-primary">Get Started</Link></p>
         <br />
       </div>
       <Footer />
