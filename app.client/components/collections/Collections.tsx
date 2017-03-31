@@ -48,7 +48,7 @@ export class Collections extends React.Component<any, CollectionsState> {
               <Link to={"/app?collections=" + c.id}>{c.metadata.title}</Link>
             </div>
             <div >
-              {c.metadata.abstract}
+              {c.metadata.abstract} <span><a href="https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593" target="_blank">More information</a></span>
             </div>
           </div>
           <div className="collection-right">
