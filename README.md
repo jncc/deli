@@ -54,9 +54,9 @@ Using Postman to access the HTTP API
 
 To get the product metadata with an example query
 
-- `GET` http://localhost:8080/products?collections=s2-ard&bbox=-15&bbox=45&bbox=15&bbox=65&start=2016-06-01&end=2016-06-31
+- `GET` http://localhost:8080/api/products?collections=s2-ard&bbox=-15&bbox=45&bbox=15&bbox=65&start=2016-06-01&end=2016-06-31
 
-To generate a custom WMS link,  `POST` to http://localhost:8080/storedQueries
+To generate a custom WMS link,  `POST` to http://localhost:8080/api/storedQueries
 
 Put the payload in the `Body`, select `raw` and set the content type to `JSON (application/json)`, then paste in a valid JSON query like this:
 

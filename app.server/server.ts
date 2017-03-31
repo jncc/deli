@@ -5,6 +5,7 @@ import * as bodyParser from "body-parser"
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
+import { getCollections } from "./handlers/collections/getCollections";
 import { validateQuery } from "./query/validateQuery";
 import { StoredQueryRepository, FakeStoredQueryRepository } from "./data/storedQueryRepository";
 
@@ -33,15 +34,21 @@ app.get(`/wms/:key`, async (req, res) => {
   res.send(result);
 });
 
-// return product metadata to the ui
-app.get(`/products`, (req, res) => {
+// return collections to the ui
+app.get(`/api/collections`, (req, res) => {
+  let result = getCollections();
+  res.json(result);
+});
+
+// return products to the ui
+app.get(`/api/products`, (req, res) => {
   validateQuery(req.query);
   let result = getProducts(req.query);
   res.json(result);
 });
 
 // store the query and give me a key for it
-app.post(`/storedQueries`, async (req, res) => {
+app.post(`/api/storedQueries`, async (req, res) => {
   let query = req.body;
   validateQuery(query);
   let storedQuery = await storedQueryRepository.store(query);

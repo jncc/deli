@@ -5,7 +5,7 @@ import * as qs from "query-string";
 import { Main } from "./Main";
 import { Query, defaultQuery } from "../models/Query";
 import { Product } from "../models/Product";
-import { QueryResult } from "../../../app.server/handlers/products/models"
+import { GetProductsResult } from "../../../app.server/handlers/products/models"
 
 interface AppState {
   query:    Query;     // the current query
@@ -68,9 +68,9 @@ export class App extends React.Component<any, AppState> {
   // fetch products data and set state
   getData(query: Query) {
 
-    fetch('/products?' + qs.stringify(query))
+    fetch('/api/products?' + qs.stringify(query))
       .then(res => res.json()
-        .then((r: QueryResult) => {
+        .then((r: GetProductsResult) => {
           this.setState({ products: r.collections[0].products }); // todo support multiple collections
         })).catch(ex => {
           console.log(`couldn't get data`, ex);
@@ -78,7 +78,7 @@ export class App extends React.Component<any, AppState> {
   }
 
   getWmsLink() {
-    fetch('/storedQueries', {
+    fetch('/api/storedQueries', {
       method: 'post',
       body: JSON.stringify(this.state.query),
       headers: { "Content-Type" : "application/json" }

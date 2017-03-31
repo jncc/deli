@@ -1,12 +1,12 @@
 
-export interface QueryResult {
-    collections: Collection[]
+export interface GetProductsResult {
+    collections: ProductCollection[]
 }
 
-export interface Collection {
+export interface ProductCollection {
     id:         string,
     products:   Product[],
-    metadata:   Metadata
+    metadata:   ProductMetadata
 }
 
 export interface Product {
@@ -29,6 +29,6 @@ export interface Product {
     }
 }
 
-export interface Metadata {
+export interface ProductMetadata {
     // todo
 }

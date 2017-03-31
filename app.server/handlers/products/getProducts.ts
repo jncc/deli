@@ -3,12 +3,12 @@ let turf = require("turf");
 
 import * as _ from "lodash";
 
-import { QueryResult, Collection, Product } from "./models";
+import { GetProductsResult, ProductCollection, Product } from "./models";
 import { collections } from "../../data/data";
 import { Query } from "../../query/query";
 
 /* Returns products matching the query, nested within the collection they belong to. */
-export function getProducts(q: Query): QueryResult {
+export function getProducts(q: Query): GetProductsResult {
 
     let boundingBox = turf.bboxPolygon(q.bbox);
 
