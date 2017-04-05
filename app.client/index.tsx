@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import "promise/polyfill";
 import "whatwg-fetch";
-import "leaflet-editable";
 
 import { Home } from "./components/home/Home";
 import { App } from "./components/app/App";

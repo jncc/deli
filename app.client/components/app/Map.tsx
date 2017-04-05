@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom"
 import * as L from "leaflet";
+import "leaflet-editable";
 
 import { config } from "../../config";
 import { Product } from "../models/Product";
@@ -36,8 +37,8 @@ export class Map extends React.Component<MapProps, {}> {
 
     // add the bbox
     let bbox = L.rectangle(config.map.bbox, { fillOpacity: 0.1 });
-    bbox.enableEdit();
     bbox.addTo(this.map);
+    bbox.enableEdit();
   }
 
   // componentWillUnmount() {
