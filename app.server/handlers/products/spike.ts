@@ -1,5 +1,5 @@
 
-let turf = require("turf");
+import * as turf from "turf";
 
 function spike() {
 

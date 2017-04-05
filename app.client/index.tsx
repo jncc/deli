@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import "promise/polyfill";
 import "whatwg-fetch";
+import "leaflet-editable";
 
 import { Home } from "./components/home/Home";
 import { App } from "./components/app/App";
@@ -16,7 +17,7 @@ import "./styles/config.less";
 ReactDOM.render(
   <Router>
     <div>
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/" component={App}/>
       <Route exact path="/collections" component={Collections}/>
       <Route exact path="/app" component={App}/>
     </div>

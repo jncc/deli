@@ -11,10 +11,11 @@ interface MapProps {
   productHovered: (product: Product | undefined) => void;
 }
 
+
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map;
-  layerGroup: L.LayerGroup;
+  layerGroup: L.LayerGroup<any>;
 
   componentDidMount() {
     let map = this.map = L.map(ReactDOM.findDOMNode(this) as HTMLElement, {
@@ -26,6 +27,7 @@ export class Map extends React.Component<MapProps, {}> {
           { attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' })
       ],
       attributionControl: false,
+      editable: true // leaflet.editable plugin
     });
 
     map.on('click', this.onMapClick);
@@ -33,7 +35,9 @@ export class Map extends React.Component<MapProps, {}> {
     map.setView(config.map.center, config.map.zoom)
 
     // add the bbox
-    L.rectangle(config.map.bbox, { fillOpacity: 0.1 }).addTo(this.map);
+    let bbox = L.rectangle(config.map.bbox, { fillOpacity: 0.1 });
+    bbox.enableEdit();
+    bbox.addTo(this.map);
   }
 
   // componentWillUnmount() {

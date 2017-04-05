@@ -44,7 +44,7 @@ export function Main(props: MainProps) {
         </div>
       </div>
       {/*<Summary products={props.products} getLinkClicked={handleGetLinkClicked} />*/}
-      <ReactModal
+      {/*<ReactModal
            isOpen={props.modal}
            contentLabel="Minimal Modal Example"
            style={ { style: { overlay: {zIndex: 3000000}}}}
@@ -53,7 +53,7 @@ export function Main(props: MainProps) {
           <p><span>http://deli-live.eu-west-1.elasticbeanstalk.com/wms/{props.wmsLink}</span></p>
           <p>Copy this WMS link into your GIS client.</p>
           <button onClick={() => props.modalToggled()}>OK</button>
-      </ReactModal>
+      </ReactModal>*/}
       <Footer />
     </div>
   );
