@@ -1,4 +1,3 @@
-
 let turf = require("turf");
 
 import * as _ from "lodash";
@@ -10,11 +9,17 @@ import { Query } from "../../query/query";
 /* Returns products matching the query, nested within the collection they belong to. */
 export function getProducts(q: Query): GetProductsResult {
 
-    console.log(q);
     let boundingBox = turf.bboxPolygon(q.bbox);
-    //console.log(boundingBox);
 
-    let products = _(collections[0].products)
+    // first, get the collections requested by the query
+    let matchingCollections = _(collections)
+        .filter(c => q.collections.some(x => x === c.id))
+        .value();
+
+    // then look at all the products in those collections
+    // and filter them according to the query
+    let products = _(matchingCollections)
+        .flatMap(c => c.products)
         .filter(p => turf.intersect(p.footprint, boundingBox))
         //// .filter(p => {
         ////   let date = new Date(p.properties.capturedate);
@@ -25,6 +30,7 @@ export function getProducts(q: Query): GetProductsResult {
         //// .orderBy(p => p.properties.capturedate) //// there is no decent way to do thenBy title!
         .take(51) // assuming max 50 in UI
         .value();
+
 
     // return the result, containing the array of one collection, with just the matching products
     let result = { collections: _.cloneDeep(collections) };

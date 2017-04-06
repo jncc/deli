@@ -15,7 +15,7 @@ let app = express();
 let env = getEnvironmentSettings(app.settings.env);
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository();
 
-process.on('unhandledRejection', r => console.log(r));
+//process.on('unhandledRejection', r => console.log(r));
 
 // parse json body requests
 app.use(bodyParser.json());
@@ -44,8 +44,9 @@ app.get(`/api/collections`, (req, res) => {
 
 // return products to the ui
 app.get(`/api/products`, (req, res) => {
-  validateQuery(req.query);
-  let result = getProducts(req.query);
+  let q = ensureCollectionsPropertyIsArray(req.query);
+  validateQuery(q);
+  let result = getProducts(q);
   res.json(result);
 });
 
@@ -67,3 +68,15 @@ app.listen(env.port, () => {
   console.log(`node environment is ${env.name}`);
 });
 
+// express won't parse a single value in the querystring as an array
+// but collections should be an array, so ensure it is, even when it's only one value (or missing)
+let ensureCollectionsPropertyIsArray = (q: any) => {
+  let x = JSON.parse(JSON.stringify(q)); // clone so we don't mess with internal express object
+  if (!x.collections) {
+      x.collections = [];
+  }
+  else if (!Array.isArray(x.collections)) {
+        x.collections = [x.collections];
+  }
+  return x;
+};

@@ -1,8 +1,13 @@
+import { collections } from './../data/data';
 
 import { Query } from "./query";
 
 /* Throws an exception if the query isn't good. */
 export function validateQuery(o: Query) {
+
+    if (!Array.isArray(o.collections)) {
+        throw "Query validation failed. Collections not array.";
+    }
 
     if (!o.collections || o.collections.length === 0) {
         throw "Query validation failed. No collection specified.";
