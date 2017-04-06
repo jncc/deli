@@ -1,6 +1,9 @@
 
 import * as React from "react";
 import * as ReactModal from "react-modal";
+
+import { flatMap } from "../../../app.shared/util";
+
 import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
 import { Form } from "./Form";
@@ -8,11 +11,11 @@ import { List } from "./List";
 import { Map } from "./Map";
 import { Summary } from "./Summary";
 import { Query } from "../models/Query";
-import { Product } from "../models/Product";
+import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
 
 interface MainProps {
   query:    Query;   // the current query
-  products: Product[];
+  result: GetProductsResult;
   hovered: Product | undefined;
   modal: boolean;
   queryChanged: (query: Query) => void;
@@ -33,13 +36,15 @@ export function Main(props: MainProps) {
       <div className="container-fluid"  >
         <div className="row">
           <div className="col-md-5">
-            <Map scenes={props.products} productHovered={props.productHovered} />
+            <Map result={props.result} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
             <h1>Scottish Remote Sensing Portal</h1>
             <br />
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
-            <List products={props.products} hovered={props.hovered} />
+            <List
+              products={flatMap(props.result.collections, c => c.products)}
+              hovered={props.hovered} />
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 
+import { CollectionMetadata, CollectionData } from "../collections/models";
+
 export interface GetProductsResult {
     collections: ProductCollection[]
 }
@@ -6,7 +8,8 @@ export interface GetProductsResult {
 export interface ProductCollection {
     id:         string,
     products:   Product[],
-    metadata:   ProductMetadata
+    metadata:   CollectionMetadata,
+    data:       CollectionData,
 }
 
 export interface Product {
@@ -15,20 +18,18 @@ export interface Product {
     bbox:       number[],
     osgbBbox:   number[],
     footprint:  any, // geojson
-    properties: any,
+    properties: {
+        capturedate?: string
+    },
     data: {
-        download: {
+        download?: {
             url:  string,
             size: number,
             type: string,
         },
-        //// wms: {
-        ////     name:     string,
-        ////     base_url: string
-        //// }
+        wms?: {
+            name:     string,
+            base_url: string
+        }
     }
-}
-
-export interface ProductMetadata {
-    // todo
 }

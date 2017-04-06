@@ -8,10 +8,10 @@ import { Product } from "../models/Product";
 import { GetProductsResult } from "../../../app.server/handlers/products/models"
 
 interface AppState {
-  query:    Query;     // the current query
-  products: Product[]; // the most recently loaded query results (ordering corresponds to map z-index)
+  query:   Query;     // the current query
+  result:  GetProductsResult;
   hovered: Product | undefined;
-  modal: boolean;
+  modal:   boolean;
   wmsLink: string;
 }
 
@@ -21,7 +21,7 @@ export class App extends React.Component<any, AppState> {
     super(props);
     this.state = {
       query: defaultQuery(),
-      products: new Array(),
+      result: { collections: [] },
       hovered: undefined,
       modal: false,
       wmsLink: "" };
@@ -71,7 +71,7 @@ export class App extends React.Component<any, AppState> {
     fetch('/api/products?' + qs.stringify(query))
       .then(res => res.json()
         .then((r: GetProductsResult) => {
-          this.setState({ products: r.collections[0].products }); // todo support multiple collections
+          this.setState({ result: r });
         })).catch(ex => {
           console.log(`couldn't get data`, ex);
         });

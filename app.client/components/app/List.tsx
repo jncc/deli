@@ -3,7 +3,7 @@ import * as React from "react";
 import * as moment from "moment";
 let FlipMove = require('react-flip-move');
 
-import { Product } from "../models/Product";
+import { Product } from "../../../app.server/handlers/products/models";
 import { formatBytes } from "../../utility/formatBytes";
 
 
@@ -45,6 +45,7 @@ export function List(props: ListProps) {
       </div>
     );
   });
+
 
   return (
     <div>
