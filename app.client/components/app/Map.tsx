@@ -16,7 +16,7 @@ interface MapProps {
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map;
-  layerGroup: L.LayerGroup<any>;
+  layerGroup: L.LayerGroup;
 
   componentDidMount() {
     let map = this.map = L.map(ReactDOM.findDOMNode(this) as HTMLElement, {

@@ -1,5 +1,6 @@
 {
     "typescript.tsdk": "node_modules/typescript/lib/",
+    "typescript.implementationsCodeLens.enabled": true,
     // hide the build output from the file explorer
     "files.exclude": {
         "built": true
