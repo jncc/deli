@@ -9,6 +9,7 @@ import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";
 import { getCollections } from "./handlers/collections/getCollections";
 import { validateQuery } from "./query/validateQuery";
+import { parseQuerystring } from "./query/parseQuerystring";
 import { StoredQueryRepository, FakeStoredQueryRepository } from "./data/storedQueryRepository";
 
 let app = express();
@@ -44,7 +45,7 @@ app.get(`/api/collections`, (req, res) => {
 
 // return products to the ui
 app.get(`/api/products`, (req, res) => {
-  let q = ensureCollectionsPropertyIsArray(req.query);
+  let q = parseQuerystring(req.query);
   validateQuery(q);
   let result = getProducts(q);
   res.json(result);
@@ -67,16 +68,3 @@ app.listen(env.port, () => {
   console.log(`app.server is listening on: http://localhost:${env.port}`);
   console.log(`node environment is ${env.name}`);
 });
-
-// express won't parse a single value in the querystring as an array
-// but collections should be an array, so ensure it is, even when it's only one value (or missing)
-let ensureCollectionsPropertyIsArray = (q: any) => {
-  let x = JSON.parse(JSON.stringify(q)); // clone so we don't mess with internal express object
-  if (!x.collections) {
-      x.collections = [];
-  }
-  else if (!Array.isArray(x.collections)) {
-        x.collections = [x.collections];
-  }
-  return x;
-};

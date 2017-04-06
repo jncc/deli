@@ -18,7 +18,7 @@ export const config = {
         attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
     },
     defaultQuery: {
-        collections: [`51e72581-75ce-4f0f-8e1f-829226bc7a58`], // DSM
+        collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], //[`51e72581-75ce-4f0f-8e1f-829226bc7a58`], // DSM
         bbox: [-5, 56, -3, 57], // [[56, -5], [57, -3]] as [[number, number], [number, number]],
         start: `2016-06-01`,
         end:   `2016-06-31`,
