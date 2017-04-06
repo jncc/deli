@@ -10,7 +10,9 @@ import { Query } from "../../query/query";
 /* Returns products matching the query, nested within the collection they belong to. */
 export function getProducts(q: Query): GetProductsResult {
 
+    console.log(q);
     let boundingBox = turf.bboxPolygon(q.bbox);
+    //console.log(boundingBox);
 
     let products = _(collections[0].products)
         .filter(p => turf.intersect(p.footprint, boundingBox))

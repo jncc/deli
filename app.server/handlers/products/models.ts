@@ -15,7 +15,7 @@ export interface ProductCollection {
 export interface Product {
     id:         string,
     title:      string,
-    bbox:       number[],
+    bbox:       number[], // [number, number, number, number],
     osgbBbox:   number[],
     footprint:  any, // geojson
     properties: {

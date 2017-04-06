@@ -3,7 +3,7 @@
 export interface Query {
 
   collections: string[]
-  bbox:    [number, number, number, number]
+  bbox:    [number, number, number, number] // [minX, minY, maxX, maxY]
 
   // optional properties, specific to dataset
   start?:  string   // properties.capturedate start

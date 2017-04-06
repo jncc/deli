@@ -2,10 +2,10 @@
 import * as React from "react";
 import * as qs from "query-string";
 
+import { config } from "../../config"
 import { Main } from "./Main";
-import { Query, defaultQuery } from "../models/Query";
-import { Product } from "../models/Product";
-import { GetProductsResult } from "../../../app.server/handlers/products/models"
+import { Query } from "../models/Query";
+import { GetProductsResult, Product } from "../../../app.server/handlers/products/models"
 
 interface AppState {
   query:   Query;     // the current query
@@ -20,11 +20,12 @@ export class App extends React.Component<any, AppState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      query: defaultQuery(),
+      query: config.defaultQuery,
       result: { collections: [] },
       hovered: undefined,
       modal: false,
-      wmsLink: "" };
+      wmsLink: ""
+    };
   }
 
   render() {

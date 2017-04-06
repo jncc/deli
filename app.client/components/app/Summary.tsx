@@ -1,14 +1,13 @@
 
 import * as React from "react";
 
-import { Product } from "../models/Product";
+import { config } from "../../config";
 
 interface SummaryProps {
-  products: Product[];
+  productCount: number;
   getLinkClicked: () => void;
 }
 
-const MAX_SCENE_COUNT = 50;
 
 export function Summary(props: SummaryProps) {
 
@@ -16,11 +15,11 @@ export function Summary(props: SummaryProps) {
     props.getLinkClicked();
   }
 
-  let tooManyProducts = props.products.length > MAX_SCENE_COUNT;
+  let tooManyProducts = props.productCount > config.maxProductCount;
 
   let message = tooManyProducts
-    ? (<span>More than <span className="summary-count">{MAX_SCENE_COUNT}</span> products selected. Apply more filters.</span>)
-    : (<span><span className="summary-count">{props.products.length}</span> products selected</span>);
+    ? (<span>More than <span className="summary-count">{config.maxProductCount}</span> products selected. Apply more filters.</span>)
+    : (<span><span className="summary-count">{props.productCount}</span> products selected</span>);
 
   return (
     <div className="summary">

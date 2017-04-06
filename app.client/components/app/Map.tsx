@@ -5,9 +5,12 @@ import * as L from "leaflet";
 import "leaflet-editable";
 
 import { config } from "../../config";
+import { Query } from "../models/Query";
 import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
+import { bboxFlatArrayToCoordArray } from "../../../app.shared/util";
 
 interface MapProps {
+  query: Query;
   result: GetProductsResult;
   productHovered: (product: Product | undefined) => void;
 }
@@ -29,8 +32,8 @@ export class Map extends React.Component<MapProps, {}> {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.updateCollectionsOnMap();
     this.updateProductsOnMap();
+    this.updateCollectionsOnMap();
   }
 
   // end of react lifecycle overrides; here follows leaflet map implementation code
@@ -46,14 +49,14 @@ export class Map extends React.Component<MapProps, {}> {
       editable: true // enable leaflet.editable plugin
     });
 
-    map.setView(config.map.center, config.map.zoom)
+    map.setView(config.map.defaultCenter, config.map.defaultZoom)
 
     // add layer groups
     this.footprintLayerGroup = L.layerGroup([]).addTo(map);
     this.visualLayerGroup = L.layerGroup([]).addTo(map);
 
     // add the bbox
-    let bbox = L.rectangle(config.map.bbox, { fillOpacity: 0 });
+    let bbox = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 });
     bbox.addTo(map);
     bbox.enableEdit(); // enable a moveable bbox with leaflet.editable
   }
@@ -70,16 +73,18 @@ export class Map extends React.Component<MapProps, {}> {
   }
 
   updateCollectionsOnMap() {
-
-    let wmsUrl = 'https://eo.jncc.gov.uk/geoserver/ows';
-    let wmsOptions = {
-      layers: "scotland:scotland-lidar-1-dsm",
-      format: 'image/png',
-      transparent: true
-    };
-    let x: L.WMSOptions;
-    let image = L.tileLayer.wms(wmsUrl, wmsOptions);
-    this.footprintLayerGroup.addLayer(image);
+    // todo: we will need a way for the user to turn collection-level
+    // WMS layers on and off rather than just showing them all
+    this.props.result.collections.forEach(c => {
+      let wmsUrl = c.data.wms.base_url;
+      let wmsOptions = {
+        layers: c.data.wms.name,
+        format: 'image/png',
+        transparent: true
+      };
+      let layer = L.tileLayer.wms(wmsUrl, wmsOptions);
+      this.visualLayerGroup.addLayer(layer);
+    });
   }
 
   addProductToMap(p: Product) {
