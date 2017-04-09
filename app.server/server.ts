@@ -3,7 +3,6 @@ import * as express from "express";
 import * as bodyParser from "body-parser"
 
 import { flatMap } from "../app.shared/util";
-
 import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
 import { getCapabilities } from "./handlers/wms/getCapabilities";
 import { getProducts } from "./handlers/products/getProducts";

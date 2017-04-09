@@ -23,6 +23,6 @@ export const config = {
         start: `2016-06-01`,
         end:   `2016-06-31`,
     },
-    maxProductCount: 50,
+    maxProductCount: 100, // be sure to update server config too
 };
 

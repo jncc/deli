@@ -5,6 +5,7 @@ import * as _ from "lodash";
 import { GetProductsResult, ProductCollection, Product } from "./models";
 import { collections } from "../../data/data";
 import { Query } from "../../query/query";
+import { config } from "../../config";
 
 /* Returns products matching the query, nested within the collection they belong to.
    Every collection asked for will be returned.
@@ -28,7 +29,7 @@ export function getProducts(q: Query): GetProductsResult {
                 ////   return date > start && date <= end;
                 //// })
                 //// .orderBy(p => p.properties.capturedate) //// there is no decent way to do thenBy title!
-                //.take(51) // assuming max 50 in UI
+                .take(config.maxProductCount + 1) // return 1 extra so client knows if there are more
                 .value(),
         }))
         .value();
