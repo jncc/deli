@@ -13,7 +13,7 @@ interface MapProps {
   query: Query;
   result: GetProductsResult;
   productHovered: (product: Product | undefined) => void;
-  //bboxChanged: (bbox: number[]) => void;
+  queryChanged: (query: Query) => void;
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -56,17 +56,18 @@ export class Map extends React.Component<MapProps, {}> {
     this.footprintLayerGroup = L.layerGroup([]).addTo(map);
     this.visualLayerGroup = L.layerGroup([]).addTo(map);
 
-    // add the bbox
-    let bbox = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 });
-    bbox.addTo(map);
-    bbox.enableEdit(); // enable a moveable bbox with leaflet.editable
+    // add the bbox rectangle
+    let bboxRect = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 });
+    bboxRect.addTo(map);
+    bboxRect.enableEdit(); // enable a moveable bbox with leaflet.editable
 
     // update the query state when the bbox is altered
     map.on('editable:vertex:dragend', (e) => {
-        let polygon = e.layer; // as L.Polygon ... (polygon instanceof L.Polygon) === true;
-        let b = polygon.getBounds()
-        let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
-        console.log(bbox);
+        if (e.layer === bboxRect) {
+          let b = bboxRect.getBounds()
+          let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+          this.props.queryChanged(Object.assign({}, this.props.query, { bbox: bbox }));
+        }
     });
   }
 
@@ -124,7 +125,7 @@ export class Map extends React.Component<MapProps, {}> {
       footprint.setStyle(() => style);
       //this.props.productHovered(undefined);
     });
-    this.visualLayerGroup.addLayer(footprint);
+    this.footprintLayerGroup.addLayer(footprint);
   }
 
 }

@@ -36,7 +36,7 @@ export function Main(props: MainProps) {
       <div className="container-fluid"  >
         <div className="row">
           <div className="col-md-5">
-            <Map result={props.result} productHovered={props.productHovered} query={props.query} />
+            <Map query={props.query} result={props.result} queryChanged={props.queryChanged} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
             <h1>Scottish Remote Sensing Portal</h1>
