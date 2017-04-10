@@ -37,7 +37,9 @@
     "react-flip-move": "2.9.1",
     "react-leaflet": "1.1.5",
     "react-modal": "1.7.3",
+    "react-redux": "5.0.4",
     "react-router-dom": "4.0.0",
+    "redux": "3.6.0",
     "turf": "3.0.14",
     "url": "0.11.0",
     "whatwg-fetch": "2.0.3"
@@ -53,6 +55,7 @@
     "@types/react": "15.0.21",
     "@types/react-dom": "0.14.23",
     "@types/react-modal": "1.6.6",
+    "@types/redux": "3.6.0",
     "@types/turf": "3.5.32",
     "concurrently": "3.4.0",
     "copy-webpack-plugin": "4.0.1",
