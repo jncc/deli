@@ -13,6 +13,7 @@ interface MapProps {
   query: Query;
   result: GetProductsResult;
   productHovered: (product: Product | undefined) => void;
+  //bboxChanged: (bbox: number[]) => void;
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -59,6 +60,14 @@ export class Map extends React.Component<MapProps, {}> {
     let bbox = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 });
     bbox.addTo(map);
     bbox.enableEdit(); // enable a moveable bbox with leaflet.editable
+
+    // update the query state when the bbox is altered
+    map.on('editable:vertex:dragend', (e) => {
+        let polygon = e.layer; // as L.Polygon ... (polygon instanceof L.Polygon) === true;
+        let b = polygon.getBounds()
+        let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+        console.log(bbox);
+    });
   }
 
   updateProductsOnMap() {
