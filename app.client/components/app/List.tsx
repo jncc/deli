@@ -19,7 +19,7 @@ export function List(props: ListProps) {
       <div key={p.id} className="item">
         <div className="item-left">
           <div>
-            <div className={props.hovered === p ? 'hoveredx' : ''}>*</div>
+            <div className={props.hovered === p ? 'hoveredx' : ''}></div>
           </div>
         </div>
         <div className="item-main">
@@ -27,25 +27,12 @@ export function List(props: ListProps) {
           <div className="item-main-cell">
             {getPropertiesUI(p)}
           </div>
-
-
-
         </div>
-        <div className="item-right">
-              <span className="item-right-download-type">{p.data.download.type}</span>
-              <br />
-              <span>{formatBytes(p.data.download.size, 0)}</span>
-
-        </div>
-        <div className="item-right">
-              <form method="get" action={p.data.download.url}>
-                <button className="btn btn-default" type="submit">Download</button>
-              </form>
-        </div>
+        {getDownloadTypeUI(p)}
+        {getDownloadButtonUI(p)}
       </div>
     );
   });
-
 
   return (
     <div>
@@ -67,7 +54,41 @@ function getPropertiesUI(p: Product) {
         <span className="item-main-property-label">{key}</span>
         <span className="item-main-property-value">{displayValue}</span>
       </span>);
-    });
+    }
+  );
+}
+
+function getDownloadTypeUI(p: Product) {
+  if (p.data.download) {
+    return (
+      <div className="item-right">
+            <span className="item-right-download-type">{p.data.download.type}</span>
+            <br />
+            <span>{formatBytes(p.data.download.size, 0)}</span>
+      </div>
+    );
+  }
+  else {
+    return (<div />);
+  }
+}
+
+function getDownloadButtonUI(p: Product) {
+  if (p.data.download) {
+    return (
+      <div className="item-right">
+            <form method="get" action={p.data.download.url}>
+              <button className="btn btn-default" type="submit">
+                <span className="btn-glyphicon glyphicon glyphicon-download-alt"></span>
+                Download
+              </button>
+            </form>
+      </div>
+    );
+  }
+  else {
+    return (<div />);
+  }
 }
 
 let flipMoveAnimationProps = {

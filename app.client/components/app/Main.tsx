@@ -39,7 +39,7 @@ export function Main(props: MainProps) {
             <Map query={props.query} result={props.result} queryChanged={props.queryChanged} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
-            <h1>Scottish Remote Sensing Portal</h1>
+            {/*<h1>Scottish Remote Sensing Portal</h1>*/}
             <br />
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
             <List
