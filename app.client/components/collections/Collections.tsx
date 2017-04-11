@@ -7,6 +7,7 @@ import { Header } from "../shared/Header";
 import { Footer } from "../shared/Footer";
 import { formatBytes } from "../../utility/formatBytes";
 import { Collection, GetCollectionsResult } from "../../../app.server/handlers/collections/models"
+import { config } from "../../config";
 
 interface CollectionsState {
   collections: Collection[];
@@ -85,7 +86,7 @@ export class Collections extends React.Component<any, CollectionsState> {
             </form>
           </div>
           <div className="collection-right">
-            <form method="get" action={c.data.wms.base_url + '/' + c.data.wms.name}>
+            <form method="get" action={config.collectionWmsUrl}>
               <button className="btn btn-primary" type="submit">WMS</button>
             </form>
           </div>

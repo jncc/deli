@@ -24,5 +24,6 @@ export const config = {
         end:   `2016-06-31`,
     },
     maxProductCount: 100, // be sure to update server config too
+    collectionWmsUrl: 'https://eo.jncc.gov.uk/geoserver/scotland/wms', // temp
 };
 
