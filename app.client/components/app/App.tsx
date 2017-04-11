@@ -6,6 +6,7 @@ import { config } from "../../config"
 import { Main } from "./Main";
 import { Query } from "../models/Query";
 import { GetProductsResult, Product } from "../../../app.server/handlers/products/models"
+import { ensureArray } from "../../../app.shared/util";
 
 interface AppState {
   query:   Query;     // the current query
@@ -58,13 +59,13 @@ export class App extends React.Component<any, AppState> {
   // }
 
   componentDidMount() {
+    let parsedQuery = qs.parse(location.search);
+    let collections = ensureArray(parsedQuery.collections);
+    let query = Object.assign({}, config.defaultQuery, { collections });
+    this.setState({ query }); // todo this could cause a double-fetch
     // get initial data
     this.getData(this.state.query);
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(this.state.query);
-  // }
 
   // fetch products data and set state
   getData(query: Query) {
