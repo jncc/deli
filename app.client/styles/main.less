@@ -25,6 +25,11 @@ h1 {
 //   border-color: red;
 // }
 
+// icons inside buttons need a bit of right padding
+.btn-glyphicon {
+  padding-right: 5px;
+}
+
 .header {
   background-color: #0065bd;
 }
@@ -43,7 +48,7 @@ h1 {
   width: 100%;
   background-color: #ddd;
   border-radius: 4px;
-  padding: 2px 2px;
+  padding: 5px 2px;
   margin-bottom: 4px;
   .collection-left {
     flex: 0;
@@ -63,9 +68,14 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     //white-space: nowrap;
-    margin: 0 4px 0 4px;
     .collection-main-title {
       font-size: 130%;
+    }
+    .collection-main-more-info {
+      margin-left: 0.5em;
+    }
+    .collection-main-visualise {
+      padding: 4px 0;
     }
   }
   .collection-right {

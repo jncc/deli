@@ -62,8 +62,8 @@ export class Map extends React.Component<MapProps, {}> {
     bboxRect.enableEdit(); // enable a moveable bbox with leaflet.editable
 
     // update the query state when the bbox is altered
-    map.on('editable:vertex:dragend', (e) => {
-        if (e.layer === bboxRect) {
+    map.on('editable:vertex:dragend', (e: any) => {
+        if (e.layer === bboxRect) { // e.layer property added by leaflet.editable
           let b = bboxRect.getBounds()
           let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
           this.props.queryChanged(Object.assign({}, this.props.query, { bbox: bbox }));

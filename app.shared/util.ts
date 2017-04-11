@@ -11,7 +11,7 @@ export function flatMap<T, R>(ts: T[], f: (t: T) => R[]) {
 }
 
 /** Converts [minX, minY, maxX, maxY] to [[minY, minX], [maxY, maxX]]. */
-export function bboxFlatArrayToCoordArray(bbox: number[]) {
+export function bboxFlatArrayToCoordArray(bbox: number[]): [[number, number], [number, number]] {
     let [minX, minY, maxX, maxY] = bbox;
     return [[minY, minX], [maxY, maxX]];
 }
