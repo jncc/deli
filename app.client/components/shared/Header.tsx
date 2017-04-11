@@ -17,14 +17,19 @@ export class Header extends React.Component<any, {}> {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/"><img className="logo" src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;</a>
+            <a className="navbar-brand" href="/">
+              {/*<img className="logo" src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;*/}
+              <span className="logo-text">SRSP</span>
+              <span className="glyphicon glyphicon-option-vertical"></span>
+              <span className="logo-strap">Scottish Remote Sensing Portal</span>
+            </a>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li className="dropdown">
+              <li className="active"><a href="/">Home</a></li>
+              <li><a href="/">About</a></li>
+              <li><a href="/">Contact</a></li>
+              {/*<li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                 <ul className="dropdown-menu">
                   <li><a href="#">Action</a></li>
@@ -35,7 +40,7 @@ export class Header extends React.Component<any, {}> {
                   <li><a href="#">Separated link</a></li>
                   <li><a href="#">One more separated link</a></li>
                 </ul>
-              </li>
+              </li>*/}
             </ul>
           </div>
         </div>
