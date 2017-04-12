@@ -11,7 +11,7 @@ import { Collections } from "./components/collections/Collections";
 export const Routes = (
   <Router>
     <div>
-      <Route exact path="/" component={Home}/>
+      <Route exact path="/" component={App}/>
       <Route exact path="/collections" component={Collections}/>
       <Route exact path="/app" component={App}/>
     </div>

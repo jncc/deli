@@ -24,9 +24,13 @@ export class Map extends React.Component<MapProps, {}> {
   visualLayerGroup: L.LayerGroup;
 
   render() {
-    // react will have nothing to do with the leaflet map
-    // all events will be handled manually
+    // react has nothing to do with the leaflet map;  all events will be handled manually
     return <div className="map"></div>;
+  }
+
+  shouldComponentUpdate() {
+    // since the component's output is just a div, nothing ever needs re-rendering
+    return false;
   }
 
   componentDidMount() {
@@ -117,16 +121,16 @@ export class Map extends React.Component<MapProps, {}> {
     // add the product footprints
     //let x : L.StyleFunction
     let footprint = L.geoJSON(p.footprint, style);
-    // footprint.on('mouseover', () => {
-    //   console.log('mouseover ' + p.title);
-    //   footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
-    //   this.props.productHovered(p);
-    // });
-    // footprint.on('mouseout', () => {
-    //   console.log('mouseout ' + p.title);
-    //   footprint.setStyle(() => style);
-    //   this.props.productUnhovered(p);
-    // });
+    footprint.on('mouseout', () => {
+      console.log('mouseout ' + p.title);
+      footprint.setStyle(() => style);
+      // this.props.productUnhovered(p);
+    });
+    footprint.on('mouseover', () => {
+      console.log('mouseover ' + p.title);
+      footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+      //this.props.productHovered(p);
+    });
     this.footprintLayerGroup.addLayer(footprint);
   }
 
