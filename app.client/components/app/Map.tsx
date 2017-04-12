@@ -117,14 +117,16 @@ export class Map extends React.Component<MapProps, {}> {
     // add the product footprints
     //let x : L.StyleFunction
     let footprint = L.geoJSON(p.footprint, style);
-    footprint.on('mouseover', () => {
-      footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
-      this.props.productHovered(p);
-    });
-    footprint.on('mouseout', () => {
-      footprint.setStyle(() => style);
-      this.props.productUnhovered(p);
-    });
+    // footprint.on('mouseover', () => {
+    //   console.log('mouseover ' + p.title);
+    //   footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+    //   this.props.productHovered(p);
+    // });
+    // footprint.on('mouseout', () => {
+    //   console.log('mouseout ' + p.title);
+    //   footprint.setStyle(() => style);
+    //   this.props.productUnhovered(p);
+    // });
     this.footprintLayerGroup.addLayer(footprint);
   }
 
