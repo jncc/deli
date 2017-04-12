@@ -33,6 +33,7 @@ export class App extends React.Component<any, AppState> {
     return ( <Main {...this.state}
       queryChanged={this.handleQueryChange.bind(this)}
       productHovered={this.handleProductHovered.bind(this)}
+      productUnhovered={this.handleProductUnhovered.bind(this)}
       modalToggled={this.handleModalToggled.bind(this)} /> );
   }
 
@@ -43,6 +44,15 @@ export class App extends React.Component<any, AppState> {
 
   handleProductHovered(product: Product) {
     this.setState({ hovered: product });
+  }
+  handleProductUnhovered(product: Product) {
+    this.setState((prevState: AppState, props) => {
+      if (prevState.hovered == product) {
+        return { hovered: undefined }
+      } else {
+        return { }; // think this is ok to make no changes
+      }
+    });
   }
 
   handleModalToggled () {

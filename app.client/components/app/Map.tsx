@@ -12,7 +12,8 @@ import { bboxFlatArrayToCoordArray } from "../../../app.shared/util";
 interface MapProps {
   query: Query;
   result: GetProductsResult;
-  productHovered: (product: Product | undefined) => void;
+  productHovered: (product: Product) => void;
+  productUnhovered: (product: Product) => void;
   queryChanged: (query: Query) => void;
 }
 
@@ -118,12 +119,11 @@ export class Map extends React.Component<MapProps, {}> {
     let footprint = L.geoJSON(p.footprint, style);
     footprint.on('mouseover', () => {
       footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
-      //console.log('mouseover');
-      //this.props.productHovered(p);
+      this.props.productHovered(p);
     });
     footprint.on('mouseout', () => {
       footprint.setStyle(() => style);
-      //this.props.productHovered(undefined);
+      this.props.productUnhovered(p);
     });
     this.footprintLayerGroup.addLayer(footprint);
   }
