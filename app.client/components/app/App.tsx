@@ -62,14 +62,15 @@ export class App extends React.Component<any, AppState> {
     let parsedQuery = qs.parse(location.search);
     let collections = ensureArray(parsedQuery.collections);
     let query = Object.assign({}, config.defaultQuery, { collections });
-    this.setState({ query }); // todo this could cause a double-fetch
-    // get initial data
-    this.getData(this.state.query);
+    this.setState({ query }, () => {
+      // get initial data
+      // this callback function is called by react when state has actually been set!
+      this.getData(this.state.query);
+    });
   }
 
   // fetch products data and set state
   getData(query: Query) {
-
     fetch('/api/products?' + qs.stringify(query))
       .then(res => res.json()
         .then((r: GetProductsResult) => {
