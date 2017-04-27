@@ -69,14 +69,24 @@ export class App extends React.Component<any, AppState> {
   // }
 
   componentDidMount() {
-    let parsedQuery = qs.parse(location.search);
-    let collections = ensureArray(parsedQuery.collections);
-    let query = Object.assign({}, config.defaultQuery, { collections });
+    let query = this.updateQueryFromQuerystring(config.defaultQuery);
+
     this.setState({ query }, () => {
       // get initial data
       // this callback function is called by react when state has actually been set!
       this.getData(this.state.query);
     });
+  }
+
+  updateQueryFromQuerystring(query: Query) {
+    if (location.search) {
+      let parsedQuery = qs.parse(location.search);
+      let collections = ensureArray(parsedQuery.collections);
+      return Object.assign({}, query, { collections });
+    }
+    else {
+      return query;
+    }
   }
 
   // fetch products data and set state
