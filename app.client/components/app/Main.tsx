@@ -40,9 +40,6 @@ export function Main(props: MainProps) {
             <Map query={props.query} result={props.result} queryChanged={props.queryChanged} productHovered={props.productHovered} productUnhovered={props.productUnhovered}  />
           </div>
           <div className="col-md-7">
-            {/*<h1>Scottish Remote Sensing Portal</h1>*/}
-            <br />
-            {makeShowCurrentHoveredProductUI(props)}
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
             <List
               products={flatMap(props.result.collections, c => c.products)}
@@ -66,10 +63,3 @@ export function Main(props: MainProps) {
   );
 }
 
-function makeShowCurrentHoveredProductUI(props: MainProps) {
-  if (props.hovered === undefined) {
-    return <span />
-  } else {
-    return <div>{props.hovered.title}</div>
-  }
-}

@@ -28,18 +28,16 @@ export class Map extends React.Component<MapProps, {}> {
     return <div className="map"></div>;
   }
 
-  shouldComponentUpdate() {
-    // since the component's output is just a div, nothing ever needs re-rendering
-    return false;
-  }
-
   componentDidMount() {
     this.createLeafletMap();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    this.updateProductsOnMap();
-    this.updateCollectionsOnMap();
+  componentDidUpdate(prevProps: MapProps) {
+    // if the query result has changed, update the items on the map
+    if (prevProps.result != this.props.result) {
+      this.updateProductsOnMap();
+      this.updateCollectionsOnMap();
+    }
   }
 
   // end of react lifecycle overrides; here follows leaflet map implementation code
@@ -104,6 +102,25 @@ export class Map extends React.Component<MapProps, {}> {
 
   addProductToMap(p: Product) {
 
+    let addFootprint = () => {
+      let footprint = L.geoJSON(p.footprint, style);
+
+      footprint.on('mouseout', () => {
+        footprint.setStyle(() => style);
+        this.props.productUnhovered(p);
+      });
+
+      footprint.on('mouseover', () => {
+        footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+        this.props.productHovered(p);
+      });
+
+      this.footprintLayerGroup.addLayer(footprint);
+    };
+
+    addFootprint();
+
+    //// add visual wms layer
     //// let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
 
     //// let wmsOptions = {
@@ -117,21 +134,6 @@ export class Map extends React.Component<MapProps, {}> {
     //// //// add the product image
     //// let image = L.tileLayer.wms(wmsUrl, wmsOptions);
     //// this.layerGroup.addLayer(image);
-
-    // add the product footprints
-    //let x : L.StyleFunction
-    let footprint = L.geoJSON(p.footprint, style);
-    footprint.on('mouseout', () => {
-      console.log('mouseout ' + p.title);
-      footprint.setStyle(() => style);
-      // this.props.productUnhovered(p);
-    });
-    footprint.on('mouseover', () => {
-      console.log('mouseover ' + p.title);
-      footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
-      //this.props.productHovered(p);
-    });
-    this.footprintLayerGroup.addLayer(footprint);
   }
 
 }

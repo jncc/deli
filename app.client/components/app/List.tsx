@@ -6,7 +6,6 @@ let FlipMove = require('react-flip-move');
 import { Product } from "../../../app.server/handlers/products/models";
 import { formatBytes } from "../../utility/formatBytes";
 
-
 interface ListProps {
   products: Product[];
   hovered: Product | undefined;
@@ -17,10 +16,8 @@ export function List(props: ListProps) {
   let rows = props.products.map(p => {
     return (
       <div key={p.id} className="item">
-        <div className="item-left">
-          <div>
-            <div className={props.hovered === p ? 'hoveredx' : ''}></div>
-          </div>
+        <div className="item-hilite">
+          x
         </div>
         <div className="item-main">
           <div className="item-main-title">{p.title}</div>
