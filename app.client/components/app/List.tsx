@@ -15,22 +15,23 @@ interface ListProps {
 
 export function List(props: ListProps) {
 
-  let rows = props.products.map(p => {
-    return (
-      <div key={p.id} className="item" onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
-        <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
-        </div>
-        <div className="item-main">
-          <div className="item-main-title">{p.title}</div>
-          <div className="item-main-cell">
-            {getPropertiesUI(p)}
+  let rows = props.products
+    .map(p => {
+      return (
+        <div key={p.id} className="item" onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
+          <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
           </div>
+          <div className="item-main">
+            <div className="item-main-title">{p.title}</div>
+            <div className="item-main-cell">
+              {getPropertiesUI(p)}
+            </div>
+          </div>
+          {getDownloadTypeUI(p)}
+          {getDownloadButtonUI(p)}
         </div>
-        {getDownloadTypeUI(p)}
-        {getDownloadButtonUI(p)}
-      </div>
-    );
-  });
+      );
+    });
 
   return (
     <div>

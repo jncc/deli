@@ -19,7 +19,8 @@ export interface Product {
     osgbBbox:   number[],
     footprint:  any, // geojson
     properties: {
-        capturedate?: string
+        capturedate?: string,
+        gridsquare?: string,
     },
     data: {
         download?: {

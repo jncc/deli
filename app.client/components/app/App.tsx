@@ -6,7 +6,7 @@ import { config } from "../../config"
 import { Main } from "./Main";
 import { Query } from "../models/Query";
 import { GetProductsResult, Product } from "../../../app.server/handlers/products/models"
-import { ensureArray } from "../../../app.shared/util";
+import { flatMap, ensureArray } from "../../../app.shared/util";
 
 interface AppState {
   query:   Query;     // the current query
@@ -94,6 +94,8 @@ export class App extends React.Component<any, AppState> {
     fetch('/api/products?' + qs.stringify(query))
       .then(res => res.json()
         .then((r: GetProductsResult) => {
+          // add customer-specific product properties that should be in the data
+          flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties);
           this.setState({ result: r });
         })).catch(ex => {
           console.log(`couldn't get data`, ex);
@@ -113,4 +115,16 @@ export class App extends React.Component<any, AppState> {
           console.log(`couldn't get data`, ex);
         }));
   }
+
+  addCustomerSpecificProductProperties = (p: Product) => {
+    if (p.title.startsWith('LiDAR for Scotland')) {
+      let matches = p.title.match(/D[TS]M ([A-Z]+[0-9]+)/);
+      if (matches && matches.length > 1) {
+        let gridsquare = matches[1];
+        p.properties.gridsquare = gridsquare;
+      }
+    }
+    return p;
+  };
+
 }
