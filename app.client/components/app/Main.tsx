@@ -38,7 +38,12 @@ export function Main(props: MainProps) {
       <div className="container-fluid"  >
         <div className="row">
           <div className="col-md-5">
-            <Map query={props.query} result={props.result} queryChanged={props.queryChanged} productHovered={props.productHovered} productUnhovered={props.productUnhovered}  />
+            <Map query={props.query}
+              result={props.result}
+              hovered={props.hovered}
+              queryChanged={props.queryChanged}
+              productHovered={props.productHovered}
+              productUnhovered={props.productUnhovered}  />
           </div>
           <div className="col-md-7">
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
