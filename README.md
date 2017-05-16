@@ -76,3 +76,8 @@ For a pre-cooked example
 - `GET` http://localhost:8080/wms/june2016demo
 
 The pre-cooked examples are available in the development time fake in-memory database as well as the live Postgres database.
+
+Thank you
+---------
+Thanks to [Browserstack](http://browserstack.com) for helping us out with cross-browser testing. Much appreciated! 
+![Browserstack](https://www.browserstack.com/images/layout/browserstack-logo-600x315.png)
