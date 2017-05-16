@@ -23,6 +23,10 @@ export class Map extends React.Component<MapProps, {}> {
   footprintLayerGroup: L.LayerGroup;
   visualLayerGroup: L.LayerGroup;
 
+  // tuples of { product, footprint, wms }
+  // associating a product with its corresponding leaflet map objects
+  list: { product: Product, footprint: L.GeoJSON, wms: L.TileLayer.WMS }[] = [];
+
   render() {
     // react has nothing to do with the leaflet map;  all events will be handled manually
     return <div className="map"></div>;
@@ -35,6 +39,7 @@ export class Map extends React.Component<MapProps, {}> {
   componentDidUpdate(prevProps: MapProps) {
     // if the query result has changed, update the items on the map
     if (prevProps.result != this.props.result) {
+      this.updateProductList();
       this.updateProductsOnMap();
       this.updateCollectionsOnMap();
     }
@@ -74,6 +79,10 @@ export class Map extends React.Component<MapProps, {}> {
     });
   }
 
+  updateProductList() {
+
+  }
+
   updateProductsOnMap() {
     // [ invoked immediately after updating occurs
     //   not called for the initial render ]
@@ -111,7 +120,7 @@ export class Map extends React.Component<MapProps, {}> {
       });
 
       footprint.on('mouseover', () => {
-        footprint.setStyle(() => ({ weight: 3, color: '#cc002e' }));
+        footprint.setStyle(() => ({ weight: 3, color: '#555' }));
         this.props.productHovered(p);
       });
 
@@ -139,13 +148,3 @@ export class Map extends React.Component<MapProps, {}> {
 }
 
 const style = { fillOpacity: 0, weight: 1, color: '#666' }; // className can't get to work right now
-
-
-
-
-/// /// ///
-
-// map.on('click', this.onMapClick);
-// onMapClick() {
-//   console.log('clicked!');
-// }

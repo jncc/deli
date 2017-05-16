@@ -9,15 +9,16 @@ import { formatBytes } from "../../utility/formatBytes";
 interface ListProps {
   products: Product[];
   hovered: Product | undefined;
+  productHovered: (product: Product) => void;
+  productUnhovered: (product: Product) => void;
 }
 
 export function List(props: ListProps) {
 
   let rows = props.products.map(p => {
     return (
-      <div key={p.id} className="item">
-        <div className="item-hilite">
-          x
+      <div key={p.id} className="item" onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
+        <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
         </div>
         <div className="item-main">
           <div className="item-main-title">{p.title}</div>

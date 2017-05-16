@@ -115,30 +115,20 @@ h1 {
   background-color: #ddd;
   border-radius: 4px;
   .item-hilite {
-    flex: 0;
-    size:40px;
-    background-color: red;
-  }
-  .item-left {
-    flex: 0;
-    padding: 0 4px;
-    > div {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      > div {
-        flex:1;
-      }
+    flex: 0 0 6px; // give it some width
+    border-radius: 4px;
+    &.item-hilite-hovered {
+      background-color: #555;
     }
   }
   .item-main {
-
     flex: 1;
     min-width: 0; // overflow
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0 4px 0 4px;
+    padding-left: 2px;
     .item-main-title {
       font-size: 130%;
     }

@@ -34,6 +34,7 @@ export function Main(props: MainProps) {
   return (
     <div>
       <Header />
+      {/*<h2>&nbsp; {props.hovered && props.hovered.id}</h2>*/}
       <div className="container-fluid"  >
         <div className="row">
           <div className="col-md-5">
@@ -43,7 +44,10 @@ export function Main(props: MainProps) {
             {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
             <List
               products={flatMap(props.result.collections, c => c.products)}
-              hovered={props.hovered} />
+              hovered={props.hovered}
+              productHovered={props.productHovered}
+              productUnhovered={props.productUnhovered}
+              />
           </div>
         </div>
       </div>
