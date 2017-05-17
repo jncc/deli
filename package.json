@@ -9,7 +9,7 @@
     "compile": "tsc --outDir built",
     "webpack": "npm run clean && webpack --progress",
     "build": "npm run clean && npm run compile && webpack",
-    "build:prod": "npm run clean && npm run compile && webpack --env.name production",
+    "build:prod": "npm run clean && npm run compile && webpack -p --env.name production",
     "dev": "concurrently -k \"npm run compile && nodemon built/app.server/server.js\" \"webpack-dev-server --inline --hot \"",
     "dev:server": "npm run compile && nodemon built/app.server/server.js",
     "test": "karma start --single-run",
