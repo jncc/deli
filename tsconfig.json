@@ -4,9 +4,10 @@
     "sourceMap": true,
     "module": "commonjs",
     "target": "ES6", // ES6 === ES2015
+    //"lib": ["dom", "es2015.promise", "es5"],
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

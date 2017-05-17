@@ -19,6 +19,7 @@ export interface Product {
     osgbBbox:   number[],
     footprint:  any, // geojson
     properties: {
+        [key: string]: string | undefined; // typescript index signature
         capturedate?: string,
         gridsquare?: string,
     },

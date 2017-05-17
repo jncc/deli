@@ -8,6 +8,6 @@ declare namespace L {
         editable: boolean;
     }
     interface Rectangle {
-        enableEdit();
+        enableEdit(): void;
     }
 }
