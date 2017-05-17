@@ -1,5 +1,6 @@
 "use strict"
 
+let webpack = require('webpack');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -42,6 +43,11 @@ module.exports = {
 
   // plugins are for anything "loaders" can't do
   plugins: [
+    // set NODE_ENV to production for production react build
+    // (relies on process.env.NODE_ENV being set on command line in npm run build:prod)
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
     // generate the index.html page (using the actual index.html as the input)
     // with all the things that we need (using plugin defaults)
     new HtmlWebpackPlugin({
