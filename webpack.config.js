@@ -10,6 +10,9 @@ let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 
 module.exports = function(env) {
 
+  // use custom env.name passed on command line to conditionally build for production
+  // (webpack -p automatically passes sets NODE_ENV=production for the build,
+  // but we don't see it here in the build script!)
   if (!env) { env = { name:'development' } };
   console.log(`Hello from the Webpack build script. Environment name is '${env.name}'.`);
 
@@ -49,8 +52,6 @@ module.exports = function(env) {
 
     // plugins are for anything "loaders" can't do
     plugins: [
-      // set NODE_ENV to production for production react build
-      new webpack.EnvironmentPlugin({NODE_ENV: env.name, DEBUG: false}),
       // generate the index.html page (using the actual index.html as the input)
       // with all the things that we need (using plugin defaults)
       new HtmlWebpackPlugin({
