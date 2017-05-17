@@ -5,7 +5,6 @@ let NoOpWebpackPlugin = require('noop-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 
 module.exports = function(env) {
@@ -71,8 +70,6 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: './app.client/fonts/', to: 'fonts' }
       ]),
-      // https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
-      // isProduction ? new webpack.optimize.UglifyJsPlugin()
     ],
 
     // configure webpack-dev-server - runs on the default port 8080
