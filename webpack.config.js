@@ -30,7 +30,7 @@ module.exports = function(env) {
       rules: [
         // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
         { test: /\.tsx?$/, use: 'source-map-loader', enforce: 'pre' },
-        { test: /\.tsx?$/, use: 'ts-loader', exclude: '/node_modules/' },
+        { test: /\.tsx?$/, use: 'awesome-typescript-loader', exclude: '/node_modules/' },
         // https://webpack.js.org/guides/code-splitting-css/
         { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
         // https://webpack.js.org/loaders/less-loader/ (we import the less in index.tsx)
