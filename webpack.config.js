@@ -1,10 +1,14 @@
 "use strict"
 
 let webpack = require('webpack');
+let NoOpWebpackPlugin = require('noop-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+//let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
+
+let isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
 
@@ -67,7 +71,9 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './app.client/fonts/', to: 'fonts' }
     ]),
-
+    // todo minification. worried about es6 tho (but shouldn't be targeting that)
+    // https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
+    // isProduction ? new webpack.optimize.UglifyJsPlugin()
   ],
 
   // configure webpack-dev-server - runs on the default port 8080
