@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "1.17.1",
     "dotenv": "4.0.0",
+    "es6-shim": "0.35.3",
     "exports-loader": "0.6.4",
     "express": "4.15.2",
     "imports-loader": "0.7.1",
@@ -78,7 +79,7 @@
     "source-map-loader": "0.2.1",
     "style-loader": "0.16.1",
     "ts-loader": "2.0.3",
-    "typescript": "2.2.1",
+    "typescript": "2.3.2",
     "uglifyjs-webpack-plugin": "0.4.3",
     "webpack": "2.3.3",
     "webpack-dev-server": "2.4.2"

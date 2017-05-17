@@ -3,7 +3,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 
-import "promise/polyfill";
+import "es6-shim";
+//import "promise/polyfill";
 import "whatwg-fetch";
 
 import "./styles/main.less";

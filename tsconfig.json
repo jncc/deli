@@ -3,8 +3,8 @@
     "outDir": "./built/",
     "sourceMap": true,
     "module": "commonjs",
-    "target": "ES6", // ES6 === ES2015
-    //"lib": ["dom", "es2015.promise", "es5"],
+    "target": "ES5", // ES6 === ES2015
+    "lib": ["dom", "es2015", "scripthost"],
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
