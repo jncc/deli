@@ -7,12 +7,13 @@
     "lib": ["dom", "es2015", "scripthost"],
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true,
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": false,
     "removeComments": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noUnusedLocals": false // this option gets in the way too often
   }
 }
