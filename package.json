@@ -10,6 +10,7 @@
     "webpack": "npm run clean && webpack --progress",
     "build": "npm run clean && npm run compile && webpack",
     "build:prod": "set NODE_ENV=production && npm run build",
+    "build:prod2": "npm run clean && npm run compile && set NODE_ENV=production && webpack",
     "dev": "concurrently -k \"npm run compile && nodemon built/app.server/server.js\" \"webpack-dev-server --inline --hot \"",
     "dev:server": "npm run compile && nodemon built/app.server/server.js",
     "test": "karma start --single-run",
@@ -30,6 +31,7 @@
     "moment": "2.18.1",
     "nprogress": "0.2.0",
     "pg-promise": "5.6.4",
+    "promise": "7.1.1",
     "query-string": "4.3.2",
     "random-key": "0.3.2",
     "react": "15.4.2",
@@ -80,7 +82,7 @@
     "ts-loader": "2.0.3",
     "typescript": "2.3.2",
     "uglifyjs-webpack-plugin": "0.4.3",
-    "webpack": "2.3.3",
+    "webpack": "2.5.1",
     "webpack-dev-server": "2.4.2"
   },
   "engines": {
