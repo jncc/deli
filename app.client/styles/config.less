@@ -1,20 +1,24 @@
 
 
-.header {
+.head {
   background-color: #0065bd;
+  color: white;
 }
 
 // customer requested a footer in this style
-.footer {
+.foot {
   background-color: #0065bd;
   height: 57px;
-  padding: 15px;
-  background-image: url(../images/govscot-linear.png);
-  background-repeat: no-repeat;
-  background-position: 0.5em 0.5em;
-  color: white;
-  a { color: white; text-decoration: underline; }
-  a:hover { color: #ddd; }
+  > div {
+    padding: 15px;
+    background-image: url(../images/govscot-linear.png);
+    background-repeat: no-repeat;
+    background-position: 0.5em 0.5em;
+    color: white;
+    a { color: white; text-decoration: underline; }
+    a:hover { color: #ddd; }
+
+  }
 }
 
 // quick hack to put the logo in the right place
@@ -23,7 +27,7 @@
 // }
 
 .logo-text {
-  font-size: 30px
+  font-size: 60px
 }
 .logo-strap {
   font-size: 12px;

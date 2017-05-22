@@ -3,12 +3,12 @@ import * as React from "react";
 import * as qs from "query-string";
 
 import { config } from "../../config"
-import { Main } from "./Main";
+import { Layout } from "./Layout";
 import { Query } from "../models/Query";
 import { GetProductsResult, Product } from "../../../app.server/handlers/products/models"
 import { flatMap, ensureArray } from "../../../app.shared/util";
 
-interface AppState {
+interface DeliState {
   query:   Query;     // the current query
   result:  GetProductsResult;
   hovered: Product | undefined;
@@ -16,7 +16,7 @@ interface AppState {
   wmsLink: string;
 }
 
-export class App extends React.Component<any, AppState> {
+export class Deli extends React.Component<any, DeliState> {
 
   constructor(props: any) {
     super(props);
@@ -30,7 +30,7 @@ export class App extends React.Component<any, AppState> {
   }
 
   render() {
-    return ( <Main {...this.state}
+    return ( <Layout {...this.state}
       queryChanged={this.handleQueryChange.bind(this)}
       productHovered={this.handleProductHovered.bind(this)}
       productUnhovered={this.handleProductUnhovered.bind(this)}
@@ -46,7 +46,7 @@ export class App extends React.Component<any, AppState> {
     this.setState({ hovered: product });
   }
   handleProductUnhovered(product: Product) {
-    this.setState((prevState: AppState, props) => {
+    this.setState((prevState: DeliState, props) => {
       if (prevState.hovered == product) {
         return { hovered: undefined }
       } else {

@@ -63,10 +63,6 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: './app.client/images', to: 'images' }
       ]),
-      // temp: copy cosmo bootstrap css
-      new CopyWebpackPlugin([
-        { from: './app.client/styles/cosmo.bootstrap.min.css', to: 'styles' }
-      ]),
       new CopyWebpackPlugin([
         { from: './app.client/fonts/', to: 'fonts' }
       ]),

@@ -1,11 +1,12 @@
 
 import * as React from "react";
 import * as ReactModal from "react-modal";
+import { Container, Grid } from 'semantic-ui-react'
 
 import { flatMap } from "../../../app.shared/util";
 
-import { Header } from "../shared/Header";
-import { Footer } from "../shared/Footer";
+import { Head } from "../shared/Head";
+import { Foot } from "../shared/Foot";
 import { Form } from "./Form";
 import { List } from "./List";
 import { Map } from "./Map";
@@ -13,7 +14,7 @@ import { Summary } from "./Summary";
 import { Query } from "../models/Query";
 import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
 
-interface MainProps {
+interface LayoutProps {
   query:    Query;   // the current query
   result: GetProductsResult;
   hovered: Product | undefined;
@@ -25,7 +26,7 @@ interface MainProps {
   wmsLink: string;
 }
 
-export function Main(props: MainProps) {
+export function Layout(props: LayoutProps) {
 
   let handleGetLinkClicked = () => {
     props.modalToggled()
@@ -33,29 +34,33 @@ export function Main(props: MainProps) {
 
   return (
     <div>
-      <Header />
-      {/*<h2>&nbsp; {props.hovered && props.hovered.id}</h2>*/}
-      <div className="container-fluid"  >
-        <div className="row">
-          <div className="col-md-5">
-            <Map query={props.query}
+      <Head />
+      <Container fluid>
+        <Grid>
+          <Grid.Column width={6}>
+            <Map
+              query={props.query}
               result={props.result}
               hovered={props.hovered}
               queryChanged={props.queryChanged}
               productHovered={props.productHovered}
               productUnhovered={props.productUnhovered}  />
-          </div>
-          <div className="col-md-7">
-            {/*<Form query={props.query} queryChanged={props.queryChanged} />*/}
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <Form query={props.query} queryChanged={props.queryChanged} />
             <List
               products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}
               productHovered={props.productHovered}
               productUnhovered={props.productUnhovered}
               />
-          </div>
-        </div>
-      </div>
+          </Grid.Column>
+        </Grid>
+      </Container>
+      <Foot />
+    </div>
+  );
+}
       {/*<Summary products={props.products} getLinkClicked={handleGetLinkClicked} />*/}
       {/*<ReactModal
            isOpen={props.modal}
@@ -67,8 +72,5 @@ export function Main(props: MainProps) {
           <p>Copy this WMS link into your GIS client.</p>
           <button onClick={() => props.modalToggled()}>OK</button>
       </ReactModal>*/}
-      <Footer />
-    </div>
-  );
-}
+
 
