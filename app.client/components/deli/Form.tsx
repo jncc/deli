@@ -2,10 +2,12 @@
 import * as React from "react";
 
 import { Query } from "../models/Query";
+import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
 
 interface FormProps {
   query: Query;
   queryChanged: (query: Query) => void;
+  result: GetProductsResult;
 }
 
 export function Form(props: FormProps) {
@@ -26,20 +28,23 @@ export function Form(props: FormProps) {
   }
 
   return (
-    <div className="form-inline form">
-      <div className="form-group">
+    <div>
+      <div>
+        Collection '{props.result.collections[0].metadata.title}'
+      </div>
+      <div className="">
         <label>From</label>
-        <input type="text" value={props.query.start} onChange={startChanged} className="form-control" placeholder="Start date"></input>
+        <input type="text" value={props.query.start} onChange={startChanged} className="" placeholder="Start date"></input>
       </div>
-      <div className="form-group">
+      <div className="">
         <label>To</label>
-        <input type="text" value={props.query.end} onChange={endChanged} className="form-control" placeholder="End date"></input>
+        <input type="text" value={props.query.end} onChange={endChanged} className="" placeholder="End date"></input>
       </div>
-      <div className="form-group">
+      <div className="">
         <label>Area</label>
-        <input type="text" value={JSON.stringify(props.query.bbox)} onChange={bboxChanged} className="form-control" placeholder="Bbox"></input>
+        <input type="text" value={JSON.stringify(props.query.bbox)} onChange={bboxChanged} className="" placeholder="Bbox"></input>
       </div>
-      <button className="btn btn-danger">Update</button>
+      <button className="">Update</button>
     </div>
   );
 }

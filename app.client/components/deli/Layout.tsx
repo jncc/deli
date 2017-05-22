@@ -47,7 +47,11 @@ export function Layout(props: LayoutProps) {
               productUnhovered={props.productUnhovered}  />
           </Grid.Column>
           <Grid.Column width={10}>
-            <Form query={props.query} queryChanged={props.queryChanged} />
+            <Form
+              query={props.query}
+              queryChanged={props.queryChanged}
+              result={props.result}
+              />
             <List
               products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}

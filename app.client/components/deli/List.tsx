@@ -1,8 +1,10 @@
 
 import * as React from "react";
 import * as moment from "moment";
+import { Button } from "semantic-ui-react";
 let FlipMove = require('react-flip-move');
 
+import { Tooltip } from "./Widgets";
 import { Product } from "../../../app.server/handlers/products/models";
 import { formatBytes } from "../../utility/formatBytes";
 
@@ -76,12 +78,15 @@ function getDownloadButtonUI(p: Product) {
   if (p.data.download) {
     return (
       <div className="item-right">
+        <Tooltip
+          trigger={
             <form method="get" action={p.data.download.url}>
               <button className="btn btn-default" type="submit">
                 <span className="btn-glyphicon glyphicon glyphicon-download-alt"></span>
                 Download
               </button>
             </form>
+          } content="Download" />
       </div>
     );
   }
