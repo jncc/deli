@@ -1,7 +1,7 @@
 
 import * as React from "react";
 import * as ReactModal from "react-modal";
-import { Container, Grid } from 'semantic-ui-react'
+import { Container, Grid, Segment } from 'semantic-ui-react'
 
 import { flatMap } from "../../../app.shared/util";
 
@@ -24,6 +24,7 @@ interface LayoutProps {
   productUnhovered: (product: Product) => void;
   modalToggled: () => void;
   wmsLink: string;
+  pending: number;
 }
 
 export function Layout(props: LayoutProps) {
@@ -34,7 +35,7 @@ export function Layout(props: LayoutProps) {
 
   return (
     <div>
-      <Head />
+      <Head pending={props.pending} />
       <Container fluid>
         <Grid>
           <Grid.Column width={6}>
@@ -52,6 +53,10 @@ export function Layout(props: LayoutProps) {
               queryChanged={props.queryChanged}
               result={props.result}
               />
+            <Summary
+              productCount={flatMap(props.result.collections, c => c.products).length}
+              getLinkClicked={handleGetLinkClicked}
+              />
             <List
               products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}
@@ -65,7 +70,6 @@ export function Layout(props: LayoutProps) {
     </div>
   );
 }
-      {/*<Summary products={props.products} getLinkClicked={handleGetLinkClicked} />*/}
       {/*<ReactModal
            isOpen={props.modal}
            contentLabel="Minimal Modal Example"

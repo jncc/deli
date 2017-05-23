@@ -14,6 +14,7 @@ interface DeliState {
   hovered: Product | undefined;
   modal:   boolean;
   wmsLink: string;
+  pending: number; // requests waiting for the network
 }
 
 export class Deli extends React.Component<any, DeliState> {
@@ -25,7 +26,8 @@ export class Deli extends React.Component<any, DeliState> {
       result: { collections: [] },
       hovered: undefined,
       modal: false,
-      wmsLink: ""
+      wmsLink: "",
+      pending: 0,
     };
   }
 
@@ -91,13 +93,16 @@ export class Deli extends React.Component<any, DeliState> {
 
   // fetch products data and set state
   getData(query: Query) {
+    this.setState((prev) => ({ pending: prev.pending + 1 }));
     fetch('/api/products?' + qs.stringify(query))
       .then(res => res.json()
         .then((r: GetProductsResult) => {
           // add customer-specific product properties that should be in the data
           flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties);
           this.setState({ result: r });
+          this.setState((prev) => ({ pending: prev.pending - 1 }));
         })).catch(ex => {
+          this.setState((prev) => ({ pending: prev.pending - 1 }));
           console.log(`couldn't get data`, ex);
         });
   }

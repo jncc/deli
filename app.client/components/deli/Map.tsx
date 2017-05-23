@@ -81,7 +81,11 @@ export class Map extends React.Component<MapProps, {}> {
     map.on('editable:vertex:dragend', (e: any) => {
         if (e.layer === bboxRect) { // e.layer property added by leaflet.editable
           let b = bboxRect.getBounds()
-          let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()];
+          let bbox = [
+            roundTo3Decimals(b.getWest()),
+            roundTo3Decimals(b.getSouth()),
+            roundTo3Decimals(b.getEast()),
+            roundTo3Decimals(b.getNorth())];
           this.props.queryChanged(Object.assign({}, this.props.query, { bbox: bbox }));
         }
     });
@@ -169,9 +173,11 @@ export class Map extends React.Component<MapProps, {}> {
       }
     }
   }
-
 }
 
 // can't get className to work right now, so use literal styles
 const productFootprintStyleOff = { fillOpacity: 0, weight: 1, color: '#666' };
 const productFootprintStyleOn =  { fillOpacity: 0, weight: 3, color: '#555' };
+
+/** Rounds the number to 3 decimal places. */
+const roundTo3Decimals = (n: number) => Math.round(1000 * n) / 1000;

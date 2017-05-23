@@ -7,8 +7,8 @@ export const config = {
         title: `Scotland's Remote Sensed Data`, // todo: not yet configurable
     },
     logo: {
-        name: `ssdi-logo.png`,
-        width: 194,
+        name:   `ssdi-logo.png`,
+        width:  194,
         height: 46,
     },
     map: {
@@ -19,11 +19,15 @@ export const config = {
     },
     defaultQuery: {
         collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], // DTM collection
-        bbox: [-5, 56, -3, 57],
-        start: `2016-06-01`,
-        end:   `2016-06-31`,
+        bbox:        [-5, 56, -3, 57],
+        start:       `2016-06-01`,
+        end:         `2016-06-31`,
     },
-    maxProductCount: 100, // be sure to update server config too
+    form: {
+        start:       false,
+        end:         false,
+    },
+    maxProductCount: 50, // be sure to update server config too
     collectionWmsUrl: 'https://eo.jncc.gov.uk/geoserver/scotland/wms', // temp
 };
 

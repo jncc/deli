@@ -1,5 +1,6 @@
 
 import * as React from "react";
+import { Segment, Label, Header } from "semantic-ui-react";
 
 import { config } from "../../config";
 
@@ -11,24 +12,46 @@ interface SummaryProps {
 
 export function Summary(props: SummaryProps) {
 
+  let tooManyProducts = props.productCount > config.maxProductCount;
+  console.log(props.productCount);
+  console.log(config.maxProductCount);
+
   let getLinkClicked = (e: any) => {
     props.getLinkClicked();
   }
 
-  let tooManyProducts = props.productCount > config.maxProductCount;
-
-  let message = tooManyProducts
-    ? (<span>More than <span className="summary-count">{config.maxProductCount}</span> products selected. Apply more filters.</span>)
-    : (<span><span className="summary-count">{props.productCount}</span> products selected</span>);
-
   return (
-    <div className="summary">
-    <div className="form-inline form pull-right">
-      {message}
-      <button className="btn btn-danger" disabled={tooManyProducts}
-        onClick={getLinkClicked}>Get Link</button>
-    </div>
-    </div>
+    <Segment>
+      {productCountUI(props.productCount, tooManyProducts)}
+      {/*<button className="btn btn-danger" disabled={tooManyProducts}
+        onClick={getLinkClicked}>Get Link</button>*/}
+    </Segment>
   );
 }
 
+
+const productCountUI = (productCount: number, tooManyProducts: boolean) => {
+
+  if (tooManyProducts) {
+    return (
+      <div>
+        <Header>
+          <Header.Content>
+            <Label size="huge" circular color="purple">{config.maxProductCount}+</Label>
+            products
+            <Header.Subheader>
+              Only the first {config.maxProductCount} are shown.
+            </Header.Subheader>
+          </Header.Content>
+        </Header>
+      </div>
+    );
+  } else {
+    return (
+      <span>
+        {/*<span>{props.productCount}</span>
+          products selected*/}
+        </span>
+    );
+  }
+};
