@@ -3,8 +3,8 @@
 import * as React from "react";
 import { Link } from 'react-router-dom';
 
-import { Header } from "../shared/Header";
-import { Footer } from "../shared/Footer";
+import { Head } from "../shared/Head";
+import { Foot } from "../shared/Foot";
 import { formatBytes } from "../../utility/formatBytes";
 import { Collection, GetCollectionsResult } from "../../../app.server/handlers/collections/models"
 import { config } from "../../config";
@@ -27,13 +27,13 @@ export class Collections extends React.Component<any, CollectionsState> {
   render() {
     return (
       <div>
-        <Header />
+        <Head pending={0} />
         <div className="container">
           <h1>Collections</h1>
           <br />
           { this.makeCollectionsListUI() }
         </div>
-        <Footer />
+        <Foot />
       </div>
     );
   }

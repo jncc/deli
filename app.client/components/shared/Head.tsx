@@ -1,42 +1,49 @@
 
-import * as React from "react";
+import * as React from 'react'
 import { Container, Icon, Progress } from 'semantic-ui-react'
 
-import { config } from "../../config";
+import { config } from '../../config'
 
 interface HeadProps {
-  pending: number;
+  pending: number
 }
 
+export class Head extends React.Component<HeadProps, { recent: boolean}> {
 
-export class Head extends React.Component<HeadProps, {}> {
+  constructor(props: HeadProps) {
+    super(props)
+    this.state = {recent: false}
+  }
 
   render() {
     return (
-      <nav className="head">
+      <nav className='head'>
         <Container>
-            {/*<a href="/">*/}
-              {/*<img className="logo" src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;*/}
-              <span className="logo-text">SRSP<Icon name="ellipsis vertical" /></span>
-              <span className="logo-strap">Scottish Remote Sensing Portal</span>
+            {/*<a href='/'>*/}
+              {/*<img className='logo' src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;*/}
+              <span className='logo-text'>SRSP<Icon name='ellipsis vertical' /></span>
+              <span className='logo-strap'>Scottish Remote Sensing Portal</span>
             {/*</a>*/}
 
-          {getWaitingUI()}
         </Container>
+        {this.getPendingUI()}
       </nav>
-    );
+    )
   }
 
-  componentDidUpdate(prevProps: HeadProps) {
+  // componentWillUpdate(prevProps: HeadProps) {
+  //   if (!this.state.recent && prevProps.pending < this.props.pending) {
+  //     this.setState({ recent: true })
+  //     setTimeout(() => this.setState({ recent: false }), 2000)
+  //   }
+  // }
 
-    if (prevProps.waiting != this.props.waiting) {
-        //this.state.spinning = true;
+  getPendingUI = () => {
+    // console.log(this.props.pending + ' ' + this.state.recent)
+    if (this.props.pending > 0) { // || this.state.recent
+      return <Progress size='tiny' active percent={100} />
+    } else {
+      return <Progress size='tiny' percent={100} />
     }
   }
-
-  getWaitingUI = () => {
-    if (this.spinning) {
-      return <Progress percent={0} />
-    }
-  };
 }

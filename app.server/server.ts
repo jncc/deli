@@ -20,6 +20,11 @@ let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new Stored
 // parse json body requests
 app.use(bodyParser.json());
 
+// realistic speeds at dev time
+if (env.dev) {
+  app.use((req, res, next) => setTimeout(next, 500))
+}
+
 // custom wms GetCapabilites handler
 app.get(`/wms/:key`, async (req, res) => {
 

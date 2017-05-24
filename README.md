@@ -27,6 +27,14 @@ A browser window will open at http://localhost:8080
 
 Tip: It's often handy to run the Typescript compiler `tsc` to quickly check for compile errors.
 
+Style guide
+-----------
+Javascript and Typescript are fairly verbose, so optimise for whitespace.
+
+- don't use `semicolons;` to terminate lines (unnecessary in Javascript)
+- do use `'single quotes'` for strings
+- don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
+
 Demoing
 -------
 To get all the S2-ARD products, increase the bounding box to [-14,50,4,60] and make the date range 2014 - 2018.
