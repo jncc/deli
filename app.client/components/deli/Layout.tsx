@@ -82,4 +82,3 @@ export function Layout(props: LayoutProps) {
           <button onClick={() => props.modalToggled()}>OK</button>
       </ReactModal>*/}
 
-
