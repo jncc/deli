@@ -2,24 +2,24 @@
 
 
 export function flatMap<T, R>(ts: T[], f: (t: T) => R[]) {
-    let mapped = ts.map(t => f(t));
+    let mapped = ts.map(t => f(t))
     if (mapped.length === 0) {
-        return [];
+        return []
     } else {
-        return mapped.reduce((a, b) => a.concat(b));
+        return mapped.reduce((a, b) => a.concat(b))
     }
 }
 
 /** Converts [minX, minY, maxX, maxY] to [[minY, minX], [maxY, maxX]]. */
 export function bboxFlatArrayToCoordArray(bbox: number[]): [[number, number], [number, number]] {
-    let [minX, minY, maxX, maxY] = bbox;
-    return [[minY, minX], [maxY, maxX]];
+    let [minX, minY, maxX, maxY] = bbox
+    return [[minY, minX], [maxY, maxX]]
 }
 
 /** Ensures the value is either already an array, else makes it into  a singleton array. */
 export function ensureArray<T>(input: T | T[]) {
     if (Array.isArray(input)) {
-        return input;
+        return input
     } else {
         return [input]
     }
@@ -27,16 +27,16 @@ export function ensureArray<T>(input: T | T[]) {
 
 // tests!
 // interface Shape {
-//     numbers: number[];
+//     numbers: number[]
 // }
 
 // let fat: Shape[] = [
 //     { numbers: [1,2,3] },
 //     { numbers: [4,5,6] },
-// ];
+// ]
 
-// let flattened = flatMap(fat, a => a.numbers);
-// console.log(flattened);
+// let flattened = flatMap(fat, a => a.numbers)
+// console.log(flattened)
 
-// let empty: Shape[] = [];
-// console.log(flatMap(empty, x => x.numbers));
+// let empty: Shape[] = []
+// console.log(flatMap(empty, x => x.numbers))

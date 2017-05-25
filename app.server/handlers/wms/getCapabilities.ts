@@ -1,21 +1,21 @@
 
 
-import { Product } from './../products/models';
-import { template } from './template';
+import { Product } from './../products/models'
+import { template } from './template'
 
 export function getCapabilities(products: Product[], wmsUrl: string): String {
 
   // make the xml for the products
   let productsXml = products
     .map((layer) => makeLayerXml(layer))
-    .join('\n');
+    .join('\n')
 
   // replace the {{{products}}} placeholder in the GetCapabilities xml template
   // and the root URL of the WMS server with the correct url
   // (split + join is javascript for 'String.replaceAll'!)
   return template
     .replace('{{{products}}}', productsXml)
-    .split('https://eodip.jncc.gov.uk:443/geoserver').join(wmsUrl);
+    .split('https://eodip.jncc.gov.uk:443/geoserver').join(wmsUrl)
 }
 
 export function makeLayerXml(p: Product): string {
@@ -32,9 +32,9 @@ export function makeLayerXml(p: Product): string {
         <LatLonBoundingBox minx='${p.bbox[0]}' miny='${p.bbox[1]}' maxx='${p.bbox[2]}' maxy='${p.bbox[3]}'/>
         <BoundingBox SRS='EPSG:27700' minx='${p.osgbBbox[0]}' miny='${p.osgbBbox[1]}' maxx='${p.osgbBbox[2]}' maxy='${p.osgbBbox[3]}'/>
 
-      </Layer>`;
+      </Layer>`
 
-  return xml.trim();
+  return xml.trim()
 }
 
 

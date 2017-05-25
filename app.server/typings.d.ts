@@ -1,3 +1,3 @@
 
-declare module 'random-key';
+declare module 'random-key'
 

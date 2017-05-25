@@ -1,9 +1,9 @@
 
-import * as turf from 'turf';
+import * as turf from 'turf'
 
 function spike() {
 
-  let northernBbox = turf.bboxPolygon([-5, 52, 2.021, 57]);
+  let northernBbox = turf.bboxPolygon([-5, 52, 2.021, 57])
 
   var outside = {
     'type': 'Feature',
@@ -18,7 +18,7 @@ function spike() {
         [-122.801742, 45.48565]
       ]]
     }
-  } as GeoJSON.Feature<GeoJSON.Polygon>;
+  } as GeoJSON.Feature<GeoJSON.Polygon>
 
 
   let inside = {
@@ -36,13 +36,13 @@ function spike() {
         ]
       ]
     }
-  } as GeoJSON.Feature<GeoJSON.Polygon>;
+  } as GeoJSON.Feature<GeoJSON.Polygon>
 
-  let fails = turf.intersect(outside, northernBbox);
-  console.log(fails);
+  let fails = turf.intersect(outside, northernBbox)
+  console.log(fails)
 
-  let succeeds = turf.intersect(inside, northernBbox);
-  console.log(succeeds);
+  let succeeds = turf.intersect(inside, northernBbox)
+  console.log(succeeds)
 }
 
-spike();
+spike()
