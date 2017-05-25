@@ -7,6 +7,7 @@ import { flatMap } from "../../../app.shared/util";
 
 import { Head } from "../shared/Head";
 import { Foot } from "../shared/Foot";
+import { Spinner } from "../shared/Spinner";
 import { Form } from "./Form";
 import { List } from "./List";
 import { Map } from "./Map";

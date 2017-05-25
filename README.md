@@ -29,6 +29,8 @@ Tip: It's often handy to run the Typescript compiler `tsc` to quickly check for 
 
 Style guide
 -----------
+This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, install the EditorConfig extension.
+
 Javascript and Typescript are fairly verbose, so optimise for whitespace.
 
 - don't use `semicolons;` to terminate lines (unnecessary in Javascript)
