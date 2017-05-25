@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import { Popup, Button, Header, Image, Modal } from 'semantic-ui-react'
 
 export const WmsModal = () => (

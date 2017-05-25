@@ -1,6 +1,6 @@
 
-import * as pgPromise from "pg-promise";
-import { IMain, IDatabase } from "pg-promise";
+import * as pgPromise from 'pg-promise';
+import { IMain, IDatabase } from 'pg-promise';
 
 /* Singleton database client. */
 export class Database {

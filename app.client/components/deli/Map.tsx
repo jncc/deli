@@ -1,14 +1,14 @@
 
-import * as React from "react";
-import * as ReactDOM from "react-dom"
-import * as L from "leaflet";
-import "leaflet-editable";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom'
+import * as L from 'leaflet';
+import 'leaflet-editable';
 
-import { config } from "../../config";
-import { Query } from "../models/Query";
-import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
-import { flatMap } from "../../../app.shared/util";
-import { bboxFlatArrayToCoordArray } from "../../../app.shared/util";
+import { config } from '../../config';
+import { Query } from '../models/Query';
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models';
+import { flatMap } from '../../../app.shared/util';
+import { bboxFlatArrayToCoordArray } from '../../../app.shared/util';
 
 interface MapProps {
   query: Query;
@@ -33,7 +33,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   render() {
     // react has nothing to do with the leaflet map;  all events will be handled manually
-    return <div className="map"></div>;
+    return <div className='map'></div>;
   }
 
   componentDidMount() {
@@ -145,7 +145,7 @@ export class Map extends React.Component<MapProps, {}> {
     //// let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
 
     //// let wmsOptions = {
-    ////   layers: "s2_ard:" + p.title + "_rgba",
+    ////   layers: 's2_ard:' + p.title + '_rgba',
     ////   format: 'image/png',
     ////   transparent: true
     //// };

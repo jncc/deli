@@ -1,8 +1,8 @@
 
-import * as randomKey from "random-key";
+import * as randomKey from 'random-key';
 
-import { Query } from "../query/query";
-import { Database } from "./database";
+import { Query } from '../query/query';
+import { Database } from './database';
 
 export interface StoredQuery {
     id:    string;
@@ -12,28 +12,28 @@ export interface StoredQuery {
 export class FakeStoredQueryRepository {
 
     private data: StoredQuery[] = [
-        { id: "may2016demo",
+        { id: 'may2016demo',
             query: {
-                collections: ["s2-ard"],
+                collections: ['s2-ard'],
                 bbox:  [-15, 45, 15, 65],
-                start: "2016-05-01",
-                end:   "2016-05-31"
+                start: '2016-05-01',
+                end:   '2016-05-31'
             }
         },
-        { id: "june2016demo",
+        { id: 'june2016demo',
             query: {
-                collections: ["s2-ard"],
+                collections: ['s2-ard'],
                 bbox:  [-15, 45, 15, 65],
-                start: "2016-06-01",
-                end:   "2016-06-31"
+                start: '2016-06-01',
+                end:   '2016-06-31'
             }
         },
-        { id: "fulldemo",
+        { id: 'fulldemo',
             query: {
-                collections: ["s2-ard"],
+                collections: ['s2-ard'],
                 bbox:  [-15,45,15,65],
-                start: "2014-01-01",
-                end:   "2020-01-01"
+                start: '2014-01-01',
+                end:   '2020-01-01'
             }
         },
     ];

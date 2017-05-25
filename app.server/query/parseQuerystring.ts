@@ -1,4 +1,4 @@
-import { Query } from "./query";
+import { Query } from './query';
 
 /** Parses a Query object from an express req.query object, which frankly doesn't do a great job. */
 export function parseQuerystring(q: any) {

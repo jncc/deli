@@ -1,11 +1,11 @@
 
-import * as React from "react";
+import * as React from 'react';
 import { Button, Icon } from 'semantic-ui-react'
 
 export function Example(props: any) {
   return (
 <div>
-    <Button animated={'vertical'} title="hello">
+    <Button animated={'vertical'} title='hello'>
       <Button.Content visible>Next</Button.Content>
       <Button.Content hidden>
         <Icon name='right arrow' />

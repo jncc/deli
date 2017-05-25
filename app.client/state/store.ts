@@ -1,10 +1,10 @@
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers } from 'redux';
 
 import { productsReducer } from './products-reducer';
-import { GetProductsResult } from "../../app.server/handlers/products/models";
-import { Query } from "../components/models/Query";
-import { config } from "../config";
+import { GetProductsResult } from '../../app.server/handlers/products/models';
+import { Query } from '../components/models/Query';
+import { config } from '../config';
 
 interface AppState {
     ui: {
@@ -24,7 +24,7 @@ export const initialState: AppState = {
     }
 };
 
-// map our app state object to the "reducer" functions that
+// map our app state object to the 'reducer' functions that
 // handle the relevant parts of the state tree
 let reducers = {
     products: productsReducer,

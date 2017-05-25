@@ -1,38 +1,38 @@
 
-import * as React from "react";
-import * as ReactModal from "react-modal";
+import * as React from 'react'
+import * as ReactModal from 'react-modal'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 
-import { flatMap } from "../../../app.shared/util";
+import { flatMap } from '../../../app.shared/util'
 
-import { Head } from "../shared/Head";
-import { Foot } from "../shared/Foot";
-import { Spinner } from "../shared/Spinner";
-import { Form } from "./Form";
-import { List } from "./List";
-import { Map } from "./Map";
-import { Summary } from "./Summary";
-import { Query } from "../models/Query";
-import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
+import { Head } from '../shared/Head'
+import { Foot } from '../shared/Foot'
+import { Spinner } from '../shared/Spinner'
+import { Form } from './Form'
+import { List } from './List'
+import { Map } from './Map'
+import { Summary } from './Summary'
+import { Query } from '../models/Query'
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 
 interface LayoutProps {
-  query:    Query;   // the current query
-  result: GetProductsResult;
-  hovered: Product | undefined;
-  modal: boolean;
-  queryChanged: (query: Query) => void;
-  productHovered: (product: Product) => void;
-  productUnhovered: (product: Product) => void;
-  modalToggled: () => void;
-  wmsLink: string;
-  pending: number;
+  query:            Query   // the current query
+  result:           GetProductsResult
+  hovered:          Product | undefined
+  modal:            boolean
+  queryChanged:     (query:   Query)   => void
+  productHovered:   (product: Product) => void
+  productUnhovered: (product: Product) => void
+  modalToggled:     ()     => void
+  wmsLink:          string
+  pending:          number
 }
 
 export function Layout(props: LayoutProps) {
 
   let handleGetLinkClicked = () => {
     props.modalToggled()
-};
+  }
 
   return (
     <div>
@@ -69,11 +69,11 @@ export function Layout(props: LayoutProps) {
       </Container>
       <Foot />
     </div>
-  );
+  )
 }
       {/*<ReactModal
            isOpen={props.modal}
-           contentLabel="Minimal Modal Example"
+           contentLabel='Minimal Modal Example'
            style={ { style: { overlay: {zIndex: 3000000}}}}
         >
           <h2>Custom WMS link</h2>

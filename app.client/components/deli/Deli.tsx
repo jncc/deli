@@ -1,12 +1,12 @@
 
-import * as React from "react";
-import * as qs from "query-string";
+import * as React from 'react';
+import * as qs from 'query-string';
 
-import { config } from "../../config"
-import { Layout } from "./Layout";
-import { Query } from "../models/Query";
-import { GetProductsResult, Product } from "../../../app.server/handlers/products/models"
-import { flatMap, ensureArray } from "../../../app.shared/util";
+import { config } from '../../config'
+import { Layout } from './Layout';
+import { Query } from '../models/Query';
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
+import { flatMap, ensureArray } from '../../../app.shared/util';
 
 interface DeliState {
   query:   Query;     // the current query
@@ -26,7 +26,7 @@ export class Deli extends React.Component<any, DeliState> {
       result: { collections: [] },
       hovered: undefined,
       modal: false,
-      wmsLink: "",
+      wmsLink: '',
       pending: 0,
     };
   }
@@ -111,7 +111,7 @@ export class Deli extends React.Component<any, DeliState> {
     fetch('/api/storedQueries', {
       method: 'post',
       body: JSON.stringify(this.state.query),
-      headers: { "Content-Type" : "application/json" }
+      headers: { 'Content-Type' : 'application/json' }
     })
       .then(res => res.json()
         .then((json: { key: string }) => {

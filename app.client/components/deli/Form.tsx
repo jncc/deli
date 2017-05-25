@@ -1,11 +1,11 @@
 
-import * as React from "react";
+import * as React from 'react';
 import { Header, Segment, Icon, Input } from 'semantic-ui-react'
 
-import { config } from "../../config";
-import { Query } from "../models/Query";
-import { GetProductsResult, Product } from "../../../app.server/handlers/products/models";
-import { Tooltip } from "./Widgets";
+import { config } from '../../config';
+import { Query } from '../models/Query';
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models';
+import { Tooltip } from './Widgets';
 
 interface FormProps {
   query: Query;
@@ -22,21 +22,21 @@ export function Form(props: FormProps) {
 
   let bboxUI = <Input
               value={JSON.stringify(props.query.bbox)}
-              label="bounding box"
+              label='bounding box'
               onChange={bboxChanged} />;
 
   return (
-    <Segment inverted color="grey">
+    <Segment inverted color='grey'>
       <Header>
-        <Icon name="block layout" />
+        <Icon name='block layout' />
         {props.result.collections.map(c => c.metadata.title).join(', ')}
       </Header>
       { getStartEndUI(props) }
       <Segment>
         <Tooltip
-          content="Use the handles on the map to change the bounding box"
+          content='Use the handles on the map to change the bounding box'
           trigger={bboxUI}
-          on="focus" />
+          on='focus' />
       </Segment>
     </Segment>
   );
@@ -58,9 +58,9 @@ const getStartEndUI = (props: FormProps) => {
     return (
       <div>
         <label>From</label>
-        <input type="text" value={props.query.start} onChange={startChanged} className="" placeholder="Start date"></input>
+        <input type='text' value={props.query.start} onChange={startChanged} className='' placeholder='Start date'></input>
         <label>To</label>
-        <input type="text" value={props.query.end} onChange={endChanged} className="" placeholder="End date"></input>
+        <input type='text' value={props.query.end} onChange={endChanged} className='' placeholder='End date'></input>
       </div>
     );
   } else {

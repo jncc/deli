@@ -1,5 +1,5 @@
 
-import { CollectionMetadata, CollectionData } from "../collections/models";
+import { CollectionMetadata, CollectionData } from '../collections/models';
 
 export interface GetProductsResult {
     collections: ProductCollection[]

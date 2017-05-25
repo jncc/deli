@@ -1,10 +1,10 @@
 
-/* tslint:disable */ // avoid warning "Exceeds maximum line length of 120"
+/* tslint:disable */ // avoid warning 'Exceeds maximum line length of 120'
 
 export const template: string = `
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE WMT_MS_Capabilities SYSTEM "https://eodip.jncc.gov.uk:443/geoserver/schemas/wms/1.1.1/WMS_MS_Capabilities.dtd">
-<WMT_MS_Capabilities version="1.1.1" updateSequence="190">
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE WMT_MS_Capabilities SYSTEM 'https://eodip.jncc.gov.uk:443/geoserver/schemas/wms/1.1.1/WMS_MS_Capabilities.dtd'>
+<WMT_MS_Capabilities version='1.1.1' updateSequence='190'>
   <Service>
     <Name>OGC:WMS</Name>
     <Title>Web Map Service</Title>
@@ -13,7 +13,7 @@ export const template: string = `
       <Keyword>WFS</Keyword>
       <Keyword>WMS</Keyword>
     </KeywordList>
-    <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://geoserver.sourceforge.net/html/index.php"/>
+    <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='http://geoserver.sourceforge.net/html/index.php'/>
     <ContactInformation>
       <ContactPersonPrimary>
         <ContactPerson>Data Services</ContactPerson>
@@ -42,10 +42,10 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
             <Post>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Post>
           </HTTP>
         </DCPType>
@@ -87,7 +87,7 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
           </HTTP>
         </DCPType>
@@ -103,10 +103,10 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
             <Post>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Post>
           </HTTP>
         </DCPType>
@@ -116,7 +116,7 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
           </HTTP>
         </DCPType>
@@ -128,7 +128,7 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
           </HTTP>
         </DCPType>
@@ -138,7 +138,7 @@ export const template: string = `
         <DCPType>
           <HTTP>
             <Get>
-              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;"/>
+              <OnlineResource xmlns:xlink='http://www.w3.org/1999/xlink' xlink:type='simple' xlink:href='https://eodip.jncc.gov.uk:443/geoserver/wms?SERVICE=WMS&amp;'/>
             </Get>
           </HTTP>
         </DCPType>
@@ -149,7 +149,7 @@ export const template: string = `
       <Format>application/vnd.ogc.se_inimage</Format>
       <Format>application/vnd.ogc.se_blank</Format>
     </Exception>
-    <UserDefinedSymbolization SupportSLD="1" UserLayer="1" UserStyle="1" RemoteWFS="1"/>
+    <UserDefinedSymbolization SupportSLD='1' UserLayer='1' UserStyle='1' RemoteWFS='1'/>
     <Layer>
       <Title>Deli Web Map Service</Title>
       <Abstract>A hopefully compliant implementation of WMS plus most of the SLD extension (dynamic styling). Can also generate PDF, SVG, KML, GeoRSS</Abstract>
@@ -6002,7 +6002,7 @@ export const template: string = `
       <SRS>EPSG:42305</SRS>
       <SRS>EPSG:42304</SRS>
       <SRS>EPSG:42303</SRS>
-      <LatLonBoundingBox minx="-10.9569" miny="47.9432" maxx="9.14942562918123" maxy="62.4491"/>
+      <LatLonBoundingBox minx='-10.9569' miny='47.9432' maxx='9.14942562918123' maxy='62.4491'/>
       {{{products}}}
     </Layer>
   </Capability>

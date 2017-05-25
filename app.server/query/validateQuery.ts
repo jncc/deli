@@ -1,28 +1,28 @@
 import { collections } from './../data/data';
 
-import { Query } from "./query";
+import { Query } from './query';
 
 /* Throws an exception if the query isn't good. */
 export function validateQuery(o: Query) {
 
     if (!Array.isArray(o.collections)) {
-        throw "Query validation failed. Collections not array.";
+        throw 'Query validation failed. Collections not array.';
     }
 
     if (!o.collections || o.collections.length === 0) {
-        throw "Query validation failed. No collection specified.";
+        throw 'Query validation failed. No collection specified.';
     }
 
     if (!o.bbox) {
-        throw "Query validation failed. No bbox specified.";
+        throw 'Query validation failed. No bbox specified.';
     }
 
     if (!Array.isArray(o.bbox)) {
-        throw "Query validation failed. Bbox not array.";
+        throw 'Query validation failed. Bbox not array.';
     }
 
     if (o.bbox.length !== 4) {
-        throw "Query validation failed. Bbox wrong length.";
+        throw 'Query validation failed. Bbox wrong length.';
     }
 
     // todo.... more validations

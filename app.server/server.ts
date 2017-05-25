@@ -1,15 +1,15 @@
 
-import * as express from "express";
-import * as bodyParser from "body-parser"
+import * as express from 'express';
+import * as bodyParser from 'body-parser'
 
-import { flatMap } from "../app.shared/util";
-import { getEnvironmentSettings, getRealWmsUrl } from "./settings";
-import { getCapabilities } from "./handlers/wms/getCapabilities";
-import { getProducts } from "./handlers/products/getProducts";
-import { getCollections } from "./handlers/collections/getCollections";
-import { validateQuery } from "./query/validateQuery";
-import { parseQuerystring } from "./query/parseQuerystring";
-import { StoredQueryRepository, FakeStoredQueryRepository } from "./data/storedQueryRepository";
+import { flatMap } from '../app.shared/util';
+import { getEnvironmentSettings, getRealWmsUrl } from './settings';
+import { getCapabilities } from './handlers/wms/getCapabilities';
+import { getProducts } from './handlers/products/getProducts';
+import { getCollections } from './handlers/collections/getCollections';
+import { validateQuery } from './query/validateQuery';
+import { parseQuerystring } from './query/parseQuerystring';
+import { StoredQueryRepository, FakeStoredQueryRepository } from './data/storedQueryRepository';
 
 let app = express();
 let env = getEnvironmentSettings(app.settings.env);

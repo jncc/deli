@@ -6,13 +6,13 @@ import * as fs from 'fs';
 let scenes = new Array();
 
 fs.createReadStream('test/scenes.csv')
-  .pipe(csv({ quote: '"' }))
+  .pipe(csv({ quote: `'` }))
   .on('data', (data: any) => {
     console.log(`Reading '${data.title}'`);
     scenes.push({
       name: data.title,
       date: data.endposition,
-      polygon: { "type": "Feature", "properties": {},  "geometry": JSON.parse(data.footprint) }
+      polygon: { 'type': 'Feature', 'properties': {},  'geometry': JSON.parse(data.footprint) }
     });
   })
   .on('end', () => {
