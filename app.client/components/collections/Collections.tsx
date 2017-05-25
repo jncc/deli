@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container } from "semantic-ui-react";
+import { Container, Modal, Button, Header, ModalProps } from "semantic-ui-react";
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
@@ -12,14 +12,18 @@ import { config } from '../../config'
 
 interface CollectionsState {
   collections: Collection[]
-  pending: number
+  pending:     number
+  wmsModal: {
+    open: boolean
+    url:  string
+  }
 }
 
 export class Collections extends React.Component<any, CollectionsState> {
 
   constructor(props: any) {
     super(props)
-    this.state = { collections: [], pending: 0 }
+    this.state = { collections: [], pending: 0, wmsModal: { open: false, url: '' } }
   }
 
   componentDidMount() {
@@ -35,6 +39,8 @@ export class Collections extends React.Component<any, CollectionsState> {
           <br />
           { this.makeCollectionsListUI() }
         </Container>
+        <WModal this.state. url={c.data.wms.base_url + '|' + c.data.wms.name} />
+
         {/* don't show the footer before anything is loaded as it looks jumpy */}
         {this.state.collections.length > 0 && <Foot />}
       </div>
@@ -110,3 +116,31 @@ export class Collections extends React.Component<any, CollectionsState> {
   }
 
 }
+
+
+interface WModalProps {
+  open: boolean
+  url: string
+  close: () => void
+}
+function WModal(props: WModalProps) {
+
+  return (
+    <Modal dimmer='blurring' open={props.open}>
+      <Modal.Header>Select a Photo</Modal.Header>
+      <Modal.Content image>
+        <Modal.Description>
+          <Header>Default Profile Image</Header>
+          <p>We've found the following gravatar image associated with your e-mail address.</p>
+          <p>{props.url}</p>
+        </Modal.Description>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button color='black' onClick={() => props.close()}>Nope</Button>
+        <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={undefined} />
+      </Modal.Actions>
+    </Modal>
+  )
+}
+
+
