@@ -11,7 +11,7 @@ import { Deli } from './components/deli/Deli';
 export const Routes = (
   <Router>
     <div>
-      <Route exact path='/' component={Deli}/>
+      <Route exact path='/' component={Collections}/>
       <Route exact path='/collections' component={Collections}/>
       <Route exact path='/app' component={Deli}/>
     </div>

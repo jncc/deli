@@ -1,41 +1,44 @@
 
 
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Container } from "semantic-ui-react";
 
-import { Head } from '../shared/Head';
-import { Foot } from '../shared/Foot';
-import { formatBytes } from '../../utility/formatBytes';
+import { Head } from '../shared/Head'
+import { Foot } from '../shared/Foot'
+import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
-import { config } from '../../config';
+import { config } from '../../config'
 
 interface CollectionsState {
-  collections: Collection[];
+  collections: Collection[]
+  pending: number
 }
 
 export class Collections extends React.Component<any, CollectionsState> {
 
   constructor(props: any) {
-    super(props);
-    this.state = { collections: new Array() };
+    super(props)
+    this.state = { collections: [], pending: 0 }
   }
 
   componentDidMount() {
-    this.fetchCollections();
+    this.fetchCollections()
   }
 
   render() {
     return (
       <div>
-        <Head pending={0} />
-        <div className='container'>
+        <Head pending={this.state.pending} />
+        <Container>
           <h1>Collections</h1>
           <br />
           { this.makeCollectionsListUI() }
-        </div>
-        <Foot />
+        </Container>
+        {/* don't show the footer before anything is loaded as it looks jumpy */}
+        {this.state.collections.length > 0 && <Foot />}
       </div>
-    );
+    )
   }
 
   makeCollectionsListUI() {
@@ -68,8 +71,6 @@ export class Collections extends React.Component<any, CollectionsState> {
               </Link>
             </div>
 
-
-
             </div>
           </div>
           <div className='collection-right'>
@@ -91,18 +92,21 @@ export class Collections extends React.Component<any, CollectionsState> {
             </form>
           </div>
         </div>
-      );
-    });
+      )
+    })
   }
 
   fetchCollections() {
+    this.setState((prev) => ({ pending: prev.pending + 1 }))
     fetch('/api/collections')
       .then(res => res.json()
         .then((r: GetCollectionsResult) => {
-          this.setState({ collections: r.collections });
+          this.setState({ collections: r.collections })
+          this.setState((prev) => ({ pending: prev.pending - 1 }))
         })).catch(ex => {
-          console.log(`couldn't get data`, ex);
-        });
+          console.log(`couldn't get data`, ex)
+          this.setState((prev) => ({ pending: prev.pending - 1 }))
+        })
   }
 
 }
