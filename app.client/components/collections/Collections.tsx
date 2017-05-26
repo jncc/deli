@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps } from "semantic-ui-react";
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form } from "semantic-ui-react";
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
@@ -12,7 +12,7 @@ import { config } from '../../config'
 
 interface CollectionsState {
   collections: Collection[]
-  pending:     number
+  pending: number
   wmsModal: {
     open: boolean
     url:  string
@@ -37,10 +37,8 @@ export class Collections extends React.Component<any, CollectionsState> {
         <Container>
           <h1>Collections</h1>
           <br />
-          { this.makeCollectionsListUI() }
+          {this.makeCollectionsListUI()}
         </Container>
-        <WModal this.state. url={c.data.wms.base_url + '|' + c.data.wms.name} />
-
         {/* don't show the footer before anything is loaded as it looks jumpy */}
         {this.state.collections.length > 0 && <Foot />}
       </div>
@@ -93,9 +91,7 @@ export class Collections extends React.Component<any, CollectionsState> {
             </form>
           </div>
           <div className='collection-right'>
-            <form method='get' action={config.collectionWmsUrl}>
-              <button className='btn btn-primary' type='submit'>WMS</button>
-            </form>
+            {getWmsLinkUI(c.data.wms)}
           </div>
         </div>
       )
@@ -117,30 +113,48 @@ export class Collections extends React.Component<any, CollectionsState> {
 
 }
 
+function getWmsLinkUI(wmsInfo: { base_url: string, name: string }) {
 
-interface WModalProps {
-  open: boolean
-  url: string
-  close: () => void
+  let url = wmsInfo.base_url + '::' + wmsInfo.name
+
+  let content = <Modal.Content>
+      Use this WMS link in your GIS client.
+    <Form>
+      <Form.Group inline>
+        <Form.Field>
+          <Label size='large'>
+            {url}
+          </Label>
+        </Form.Field>
+        <Form.Field>
+          <Button icon='copy' labelPosition='right' color='pink' content='Copy to clipboard'
+          />
+        </Form.Field>
+      </Form.Group>
+    </Form>
+    <p>
+      You can use this link in <a href='http://www.qgis.org/en/docs' target='_blank'>QGIS</a> or <a href='https://www.arcgis.com/features/index.html' target='_blank'>ArcGIS</a>.
+    </p>
+  </Modal.Content>
+
+  return <Modal
+    trigger={<Button>WMS</Button>}
+    dimmer='blurring'
+    header={<Header  icon='cloud download' content='Get a WMS link' />}
+    content={content}
+    description='bkah'
+    actions={[
+      { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
+    ]}
+  />
 }
-function WModal(props: WModalProps) {
 
-  return (
-    <Modal dimmer='blurring' open={props.open}>
-      <Modal.Header>Select a Photo</Modal.Header>
-      <Modal.Content image>
-        <Modal.Description>
-          <Header>Default Profile Image</Header>
-          <p>We've found the following gravatar image associated with your e-mail address.</p>
-          <p>{props.url}</p>
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color='black' onClick={() => props.close()}>Nope</Button>
-        <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={undefined} />
-      </Modal.Actions>
-    </Modal>
-  )
+// use this to easily dev the modal
+export function DevWmsModal(props: any) {
+  let wmsInfo = {
+    base_url: 'http://some.base/url',
+    name: 'some:layer:name'
+  }
+
+  return getWmsLinkUI(wmsInfo)
 }
-
-

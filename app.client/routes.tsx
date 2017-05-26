@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { Home } from './components/home/Home';
-import { Collections } from './components/collections/Collections';
+import { Collections, DevWmsModal } from './components/collections/Collections';
 import { Deli } from './components/deli/Deli';
 
 
