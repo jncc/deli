@@ -1,5 +1,4 @@
 
-
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form } from "semantic-ui-react";
@@ -9,6 +8,7 @@ import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config'
+import { WmsModal } from "../shared/WmsModal";
 
 interface CollectionsState {
   collections: Collection[]
@@ -91,7 +91,7 @@ export class Collections extends React.Component<any, CollectionsState> {
             </form>
           </div>
           <div className='collection-right'>
-            {getWmsLinkUI(c.data.wms)}
+            <WmsModal wms={c.data.wms} />
           </div>
         </div>
       )
@@ -113,48 +113,3 @@ export class Collections extends React.Component<any, CollectionsState> {
 
 }
 
-function getWmsLinkUI(wmsInfo: { base_url: string, name: string }) {
-
-  let url = wmsInfo.base_url + '::' + wmsInfo.name
-
-  let content = <Modal.Content>
-      Use this WMS link in your GIS client.
-    <Form>
-      <Form.Group inline>
-        <Form.Field>
-          <Label size='large'>
-            {url}
-          </Label>
-        </Form.Field>
-        <Form.Field>
-          <Button icon='copy' labelPosition='right' color='pink' content='Copy to clipboard'
-          />
-        </Form.Field>
-      </Form.Group>
-    </Form>
-    <p>
-      You can use this link in <a href='http://www.qgis.org/en/docs' target='_blank'>QGIS</a> or <a href='https://www.arcgis.com/features/index.html' target='_blank'>ArcGIS</a>.
-    </p>
-  </Modal.Content>
-
-  return <Modal
-    trigger={<Button>WMS</Button>}
-    dimmer='blurring'
-    header={<Header  icon='cloud download' content='Get a WMS link' />}
-    content={content}
-    description='bkah'
-    actions={[
-      { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
-    ]}
-  />
-}
-
-// use this to easily dev the modal
-export function DevWmsModal(props: any) {
-  let wmsInfo = {
-    base_url: 'http://some.base/url',
-    name: 'some:layer:name'
-  }
-
-  return getWmsLinkUI(wmsInfo)
-}
