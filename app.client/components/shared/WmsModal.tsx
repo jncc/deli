@@ -2,6 +2,8 @@
 import * as React from 'react'
 import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Reveal } from "semantic-ui-react";
 import * as CopyToClipboard from 'react-copy-to-clipboard';
+import * as _ from 'lodash';
+
 import { Tooltip } from "../deli/Widgets";
 interface WmsModalProps {
   wms: {
@@ -49,7 +51,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
           </Form.Field>
           <Form.Field>
 
-            {this.state.copiedToClipboard && <span>Now paste the link into your GIS client.</span>}
+            {this.state.copiedToClipboard && <span><Icon name='checkmark' />Now paste the link into your GIS client.</span>}
           </Form.Field>
         </Form.Group>
       {/*</Form>*/}
@@ -61,6 +63,8 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
 
   handleCopied = () => {
     this.setState({ copiedToClipboard: true })
+    let delayed = _.debounce(() => this.setState({ copiedToClipboard: false }), 4000)
+    delayed();
   }
 }
 
