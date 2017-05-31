@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Button } from "semantic-ui-react";
 
 import { Head } from '../shared/Head';
 import { Foot } from '../shared/Foot';
@@ -12,15 +13,19 @@ export function Home(props: any) {
   return (
     <div>
       <Head pending={0} />
-      <div className='container' >
+      <Container text>
         <div dangerouslySetInnerHTML={ {__html: splashText} } ></div>
         <br />
         <br />
-        <p><Link to='/collections' className='btn btn-primary'>Get Started</Link></p>
+        {/*<p><Button to='/collections'  >Get Started</Button></p>*/}
+        <p>
+          <Link to='/collections'>
+            <Button icon='chevron circle right' labelPosition='right' color='green' content='Get Started' />
+          </Link>
+        </p>
         <br />
-      </div>
+      </Container>
       <Foot />
     </div>
   );
 }
-

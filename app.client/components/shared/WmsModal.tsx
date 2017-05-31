@@ -40,7 +40,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-          <Label size='large'> {url} </Label>
+          <Label size='large'><Icon name='cloud download' /> {url} </Label>
           </div>
           <div>
             <CopyToClipboard text={url} onCopy={() => this.handleCopied()}>
@@ -58,13 +58,13 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
           <Grid.Column>
             <Header icon as='h4'>
               <Icon name='rocket' />
-              See how to use WMS <a href='http://www.qgis.org/en/docs' target='_blank'>in QGIS</a>
+              How to use WMS <a href='http://www.qgis.org/en/docs' target='_blank'>in QGIS</a>
             </Header>
           </Grid.Column>
           <Grid.Column>
             <Header icon as='h4'>
               <Icon name='world' />
-              See how to use WMS <a href='https://www.arcgis.com/features/index.html' target='_blank'>in ArcGIS</a>
+              How to use WMS <a href='https://www.arcgis.com/features/index.html' target='_blank'>in ArcGIS</a>
             </Header>
           </Grid.Column>
         </Grid>

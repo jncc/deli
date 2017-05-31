@@ -5,8 +5,21 @@
   color: white;
 }
 
+.logo {
+  font-size: 50px;
+  line-height: 70px; // semantic-ui sets too small line-height on body
+  .logo-strap {
+    font-size: 12px;
+    margin-left: 0.5em;
+  }
+}
+
+
+
 // customer requested a footer in this style
 .foot {
+  margin-top: 2em;
+  text-align: center;
   background-color: #0065bd;
   height: 57px;
   > div {
@@ -17,19 +30,6 @@
     color: white;
     a { color: white; text-decoration: underline; }
     a:hover { color: #ddd; }
-
   }
 }
 
-// quick hack to put the logo in the right place
-// .logo {
-//   margin-top: -12px;
-// }
-
-.logo-text {
-  font-size: 60px
-}
-.logo-strap {
-  font-size: 12px;
-  margin-left: 0.5em;
-}
