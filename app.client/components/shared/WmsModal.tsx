@@ -12,13 +12,14 @@ interface WmsModalProps {
   }
 }
 
-interface WmsState {
+interface WmsModalState {
   copiedToClipboard: boolean
 }
 
-export class WmsModal extends React.Component<WmsModalProps, WmsState> {
+export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
 
   state = { copiedToClipboard: false }
+  resetCopiedToClipboardState = () => _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
 
   render() {
     return <Modal
@@ -40,10 +41,13 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-          <Label size='large'><Icon name='cloud download' /> {url} </Label>
+            <Label size='large'>
+              <Icon name='cloud download' />
+              {url}
+            </Label>
           </div>
           <div>
-            <CopyToClipboard text={url} onCopy={() => this.handleCopied()}>
+            <CopyToClipboard text={url} onCopy={() => this.handleCopiedToClipboard()}>
                 <Button icon='copy' labelPosition='right' color='pink' content='Copy to clipboard' />
             </CopyToClipboard>
             {this.state.copiedToClipboard &&
@@ -52,7 +56,9 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
           </div>
         </Segment>
         <Segment basic>
-          <Header>You can use this link in your GIS client</Header>
+          <Header textAlign='center'>
+            You can use this link in your GIS client
+          </Header>
         </Segment>
         <Grid divided stackable centered columns='2'>
           <Grid.Column>
@@ -72,10 +78,9 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
     )
   }
 
-  handleCopied = () => {
+  handleCopiedToClipboard = () => {
     this.setState({ copiedToClipboard: true })
-    let delayed = _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
-    delayed();
+    this.resetCopiedToClipboardState()
   }
 }
 
