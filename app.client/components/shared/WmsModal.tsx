@@ -53,7 +53,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
           </div>
         </Segment>
         <Segment basic>
-          <Header textAlign='center' as='h5'>You can use this link in your GIS client</Header>
+          <Header textAlign='center' as='h3'>You can use this link in your GIS client</Header>
         </Segment>
         <Grid divided stackable centered columns='2'>
           <Grid.Column>
