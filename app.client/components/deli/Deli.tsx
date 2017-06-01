@@ -12,7 +12,6 @@ interface DeliState {
   query:   Query     // the current query
   result:  GetProductsResult
   hovered: Product | undefined
-  modal:   boolean
   wmsLink: string
   pending: number // requests waiting for the network
 }
@@ -25,7 +24,6 @@ export class Deli extends React.Component<any, DeliState> {
       query: config.defaultQuery,
       result: { collections: [] },
       hovered: undefined,
-      modal: false,
       wmsLink: '',
       pending: 0,
     }
@@ -36,7 +34,8 @@ export class Deli extends React.Component<any, DeliState> {
       queryChanged={this.handleQueryChange.bind(this)}
       productHovered={this.handleProductHovered.bind(this)}
       productUnhovered={this.handleProductUnhovered.bind(this)}
-      modalToggled={this.handleModalToggled.bind(this)} /> )
+      />
+    )
   }
 
   handleQueryChange(query: Query) {
@@ -56,19 +55,6 @@ export class Deli extends React.Component<any, DeliState> {
       }
     })
   }
-
-  handleModalToggled () {
-    this.setState({ modal: !this.state.modal })
-    this.getWmsLink()
-  }
-
-  // handleOpenModal () {
-  //   this.setState({ modal: true })
-  // }
-
-  // handleCloseModal () {
-  //   this.setState({ modal: false })
-  // }
 
   componentDidMount() {
     let query = this.updateQueryFromQuerystring(config.defaultQuery)

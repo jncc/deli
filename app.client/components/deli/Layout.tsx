@@ -19,20 +19,14 @@ interface LayoutProps {
   query:            Query   // the current query
   result:           GetProductsResult
   hovered:          Product | undefined
-  modal:            boolean
   queryChanged:     (query:   Query)   => void
   productHovered:   (product: Product) => void
   productUnhovered: (product: Product) => void
-  modalToggled:     ()     => void
   wmsLink:          string
   pending:          number
 }
 
 export function Layout(props: LayoutProps) {
-
-  let handleGetLinkClicked = () => {
-    props.modalToggled()
-  }
 
   return (
     <div>
@@ -56,7 +50,6 @@ export function Layout(props: LayoutProps) {
               />
             <Summary
               productCount={flatMap(props.result.collections, c => c.products).length}
-              getLinkClicked={handleGetLinkClicked}
               />
             <List
               products={flatMap(props.result.collections, c => c.products)}
@@ -71,14 +64,3 @@ export function Layout(props: LayoutProps) {
     </div>
   )
 }
-      {/*<ReactModal
-           isOpen={props.modal}
-           contentLabel='Minimal Modal Example'
-           style={ { style: { overlay: {zIndex: 3000000}}}}
-        >
-          <h2>Custom WMS link</h2>
-          <p><span>http://deli-live.eu-west-1.elasticbeanstalk.com/wms/{props.wmsLink}</span></p>
-          <p>Copy this WMS link into your GIS client.</p>
-          <button onClick={() => props.modalToggled()}>OK</button>
-      </ReactModal>*/}
-

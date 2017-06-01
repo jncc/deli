@@ -1,22 +1,22 @@
 
-import * as React from 'react';
+import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as L from 'leaflet';
-import 'leaflet-editable';
+import * as L from 'leaflet'
+import 'leaflet-editable'
 
-import { config } from '../../config';
-import { Query } from '../models/Query';
-import { GetProductsResult, Product } from '../../../app.server/handlers/products/models';
-import { flatMap } from '../../../app.shared/util';
-import { bboxFlatArrayToCoordArray } from '../../../app.shared/util';
+import { config } from '../../config'
+import { Query } from '../models/Query'
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
+import { flatMap } from '../../../app.shared/util'
+import { bboxFlatArrayToCoordArray } from '../../../app.shared/util'
 
 interface MapProps {
   query: Query;
-  result: GetProductsResult;
-  hovered: Product | undefined;
-  productHovered: (product: Product) => void;
-  productUnhovered: (product: Product) => void;
-  queryChanged: (query: Query) => void;
+  result: GetProductsResult
+  hovered: Product | undefined
+  productHovered: (product: Product) => void
+  productUnhovered: (product: Product) => void
+  queryChanged: (query: Query) => void
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -32,24 +32,24 @@ export class Map extends React.Component<MapProps, {}> {
                    wms: L.TileLayer.WMS | null }[] = [];
 
   render() {
-    // react has nothing to do with the leaflet map;  all events will be handled manually
+    // react has nothing to do with the leaflet map; all events will be handled manually
     return <div className='map'></div>;
   }
 
   componentDidMount() {
-    this.createLeafletMap();
+    this.createLeafletMap()
   }
 
   componentDidUpdate(prevProps: MapProps) {
     // if the query result has changed, update the items on the map
     if (prevProps.result != this.props.result) {
-      this.updateProductList();
-      this.addProductsToMap();
-      this.addCollectionsToMap();
+      this.updateProductList()
+      this.addProductsToMap()
+      this.addCollectionsToMap()
     }
     // if the currently hovered product has changed, update the footprint style
     if (prevProps.hovered != this.props.hovered) {
-      this.updateHoveredProductOnMap(prevProps.hovered, this.props.hovered);
+      this.updateHoveredProductOnMap(prevProps.hovered, this.props.hovered)
     }
   }
 
