@@ -52,11 +52,14 @@ export class Collections extends React.Component<any, CollectionsState> {
           <div className='collection-left'>
           </div>
           <div className='collection-main'>
+
+
             <div className='collection-main-title'>
               <Link to={'/app?collections=' + c.id}>
                 {c.metadata.title}
               </Link>
             </div>
+
             <div >
               {c.metadata.abstract}
               <span className='collection-main-more-info'>
@@ -66,17 +69,30 @@ export class Collections extends React.Component<any, CollectionsState> {
                 </a>
               </span>
 
-            <div className='collection-main-visualise'>
-              <Link className='btn btn-danger'
-                  to={'/app?collections=' + c.id}
-                  title={'Visualise ' + c.metadata.title}>
-                <span className='btn-glyphicon glyphicon glyphicon-circle-arrow-right'></span>
-                Visualise
-              </Link>
+              <div className='collection-main-visualise'>
+                <Link className='btn btn-danger'
+                    to={'/app?collections=' + c.id}
+                    title={'Visualise ' + c.metadata.title}>
+                  <span className='btn-glyphicon glyphicon glyphicon-circle-arrow-right'></span>
+                  Visualise
+                </Link>
+              </div>
             </div>
 
-            </div>
+            {this.makeDownloadButtonUI(c)}
+
           </div>
+
+          {this.makeWmsButtonUI(c)}
+        </div>
+      )
+    })
+  }
+
+  makeDownloadButtonUI(c: Collection) {
+    if (c.data.download) {
+      return (
+        <div>
           <div className='collection-right'>
             <span className='collection-right-download-type'>{c.data.download.type}</span>
             <br />
@@ -90,12 +106,20 @@ export class Collections extends React.Component<any, CollectionsState> {
               </button>
             </form>
           </div>
-          <div className='collection-right'>
-            <WmsModal wms={c.data.wms} />
-          </div>
+
         </div>
       )
-    })
+    } else {
+      return <div />
+    }
+  }
+
+  makeWmsButtonUI(c: Collection) {
+    if (c.data.wms) {
+      return <div className='collection-right'><WmsModal wms={c.data.wms} /></div>
+    } else {
+      return <div />
+    }
   }
 
   fetchCollections() {

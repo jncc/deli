@@ -112,14 +112,16 @@ export class Map extends React.Component<MapProps, {}> {
     // todo: we will need a way for the user to turn collection-level
     // WMS layers on and off rather than just showing them all
     this.props.result.collections.forEach(c => {
-      let wmsUrl = c.data.wms.base_url;
-      let wmsOptions = {
-        layers: c.data.wms.name,
-        format: 'image/png',
-        transparent: true
-      };
-      let layer = L.tileLayer.wms(wmsUrl, wmsOptions);
-      this.visualLayerGroup.addLayer(layer);
+      if (c.data.wms) {
+        let wmsUrl = c.data.wms.base_url;
+        let wmsOptions = {
+          layers: c.data.wms.name,
+          format: 'image/png',
+          transparent: true
+        };
+        let layer = L.tileLayer.wms(wmsUrl, wmsOptions);
+        this.visualLayerGroup.addLayer(layer);
+      }
     });
   }
 
