@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form } from "semantic-ui-react";
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid } from "semantic-ui-react";
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
@@ -9,21 +9,18 @@ import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config'
 import { WmsModal } from "../shared/WmsModal";
+import { Tooltip } from "../deli/Widgets";
 
 interface CollectionsState {
   collections: Collection[]
   pending: number
-  wmsModal: {
-    open: boolean
-    url:  string
-  }
 }
 
 export class Collections extends React.Component<any, CollectionsState> {
 
   constructor(props: any) {
     super(props)
-    this.state = { collections: [], pending: 0, wmsModal: { open: false, url: '' } }
+    this.state = { collections: [], pending: 0 }
   }
 
   componentDidMount() {
@@ -35,13 +32,78 @@ export class Collections extends React.Component<any, CollectionsState> {
       <div>
         <Head pending={this.state.pending} />
         <Container>
-          <h1>Collections</h1>
+          <Header
+            as='h1'
+            content='Collections'
+            subheader='Browse the collections of data products available'>
+          </Header>
           <br />
-          {this.makeCollectionsListUI()}
+          {this.makeCollectionsListUI2()}
         </Container>
-        {/* don't show the footer before anything is loaded as it looks jumpy */}
+        {/* don't show the footer before anything is loaded, as it looks jumpy */}
         {this.state.collections.length > 0 && <Foot />}
       </div>
+    )
+  }
+
+  makeCollectionsListUI2() {
+    let rows = this.state.collections.map(c => {
+      return (
+        <Grid.Row key={c.id}>
+          <Grid.Column  width='11'>
+              <Header>
+                <Header.Content>
+                  <Icon name='block layout' color='grey' />
+                  <Tooltip
+                    content='Click to open this data collection'
+                    position='bottom center'
+                    trigger={<Link to={'/app?collections=' + c.id}>
+                                &nbsp;
+                                {c.metadata.title}
+                             </Link>}
+                  />
+                </Header.Content>
+              </Header>
+              <div>
+                {c.metadata.abstract}
+                &nbsp;
+                {this.makeLidarMetadataLinkUI()}
+              </div>
+          </Grid.Column>
+
+          <Grid.Column width='2' verticalAlign='top'>
+            <div className='spaced'>
+              <Button.Group>
+                <Button content='Download' color='grey' />
+                <Button content='WMS' />
+              </Button.Group>
+
+              {formatBytes(360000, 0)} Geotiff
+            </div>
+            <Button content='Products' icon='arrow right' labelPosition='right' color='green' />
+
+          </Grid.Column>
+        </Grid.Row>
+      )
+    })
+
+    return <Grid>{rows}</Grid>
+  }
+
+  makeLidarMetadataLinkUI() {
+    return (
+      <Tooltip
+        position='left center'
+        content='More information about this data collection'
+        trigger={
+          <span style={({ marginLeft: '0.5em' })}>
+            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank'>
+              Metadata &nbsp;
+              <Icon name='external' />
+            </a>
+          </span>
+        }
+      />
     )
   }
 
@@ -87,6 +149,31 @@ export class Collections extends React.Component<any, CollectionsState> {
         </div>
       )
     })
+  }
+
+  makeDownloadButtonUI2(c: Collection) {
+    if (c.data.download) {
+      return (
+        <div>
+          <div className='collection-right'>
+            <span className='collection-right-download-type'>{c.data.download.type}</span>
+            <br />
+            <span>{ formatBytes(c.data.download.size, 0) }</span>
+          </div>
+          <div className='collection-right'>
+            <form method='get' action={c.data.download.url}>
+              <button className='btn btn-default' type='submit' title='Download entire dataset'>
+                <span className='btn-glyphicon glyphicon glyphicon-download-alt'></span>
+                Download
+              </button>
+            </form>
+          </div>
+
+        </div>
+      )
+    } else {
+      return <div />
+    }
   }
 
   makeDownloadButtonUI(c: Collection) {

@@ -11,7 +11,7 @@ import { WmsModal, DevWmsModal } from './components/shared/WmsModal'
 export const Routes = (
   <Router>
     <div>
-      <Route exact path='/' component={Home}/>
+      <Route exact path='/' component={Collections}/>
       <Route exact path='/collections' component={Collections}/>
       <Route exact path='/app' component={Deli}/>
     </div>
