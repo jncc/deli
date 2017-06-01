@@ -19,12 +19,13 @@ interface WmsState {
 export class WmsModal extends React.Component<WmsModalProps, WmsState> {
 
   state = { copiedToClipboard: false }
+  resetCopiedToClipboard = _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
 
   render() {
     return <Modal
       trigger={<Button>WMS</Button>}
       dimmer='blurring'
-      header={<Header icon='cloud download' content='Get a WMS link' />}
+      header={<Header icon='radio' content='Get a WMS link' />}
       content={this.getContent()}
       actions={[
         { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
@@ -40,7 +41,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-          <Label size='large'><Icon name='cloud download' /> {url} </Label>
+          <Label size='large'><Icon name='radio' /> {url} </Label>
           </div>
           <div>
             <CopyToClipboard text={url} onCopy={() => this.handleCopied()}>
@@ -52,7 +53,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
           </div>
         </Segment>
         <Segment basic>
-          <Header>You can use this link in your GIS client</Header>
+          <Header textAlign='center' as='h5'>You can use this link in your GIS client</Header>
         </Segment>
         <Grid divided stackable centered columns='2'>
           <Grid.Column>
@@ -74,8 +75,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsState> {
 
   handleCopied = () => {
     this.setState({ copiedToClipboard: true })
-    let delayed = _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
-    delayed();
+    this.resetCopiedToClipboard();
   }
 }
 
