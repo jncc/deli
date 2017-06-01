@@ -15,12 +15,12 @@ export interface CollectionMetadata {
 }
 
 export interface CollectionData {
-    download: {
+    download?: {
         type: string,
         url:  string,
         size: number,
     },
-    wms: {
+    wms?: {
         base_url: string,
         name:     string,
     }

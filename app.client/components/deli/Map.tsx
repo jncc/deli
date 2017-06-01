@@ -1,22 +1,22 @@
 
-import * as React from 'react';
+import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as L from 'leaflet';
-import 'leaflet-editable';
+import * as L from 'leaflet'
+import 'leaflet-editable'
 
-import { config } from '../../config';
-import { Query } from '../models/Query';
-import { GetProductsResult, Product } from '../../../app.server/handlers/products/models';
-import { flatMap } from '../../../app.shared/util';
-import { bboxFlatArrayToCoordArray } from '../../../app.shared/util';
+import { config } from '../../config'
+import { Query } from '../models/Query'
+import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
+import { flatMap } from '../../../app.shared/util'
+import { bboxFlatArrayToCoordArray } from '../../../app.shared/util'
 
 interface MapProps {
   query: Query;
-  result: GetProductsResult;
-  hovered: Product | undefined;
-  productHovered: (product: Product) => void;
-  productUnhovered: (product: Product) => void;
-  queryChanged: (query: Query) => void;
+  result: GetProductsResult
+  hovered: Product | undefined
+  productHovered: (product: Product) => void
+  productUnhovered: (product: Product) => void
+  queryChanged: (query: Query) => void
 }
 
 export class Map extends React.Component<MapProps, {}> {
@@ -32,24 +32,24 @@ export class Map extends React.Component<MapProps, {}> {
                    wms: L.TileLayer.WMS | null }[] = [];
 
   render() {
-    // react has nothing to do with the leaflet map;  all events will be handled manually
+    // react has nothing to do with the leaflet map; all events will be handled manually
     return <div className='map'></div>;
   }
 
   componentDidMount() {
-    this.createLeafletMap();
+    this.createLeafletMap()
   }
 
   componentDidUpdate(prevProps: MapProps) {
     // if the query result has changed, update the items on the map
     if (prevProps.result != this.props.result) {
-      this.updateProductList();
-      this.addProductsToMap();
-      this.addCollectionsToMap();
+      this.updateProductList()
+      this.addProductsToMap()
+      this.addCollectionsToMap()
     }
     // if the currently hovered product has changed, update the footprint style
     if (prevProps.hovered != this.props.hovered) {
-      this.updateHoveredProductOnMap(prevProps.hovered, this.props.hovered);
+      this.updateHoveredProductOnMap(prevProps.hovered, this.props.hovered)
     }
   }
 
@@ -112,14 +112,16 @@ export class Map extends React.Component<MapProps, {}> {
     // todo: we will need a way for the user to turn collection-level
     // WMS layers on and off rather than just showing them all
     this.props.result.collections.forEach(c => {
-      let wmsUrl = c.data.wms.base_url;
-      let wmsOptions = {
-        layers: c.data.wms.name,
-        format: 'image/png',
-        transparent: true
-      };
-      let layer = L.tileLayer.wms(wmsUrl, wmsOptions);
-      this.visualLayerGroup.addLayer(layer);
+      if (c.data.wms) {
+        let wmsUrl = c.data.wms.base_url;
+        let wmsOptions = {
+          layers: c.data.wms.name,
+          format: 'image/png',
+          transparent: true
+        };
+        let layer = L.tileLayer.wms(wmsUrl, wmsOptions);
+        this.visualLayerGroup.addLayer(layer);
+      }
     });
   }
 

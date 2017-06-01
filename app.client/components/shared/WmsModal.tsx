@@ -25,7 +25,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
     return <Modal
       trigger={<Button>WMS</Button>}
       dimmer='blurring'
-      header={<Header icon='cloud download' content='Get a WMS link' />}
+      header={<Header icon='radio' content='Get a WMS link' />}
       content={this.getContent()}
       actions={[
         { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
@@ -41,10 +41,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-            <Label size='large'>
-              <Icon name='cloud download' />
-              {url}
-            </Label>
+          <Label size='large'><Icon name='radio' /> {url} </Label>
           </div>
           <div>
             <CopyToClipboard text={url} onCopy={() => this.handleCopiedToClipboard()}>
@@ -56,9 +53,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
           </div>
         </Segment>
         <Segment basic>
-          <Header textAlign='center'>
-            You can use this link in your GIS client
-          </Header>
+          <Header textAlign='center' as='h3'>You can use this link in your GIS client</Header>
         </Segment>
         <Grid divided stackable centered columns='2'>
           <Grid.Column>

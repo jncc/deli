@@ -6,17 +6,12 @@ import { config } from '../../config'
 
 interface SummaryProps {
   productCount: number
-  getLinkClicked: () => void
 }
 
 
 export function Summary(props: SummaryProps) {
 
   let tooManyProducts = props.productCount > config.maxProductCount
-
-  let getLinkClicked = (e: any) => {
-    props.getLinkClicked()
-  }
 
   return (
     <Segment>
