@@ -9,7 +9,8 @@ interface WmsModalProps {
   wms: {
     base_url: string,
     name: string
-  }
+  },
+  initiallyOpen?: boolean // helpful at dev time
 }
 
 interface WmsModalState {
@@ -31,12 +32,13 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
       actions={[
         { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
       ]}
+      open={this.props.initiallyOpen}
     />
   }
 
   getContent() {
 
-    let url = this.props.wms.base_url + '?service=wms&version=1.3.0&request=GetCapabilities' // + this.props.wms.name
+    let url = this.props.wms.base_url + '?service=wms&version=1.3.0&request=GetCapabilities'
 
     return (
       <Modal.Content>
@@ -81,12 +83,12 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
 }
 
 
-//use this to easily dev the modal
-export function DevWmsModal() {
+// use this to easily dev the modal
+export function DevWmsModalButton() {
   let wms = {
     base_url: 'http://some.base/url',
     name: 'some:layer:name'
   }
 
-  return <WmsModalButton wms={wms} />
+  return <WmsModalButton initiallyOpen wms={wms} />
 }

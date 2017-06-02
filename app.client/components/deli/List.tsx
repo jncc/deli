@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import * as moment from 'moment'
-import { Button } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 const FlipMove = require('react-flip-move')
 
 import { Tooltip } from './Widgets'
@@ -19,27 +19,79 @@ interface ListProps {
 export function List(props: ListProps) {
 
   let rows = props.products.map(p =>
-    <div key={p.id} className='item' onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
-      <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
-      </div>
-      <div className='item-main'>
-        <div className='item-main-title'>{p.title}</div>
-        <div className='item-main-cell'>
-          {getPropertiesUI(p)}
-        </div>
-      </div>
-      {getDownloadTypeUI(p)}
-      {getDownloadButtonUI(p)}
+    <Grid.Row
+      style={({ backgroundColor: 'red' })}
+      key={p.id}
+      className='item'
+      onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
+      <Grid.Column width={1} >
+              <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
+              </div>
+      </Grid.Column>
+      <Grid.Column width={10}>
+            <div className='item-main-title'>{p.title}</div>
+            <div className='item-main-cell'>
+              {getPropertiesUI(p)}
+            </div>
+      </Grid.Column>
+      <Grid.Column width={5}>
+            {getDownloadTypeUI(p)}
+            {getDownloadButtonUI(p)}
+      </Grid.Column>
+    </Grid.Row>
+  )
+
+  let rows2 = props.products.map(p =>
+    <div style={rowStyle} key={p.id}>
+      {p.title}
     </div>
   )
 
-  return (
-    <div>
-      <FlipMove {...flipMoveAnimationProps}>
-        {rows}
-      </FlipMove>
+  let rows3 = props.products.map(p =>
+    <Grid.Row style={rowStyle} key={p.id}>
+      <Grid.Column width={16}>
+        {p.title}
+      </Grid.Column>
+    </Grid.Row>
+  )
+
+  let rows4 = props.products.map(p =>
+    <MyRow p={p}>
+      <Grid.Column width={16}>
+        {p.title}
+      </Grid.Column>
+    </MyRow>
+  )
+
+  let rows5 = props.products.map(p =>
+    <div key={p.id} className='product'>
+      <div className='product-left'>
+        blah
+      </div>
+      <div className='product-main'>
+        {p.title}
+      </div>
+      <div className='product-right'>
+        blah
+      </div>
     </div>
   )
+
+
+
+
+//  return <Grid>{rows}</Grid>
+  return (
+      <FlipMove {...flipMoveAnimationProps}>
+        {rows5}
+      </FlipMove>
+  )
+}
+
+class MyRow extends React.Component<{ p: Product }, any> {
+  render() {
+    return <Grid.Row style={rowStyle} key={this.props.p.id}>{this.props.children}</Grid.Row>
+  }
 }
 
 function getPropertiesUI(p: Product) {
@@ -99,4 +151,9 @@ const flipMoveAnimationProps = {
   enterAnimation:    'fade',
   leaveAnimation:    'accordianVertical',
   staggerDurationBy: 25,
+}
+
+const rowStyle: React.CSSProperties = {
+  marginBottom: '4px',
+  backgroundColor: '#ddd',
 }

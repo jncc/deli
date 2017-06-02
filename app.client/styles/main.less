@@ -4,18 +4,25 @@ body { overflow-y: scroll; }
 
 .spaced {
   padding-bottom: 1em;
-  &.barely {
-    padding-bottom: 0.3em;
-  }
-  &.slightly {
-    padding-bottom: 0.5em;
-  }
-  &.lots {
-    padding-bottom: 2em;
-  }
+  &.barely   { padding-bottom: 0.3em;}
+  &.slightly { padding-bottom: 0.5em; }
+  &.lots     { padding-bottom: 2em; }
 }
 
 .map {
   height: 600px;
   z-index: 0; // so modal appears above (and the map is not in front of anything anyway)
+}
+
+.product {
+  display: flex;
+  .product-left {
+
+  }
+  .product-main {
+    flex: 1;
+  }
+  .product-right {
+
+  }
 }
