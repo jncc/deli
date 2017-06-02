@@ -8,7 +8,7 @@ import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config'
-import { WmsModal } from "../shared/WmsModal";
+import { WmsModalButton } from "../shared/WmsModalButton";
 import { Tooltip } from "../deli/Widgets";
 
 interface CollectionsState {
@@ -55,7 +55,7 @@ export class Collections extends React.Component<any, CollectionsState> {
                 <Header.Content>
                   <Icon name='block layout' color='grey' />
                   <Tooltip
-                    content='Click to open this data collection'
+                    content='See the products in this data collection'
                     position='bottom center'
                     trigger={<Link to={'/app?collections=' + c.id}>
                                 &nbsp;
@@ -65,24 +65,45 @@ export class Collections extends React.Component<any, CollectionsState> {
                 </Header.Content>
               </Header>
               <div>
-                {c.metadata.abstract}
-                &nbsp;
-                {this.makeLidarMetadataLinkUI()}
+                {c.metadata.abstract} {this.makeLidarMetadataLinkUI()}
               </div>
           </Grid.Column>
 
           <Grid.Column width='4' verticalAlign='top'>
             <div className='spaced'>
-              <Button content='Products' icon='arrow right' labelPosition='right' color='green' />
+              <Link to={'/app?collections=' + c.id}>
+                <Button
+                  content='Products'
+                  icon='arrow right'
+                  labelPosition='right'
+                  color='green'
+                />
+              </Link>
             </div>
             <div className='spaced barely'>
-                <Button content='Download' color='grey' />
-                <Button content='WMS' />
+              {c.data.download && c.data.download.size &&
+              <form
+                method='get'
+                action={c.data.download.url}
+                style={({ display: 'inline' })}>
+                <Button
+                  content='Download'
+                  title='Download entire dataset'
+                  color='grey'
+                />
+              </form>
+              }
+              {c.data.wms &&
+              <WmsModalButton wms={c.data.wms} />
+              }
             </div>
-            <div className='spaced lots'>
-              <span style={({fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold'})}>{formatBytes(360000, 0)} Geotiff</span>
+            {c.data.download && c.data.download.size &&
+            <div>
+              <span style={({ fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold' })}>
+                {formatBytes(c.data.download.size, 0)} {c.data.download.type}
+              </span>
             </div>
-
+            }
           </Grid.Column>
         </Grid.Row>
       )
@@ -204,7 +225,7 @@ export class Collections extends React.Component<any, CollectionsState> {
 
   makeWmsButtonUI(c: Collection) {
     if (c.data.wms) {
-      return <div className='collection-right'><WmsModal wms={c.data.wms} /></div>
+      return <div className='collection-right'><WmsModalButton wms={c.data.wms} /></div>
     } else {
       return <div />
     }

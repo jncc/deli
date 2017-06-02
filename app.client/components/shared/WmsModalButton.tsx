@@ -16,7 +16,7 @@ interface WmsModalState {
   copiedToClipboard: boolean
 }
 
-export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
+export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState> {
 
   state = { copiedToClipboard: false }
   resetCopiedToClipboardState = _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
@@ -25,7 +25,8 @@ export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
     return <Modal
       trigger={<Button>WMS</Button>}
       dimmer='blurring'
-      header={<Header icon='radio' content='Get a WMS link' />}
+      header={<Header icon='cloud download'
+      content='Get a WMS link' />}
       content={this.getContent()}
       actions={[
         { color: 'green', icon: 'checkmark', labelPosition: 'right', content: 'OK', triggerClose: true },
@@ -41,7 +42,7 @@ export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-          <Label size='large'><Icon name='radio' /> {url} </Label>
+          <Label size='large'><Icon name='cloud download' /> {url} </Label>
           </div>
           <div>
             <CopyToClipboard text={url} onCopy={() => this.handleCopiedToClipboard()}>
@@ -87,5 +88,5 @@ export function DevWmsModal() {
     name: 'some:layer:name'
   }
 
-  return <WmsModal wms={wms} />
+  return <WmsModalButton wms={wms} />
 }

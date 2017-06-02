@@ -6,6 +6,7 @@ import { Popup, PopupProps } from 'semantic-ui-react';
 export const Tooltip = (props: PopupProps) => {
   return <Popup
     inverted
+    size='small'
     position='top center'
     {...props}
     />

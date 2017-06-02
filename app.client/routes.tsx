@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Home } from './components/home/Home';
 import { Collections } from './components/collections/Collections';
 import { Deli } from './components/deli/Deli';
-import { WmsModal, DevWmsModal } from './components/shared/WmsModal'
+import { WmsModalButton, DevWmsModal } from './components/shared/WmsModalButton'
 
 export const Routes = (
   <Router>
