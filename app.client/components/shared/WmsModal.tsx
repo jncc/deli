@@ -19,7 +19,7 @@ interface WmsModalState {
 export class WmsModal extends React.Component<WmsModalProps, WmsModalState> {
 
   state = { copiedToClipboard: false }
-  resetCopiedToClipboardState = () => _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
+  resetCopiedToClipboardState = _.debounce(() => this.setState({ copiedToClipboard: false }), 10000)
 
   render() {
     return <Modal

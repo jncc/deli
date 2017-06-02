@@ -50,7 +50,7 @@ export class Collections extends React.Component<any, CollectionsState> {
     let rows = this.state.collections.map(c => {
       return (
         <Grid.Row key={c.id}>
-          <Grid.Column  width='11'>
+          <Grid.Column  width='12'>
               <Header>
                 <Header.Content>
                   <Icon name='block layout' color='grey' />
@@ -71,16 +71,17 @@ export class Collections extends React.Component<any, CollectionsState> {
               </div>
           </Grid.Column>
 
-          <Grid.Column width='2' verticalAlign='top'>
+          <Grid.Column width='4' verticalAlign='top'>
             <div className='spaced'>
-              <Button.Group>
+              <Button content='Products' icon='arrow right' labelPosition='right' color='green' />
+            </div>
+            <div className='spaced barely'>
                 <Button content='Download' color='grey' />
                 <Button content='WMS' />
-              </Button.Group>
-
-              {formatBytes(360000, 0)} Geotiff
             </div>
-            <Button content='Products' icon='arrow right' labelPosition='right' color='green' />
+            <div className='spaced lots'>
+              <span style={({fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold'})}>{formatBytes(360000, 0)} Geotiff</span>
+            </div>
 
           </Grid.Column>
         </Grid.Row>
@@ -97,7 +98,7 @@ export class Collections extends React.Component<any, CollectionsState> {
         content='More information about this data collection'
         trigger={
           <span style={({ marginLeft: '0.5em' })}>
-            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank'>
+            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank' style={({fontWeight: 'bold'})}>
               Metadata &nbsp;
               <Icon name='external' />
             </a>
