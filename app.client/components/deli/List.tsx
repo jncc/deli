@@ -109,7 +109,7 @@ function getDownloadButtonUI(p: Product) {
           style={({ display: 'inline' })}>
           <Button
             content='Download'
-            title='Download entire dataset'
+            title='Download product'
             color='grey'
           />
         </form>
