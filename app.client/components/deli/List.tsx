@@ -7,6 +7,7 @@ const FlipMove = require('react-flip-move')
 import { Tooltip } from './Widgets'
 import { Product } from '../../../app.server/handlers/products/models'
 import { formatBytes } from '../../utility/formatBytes'
+import { WmsModalButton } from "../shared/WmsModalButton";
 
 
 interface ListProps {
@@ -41,57 +42,30 @@ export function List(props: ListProps) {
     </Grid.Row>
   )
 
-  let rows2 = props.products.map(p =>
-    <div style={rowStyle} key={p.id}>
-      {p.title}
-    </div>
-  )
-
-  let rows3 = props.products.map(p =>
-    <Grid.Row style={rowStyle} key={p.id}>
-      <Grid.Column width={16}>
-        {p.title}
-      </Grid.Column>
-    </Grid.Row>
-  )
-
-  let rows4 = props.products.map(p =>
-    <MyRow p={p}>
-      <Grid.Column width={16}>
-        {p.title}
-      </Grid.Column>
-    </MyRow>
-  )
-
   let rows5 = props.products.map(p =>
     <div key={p.id} className='product'>
       <div className='product-left'>
         blah
       </div>
       <div className='product-main'>
-        {p.title}
+        <div>
+          {p.title}
+        </div>
+        <div>
+          {getPropertiesUI(p)}
+        </div>
       </div>
       <div className='product-right'>
-        blah
+        {getDownloadButtonUI(p)}
       </div>
     </div>
   )
 
-
-
-
-//  return <Grid>{rows}</Grid>
   return (
       <FlipMove {...flipMoveAnimationProps}>
         {rows5}
       </FlipMove>
   )
-}
-
-class MyRow extends React.Component<{ p: Product }, any> {
-  render() {
-    return <Grid.Row style={rowStyle} key={this.props.p.id}>{this.props.children}</Grid.Row>
-  }
 }
 
 function getPropertiesUI(p: Product) {
@@ -102,8 +76,8 @@ function getPropertiesUI(p: Product) {
       : value
     return (
       <span key={key + '-' + value}>
-        <span className='item-main-property-label'>{key}</span>
-        <span className='item-main-property-value'>{displayValue}</span>
+        <span className='product-property-label'>{key}</span>
+        <span className='product-property-value'>{displayValue}</span>
       </span>)
     }
   )
@@ -125,24 +99,34 @@ function getDownloadTypeUI(p: Product) {
 }
 
 function getDownloadButtonUI(p: Product) {
-  if (p.data.download) {
-    return (
-      <div className='item-right'>
-        <Tooltip
-          trigger={
-            <form method='get' action={p.data.download.url}>
-              <button className='btn btn-default' type='submit'>
-                <span className='btn-glyphicon glyphicon glyphicon-download-alt'></span>
-                Download
-              </button>
-            </form>
-          } content='Download' />
+  return (
+    <div>
+      <div className='spaced barely'>
+        {p.data.download && p.data.download.size &&
+        <form
+          method='get'
+          action={p.data.download.url}
+          style={({ display: 'inline' })}>
+          <Button
+            content='Download'
+            title='Download entire dataset'
+            color='grey'
+          />
+        </form>
+        }
+        {p.data.wms &&
+        <WmsModalButton wms={p.data.wms} />
+        }
       </div>
-    )
-  }
-  else {
-    return <div />
-  }
+      {p.data.download && p.data.download.size &&
+      <div>
+        <span style={({ fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold' })}>
+          {formatBytes(p.data.download.size, 0)} {p.data.download.type}
+        </span>
+      </div>
+      }
+ </div>
+  )
 }
 
 
