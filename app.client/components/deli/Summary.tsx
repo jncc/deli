@@ -8,43 +8,35 @@ interface SummaryProps {
   productCount: number
 }
 
-
 export function Summary(props: SummaryProps) {
 
   let tooManyProducts = props.productCount > config.maxProductCount
 
   return (
-    <Segment>
+    <div>
       {productCountUI(props.productCount, tooManyProducts)}
       {/*<button className='btn btn-danger' disabled={tooManyProducts}
         onClick={getLinkClicked}>Get Link</button>*/}
-    </Segment>
+    </div>
   )
 }
-
 
 const productCountUI = (productCount: number, tooManyProducts: boolean) => {
 
   if (tooManyProducts) {
     return (
-      <div>
-        <Header>
-          <Header.Content>
-            <Label size='huge' circular color='purple'>{config.maxProductCount}+</Label>
-            products
-            <Header.Subheader>
-              Only the first {config.maxProductCount} are shown.
-            </Header.Subheader>
-          </Header.Content>
-        </Header>
+      <div className='summary'>
+        <Label size='huge' circular color='purple'>{config.maxProductCount}+</Label>
+        <span className='summary-header'>products found</span>
+        <span className='summary-subheader'>Only the first {config.maxProductCount} are shown</span>
       </div>
     )
   } else {
     return (
-      <span>
-        {/*<span>{props.productCount}</span>
-          products selected*/}
-      </span>
+      <div className='summary'>
+        <Label size='huge' circular color='purple'>{productCount}</Label>
+        <span className='summary-header'>products found</span>
+      </div>
     )
   }
 }

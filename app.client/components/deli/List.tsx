@@ -44,12 +44,11 @@ export function List(props: ListProps) {
 
   let rows = props.products.map(p =>
     <div
-      key={p.id}
+      key={p.id + '-' + p.title} // in case id isn't unique for some bad data reason
       className='product'
-      onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)} >
-      <div className='product-left product-hilite'>
-        <div className={`${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>
-        </div>
+      onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}
+      >
+      <div className={`product-left ${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>
       </div>
       <div className='product-main'>
         <div className='product-title'>{p.title}</div>
@@ -116,13 +115,13 @@ function getDownloadAndWmsButtonUI(p: Product) {
           />
         </form>
         }
-        {/*{p.data.wms &&*/}
-        <WmsModalButton wms={ ({base_url:'http:blah', name: '' })} />
-        {/*}*/}
+        {p.data.wms &&
+        <WmsModalButton wms={p.data.wms} />
+        }
       </div>
       {p.data.download && p.data.download.size &&
       <div>
-        <span className='minor-text'>
+        <span className='download-file-size-info'>
           {formatBytes(p.data.download.size, 0)} {p.data.download.type}
         </span>
       </div>
@@ -131,15 +130,9 @@ function getDownloadAndWmsButtonUI(p: Product) {
   )
 }
 
-
 const flipMoveAnimationProps = {
   duration:          200,
   enterAnimation:    'fade',
   leaveAnimation:    'accordianVertical',
   staggerDurationBy: 25,
-}
-
-const rowStyle: React.CSSProperties = {
-  marginBottom: '4px',
-  backgroundColor: '#ddd',
 }

@@ -23,7 +23,8 @@ export function Form(props: FormProps) {
   let bboxUI = <Input
               value={JSON.stringify(props.query.bbox)}
               label='bounding box'
-              onChange={bboxChanged} />;
+              readOnly // onChange={bboxChanged}
+              />;
 
   return (
     <Segment inverted color='grey'>
