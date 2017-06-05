@@ -27,7 +27,7 @@ export function Form(props: FormProps) {
               />;
 
   return (
-    <Segment inverted color='grey'>
+    <Segment inverted color='grey' style={{ marginBottom: 0 }}>
       <Header>
         <Icon name='block layout' />
         {props.result.collections.map(c => c.metadata.title).join(', ')}

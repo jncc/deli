@@ -28,6 +28,8 @@ body { overflow-y: scroll; }
 .summary {
   border-bottom: 1px solid #ddd;
   padding-bottom: 15px;
+  background-color: white; // since it's sticky
+  padding-top: 12px; // padding here instead of margin on component above, since it's sticky
   .summary-header {
     font-size: 18px;
     font-weight: bold;
@@ -51,18 +53,17 @@ body { overflow-y: scroll; }
     }
   }
   .product-main {
-    //flex: 1;
     min-width: 0; // https://hackernoon.com/11-things-i-learned-reading-the-flexbox-spec-5f0c799c776b
     word-wrap: break-word;
     padding: 0 8px;
     .product-title {
       font-size: 1.28em;
-      padding-top: 3px;
-      margin-bottom: 4px;
+      padding-top: 4px;
+      padding-bottom: 3px;
     }
     .product-property-label {
-      //font-size: ;
-      color: rgba(0,0,0,.6);
+      font-size: 0.95rem;
+      color: rgba(0,0,0,.55);
       font-weight: bold;
       margin-right: 3px;
     }

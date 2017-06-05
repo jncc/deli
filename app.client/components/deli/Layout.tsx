@@ -2,7 +2,7 @@
 import * as React from 'react'
 import * as ReactModal from 'react-modal'
 import { Container, Grid, Segment } from 'semantic-ui-react'
-
+import * as Sticky from 'react-stickynode'
 import { flatMap } from '../../../app.shared/util'
 
 import { Head } from '../shared/Head'
@@ -34,29 +34,34 @@ export function Layout(props: LayoutProps) {
       <Container>
         <Grid>
           <Grid.Column width={6}>
-            <Map
-              query={props.query}
-              result={props.result}
-              hovered={props.hovered}
-              queryChanged={props.queryChanged}
-              productHovered={props.productHovered}
-              productUnhovered={props.productUnhovered}  />
+            <Sticky top={10}>
+              <Map
+                query={props.query}
+                result={props.result}
+                hovered={props.hovered}
+                queryChanged={props.queryChanged}
+                productHovered={props.productHovered}
+                productUnhovered={props.productUnhovered}
+              />
+            </Sticky>
           </Grid.Column>
           <Grid.Column width={10}>
             <Form
               query={props.query}
               queryChanged={props.queryChanged}
               result={props.result}
+            />
+            <Sticky innerZ={10}>
+              <Summary
+                productCount={flatMap(props.result.collections, c => c.products).length}
               />
-            <Summary
-              productCount={flatMap(props.result.collections, c => c.products).length}
-              />
+            </Sticky>
             <List
               products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}
               productHovered={props.productHovered}
               productUnhovered={props.productUnhovered}
-              />
+            />
           </Grid.Column>
         </Grid>
       </Container>

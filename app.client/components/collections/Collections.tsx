@@ -84,7 +84,7 @@ export class Collections extends React.Component<any, CollectionsState> {
               <form
                 method='get'
                 action={c.data.download.url}
-                style={({ display: 'inline' })}>
+                style={{ display: 'inline' }}>
                 <Button
                   content='Download'
                   title='Download entire dataset'
@@ -98,7 +98,7 @@ export class Collections extends React.Component<any, CollectionsState> {
             </div>
             {c.data.download && c.data.download.size &&
             <div>
-              <span style={({ fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold' })}>
+              <span style={{ fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold' }}>
                 {formatBytes(c.data.download.size, 0)} {c.data.download.type}
               </span>
             </div>
@@ -117,8 +117,8 @@ export class Collections extends React.Component<any, CollectionsState> {
         position='left center'
         content='More information about this data collection'
         trigger={
-          <span style={({ marginLeft: '0.5em' })}>
-            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank' style={({fontWeight: 'bold'})}>
+          <span style={{ marginLeft: '0.5em' }}>
+            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank' style={{fontWeight: 'bold'}}>
               Metadata &nbsp;
               <Icon name='external' />
             </a>

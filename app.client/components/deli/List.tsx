@@ -19,29 +19,6 @@ interface ListProps {
 
 export function List(props: ListProps) {
 
-  let rowsX = props.products.map(p =>
-    <Grid.Row
-      style={({ backgroundColor: 'red' })}
-      key={p.id}
-      className='item'
-      onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}>
-      <Grid.Column width={1} >
-              <div className={`item-hilite ${props.hovered && props.hovered.id == p.id ? 'item-hilite-hovered' : ''}`}>
-              </div>
-      </Grid.Column>
-      <Grid.Column width={10}>
-            <div className='item-main-title'>{p.title}</div>
-            <div className='item-main-cell'>
-              {getPropertiesUI(p)}
-            </div>
-      </Grid.Column>
-      <Grid.Column width={5}>
-            {getDownloadTypeUI(p)}
-            {getDownloadAndWmsButtonUI(p)}
-      </Grid.Column>
-    </Grid.Row>
-  )
-
   let rows = props.products.map(p =>
     <div
       key={p.id + '-' + p.title} // in case id isn't unique for some bad data reason
@@ -63,9 +40,9 @@ export function List(props: ListProps) {
   )
 
   return (
-      <FlipMove {...flipMoveAnimationProps}>
-        {rows}
-      </FlipMove>
+    <FlipMove {...flipMoveAnimationProps}>
+      {rows}
+    </FlipMove>
   )
 }
 
@@ -79,46 +56,29 @@ function getPropertiesUI(p: Product) {
       <span key={key + '-' + value}>
         <span className='product-property-label'>{key}</span>
         <span className='product-property-value'>{displayValue}</span>
-      </span>)
-    }
-  )
-}
-
-function getDownloadTypeUI(p: Product) {
-  if (p.data.download) {
-    return (
-      <div className='item-right'>
-        <span className='item-right-download-type'>{p.data.download.type}</span>
-        <br />
-        <span>{formatBytes(p.data.download.size, 0)}</span>
-      </div>
+      </span>
     )
-  }
-  else {
-    return <div />
-  }
+  })
 }
 
 function getDownloadAndWmsButtonUI(p: Product) {
   return (
     <div>
-      <div className=''>
-        {p.data.download && p.data.download.size &&
-        <form
-          method='get'
-          action={p.data.download.url}
-          style={({ display: 'inline' })}>
-          <Button
-            content='Download'
-            title='Download product'
-            color='grey'
-          />
-        </form>
-        }
-        {p.data.wms &&
-        <WmsModalButton wms={p.data.wms} />
-        }
-      </div>
+      {p.data.download && p.data.download.size &&
+      <form
+        method='get'
+        action={p.data.download.url}
+        style={{ display: 'inline' }}>
+        <Button
+          content='Download'
+          title='Download product'
+          color='grey'
+        />
+      </form>
+      }
+      {p.data.wms &&
+      <WmsModalButton wms={p.data.wms} />
+      }
       {p.data.download && p.data.download.size &&
       <div>
         <span className='download-file-size-info'>
@@ -126,7 +86,7 @@ function getDownloadAndWmsButtonUI(p: Product) {
         </span>
       </div>
       }
- </div>
+    </div>
   )
 }
 
