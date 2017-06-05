@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import * as moment from 'moment'
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Grid, Header } from 'semantic-ui-react'
 const FlipMove = require('react-flip-move')
 
 import { Tooltip } from './Widgets'
@@ -19,7 +19,7 @@ interface ListProps {
 
 export function List(props: ListProps) {
 
-  let rows = props.products.map(p =>
+  let rowsX = props.products.map(p =>
     <Grid.Row
       style={({ backgroundColor: 'red' })}
       key={p.id}
@@ -37,33 +37,35 @@ export function List(props: ListProps) {
       </Grid.Column>
       <Grid.Column width={5}>
             {getDownloadTypeUI(p)}
-            {getDownloadButtonUI(p)}
+            {getDownloadAndWmsButtonUI(p)}
       </Grid.Column>
     </Grid.Row>
   )
 
-  let rows5 = props.products.map(p =>
-    <div key={p.id} className='product'>
-      <div className='product-left'>
-        blah
+  let rows = props.products.map(p =>
+    <div
+      key={p.id}
+      className='product'
+      onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)} >
+      <div className='product-left product-hilite'>
+        <div className={`${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>
+        </div>
       </div>
       <div className='product-main'>
-        <div>
-          {p.title}
-        </div>
+        <div className='product-title'>{p.title}</div>
         <div>
           {getPropertiesUI(p)}
         </div>
       </div>
       <div className='product-right'>
-        {getDownloadButtonUI(p)}
+        {getDownloadAndWmsButtonUI(p)}
       </div>
     </div>
   )
 
   return (
       <FlipMove {...flipMoveAnimationProps}>
-        {rows5}
+        {rows}
       </FlipMove>
   )
 }
@@ -98,10 +100,10 @@ function getDownloadTypeUI(p: Product) {
   }
 }
 
-function getDownloadButtonUI(p: Product) {
+function getDownloadAndWmsButtonUI(p: Product) {
   return (
     <div>
-      <div className='spaced barely'>
+      <div className=''>
         {p.data.download && p.data.download.size &&
         <form
           method='get'
@@ -114,13 +116,13 @@ function getDownloadButtonUI(p: Product) {
           />
         </form>
         }
-        {p.data.wms &&
-        <WmsModalButton wms={p.data.wms} />
-        }
+        {/*{p.data.wms &&*/}
+        <WmsModalButton wms={ ({base_url:'http:blah', name: '' })} />
+        {/*}*/}
       </div>
       {p.data.download && p.data.download.size &&
       <div>
-        <span style={({ fontSize: '.85714286rem', color: 'rgba(0,0,0,.6)', fontWeight: 'bold' })}>
+        <span className='minor-text'>
           {formatBytes(p.data.download.size, 0)} {p.data.download.type}
         </span>
       </div>

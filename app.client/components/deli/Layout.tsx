@@ -31,7 +31,7 @@ export function Layout(props: LayoutProps) {
   return (
     <div>
       <Head pending={props.pending} />
-      <Container fluid>
+      <Container>
         <Grid>
           <Grid.Column width={6}>
             <Map
