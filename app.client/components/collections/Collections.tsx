@@ -92,7 +92,7 @@ export class Collections extends React.Component<any, CollectionsState> {
                 />
               </form>
               }
-              {c.data.wms &&
+              {c.data.wms && !this.hideWmsButtonForScotland(c) &&
               <WmsModalButton wms={c.data.wms} />
               }
             </div>
@@ -141,5 +141,9 @@ export class Collections extends React.Component<any, CollectionsState> {
         })
   }
 
+  /** LAS files for Scotland don't really have their own WMS */
+  hideWmsButtonForScotland(c: Collection) {
+    return c.metadata.title.startsWith('LiDAR for Scotland')
+      && c.metadata.title.endsWith('LAS')
+  }
 }
-
