@@ -15,6 +15,7 @@ export function getCollections(): GetCollectionsResult {
             id: c.id,
             metadata: c.metadata,
             data: c.data }))
+        .sortBy(c => c.metadata.title)
         .value()
 
     return { collections: q }
