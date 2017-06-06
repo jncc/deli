@@ -35,7 +35,7 @@ export function Main(props: MainProps) {
             <Map scenes={props.products} productHovered={props.productHovered} />
           </div>
           <div className="col-md-7">
-            <h1>EO Collaboration Platform!</h1>
+            <h1>EO Collaboration Platform</h1>
             <br />
             <Form query={props.query} queryChanged={props.queryChanged} />
             <List products={props.products} hovered={props.hovered} />
