@@ -68,7 +68,9 @@ function getDownloadAndWmsButtonUI(p: Product) {
       <form
         method='get'
         action={p.data.download.url}
-        style={{ display: 'inline' }}>
+        style={{ display: 'inline' }}
+        data-size={p.data.download.size} // analytics
+      >
         <Button
           content='Download'
           title='Download product'

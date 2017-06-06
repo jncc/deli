@@ -84,7 +84,8 @@ export class Collections extends React.Component<any, CollectionsState> {
               <form
                 method='get'
                 action={c.data.download.url}
-                style={{ display: 'inline' }}>
+                style={{ display: 'inline' }}
+                data-size={c.data.download.size}>
                 <Button
                   content='Download'
                   title='Download entire dataset'
