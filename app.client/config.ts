@@ -23,6 +23,9 @@ export const config = {
         start:       `2016-06-01`,
         end:         `2016-06-31`,
     },
+    defaultQueryResultInfo: {
+        bboxArea:    13679
+    },
     form: {
         start:       false,
         end:         false,

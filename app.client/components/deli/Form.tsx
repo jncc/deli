@@ -21,7 +21,7 @@ export function Form(props: FormProps) {
   }
 
   let bboxUI = <Input
-              value={JSON.stringify(props.query.bbox)}
+              value={props.result.query.bboxArea + ' km²'} // {JSON.stringify(props.query.bbox)}
               label='bounding box'
               readOnly // onChange={bboxChanged}
               />;
@@ -32,7 +32,7 @@ export function Form(props: FormProps) {
         <Icon name='block layout' />
         {props.result.collections.map(c => c.metadata.title).join(', ')}
       </Header>
-      { getStartEndUI(props) }
+      {getStartEndUI(props)}
       <Segment>
         <Tooltip
           content='Use the handles on the map to change the bounding box'

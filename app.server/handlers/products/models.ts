@@ -3,6 +3,9 @@ import { CollectionMetadata, CollectionData } from '../collections/models'
 
 export interface GetProductsResult {
     collections: ProductCollection[]
+    query: {
+      bboxArea: number // incidental info in km2 calculated for the user
+    }
 }
 
 export interface ProductCollection {

@@ -17,8 +17,8 @@ export function getProducts(q: Query): GetProductsResult {
     let results = _(collections)
         .filter(c => q.collections.some(x => x === c.id))
         .map(c => ({
-            id: c.id,
-            data: c.data,
+            id:       c.id,
+            data:     c.data,
             metadata: c.metadata,
             products: _(c.products)
                 .filter(p => turf.intersect(p.footprint, boundingBox))
@@ -34,6 +34,8 @@ export function getProducts(q: Query): GetProductsResult {
         }))
         .value()
 
-    return { collections: results }
+    let bboxArea = Math.round(turf.area(boundingBox) / 1000000)
+
+    return { collections: results, query: { bboxArea } }
 }
 

@@ -22,7 +22,7 @@ export class Deli extends React.Component<any, DeliState> {
     super(props)
     this.state = {
       query: config.defaultQuery,
-      result: { collections: [] },
+      result: { collections: [], query: config.defaultQueryResultInfo },
       hovered: undefined,
       wmsLink: '',
       pending: 0,

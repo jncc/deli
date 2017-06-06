@@ -20,7 +20,7 @@ export const initialState: AppState = {
         query: config.defaultQuery
     },
     products: {
-        result: { collections: [] }
+        result: { collections: [], query: config.defaultQueryResultInfo }
     }
 }
 
