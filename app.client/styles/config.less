@@ -3,17 +3,24 @@
 .head {
   background-color: #0065bd;
   color: white;
-}
-
-.logo {
-  font-size: 50px;
-  line-height: 70px; // semantic-ui sets too small line-height on body
-  .logo-strap {
-    font-size: 12px;
-    margin-left: 0.5em;
+  margin-bottom: 2rem;
+  a:link    { color: white; }
+  a:visited { color: white; }
+  a:hover   { color: white; }
+  a:active  { color: white; }
+  .head-content {
+    display: flex;
+    align-items: baseline;
+    .head-logo {
+      font-size: 3rem;
+      line-height: 70px; // semantic-ui sets too small line-height on body
+    }
+    .head-strap {
+      min-width: 0;
+      font-size: 1.2rem;
+    }
   }
 }
-
 
 
 // customer requested a footer in this style

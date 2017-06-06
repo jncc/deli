@@ -14,6 +14,7 @@ export function Home(props: any) {
     <div>
       <Head pending={0} />
       <Container text>
+        <br />
         <div dangerouslySetInnerHTML={ {__html: splashText} } ></div>
         <br />
         <br />

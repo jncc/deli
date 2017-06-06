@@ -14,19 +14,18 @@ export const Head = (props: HeadProps) => {
 
   return (
     <div className='head'>
-      <Container>
-          {/*<a href='/'>*/}
-            {/*<img className='logo' src={require('../../images/' + config.logo.name)} height={config.logo.height} width={config.logo.width} /> &nbsp;*/}
-            <Link to='/'>
-              <div className='logo'>
-                SRSP
-                <Icon name='ellipsis vertical' />
-              {/*<span className='logo-strap'>Scottish Remote Sensing Portal</span>*/}
-              </div>
-            </Link>
-          {/*</a>*/}
+      <Container className='head-content'>
+        <div className='head-logo'>
+          <Link to='/'>
+            SRSP
+          </Link>
+        </div>
+        <div className='head-strap'>
+          <Icon name='ellipsis vertical' />
+          Scottish Remote Sensing Portal
+        </div>
       </Container>
-      <Spinner pending={props.pending}/>
+      <Spinner pending={props.pending} />
     </div>
   )
 }
