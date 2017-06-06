@@ -35,7 +35,7 @@ export class Collections extends React.Component<any, CollectionsState> {
           <Header
             as='h1'
             content='Collections'
-            subheader='Browse the collections of data products available'>
+            subheader='Browse the available collections of data products'>
           </Header>
           <br />
           {this.makeCollectionsListUI()}
