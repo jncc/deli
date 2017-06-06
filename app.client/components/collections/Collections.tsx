@@ -89,6 +89,7 @@ export class Collections extends React.Component<any, CollectionsState> {
                   content='Download'
                   title='Download entire dataset'
                   color='grey'
+                  type='submit' // needed for analytics
                 />
               </form>
               }

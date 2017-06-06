@@ -73,6 +73,7 @@ function getDownloadAndWmsButtonUI(p: Product) {
           content='Download'
           title='Download product'
           color='grey'
+          type='submit' // needed for analytics
         />
       </form>
       }
