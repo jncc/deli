@@ -14,8 +14,9 @@ https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-di
 
     apt install nodejs-legacy
 
-Install Typescript
+Install globally Typescript and Yarn (a better package manager than NPM)
 
+    npm i -g yarn
     npm i -g typescript
 
 You're good to go. 
