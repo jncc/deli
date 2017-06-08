@@ -1,0 +1,3 @@
+# don't merge over config files!
+app.client/config.ts merge=ours
+app.server/config.ts merge=ours
