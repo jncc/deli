@@ -2,7 +2,7 @@
 language: node_js
 
 node_js:
-  - 5.6.1 # shippable image version
+  - 6.9.4
 
 branches:
   only:
