@@ -1,9 +1,8 @@
 
 language: node_js
 
-# not sure why i used an old node.js - todo update to v6 / latest
 node_js:
-  - 4.2.3
+  - 6.9.4
 
 branches:
   only:
