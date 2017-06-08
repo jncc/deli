@@ -14,15 +14,15 @@ https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-di
 
     apt install nodejs-legacy
 
-Install globally Typescript and Yarn (a better package manager than NPM)
+Make sure you have globally installed Typescript and Yarn (a better package manager than NPM)
 
     npm i -g yarn
     npm i -g typescript
 
-You're good to go. 
+You're good to go. (You can use npm instead of yarn)
 
-    npm i
-    npm run dev
+    yarn i
+    yarn run dev
 
 A browser window will open at http://localhost:8080
 
