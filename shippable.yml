@@ -2,7 +2,7 @@
 language: node_js
 
 node_js:
-  - 6.9.4
+  - 5.6.1 # shippable image version
 
 branches:
   only:
@@ -11,7 +11,6 @@ branches:
 
 build:
   ci:
-    - npm install -g yarn
     - yarn install
     - yarn run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
