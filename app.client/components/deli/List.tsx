@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import * as moment from 'moment'
-import { Button, Grid, Header } from 'semantic-ui-react'
+import { Button, Grid, Header, Checkbox } from 'semantic-ui-react'
 const FlipMove = require('react-flip-move')
 
 import { Tooltip } from './Widgets'
@@ -27,11 +27,18 @@ export function List(props: ListProps) {
       >
       <div className={`product-left ${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>
       </div>
+      <div>
+        <Checkbox checked={false} />
+      </div>
       <div className='product-main'>
         <div className='product-title'>{p.title}</div>
         <div>
           {getPropertiesUI(p)}
         </div>
+      </div>
+      <div className='product-info'>
+        <div>50.1 MB</div>
+        <div>GeoTIFFle</div>
       </div>
       <div className='product-right'>
         {getDownloadAndWmsButtonUI(p)}
