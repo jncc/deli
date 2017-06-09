@@ -5,7 +5,7 @@ import * as _ from 'lodash'
 import { GetProductsResult, ProductCollection, Product } from './models'
 import { collections } from '../../data/data'
 import { Query } from '../../query/query'
-import { config } from '../../config'
+import { config } from '../../config/config'
 
 /* Returns products matching the query, nested within the collection they belong to.
    Every collection asked for will be returned.
