@@ -11,9 +11,10 @@ branches:
     - lidar
 
 build:
+  pre_ci:
+    - cp -f ./app.client/config/config.$BRANCH.ts ./app.client/config/config.ts
+    #- cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
   ci:
-    - cp -f /app.client/config/config.$BRANCH.ts /app.client/config/config.ts
-    #- cp -f /app.server/config/config.$BRANCH.ts /app.server/config/config.ts
     - yarn install
     - yarn run build:prod # todo: run tests too
     - pip install --upgrade botocore # workaround https://github.com/Shippable/support/issues/3304
@@ -21,8 +22,6 @@ build:
     # workaround uglify.js shipping with 1969 timestamps
     - touch -t 200001010000 /tmp/timestamp # make a file with a timestamp of the year 2000
     - find . ! -newer /tmp/timestamp -exec touch -t 201701010000 '{}' \; # update all files with earlier timestamps
-  post_ci:
-    - if [ "$BRANCH" == "master" ]; then EBENV="master"; else EBENV=$BRANCH; fi
 
 integrations:
   deploy:
