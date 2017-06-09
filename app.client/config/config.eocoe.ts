@@ -3,33 +3,33 @@ import { ClientConfig } from './ClientConfig'
 export const config: ClientConfig = {
     name: 'eocoe',
     app: {
-        title: `Scotland's Remote Sensed Data`, // todo: not yet configurable
+        title: `EO Collaboration Platform`, // todo: not yet configurable
     },
     logo: {
-        name:   `ssdi-logo.png`,
+        name:   `todo`,
         width:  194,
         height: 46,
     },
     map: {
-        defaultZoom: 7,
-        defaultCenter: [56.50, -4] as [number, number],
+        defaultZoom: 5,
+        defaultCenter: [54.50, -4.00] as [number, number],
         baseLayerUrlTemplate: `https://{s}.tiles.mapbox.com/v4/petmon.lp99j25j/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGV0bW9uIiwiYSI6ImdjaXJLTEEifQ.cLlYNK1-bfT0Vv4xUHhDBA`,
         attribution: `&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>`,
     },
     defaultQuery: {
         collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], // DTM collection
-        bbox:        [-5, 56, -3, 57] as [number, number, number, number] ,
+        bbox:        [-8, 53, 0, 57] as [number, number, number, number] ,
         start:       `2016-06-01`,
         end:         `2016-06-31`,
     },
     defaultQueryResultInfo: {
-        bboxArea:    13679
+        bboxArea:    0
     },
     form: {
-        start:       false,
-        end:         false,
+        start:       true,
+        end:         true,
     },
     maxProductCount: 50, // be sure to update server config too
-    collectionWmsUrl: 'https://eo.jncc.gov.uk/geoserver/scotland/wms', // temp
+    collectionWmsUrl: 'is this used?', // temp
 };
 
