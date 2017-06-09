@@ -63,9 +63,6 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: './app.client/images', to: 'images' }
       ]),
-      new CopyWebpackPlugin([
-        { from: './app.client/fonts/', to: 'fonts' }
-      ]),
     ],
 
     // configure webpack-dev-server - runs on the default port 8080

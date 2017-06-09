@@ -1,6 +1,6 @@
 
 /** This file gets overwritten in a production build with one of the
- *  tenant-specific config in this directory */
+ *  tenant-specific config files in this directory */
 
 import { ServerConfig } from './ServerConfig'
 
