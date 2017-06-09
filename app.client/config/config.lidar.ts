@@ -1,8 +1,6 @@
+import { ClientConfig } from './ClientConfig'
 
-// note: we need a type signature on a few of these properties to make
-// the types compatible with @types/leaflet's overly-strict type definitions
-
-export const config = {
+export const config: ClientConfig = {
     name: 'lidar',
     app: {
         title: `Scotland's Remote Sensed Data`, // todo: not yet configurable
