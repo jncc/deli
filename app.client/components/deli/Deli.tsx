@@ -2,7 +2,7 @@
 import * as React from 'react'
 import * as qs from 'query-string'
 
-import { config } from '../../config'
+import { config } from '../../config/config'
 import { Layout } from './Layout'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'

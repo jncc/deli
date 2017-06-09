@@ -4,7 +4,7 @@ import { createStore, combineReducers } from 'redux'
 import { productsReducer } from './products-reducer'
 import { GetProductsResult } from '../../app.server/handlers/products/models'
 import { Query } from '../components/models/Query'
-import { config } from '../config'
+import { config } from '../config/config'
 
 interface AppState {
     ui: {

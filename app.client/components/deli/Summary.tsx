@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Segment, Label, Header } from 'semantic-ui-react'
 
-import { config } from '../../config'
+import { config } from '../../config/config'
 
 interface SummaryProps {
   productCount: number

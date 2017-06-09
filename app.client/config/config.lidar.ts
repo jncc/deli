@@ -3,6 +3,7 @@
 // the types compatible with @types/leaflet's overly-strict type definitions
 
 export const config = {
+    name: 'lidar',
     app: {
         title: `Scotland's Remote Sensed Data`, // todo: not yet configurable
     },
@@ -19,7 +20,7 @@ export const config = {
     },
     defaultQuery: {
         collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], // DTM collection
-        bbox:        [-5, 56, -3, 57],
+        bbox:        [-5, 56, -3, 57] as [number, number, number, number] ,
         start:       `2016-06-01`,
         end:         `2016-06-31`,
     },

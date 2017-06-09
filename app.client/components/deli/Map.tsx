@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet-editable'
 
-import { config } from '../../config'
+import { config } from '../../config/config'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 import { flatMap } from '../../../app.shared/util'

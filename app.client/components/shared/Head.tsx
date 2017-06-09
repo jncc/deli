@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Link } from "react-router-dom";
 import { Container, Icon, Accordion, Segment } from 'semantic-ui-react'
 
-import { config } from '../../config'
+import { config } from '../../config/config'
 import { Spinner } from './Spinner'
 
 interface HeadProps {

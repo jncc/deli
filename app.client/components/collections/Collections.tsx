@@ -7,7 +7,7 @@ import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
-import { config } from '../../config'
+import { config } from '../../config/config'
 import { WmsModalButton } from "../shared/WmsModalButton";
 import { Tooltip } from "../deli/Widgets";
 

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Header, Segment, Icon, Input } from 'semantic-ui-react'
 
-import { config } from '../../config';
+import { config } from '../../config/config';
 import { Query } from '../models/Query';
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models';
 import { Tooltip } from './Widgets';
