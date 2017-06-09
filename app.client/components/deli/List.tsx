@@ -25,20 +25,19 @@ export function List(props: ListProps) {
       className='product'
       onMouseOver={() => props.productHovered(p)} onMouseOut={() => props.productUnhovered(p)}
       >
-      <div className={`product-left ${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>
+      <div className={`product-hovered ${props.hovered && props.hovered.id == p.id ? 'product-hilite' : ''}`}>&nbsp;
       </div>
-      <div>
+      <div className='product-checkbox'>
         <Checkbox checked={false} />
       </div>
       <div className='product-main'>
         <div className='product-title'>{p.title}</div>
-        <div>
+        <div className='product-properties'>
           {getPropertiesUI(p)}
         </div>
       </div>
       <div className='product-info'>
-        <div>50.1 MB</div>
-        <div>GeoTIFFle</div>
+        {getProductInfoUI(p)}
       </div>
       <div className='product-right'>
         {getDownloadAndWmsButtonUI(p)}
@@ -68,6 +67,20 @@ function getPropertiesUI(p: Product) {
   })
 }
 
+function getProductInfoUI(p: Product) {
+  if (p.data.download && p.data.download.size) {
+    return (
+      <div>
+        <div>{formatBytes(p.data.download.size, 0)}</div>
+        <div>{p.data.download.type}</div>
+      </div>
+    )
+  }
+  else {
+    return <div />
+  }
+}
+
 function getDownloadAndWmsButtonUI(p: Product) {
   return (
     <div>
@@ -87,13 +100,6 @@ function getDownloadAndWmsButtonUI(p: Product) {
       }
       {p.data.wms &&
       <WmsModalButton wms={p.data.wms} />
-      }
-      {p.data.download && p.data.download.size &&
-      <div>
-        <span className='download-file-size-info'>
-          {formatBytes(p.data.download.size, 0)} {p.data.download.type}
-        </span>
-      </div>
       }
     </div>
   )
