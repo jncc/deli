@@ -9,11 +9,12 @@ import { GetProductsResult, Product } from '../../../app.server/handlers/product
 import { flatMap, ensureArray } from '../../../app.shared/util'
 
 interface DeliState {
-  query:   Query     // the current query
-  result:  GetProductsResult
-  hovered: Product | undefined
-  wmsLink: string
-  pending: number // requests waiting for the network
+  query:    Query     // the current query
+  result:   GetProductsResult
+  hovered:  Product | undefined
+  selected: Product[]
+  wmsLink:  string
+  pending:  number // requests waiting for the network
 }
 
 export class Deli extends React.Component<any, DeliState> {
@@ -24,6 +25,7 @@ export class Deli extends React.Component<any, DeliState> {
       query: config.defaultQuery,
       result: { collections: [], query: config.defaultQueryResultInfo },
       hovered: undefined,
+      selected: [],
       wmsLink: '',
       pending: 0,
     }
@@ -34,6 +36,7 @@ export class Deli extends React.Component<any, DeliState> {
       queryChanged={this.handleQueryChange.bind(this)}
       productHovered={this.handleProductHovered.bind(this)}
       productUnhovered={this.handleProductUnhovered.bind(this)}
+      productSelected={this.productSelected.bind(this)}
       />
     )
   }
@@ -51,9 +54,15 @@ export class Deli extends React.Component<any, DeliState> {
       if (prevState.hovered == product) {
         return { hovered: undefined }
       } else {
-        return { } // think this is ok to make no changes
+        return { }
       }
     })
+  }
+
+  productSelected(product: Product) {
+    if (!this.state.selected.find(p => p === product)) {
+      this.setState({ selected: this.state.selected.concat(product) })
+    }
   }
 
   componentDidMount() {

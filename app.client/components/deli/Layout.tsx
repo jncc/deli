@@ -19,9 +19,11 @@ interface LayoutProps {
   query:            Query   // the current query
   result:           GetProductsResult
   hovered:          Product | undefined
+  selected:         Product[]
   queryChanged:     (query:   Query)   => void
   productHovered:   (product: Product) => void
   productUnhovered: (product: Product) => void
+  productSelected:  (product: Product) => void
   wmsLink:          string
   pending:          number
 }
@@ -59,8 +61,10 @@ export function Layout(props: LayoutProps) {
             <List
               products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}
+              selected={props.selected}
               productHovered={props.productHovered}
               productUnhovered={props.productUnhovered}
+              productSelected={props.productSelected}
             />
           </Grid.Column>
         </Grid>
