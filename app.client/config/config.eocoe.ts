@@ -20,7 +20,7 @@ export const config: ClientConfig = {
         collections: [`d82f236a-e61d-482d-a581-293ec1b11c3e`],
         bbox:        [-8, 53, 0, 57] as [number, number, number, number] ,
         start:       `2016-06-01`,
-        end:         `2016-06-31`,
+        end:         `2016-06-04`,
     },
     defaultQueryResultInfo: {
         bboxArea:    0
@@ -29,7 +29,7 @@ export const config: ClientConfig = {
         start:       true,
         end:         true,
     },
-    maxProductCount: 50, // be sure to update server config too
+    maxProductCount: 10, // be sure to update server config too
     collectionWmsUrl: 'is this used?', // temp
 };
 

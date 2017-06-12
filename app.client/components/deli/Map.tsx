@@ -29,7 +29,7 @@ export class Map extends React.Component<MapProps, {}> {
   // associating a product with its corresponding leaflet map objects
   productTuples: { product: Product,
                    footprint: L.GeoJSON,
-                   wms: L.TileLayer.WMS | null }[] = [];
+                   wms: L.TileLayer.WMS | undefined }[] = [];
 
   render() {
     // react has nothing to do with the leaflet map; all events will be handled manually
@@ -102,14 +102,22 @@ export class Map extends React.Component<MapProps, {}> {
   }
 
   addProductsToMap() {
-    this.footprintLayerGroup.clearLayers();
+    // clear any layers and re-add them
+    this.footprintLayerGroup.clearLayers()
+    this.visualLayerGroup.clearLayers()
+
     this.productTuples.forEach(x => {
-      this.footprintLayerGroup.addLayer(x.footprint);
-    });
+      if (x.footprint) {
+        this.footprintLayerGroup.addLayer(x.footprint)
+      }
+      if (x.wms) {
+        this.visualLayerGroup.addLayer(x.wms)
+      }
+    })
   }
 
   addCollectionsToMap() {
-    // todo: we will need a way for the user to turn collection-level
+    // todo: we will probably need a way for the user to turn collection-level
     // WMS layers on and off rather than just showing them all
     this.props.result.collections.forEach(c => {
       if (c.data.wms) {
@@ -143,22 +151,20 @@ export class Map extends React.Component<MapProps, {}> {
   }
 
   makeProductWmsLayer(p: Product) {
-    //// add visual wms layer
-    //// let wmsUrl = 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver/ows?tiled=true';
 
-    //// let wmsOptions = {
-    ////   layers: 's2_ard:' + p.title + '_rgba',
-    ////   format: 'image/png',
-    ////   transparent: true
-    //// };
+    if (p.data.wms) {
 
-    ////   let x: L.WMSOptions;
+      let wmsOptions = {
+        layers: 's2_ard:' + p.title + '_rgba', // todo
+        format: 'image/png',
+        transparent: true
+      }
 
-    //// //// add the product image
-    //// let image = L.tileLayer.wms(wmsUrl, wmsOptions);
-    //// this.layerGroup.addLayer(image);
-
-    return null;
+      return L.tileLayer.wms(p.data.wms.base_url, wmsOptions)
+    }
+    else {
+      return undefined
+    }
   }
 
   updateHoveredProductOnMap(prev: Product | undefined, current: Product | undefined) {

@@ -12,30 +12,42 @@ import { config } from '../../config/config'
 */
 export function getProducts(q: Query): GetProductsResult {
 
-    let boundingBox = turf.bboxPolygon(q.bbox)
+  let filterByCaptureDate = (p: Product) => {
+    if (!p.properties.capturedate) {
+      return true
+    }
+    else {
+      let date = new Date(p.properties.capturedate)
+      let start = q.start === undefined ? new Date('2000-01-01') : new Date(q.start)
+      let end = q.end === undefined ? new Date('2100-01-01') : new Date(q.end)
+      return date > start && date <= end
+    }
+  }
 
-    let results = _(collections)
-        .filter(c => q.collections.some(x => x === c.id))
-        .map(c => ({
-            id:       c.id,
-            data:     c.data,
-            metadata: c.metadata,
-            products: _(c.products)
-                .filter(p => turf.intersect(p.footprint, boundingBox))
-                //// .filter(p => {
-                ////   let date = new Date(p.properties.capturedate)
-                ////   let start = q.start === undefined ? new Date('2000-01-01') : new Date(q.start)
-                ////   let end = q.end === undefined ? new Date('2100-01-01') : new Date(q.end)
-                ////   return date > start && date <= end
-                //// })
-                //// .orderBy(p => p.properties.capturedate) //// there is no decent way to do thenBy title!
-                .take(config.maxProductCount + 1) // return 1 extra so client knows if there are more
-                .value(),
-        }))
-        .value()
+  let productsQuery = (products: Product[]) => {
+    return _(products)
+      .filter(p => turf.intersect(p.footprint, boundingBox))
+      .filter(filterByCaptureDate)
+      //.orderBy(orderByCaptureDate)
+      //// .orderBy(p => p.properties.capturedate) //// there is no decent way to do thenBy title!
+      .take(config.maxProductCount + 1) // return 1 extra so client knows if there are more
+      .value()
+  }
 
-    let bboxArea = Math.round(turf.area(boundingBox) / 1000000)
+  let boundingBox = turf.bboxPolygon(q.bbox)
 
-    return { collections: results, query: { bboxArea } }
+  let results = _(collections)
+    .filter(c => q.collections.some(x => x === c.id))
+    .map(c => ({
+      id:       c.id,
+      data:     c.data,
+      metadata: c.metadata,
+      products: productsQuery(c.products)
+    }))
+    .value()
+
+  let bboxArea = Math.round(turf.area(boundingBox) / 1000000)
+
+  return { collections: results, query: { bboxArea } }
 }
 
