@@ -1,0 +1,42 @@
+
+
+.head {
+  background-color: crimson;
+  color: white;
+  margin-bottom: 2rem;
+  a:link    { color: white; }
+  a:visited { color: white; }
+  a:hover   { color: white; }
+  a:active  { color: white; }
+  .head-content {
+    display: flex;
+    align-items: baseline;
+    .head-logo {
+      font-size: 3rem;
+      line-height: 70px; // semantic-ui sets too small line-height on body
+    }
+    .head-strap {
+      min-width: 0;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+// customer requested a footer in this style
+.foot {
+  margin-top: 2em;
+  text-align: center;
+  background-color: #0065bd;
+  height: 57px;
+  > div {
+    padding: 15px;
+    background-image: url(../images/govscot-linear.png);
+    background-repeat: no-repeat;
+    background-position: 0.5em 0.5em;
+    color: white;
+    a { color: white; text-decoration: underline; }
+    a:hover { color: #ddd; }
+  }
+}
+

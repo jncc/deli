@@ -34,7 +34,14 @@ module.exports = function(env) {
         // https://webpack.js.org/guides/code-splitting-css/
         { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
         // https://webpack.js.org/loaders/less-loader/ (we import the less in index.tsx)
-        { test: /\.less$/, use: [ 'style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }, 'less-loader']},
+        { test: /\.less$/, use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "less-loader" // compiles Less to CSS
+            }]
+        },
         // http://survivejs.com/webpack/understanding-loaders/loading-images/
         { test: /\.(jpg|png)$/, loader: 'file-loader', options: { name: '[path][name].[hash].[ext]' }},
         // markdown loader

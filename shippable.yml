@@ -13,6 +13,7 @@ branches:
 build:
   ci:
     - cp -f ./app.client/config/config.$BRANCH.ts ./app.client/config/config.ts
+    - cp -f ./app.client/styles/config.$BRANCH.ts ./app.client/styles/config.ts
     - cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
     - cp -f ./app.server/data/data.$BRANCH.ts ./app.server/data/data.ts
     - yarn install

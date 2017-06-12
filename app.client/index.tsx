@@ -9,7 +9,7 @@ import 'whatwg-fetch'; // polyfill to support 'fetch'
 
 // import stylesheets so webpack can package them
 import './styles/main.less';
-import './styles/config.less'; // intended to vary per instance
+import './styles/config';
 
 import { Routes } from './routes';
 import { store } from './state/store';
