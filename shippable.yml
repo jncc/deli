@@ -12,18 +12,22 @@ branches:
 
 build:
   ci:
+    # tenant-specific configuration
     - cp -f ./app.client/config/config.$BRANCH.ts ./app.client/config/config.ts
     - cp -f ./app.client/styles/config.$BRANCH.ts ./app.client/styles/config.ts
     - cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
     - cp -f ./app.server/data/data.$BRANCH.ts ./app.server/data/data.ts
+    # tenant-specific analytics (write the tenant's analytics ID into index.html)
+    - read -r gtm_analytics_id < app.client/analytics/gtm.$BRANCH.txt
+    - sed -i -e "s/TENANT-GTM-ID/$gtm_analytics_id/g" app.client/index.html
+    # build
     - yarn install
     - yarn run build:prod
     # workaround https://github.com/Shippable/support/issues/3304
     - pip install --upgrade botocore
     - pip install setuptools==34.0.1
-    # workaround uglify.js shipping with 1969 timestamps
-    - touch -t 200001010000 /tmp/timestamp # make a file with a timestamp of the year 2000
-    - find . ! -newer /tmp/timestamp -exec touch -t 201701010000 '{}' \; # update all files with earlier timestamps
+    # workaround https://github.com/mishoo/UglifyJS2/issues/2054
+    - find ./node_modules/* -mtime +10950 -exec touch {} \;
 
 integrations:
   deploy:
