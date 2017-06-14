@@ -7,4 +7,4 @@
 // it works by swapping the tenant typescript file for this one)
 
 // feel free to change the below import to switch between tenant configs at dev time
-import './config.lidar.less';
+import './config.eocoe.less';

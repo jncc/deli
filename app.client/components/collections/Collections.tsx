@@ -65,7 +65,8 @@ export class Collections extends React.Component<any, CollectionsState> {
                 </Header.Content>
               </Header>
               <div>
-                {c.metadata.abstract} {this.makeLidarMetadataLinkUI()}
+                {c.metadata.abstract}
+                {config.name === 'lidar' && this.makeLidarMetadataLinkUI()}
               </div>
           </Grid.Column>
           <Grid.Column width='4' verticalAlign='top'>
@@ -144,7 +145,6 @@ export class Collections extends React.Component<any, CollectionsState> {
 
   /** LAS files for Scotland don't really have their own WMS */
   hideWmsButtonForScotland(c: Collection) {
-    return c.metadata.title.startsWith('LiDAR for Scotland')
-      && c.metadata.title.endsWith('LAS')
+    return config.name === 'lidar' && c.metadata.title.endsWith('LAS')
   }
 }
