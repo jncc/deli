@@ -8,7 +8,6 @@ const FlipMove = require('react-flip-move')
 import { Tooltip } from './Widgets'
 import { Product } from '../../../app.server/handlers/products/models'
 import { formatBytes } from '../../utility/formatBytes'
-import { WmsModalButton } from "../shared/WmsModalButton";
 
 
 interface ListProps {
@@ -51,7 +50,7 @@ export function List(props: ListProps) {
         {getProductInfoUI(x.p)}
       </div>
       <div className='product-right'>
-        {getDownloadAndWmsButtonUI(x.p)}
+        {getDownloadButtonUI(x.p)}
       </div>
     </div>
   )
@@ -92,7 +91,7 @@ function getProductInfoUI(p: Product) {
   }
 }
 
-function getDownloadAndWmsButtonUI(p: Product) {
+function getDownloadButtonUI(p: Product) {
   return (
     <div>
       {p.data.download && p.data.download.size &&
@@ -108,9 +107,6 @@ function getDownloadAndWmsButtonUI(p: Product) {
           color='grey'
         />
       </form>
-      }
-      {p.data.wms &&
-      <WmsModalButton wms={p.data.wms} />
       }
     </div>
   )
