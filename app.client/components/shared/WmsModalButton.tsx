@@ -4,7 +4,7 @@ import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Ic
 import * as CopyToClipboard from 'react-copy-to-clipboard';
 import * as _ from 'lodash';
 
-import { Tooltip } from "../deli/Widgets";
+import { Tooltip } from "../products/Widgets";
 interface WmsModalProps {
   wms: {
     base_url: string,

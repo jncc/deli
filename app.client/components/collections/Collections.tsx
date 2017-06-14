@@ -9,7 +9,7 @@ import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config/config'
 import { WmsModalButton } from "../shared/WmsModalButton";
-import { Tooltip } from "../deli/Widgets";
+import { Tooltip } from "../products/Widgets";
 
 interface CollectionsState {
   collections: Collection[]

@@ -8,7 +8,7 @@ import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 import { flatMap, ensureArray } from '../../../app.shared/util'
 
-interface DeliState {
+interface ProductsState {
   query:    Query     // the current query
   result:   GetProductsResult
   hovered:  Product | undefined
@@ -17,7 +17,7 @@ interface DeliState {
   pending:  number // requests waiting for the network
 }
 
-export class Deli extends React.Component<any, DeliState> {
+export class Products extends React.Component<any, ProductsState> {
 
   constructor(props: any) {
     super(props)
@@ -50,7 +50,7 @@ export class Deli extends React.Component<any, DeliState> {
     this.setState({ hovered: product })
   }
   handleProductUnhovered(product: Product) {
-    this.setState((prevState: DeliState, props) => {
+    this.setState((prevState: ProductsState, props) => {
       if (prevState.hovered == product) {
         return { hovered: undefined }
       } else {
