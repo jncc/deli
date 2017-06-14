@@ -20,8 +20,6 @@ export function Form(props: FormProps) {
     props.queryChanged(props.query)
   }
 
-  let bboxArea = formatNumberWithCommas(props.result.query.bboxArea) + ' km²'
-  let bboxUI = <Input value={bboxArea} label='bounding box' readOnly />
 
   return (
     <Segment inverted color='grey' style={{ marginBottom: 0 }}>
@@ -29,15 +27,23 @@ export function Form(props: FormProps) {
         <Icon name='block layout' />
         {props.result.collections.map(c => c.metadata.title).join(', ')}
       </Header>
-      {getStartEndUI(props)}
       <Segment>
-        <Tooltip
-          content='Use the handles on the map to change the bounding box'
-          trigger={bboxUI}
-          on='focus' />
+        {getBboxUI(props)}
+        {getStartEndUI(props)}
       </Segment>
     </Segment>
   )
+}
+
+const getBboxUI = (props: FormProps) => {
+
+  let bboxArea = formatNumberWithCommas(props.result.query.bboxArea) + ' km²'
+  let bboxUI = <Input value={bboxArea} label='bounding box' readOnly />
+
+   return <Tooltip
+          content='Use the handles on the map to change the bounding box'
+          trigger={bboxUI}
+          on='focus' />
 }
 
 const getStartEndUI = (props: FormProps) => {
@@ -56,9 +62,9 @@ const getStartEndUI = (props: FormProps) => {
     return (
       <div>
         <label>From</label>
-        <input type='text' value={props.query.start} onChange={startChanged} className='' placeholder='Start date'></input>
+        <Input value={props.query.start} onChange={startChanged} className='' placeholder='Start date'></Input>
         <label>To</label>
-        <input type='text' value={props.query.end} onChange={endChanged} className='' placeholder='End date'></input>
+        <Input value={props.query.end} onChange={endChanged} className='' placeholder='End date'></Input>
       </div>
     )
   } else {
