@@ -5,10 +5,17 @@ import { Container, Button } from "semantic-ui-react";
 
 import { Head } from '../shared/Head';
 import { Foot } from '../shared/Foot';
+import { config } from '../../config/config'
 
-let splashText = require('./home-splash.md');
+let splashText: string;
 
 export function Home(props: any) {
+
+  if (config.name === 'lidar') {
+    splashText = require('./home-splash-lidar.md')
+  } else if (config.name === 'eocoe') {
+    splashText = require('./home-splash-eocoe.md')
+  }
 
   return (
     <div>
