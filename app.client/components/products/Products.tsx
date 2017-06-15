@@ -7,6 +7,7 @@ import { Layout } from './Layout'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 import { flatMap, ensureArray } from '../../../app.shared/util'
+import { S2_SCENE_NAMES } from "../../utility/S2_SCENE_NAMES";
 
 interface ProductsState {
   query:    Query     // the current query
@@ -124,7 +125,18 @@ export class Products extends React.Component<any, ProductsState> {
         p.properties.gridsquare = gridsquare
       }
     }
+    if (config.name === 'eocoe') {
+      addS2SceneNameProperty(p)
+    }
     return p
   }
+}
 
+function addS2SceneNameProperty(p: Product) {
+  // todo: make this robust in the case of incorrect / missing row or orbit properties
+  let orbit = p.properties.orbit
+  let row = p.properties.row
+  if (orbit !== undefined && row !== undefined) {
+    p.properties.scene = (S2_SCENE_NAMES as any)[orbit][parseInt(row) - 1]
+  }
 }
