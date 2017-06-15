@@ -19,24 +19,30 @@ Make sure you have globally installed Typescript and Yarn (a better package mana
     npm i -g yarn
     npm i -g typescript
 
-You're good to go. (You can use npm instead of yarn)
+You're good to go.
 
-    yarn i
+    yarn install
     yarn run dev
 
 A browser window will open at http://localhost:8080
 
 Tip: It's often handy to run the Typescript compiler `tsc` to quickly check for compile errors.
 
+Adding packages
+---------------
+We use Yarn instead of npm to help ensure that our build is deterministic. Make sure to install any new packages with Yarn - not npm - e.g.
+
+    yarn add --exact react-date-picker
+
 Style guide
 -----------
 This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, install the EditorConfig extension.
 
-Javascript and Typescript are fairly verbose, so optimise for whitespace.
+Javascript and Typescript are fairly verbose, so we choose to optimise for whitespace.
 
 - don't use `semicolons;` to terminate lines (unnecessary in Javascript)
 - do use `'single quotes'` for strings
-- don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
+- please don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
 
 Demoing
 -------
@@ -45,7 +51,7 @@ To get all the S2-ARD products, increase the bounding box to [-14,50,4,60] and m
 Deployment
 ----------
 
-Pushing to `master` will deploy via Shippable to the live Elastic Beanstalk environment.
+Pushing to a tenant branch like `eocoe` will deploy via Shippable to the relevant live Elastic Beanstalk environment.
 
 To deploy manually, without using Shippable, you'll need to set up the AWS command line interface.
 See http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1 which also contains instructions for creating new Elastic Beanstalk environments.
@@ -55,10 +61,10 @@ See http://blog.shippable.com/how-to-deploy-to-elastic-beanstalk-part-1 which al
 
 Make sure you have committed any code you want to deploy to your local Git repo, or the beanstalk CLI will ignore it!
 
-    npm run build:prod
+    yarn run build:prod
     eb deploy
 
-The Deli requires access to two backend services; Postgres database and Geoserver. This is not described here.
+The Deli requires access to two backend services; Postgres database and Geoserver. This part of the system is not described here.
 
 Using Postman to access the HTTP API
 ------------------------------------

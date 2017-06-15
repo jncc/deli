@@ -22,12 +22,12 @@ export class Products extends React.Component<any, ProductsState> {
   constructor(props: any) {
     super(props)
     this.state = {
-      query: config.defaultQuery,
-      result: { collections: [], query: config.defaultQueryResultInfo },
-      hovered: undefined,
+      query:    config.defaultQuery,
+      result:   { collections: [], query: config.defaultQueryResultInfo },
+      hovered:  undefined,
       selected: [],
-      wmsLink: '',
-      pending: 0,
+      wmsLink:  '',
+      pending:  0,
     }
   }
 
