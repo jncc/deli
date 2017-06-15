@@ -16,16 +16,17 @@ import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 
 interface LayoutProps {
-  query:            Query   // the current query
-  result:           GetProductsResult
-  hovered:          Product | undefined
-  selected:         Product[]
-  queryChanged:     (query:   Query)   => void
-  productHovered:   (product: Product) => void
-  productUnhovered: (product: Product) => void
-  productSelected:  (product: Product) => void
-  wmsLink:          string
-  pending:          number
+  query:             Query   // the current query
+  result:            GetProductsResult
+  hovered:           Product | undefined
+  selected:          Product[]
+  queryChanged:      (query:   Query)   => void
+  productHovered:    (product: Product) => void
+  productUnhovered:  (product: Product) => void
+  productSelected:   (product: Product) => void
+  getWmsLinkClicked: () => void
+  wmsLink:           string
+  pending:           number
 }
 
 export function Layout(props: LayoutProps) {
@@ -56,6 +57,8 @@ export function Layout(props: LayoutProps) {
             <Sticky innerZ={10}>
               <Summary
                 productCount={flatMap(props.result.collections, c => c.products).length}
+                getWmsLinkClicked={props.getWmsLinkClicked}
+                wmsLink={props.wmsLink}
               />
             </Sticky>
             <List

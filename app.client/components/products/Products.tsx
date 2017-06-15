@@ -38,6 +38,7 @@ export class Products extends React.Component<any, ProductsState> {
       productHovered={this.handleProductHovered.bind(this)}
       productUnhovered={this.handleProductUnhovered.bind(this)}
       productSelected={this.productSelected.bind(this)}
+      getWmsLinkClicked={this.getWmsLink.bind(this)}
       />
     )
   }
@@ -111,7 +112,9 @@ export class Products extends React.Component<any, ProductsState> {
     })
       .then(res => res.json()
         .then((json: { key: string }) => {
-          this.setState({ wmsLink: json.key })
+          // todo: the server should return this link, not a key!
+          let wmsLink = `http://deli-eocoe.eu-west-1.elasticbeanstalk.com/wms/${json.key}`
+          this.setState({ wmsLink })
         }).catch(ex => {
           console.log(`couldn't get data`, ex)
         }))

@@ -1,15 +1,13 @@
 
 import * as React from 'react'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Reveal, Grid, Divider } from "semantic-ui-react";
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Reveal, Grid, Divider, ButtonProps } from "semantic-ui-react";
 import * as CopyToClipboard from 'react-copy-to-clipboard';
 import * as _ from 'lodash';
 
 import { Tooltip } from "../products/Widgets";
 interface WmsModalProps {
-  wms: {
-    base_url: string,
-    name: string
-  },
+  url: string,
+  buttonProps?: ButtonProps
   initiallyOpen?: boolean // helpful at dev time
 }
 
@@ -24,7 +22,7 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
 
   render() {
     return <Modal
-      trigger={<Button>WMS</Button>}
+      trigger={<Button {...this.props.buttonProps} />}
       dimmer='blurring'
       header={<Header icon='cloud download'
       content='Get a WMS link' />}
@@ -38,16 +36,14 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
 
   getContent() {
 
-    let url = this.props.wms.base_url + '?service=wms&version=1.3.0&request=GetCapabilities'
-
     return (
       <Modal.Content>
         <Segment basic>
           <div className='spaced slightly'>
-          <Label size='large'><Icon name='cloud download' /> {url} </Label>
+          <Label size='large'><Icon name='cloud download' /> {this.props.url} </Label>
           </div>
           <div>
-            <CopyToClipboard text={url} onCopy={() => this.handleCopiedToClipboard()}>
+            <CopyToClipboard text={this.props.url} onCopy={() => this.handleCopiedToClipboard()}>
                 <Button icon='copy' labelPosition='right' color='pink' content='Copy to clipboard' />
             </CopyToClipboard>
             {this.state.copiedToClipboard &&
@@ -85,10 +81,5 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
 
 // use this to easily dev the modal
 export function DevWmsModalButton() {
-  let wms = {
-    base_url: 'http://some.base/url',
-    name: 'some:layer:name'
-  }
-
-  return <WmsModalButton initiallyOpen wms={wms} />
+  return <WmsModalButton initiallyOpen url='http://some.kind.of.wms/url' />
 }

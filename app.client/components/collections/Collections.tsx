@@ -95,7 +95,10 @@ export class Collections extends React.Component<any, CollectionsState> {
               </form>
               }
               {c.data.wms && !this.hideWmsButtonForScotland(c) &&
-              <WmsModalButton wms={c.data.wms} />
+              <WmsModalButton
+                url={c.data.wms.base_url + '?service=wms&version=1.3.0&request=GetCapabilities'}
+                buttonProps={{content: 'WMS' }}
+                />
               }
             </div>
             {c.data.download && c.data.download.size &&

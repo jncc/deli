@@ -29,6 +29,9 @@ export const config: ClientConfig = {
         start:       true,
         end:         true,
     },
+    summary: {
+        wms: true,
+    },
     maxProductCount: 10, // be sure to update server config too
     collectionWmsUrl: 'is this used?', // temp
 };

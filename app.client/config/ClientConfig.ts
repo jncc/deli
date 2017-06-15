@@ -29,6 +29,9 @@ export interface ClientConfig {
         start: boolean
         end:   boolean
     },
+    summary: {
+        wms:  boolean
+    }
     maxProductCount:  number
     collectionWmsUrl: string
 }

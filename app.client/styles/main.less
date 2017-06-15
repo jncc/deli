@@ -38,19 +38,27 @@ body { overflow-y: scroll; }
 }
 
 .summary {
+  display: flex;
   border-bottom: 1px solid #ddd;
   padding-bottom: 15px;
   background-color: white; // since it's sticky
   padding-top: 12px; // padding here instead of margin on component above, since it's sticky
-  .summary-header {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0 4px;
+  .summary-count {
+    .summary-count-header {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 4px;
+    }
+    .summary-count-subheader {
+      text-align: center;
+      margin-left: 3px;
+    }
+
   }
-  .summary-subheader {
-    text-align: center;
-    margin-left: 3px;
+  .summary-wms {
+    margin-left: auto; // push this box to the right
+    align-self: center;
   }
 }
 
