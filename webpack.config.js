@@ -5,6 +5,7 @@ let NoOpWebpackPlugin = require('noop-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let GitRevisionPlugin = require('git-revision-webpack-plugin')
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 
 module.exports = function(env) {
@@ -14,6 +15,10 @@ module.exports = function(env) {
   // but we don't see it here in the build script!)
   if (!env) { env = { name:'development' } };
   console.log(`Hello from the Webpack build script. Environment name is '${env.name}'.`);
+
+  let grp = new GitRevisionPlugin({
+    branch: true
+  })
 
   return {
     // the entry point for the webpack dependency analysis
@@ -59,13 +64,10 @@ module.exports = function(env) {
     // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
     devtool: env.name !== 'production' ? 'inline-source-map' : '',
 
+
+
     // plugins are for anything "loaders" can't do
     plugins: [
-      // generate the index.html page (using the actual index.html as the input)
-      // with all the things that we need (using plugin defaults)
-      new HtmlWebpackPlugin({
-        template: './app.client/index.html'
-      }),
       // this is necessary for the extract-text loader... baffling!
       // https://webpack.js.org/guides/code-splitting-css/
       new ExtractTextPlugin('styles.css'),
@@ -73,6 +75,14 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: './app.client/images', to: 'images' }
       ]),
+      // generate the index.html page (using the actual index.html as the input)
+      // with all the things that we need (using plugin defaults)
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        branch: grp.branch(),
+        template: './app.client/index.ejs',
+      }),
+
     ],
 
     // configure webpack-dev-server - runs on the default port 8080
