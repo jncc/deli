@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { Header, Segment, Icon, Input, Form as F, Grid } from 'semantic-ui-react'
 
-
+// imports for DateTimePikcer
 import { DateTimePicker } from 'react-widgets';
 import 'react-widgets/lib/less/react-widgets.less';
 let Moment = require('moment')
@@ -32,6 +32,7 @@ export function Form(props: FormProps) {
         <div className='form-fields'>
           {getBboxUI(props)}
           {getStartEndUI(props)}
+          {/*{getDatepickerUI(props)}*/}
         </div>
         {/*</Grid>*/}
       </Segment>
@@ -73,7 +74,7 @@ let getStartEndUI = (props: FormProps) => {
   if (config.form.start && config.form.end) { // todo change config.form.startend
     return (
       <div>
-        <DateTimePicker defaultValue={new Date()} />>
+
         <Input
           value={props.query.start}
           onChange={startChanged}
@@ -93,6 +94,14 @@ let getStartEndUI = (props: FormProps) => {
   } else {
     return null
   }
+}
+
+let getDatepickerUI = (props: FormProps) => {
+  return <DateTimePicker
+          defaultValue={new Date()}
+          time={false}
+          finalView='decade'
+          />
 }
 
 // https://stackoverflow.com/a/2901298

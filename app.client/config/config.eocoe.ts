@@ -20,7 +20,7 @@ export const config: ClientConfig = {
         collections: [`d82f236a-e61d-482d-a581-293ec1b11c3e`],
         bbox:        [-8, 53, 0, 57] as [number, number, number, number] ,
         start:       `2016-06-01`,
-        end:         `2016-06-04`,
+        end:         `2016-06-08`,
     },
     defaultQueryResultInfo: {
         bboxArea:    0
