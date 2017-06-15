@@ -10,7 +10,7 @@ import { DevWmsModalButton } from './components/shared/WmsModalButton'
 export const Routes = (
   <Router>
     <div>
-      <Route exact path='/' component={Home} />
+      <Route exact path='/' component={Products} />
       <Route exact path='/collections' component={Collections} />
       <Route exact path='/app' component={Products} />
     </div>

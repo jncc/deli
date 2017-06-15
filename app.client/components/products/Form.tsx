@@ -2,6 +2,13 @@
 import * as React from 'react'
 import { Header, Segment, Icon, Input, Form as F, Grid } from 'semantic-ui-react'
 
+
+import { DateTimePicker } from 'react-widgets';
+import 'react-widgets/lib/less/react-widgets.less';
+let Moment = require('moment')
+let momentLocalizer = require('react-widgets/lib/localizers/moment')
+momentLocalizer(Moment)
+
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
@@ -66,6 +73,7 @@ let getStartEndUI = (props: FormProps) => {
   if (config.form.start && config.form.end) { // todo change config.form.startend
     return (
       <div>
+        <DateTimePicker defaultValue={new Date()} />>
         <Input
           value={props.query.start}
           onChange={startChanged}
