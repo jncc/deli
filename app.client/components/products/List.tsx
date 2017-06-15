@@ -87,7 +87,7 @@ function getProductInfoUI(p: Product) {
     )
   }
   else {
-    return <div />
+    return null
   }
 }
 

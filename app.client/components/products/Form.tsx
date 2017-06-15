@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-import { Header, Segment, Icon, Input } from 'semantic-ui-react'
+import { Header, Segment, Icon, Input, Form as F, Grid } from 'semantic-ui-react'
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -14,13 +14,6 @@ interface FormProps {
 }
 
 export function Form(props: FormProps) {
-
-  let bboxChanged = (e: any) => {
-    props.query.bbox = JSON.parse(e.target.value)
-    props.queryChanged(props.query)
-  }
-
-
   return (
     <Segment inverted color='grey' style={{ marginBottom: 0 }}>
       <Header>
@@ -28,25 +21,37 @@ export function Form(props: FormProps) {
         {props.result.collections.map(c => c.metadata.title).join(', ')}
       </Header>
       <Segment>
-        {getBboxUI(props)}
-        {getStartEndUI(props)}
+        {/*<Grid columns='equal' relaxed stackable>*/}
+        <div className='form-fields'>
+          {getBboxUI(props)}
+          {getStartEndUI(props)}
+        </div>
+        {/*</Grid>*/}
       </Segment>
     </Segment>
   )
 }
 
-const getBboxUI = (props: FormProps) => {
+let getBboxUI = (props: FormProps) => {
 
   let bboxArea = formatNumberWithCommas(props.result.query.bboxArea) + ' km²'
-  let bboxUI = <Input value={bboxArea} label='bounding box' readOnly />
+  let inputUI = <Input
+    value={bboxArea}
+    label='bounding box'
+    style={{width: '10rem'}}
+    readOnly />
 
-   return <Tooltip
-          content='Use the handles on the map to change the bounding box'
-          trigger={bboxUI}
-          on='focus' />
+  return (
+    <div>
+      <Tooltip
+        content='Use the handles on the map to change the bounding box'
+        trigger={inputUI}
+        on='focus' />
+    </div>
+  )
 }
 
-const getStartEndUI = (props: FormProps) => {
+let getStartEndUI = (props: FormProps) => {
 
   let startChanged = (e: any) => {
     props.query.start = e.target.value
@@ -58,17 +63,27 @@ const getStartEndUI = (props: FormProps) => {
     props.queryChanged(props.query)
   }
 
-  if (config.form.start && config.form.end) {
+  if (config.form.start && config.form.end) { // todo change config.form.startend
     return (
       <div>
-        <label>From</label>
-        <Input value={props.query.start} onChange={startChanged} className='' placeholder='Start date'></Input>
-        <label>To</label>
-        <Input value={props.query.end} onChange={endChanged} className='' placeholder='End date'></Input>
+        <Input
+          value={props.query.start}
+          onChange={startChanged}
+          placeholder='yyyy-mm-dd'
+          style={{width: '14rem'}}
+          label='from'
+          />
+        <Input
+          value={props.query.end}
+          onChange={endChanged}
+          placeholder='yyyy-mm-dd'
+          style={{width: '8rem'}}
+          label='to'
+          />
       </div>
     )
   } else {
-    return <div />
+    return null
   }
 }
 
