@@ -152,7 +152,7 @@ export class Map extends React.Component<MapProps, {}> {
     if (p.data.wms) {
 
       let wmsOptions = {
-        layers: 's2_ard:' + p.title + '_rgba', // todo
+        layers: p.data.wms.name,
         format: 'image/png',
         transparent: true
       }
