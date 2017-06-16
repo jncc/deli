@@ -2,11 +2,14 @@
 <html>
 <% let b = htmlWebpackPlugin.options.branch
    let title = ''
+   let gtmId = ''
 
    if (b === 'lidar') {
      title = 'Scottish Remote Sensing Portal'
+     gtmId = 'GTM-W9VKSC5'
    } else if (b === 'eocoe') {
      title = 'Earth Observation Portal'
+     gtmId = 'GTM-KDNH5VM'
    }
 %>
 <head>
@@ -20,14 +23,14 @@
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','TENANT-GTM-ID');</script>
+  })(window,document,'script','dataLayer','<%= gtmId %>');</script>
   <!-- End Google Tag Manager -->
 </head>
 
 <body>
   <p>Branch: <%= b %></p>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=TENANT-GTM-ID"
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= gtmId %>"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 

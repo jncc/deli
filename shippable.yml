@@ -17,9 +17,6 @@ build:
     - cp -f ./app.client/styles/config.$BRANCH.ts ./app.client/styles/config.ts
     - cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
     - cp -f ./app.server/data/data.$BRANCH.ts ./app.server/data/data.ts
-    # tenant-specific analytics (write the tenant's analytics ID into index.html)
-    - read -r gtm_analytics_id < app.client/analytics/gtm.$BRANCH.txt
-    - sed -i -e "s/TENANT-GTM-ID/$gtm_analytics_id/g" app.client/index.html
     # build
     - yarn install
     - yarn run build:prod

@@ -16,6 +16,7 @@ module.exports = function(env) {
   if (!env) { env = { name:'development' } };
   console.log(`Hello from the Webpack build script. Environment name is '${env.name}'.`);
 
+  // get git revision plugin - branch determines build time config
   let grp = new GitRevisionPlugin({
     branch: true
   })
@@ -64,8 +65,6 @@ module.exports = function(env) {
     // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
     devtool: env.name !== 'production' ? 'inline-source-map' : '',
 
-
-
     // plugins are for anything "loaders" can't do
     plugins: [
       // this is necessary for the extract-text loader... baffling!
@@ -79,8 +78,8 @@ module.exports = function(env) {
       // with all the things that we need (using plugin defaults)
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        branch: grp.branch(),
         template: './app.client/index.ejs',
+        branch: grp.branch()
       }),
 
     ],
