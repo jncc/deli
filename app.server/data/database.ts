@@ -10,7 +10,7 @@ export class Database {
 
     constructor() {
         let pgp = pgPromise()
-        let cs = `postgres://${process.env.PGAUTH}@172.31.0.103:5432/topsat`
+        let cs = `postgres://${process.env.PGAUTH}@172.31.17.103:5432/topsat`
         this.connection = pgp(cs)
     }
 
