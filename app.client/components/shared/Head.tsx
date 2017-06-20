@@ -14,18 +14,46 @@ export const Head = (props: HeadProps) => {
 
   return (
     <div className='head'>
-      <Container className='head-content'>
-        <div className='head-logo'>
-          <Link to='/'>
-            SRSP
-          </Link>
-        </div>
-        <div className='head-strap'>
-          <Icon name='ellipsis vertical' />
-          Scottish Remote Sensing Portal
-        </div>
-      </Container>
+      {getHeaderUI()}
       <Spinner pending={props.pending} />
     </div>
+  )
+}
+
+function getHeaderUI() {
+  switch (config.name) {
+    case 'lidar': return getLidarHeaderUI()
+    case 'eocoe': return getEocoeHeaderUI()
+  }
+}
+
+function getEocoeHeaderUI() {
+  return (
+    <Container className='head-content'>
+      <div className='head-logo'>
+        <Link to='/'>
+          <Icon name='globe' />
+        </Link>
+      </div>
+      <div className='head-strap'>
+        Earth Observation Collaboration Node
+      </div>
+    </Container>
+  )
+}
+
+function getLidarHeaderUI() {
+  return (
+    <Container className='head-content'>
+      <div className='head-logo'>
+        <Link to='/'>
+          SRSP
+        </Link>
+      </div>
+      <div className='head-strap'>
+        <Icon name='ellipsis vertical' />
+        Scottish Remote Sensing Portal
+      </div>
+    </Container>
   )
 }
