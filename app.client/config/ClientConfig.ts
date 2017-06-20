@@ -31,7 +31,8 @@ export interface ClientConfig {
     },
     summary: {
         wms:  boolean
-    }
+    },
+    shoppingBasket: boolean,
     maxProductCount:  number
     collectionWmsUrl: string
 }

@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { Button, Grid, Header, Checkbox } from 'semantic-ui-react'
 const FlipMove = require('react-flip-move')
 
+import { config } from '../../config/config'
 import { Tooltip } from './Widgets'
 import { Product } from '../../../app.server/handlers/products/models'
 import { formatBytes } from '../../utility/formatBytes'
@@ -37,9 +38,12 @@ export function List(props: ListProps) {
       >
       <div className={`product-hovered ${props.hovered && props.hovered.id == x.p.id ? 'product-hilite' : ''}`}>&nbsp;
       </div>
-      <div className='product-checkbox'>
-        <Checkbox checked={!x.notSelected} onClick={() => props.productSelected(x.p)} />
-      </div>
+      {
+        config.shoppingBasket &&
+        <div className='product-checkbox'>
+          <Checkbox checked={!x.notSelected} onClick={() => props.productSelected(x.p)} />
+        </div>
+      }
       <div className='product-main'>
         <div className='product-title'>{x.p.title}</div>
         <div className='product-properties'>

@@ -49,7 +49,7 @@ const getWmsLinkUI = (props: SummaryProps, tooManyProducts: boolean) => {
 
     let buttonProps: ButtonProps = {
       onClick:       () => props.getWmsLinkClicked(),
-      content:       'WMS',
+      content:       'Get WMS Link',
       icon:          'cloud download',
       labelPosition: 'right',
       color:         'pink',

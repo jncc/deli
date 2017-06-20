@@ -32,6 +32,7 @@ export const config: ClientConfig = {
     summary: {
         wms: true,
     },
+    shoppingBasket: false,
     maxProductCount: 10, // be sure to update server config too
     collectionWmsUrl: 'is this used?', // temp
 };
