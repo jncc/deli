@@ -15,6 +15,7 @@ build:
     # tenant-specific configuration
     - cp -f ./app.client/config/config.$BRANCH.ts ./app.client/config/config.ts
     - cp -f ./app.client/styles/config.$BRANCH.ts ./app.client/styles/config.ts
+    - cp -f ./app.client/images/favicon.$BRANCH.png ./app.client/images/favicon.png
     - cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
     - cp -f ./app.server/data/data.$BRANCH.ts ./app.server/data/data.ts
     # build

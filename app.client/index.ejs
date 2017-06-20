@@ -1,18 +1,25 @@
 <%
-  let b = htmlWebpackPlugin.options.branch
+  let branch = htmlWebpackPlugin.options.branch
+  let commit = htmlWebpackPlugin.options.commit
   let title = ''
   let gtmId = ''
-  let showFavIcon = false
 
-  if (b === 'lidar') {
-    title = 'Scottish Remote Sensing Portal'
-    gtmId = 'GTM-W9VKSC5'
-    showFavIcon = true
-  } else if (b === 'eocoe') {
-    title = 'Earth Observation Portal'
-    gtmId = 'GTM-KDNH5VM'
-    showFavIcon = false
+  switch (branch) {
+    case 'lidar' : {
+      title = 'Scottish Remote Sensing Portal'
+      gtmId = 'GTM-W9VKSC5'
+      break
+    }
+    case 'eocoe' : {
+      title = 'Earth Observation Portal'
+      gtmId = 'GTM-KDNH5VM'
+      break
+    }
+    default : {
+      title : 'Deli under development'
+    }
   }
+
 %>
 
 <!DOCTYPE html>
@@ -21,9 +28,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title><%= title %></title>
-  <% if (showFavIcon) { %>
-    <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" href="/images/favicon.png">
-  <% } %>
+  <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" href="/images/favicon.png">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"></link>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
   <!-- Google Tag Manager -->
@@ -44,4 +49,5 @@
   <div id="app">Loading...</div>
 </body>
 
+<!-- branch::<%=branch %> commit::<%=commit %> -->
 </html>

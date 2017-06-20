@@ -79,7 +79,8 @@ module.exports = function(env) {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: './app.client/index.ejs',
-        branch: grp.branch()
+        branch: grp.branch(),
+        commit: grp.commithash()
       }),
 
     ],
