@@ -51,6 +51,7 @@ export class Products extends React.Component<any, ProductsState> {
   handleProductHovered(product: Product) {
     this.setState({ hovered: product })
   }
+
   handleProductUnhovered(product: Product) {
     this.setState((prevState: ProductsState, props) => {
       if (prevState.hovered == product) {
@@ -88,7 +89,6 @@ export class Products extends React.Component<any, ProductsState> {
     }
   }
 
-  // fetch products data and set state
   getData(query: Query) {
     this.setState((prev) => ({ pending: prev.pending + 1 }))
     fetch('/api/products?' + qs.stringify(query))
@@ -129,17 +129,24 @@ export class Products extends React.Component<any, ProductsState> {
       }
     }
     if (config.name === 'eocoe') {
-      addS2SceneNameProperty(p)
+      setEocoeProperties(p)
     }
     return p
   }
 }
 
-function addS2SceneNameProperty(p: Product) {
+function setEocoeProperties(p: Product) {
   // todo: make this robust in the case of incorrect / missing row or orbit properties
   let orbit = p.properties.orbit
   let row = p.properties.row
   if (orbit !== undefined && row !== undefined) {
-    p.properties.scene = (S2_SCENE_NAMES as any)[orbit][parseInt(row) - 1]
+    let scene = (S2_SCENE_NAMES as any)[orbit][parseInt(row) - 1]
+    // also, explicitly set the order of properties for usability
+    p.properties = {
+      scene: scene,
+      row: p.properties.row,
+      orbit: p.properties.orbit,
+      capturedate: p.properties.capturedate,
+    }
   }
 }
