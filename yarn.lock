@@ -2515,6 +2515,10 @@ leaflet-editable@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/leaflet-editable/-/leaflet-editable-1.0.0.tgz#1befcefdbece550da8b432a9e8413a6c1d7017f6"
 
+leaflet-fullscreen@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/leaflet-fullscreen/-/leaflet-fullscreen-1.0.2.tgz#09c61c4bac45f63b2ee126afd87e5cd97650fc1b"
+
 leaflet.path.drag@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/leaflet.path.drag/-/leaflet.path.drag-0.0.5.tgz#d72499797f2ca690cb8edc777d4eb2ef072e5c70"

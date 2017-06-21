@@ -3,6 +3,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet-editable'
+import 'leaflet-fullscreen'
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -63,8 +64,11 @@ export class Map extends React.Component<MapProps, {}> {
         L.tileLayer(config.map.baseLayerUrlTemplate, { attribution: config.map.attribution })
       ],
       attributionControl: false,
-      editable: true // enable leaflet.editable plugin
+      editable: true, // enable leaflet.editable plugin
     })
+
+    // enable leaflet.fullscreen plugin
+    new L.Control.Fullscreen({ position: 'topright' }).addTo(map)
 
     map.setView(config.map.defaultCenter, config.map.defaultZoom)
 

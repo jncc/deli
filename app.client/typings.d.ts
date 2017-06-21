@@ -16,3 +16,11 @@ declare namespace L {
     }
 }
 
+// declare my own types for leaflet-fullscreen plugin
+declare namespace L {
+    namespace Control {
+        class Fullscreen extends Control {
+            constructor(options?: any);
+        }
+    }
+}
