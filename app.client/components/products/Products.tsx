@@ -144,8 +144,8 @@ function setEocoeProperties(p: Product) {
     // also, explicitly set the order of properties for usability
     p.properties = {
       scene: scene,
-      row: p.properties.row,
       orbit: p.properties.orbit,
+      row: p.properties.row,
       capturedate: p.properties.capturedate,
     }
   }
