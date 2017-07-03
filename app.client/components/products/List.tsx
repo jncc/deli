@@ -3,7 +3,9 @@ import * as React from 'react'
 import * as moment from 'moment'
 import * as _ from 'lodash';
 import { Button, Grid, Header, Checkbox } from 'semantic-ui-react'
-const FlipMove = require('react-flip-move')
+// const FlipMove = require('react-flip-move')
+// const ReactMotionFlip = require('react-motion-flip')
+import ReactMotionFlip from 'react-motion-flip'
 
 import { config } from '../../config/config'
 import { Tooltip } from './Widgets'
@@ -60,9 +62,9 @@ export function List(props: ListProps) {
   )
 
   return (
-    <FlipMove {...flipMoveAnimationProps}>
+    <ReactMotionFlip>
       {rows}
-    </FlipMove>
+    </ReactMotionFlip>
   )
 }
 
