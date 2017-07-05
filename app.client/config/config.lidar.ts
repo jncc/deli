@@ -18,7 +18,7 @@ export const config: ClientConfig = {
     },
     defaultQuery: {
         collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], // DTM collection
-        bbox:        [-5, 56, -3, 57] as [number, number, number, number] ,
+        bbox:        [-4.5, 56.1, -3.5, 56.7] as [number, number, number, number] ,
         start:       `2016-06-01`,
         end:         `2016-06-31`,
     },
