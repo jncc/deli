@@ -66,7 +66,7 @@ export class Collections extends React.Component<any, CollectionsState> {
               </Header>
               <div>
                 {c.metadata.abstract}
-                {config.name === 'lidar' && this.makeLidarMetadataLinkUI()}
+                {config.name === 'lidar' && this.makeLidarMetadataLinkUI(c)}
               </div>
           </Grid.Column>
           <Grid.Column width='4' verticalAlign='top'>
@@ -116,14 +116,27 @@ export class Collections extends React.Component<any, CollectionsState> {
     return <Grid>{rows}</Grid>
   }
 
-  makeLidarMetadataLinkUI() {
+  makeLidarMetadataLinkUI(c: Collection) {
+
+    let getMetadataUrl = (title: string) => {
+      if (title.startsWith('LiDAR for Scotland Phase I ')) {
+        return 'https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593'
+      }
+      else if (title.startsWith('LiDAR for Scotland Phase II ')) {
+        return 'https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/689b5296-d265-4927-8449-99b46fa3f4e7'
+      }
+      else {
+        throw `Couldn't get metadata link for collection '${title}'.`
+      }
+    }
+
     return (
       <Tooltip
         position='left center'
         content='More information about this data collection'
         trigger={
           <span style={{ marginLeft: '0.5em' }}>
-            <a href='https://www.spatialdata.gov.scot/geonetwork/srv/eng/catalog.search#/metadata/92367c84-74d3-4426-8b0f-6f4a8096f593' target='_blank' style={{fontWeight: 'bold'}}>
+            <a href={getMetadataUrl(c.metadata.title)} target='_blank' style={{fontWeight: 'bold'}}>
               Metadata &nbsp;
               <Icon name='external' />
             </a>
