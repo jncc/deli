@@ -73,7 +73,7 @@ export class Collections extends React.Component<any, CollectionsState> {
             <div className='spaced'>
               <Link to={'/app?collections=' + c.id}>
                 <Button
-                  content='Products'
+                  content='View on Map'
                   icon='arrow right'
                   labelPosition='right'
                   color='green'
