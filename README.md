@@ -38,7 +38,7 @@ This project has an `.editorconfig` file. Make sure to enable support in your ed
 
 Javascript and Typescript are fairly verbose, so we choose to optimise for whitespace.
 
-- don't use `semicolons;` to terminate lines (they are unnecessary in Javascript)
+- don't use `semicolons;` to terminate lines (unnecessary in Javascript!)
 - do use `'single quotes'` for strings
 - **please** don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
 

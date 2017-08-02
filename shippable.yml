@@ -24,8 +24,6 @@ build:
     # workaround https://github.com/Shippable/support/issues/3304
     - pip install --upgrade botocore
     - pip install setuptools==34.0.1
-    # workaround https://github.com/mishoo/UglifyJS2/issues/2054
-    - find ./node_modules/* -mtime +10950 -exec touch {} \;
 
 integrations:
   deploy:
