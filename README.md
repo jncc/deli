@@ -9,10 +9,8 @@ Development
 
 The Deli is a Node.js client-server web application written in Typescript.
 
-Install Node.js (Note: Ubuntu requires the `nodejs-legacy` package to create a `node` symlink
-https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-
-    apt install nodejs-legacy
+Install Node.js at least v6 for your system. Node.js v8 appears to work fine too. I use nvm to switch beteen Node versions. Ubuntu may require the `nodejs-legacy` package to create a `node` symlink
+https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 
 Make sure you have globally installed Typescript and Yarn (a better package manager than NPM)
 
@@ -26,30 +24,30 @@ You're good to go.
 
 A browser window will open at http://localhost:8080
 
-Tip: It's often handy to run the Typescript compiler `tsc` to quickly check for compile errors.
+Tip: It's often handy to run the Typescript compiler `tsc` to more quickly check for compile errors.
 
 Adding packages
 ---------------
-We use Yarn instead of npm to help ensure that our build is deterministic. Make sure to install any new packages with Yarn - not npm - e.g.
+We use Yarn instead of npm to make our build deterministic. Make sure to **install any new packages with Yarn and not npm** - e.g.
 
     yarn add --exact react-date-picker
 
 Style guide
 -----------
-This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, install the EditorConfig extension.
+This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension.
 
 Javascript and Typescript are fairly verbose, so we choose to optimise for whitespace.
 
-- don't use `semicolons;` to terminate lines (unnecessary in Javascript)
+- don't use `semicolons;` to terminate lines (they are unnecessary in Javascript)
 - do use `'single quotes'` for strings
-- please don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
-
-Demoing
--------
-To get all the S2-ARD products, increase the bounding box to [-14,50,4,60] and make the date range 2014 - 2018.
+- **please** don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
 
 Deployment
 ----------
+
+Firstly note that there's additional information on the internal wiki. 
+
+To create a new environment, see the internal wiki.
 
 Pushing to a tenant branch like `eocoe` will deploy via Shippable to the relevant live Elastic Beanstalk environment.
 
@@ -65,6 +63,7 @@ Make sure you have committed any code you want to deploy to your local Git repo,
     eb deploy
 
 The Deli requires access to two backend services; Postgres database and Geoserver. This part of the system is not described here.
+
 
 Using Postman to access the HTTP API
 ------------------------------------
