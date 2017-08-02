@@ -6,18 +6,20 @@ node_js:
 
 branches:
   only:
-    - master
     - eocoe
+    - eocoe-beta
     - lidar
+    - lidar-beta
 
 build:
   ci:
     # tenant-specific configuration
-    - cp -f ./app.client/config/config.$BRANCH.ts ./app.client/config/config.ts
-    - cp -f ./app.client/styles/config.$BRANCH.ts ./app.client/styles/config.ts
-    - cp -f ./app.client/images/favicon.$BRANCH.png ./app.client/images/favicon.png
-    - cp -f ./app.server/config/config.$BRANCH.ts ./app.server/config/config.ts
-    - cp -f ./app.server/data/data.$BRANCH.ts ./app.server/data/data.ts
+    - EBENV=$(echo $BRANCH | cut -d'-' -f 1) # get e.g. 'lidar' from 'lidar-beta'
+    - cp -f ./app.client/config/config.$EBENV.ts ./app.client/config/config.ts
+    - cp -f ./app.client/styles/config.$EBENV.ts ./app.client/styles/config.ts
+    - cp -f ./app.client/images/favicon.$EBENV.png ./app.client/images/favicon.png
+    - cp -f ./app.server/config/config.$EBENV.ts ./app.server/config/config.ts
+    - cp -f ./app.server/data/data.$EBENV.ts ./app.server/data/data.ts
     # build
     - yarn install
     - yarn run build:prod
@@ -32,6 +34,6 @@ integrations:
       target: eb_paas
       platform: "Node.js"
       application_name: deli
-      env_name: deli-$BRANCH
+      env_name: deli-$BRANCH # deploy to branch environment e.g. 'deli-lidar-beta'
       region: "eu-west-1"
 
