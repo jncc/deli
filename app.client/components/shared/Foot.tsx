@@ -1,7 +1,7 @@
 
 import * as React from 'react';
-
 import { Container, Icon } from 'semantic-ui-react'
+import { config } from '../../config/config'
 
 export function Foot() {
 
@@ -13,6 +13,11 @@ export function Foot() {
             JNCC
           </a> <Icon name='external' />
         </span>
+        {config.name === 'lidar' &&
+        <div className='feedback-link'>
+          Feedback welcome <strong>gi-sat@gov.scot</strong>
+        </div>
+        }
       </Container>
     </div>
   );

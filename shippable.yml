@@ -15,7 +15,7 @@ build:
   ci:
     # tenant-specific configuration
     - TENANT=$(echo $BRANCH | cut -d'-' -f 1) # get e.g. 'lidar' from 'lidar' or lidar-beta'
-    # todo if $TENANT === "master" then choose a default e.g. "lidar", and build master!
+    # todo if $TENANT === "master" then choose a default e.g. "lidar", and build master (but don't deploy!)
     - cp -f ./app.client/config/config.$TENANT.ts ./app.client/config/config.ts
     - cp -f ./app.client/styles/config.$TENANT.ts ./app.client/styles/config.ts
     - cp -f ./app.client/images/favicon.$TENANT.png ./app.client/images/favicon.png
