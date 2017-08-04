@@ -85,8 +85,7 @@ export class Map extends React.Component<MapProps, {}> {
     map.on('editable:vertex:dragend', (e: any) => {
         if (e.layer === bboxRect) { // e.layer property added by leaflet.editable
           let b = bboxRect.getBounds()
-          let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]
-            .map(roundTo3Decimals)
+          let bbox = [b.getWest(), b.getSouth(), b.getEast(), b.getNorth()].map(roundTo3Decimals)
           this.props.queryChanged(Object.assign({}, this.props.query, { bbox: bbox }))
         }
     })

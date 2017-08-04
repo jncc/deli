@@ -14,12 +14,13 @@ branches:
 build:
   ci:
     # tenant-specific configuration
-    - EBENV=$(echo $BRANCH | cut -d'-' -f 1) # get e.g. 'lidar' from 'lidar-beta'
-    - cp -f ./app.client/config/config.$EBENV.ts ./app.client/config/config.ts
-    - cp -f ./app.client/styles/config.$EBENV.ts ./app.client/styles/config.ts
-    - cp -f ./app.client/images/favicon.$EBENV.png ./app.client/images/favicon.png
-    - cp -f ./app.server/config/config.$EBENV.ts ./app.server/config/config.ts
-    - cp -f ./app.server/data/data.$EBENV.ts ./app.server/data/data.ts
+    - TENANT=$(echo $BRANCH | cut -d'-' -f 1) # get e.g. 'lidar' from 'lidar' or lidar-beta'
+    # todo if $TENANT === "master" then choose a default e.g. "lidar", and build master!
+    - cp -f ./app.client/config/config.$TENANT.ts ./app.client/config/config.ts
+    - cp -f ./app.client/styles/config.$TENANT.ts ./app.client/styles/config.ts
+    - cp -f ./app.client/images/favicon.$TENANT.png ./app.client/images/favicon.png
+    - cp -f ./app.server/config/config.$TENANT.ts ./app.server/config/config.ts
+    - cp -f ./app.server/data/data.$TENANT.ts ./app.server/data/data.ts
     # build
     - yarn install
     - yarn run build:prod
