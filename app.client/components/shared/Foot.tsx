@@ -15,7 +15,7 @@ export function Foot() {
         </span>
         {config.name === 'lidar' &&
         <div className='feedback-link'>
-          Feedback welcome <strong>gi-sat@gov.scot</strong>
+          Feedback welcome. <a href="mailto:gi-sat@gov.scot">gi-sat@gov.scot</a>
         </div>
         }
       </Container>
