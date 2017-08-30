@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet-editable'
 import 'leaflet-fullscreen'
+import * as _ from 'lodash'
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -23,8 +24,9 @@ interface MapProps {
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map
-  footprintLayerGroup: L.LayerGroup
-  visualLayerGroup: L.LayerGroup
+  productFootprintLayerGroup: L.LayerGroup
+  productWmsLayerGroup: L.LayerGroup
+  collectionWmsLayerGroup: L.LayerGroup
 
   // tuples of { product, footprint, wms }
   // associating a product with its corresponding leaflet map objects
@@ -42,12 +44,27 @@ export class Map extends React.Component<MapProps, {}> {
   }
 
   componentDidUpdate(prevProps: MapProps) {
-    // if the query result has changed, update the items on the map
+    // if the query has changed, update the map
     if (prevProps.result != this.props.result) {
-      this.updateProductList()
-      this.addProductsToMap()
-      this.addCollectionsToMap()
+
+      let collectionsHaveChanged = !_.isEqual(
+        prevProps.result.collections.map(c => c.id),
+        this.props.result.collections.map(c => c.id)
+      )
+      if (collectionsHaveChanged) {
+        this.addCollectionsToMap()
+      }
+
+      let productsHaveChanged = !_.isEqual(
+        flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
+        flatMap(this.props.result.collections, c => c.products).map(p => p.id)
+      )
+      if (productsHaveChanged) {
+        this.updateProductList()
+        this.addProductsToMap()
+      }
     }
+
     // if the currently hovered product has changed, update the footprint style
     if (prevProps.hovered != this.props.hovered) {
       this.updateHoveredProductOnMap(prevProps.hovered, this.props.hovered)
@@ -73,8 +90,9 @@ export class Map extends React.Component<MapProps, {}> {
     map.setView(config.map.defaultCenter, config.map.defaultZoom)
 
     // add layer groups
-    this.footprintLayerGroup = L.layerGroup([]).addTo(map)
-    this.visualLayerGroup = L.layerGroup([]).addTo(map)
+    this.productFootprintLayerGroup = L.layerGroup([]).addTo(map)
+    this.productWmsLayerGroup = L.layerGroup([]).addTo(map)
+    this.collectionWmsLayerGroup = L.layerGroup([]).addTo(map)
 
     // add the bbox rectangle
     let bboxRect = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 })
@@ -103,15 +121,15 @@ export class Map extends React.Component<MapProps, {}> {
 
   addProductsToMap() {
     // clear any layers and re-add them
-    this.footprintLayerGroup.clearLayers()
-    this.visualLayerGroup.clearLayers()
+    this.productFootprintLayerGroup.clearLayers()
+    this.productWmsLayerGroup.clearLayers()
 
     this.productTuples.forEach(x => {
       if (x.footprint) {
-        this.footprintLayerGroup.addLayer(x.footprint)
+        this.productFootprintLayerGroup.addLayer(x.footprint)
       }
       if (x.wms) {
-        this.visualLayerGroup.addLayer(x.wms)
+        this.productWmsLayerGroup.addLayer(x.wms)
       }
     })
   }
@@ -119,6 +137,10 @@ export class Map extends React.Component<MapProps, {}> {
   addCollectionsToMap() {
     // todo: we will probably need a way for the user to turn collection-level
     // WMS layers on and off rather than just showing them all
+
+    // clear any layers and re-add them
+    this.collectionWmsLayerGroup.clearLayers()
+
     this.props.result.collections.forEach(c => {
       if (c.data.wms) {
         let wmsUrl = c.data.wms.base_url
@@ -128,7 +150,7 @@ export class Map extends React.Component<MapProps, {}> {
           transparent: true
         }
         let layer = L.tileLayer.wms(wmsUrl, wmsOptions)
-        this.visualLayerGroup.addLayer(layer)
+        this.collectionWmsLayerGroup.addLayer(layer)
       }
     })
   }

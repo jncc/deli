@@ -17,7 +17,7 @@ export const config: ClientConfig = {
         attribution: `&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>`,
     },
     defaultQuery: {
-        collections: [`5f3b081f-c02c-49b3-8374-a5dd709baefd`], // DTM collection
+        collections: [`7d96723a-49c9-4d17-8df1-2a96932112d4`], // Phase 1 DSM collection
         bbox:        [-4.5, 56.1, -3.5, 56.7] as [number, number, number, number] ,
         start:       `2016-06-01`,
         end:         `2016-06-31`,
