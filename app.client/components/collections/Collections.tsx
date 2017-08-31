@@ -1,15 +1,15 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid } from "semantic-ui-react";
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid } from "semantic-ui-react"
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config/config'
-import { WmsModalButton } from "../shared/WmsModalButton";
-import { Tooltip } from "../products/Widgets";
+import { WmsModalButton } from "../shared/WmsModalButton"
+import { Tooltip } from "../products/Widgets"
 
 interface CollectionsState {
   collections: Collection[]
@@ -145,6 +145,14 @@ export class Collections extends React.Component<any, CollectionsState> {
       />
     )
   }
+
+  // getLic(useConstraints: string): 'ogl' | 'none' {
+  //   if ()
+  // }
+  // makeLicenceLinkUI(c: Collection) {
+  //   let licence: 'ogl' | 'none' =
+  //     c.metadata.useConstraints.indexOf('Open Government Licence v3') !== -1
+  // }
 
   fetchCollections() {
     this.setState((prev) => ({ pending: prev.pending + 1 }))

@@ -30,6 +30,6 @@ export class Spinner extends React.Component<SpinnerProps, SpinnerState> {
   }
 
   render() {
-    return <Progress size='tiny' active={this.state.spinning} percent={100} />
+    return <Progress id='progress' size='tiny' active={this.state.spinning} percent={100} />
   }
 }

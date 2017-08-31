@@ -7,11 +7,13 @@ export interface Collection {
     id:         string,
     metadata:   CollectionMetadata,
     data:       CollectionData,
+    //licence:    'ogl' | 'none'
 }
 
 export interface CollectionMetadata {
     title: string,
     abstract: string,
+    useConstraints: string,
 }
 
 export interface CollectionData {
