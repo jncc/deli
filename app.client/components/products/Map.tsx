@@ -9,7 +9,6 @@ import * as _ from 'lodash'
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
-import { flatMap } from '../../../app.shared/util'
 import { bboxFlatArrayToCoordArray } from '../../../app.shared/util'
 
 interface MapProps {
@@ -56,8 +55,8 @@ export class Map extends React.Component<MapProps, {}> {
       }
 
       let productsHaveChanged = !_.isEqual(
-        flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
-        flatMap(this.props.result.collections, c => c.products).map(p => p.id)
+        _.flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
+        _.flatMap(this.props.result.collections, c => c.products).map(p => p.id)
       )
       if (productsHaveChanged) {
         this.updateProductList()
@@ -111,7 +110,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   updateProductList() {
     // just make a brand new list (sufficient for now)
-    this.productTuples = flatMap(this.props.result.collections, c => c.products)
+    this.productTuples = _.flatMap(this.props.result.collections, c => c.products)
       .map(p => ({
         product: p,
         footprint: this.makeProductFootprintLayer(p),

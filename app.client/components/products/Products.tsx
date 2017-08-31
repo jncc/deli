@@ -1,12 +1,13 @@
 
 import * as React from 'react'
+import * as _ from 'lodash'
 import * as qs from 'query-string'
 
 import { config } from '../../config/config'
 import { Layout } from './Layout'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
-import { flatMap, ensureArray } from '../../../app.shared/util'
+import { ensureArray } from '../../../app.shared/util'
 import { S2_SCENE_NAMES } from "../../utility/S2_SCENE_NAMES";
 
 interface ProductsState {
@@ -95,7 +96,7 @@ export class Products extends React.Component<any, ProductsState> {
       .then(res => res.json()
         .then((r: GetProductsResult) => {
           // add customer-specific product properties that should be in the data
-          flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties)
+          _.flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties)
           this.setState({ result: r })
           this.setState((prev) => ({ pending: prev.pending - 1 }))
         })).catch(ex => {

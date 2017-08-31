@@ -1,8 +1,8 @@
 
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as _ from 'lodash'
 
-import { flatMap } from '../app.shared/util'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
@@ -32,7 +32,7 @@ app.get(`/wms/:key`, async (req, res) => {
   let queryResult = getProducts(storedQuery.query)
 
   // get all the products out of the query result, ignoring the collection they're in
-  let products = flatMap(queryResult.collections, c => c.products)
+  let products = _.flatMap(queryResult.collections, c => c.products)
 
   let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`), req.protocol)
   let result = getCapabilities(products, realWmsUrl)
