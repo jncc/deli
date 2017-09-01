@@ -7,7 +7,6 @@ export interface Collection {
     id:         string,
     metadata:   CollectionMetadata,
     data:       CollectionData,
-    //licence:    'ogl' | 'none'
 }
 
 export interface CollectionMetadata {

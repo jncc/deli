@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid } from "semantic-ui-react"
 
+import { getLicenceDetailsFromUseConstraints } from './licenceUtil'
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
@@ -67,6 +68,7 @@ export class Collections extends React.Component<any, CollectionsState> {
               <div>
                 {c.metadata.abstract}
                 {config.name === 'lidar' && this.makeLidarMetadataLinkUI(c)}
+                {config.name === 'lidar' && this.makeLicenceUI(c)}
               </div>
           </Grid.Column>
           <Grid.Column width='4' verticalAlign='top'>
@@ -116,6 +118,16 @@ export class Collections extends React.Component<any, CollectionsState> {
     return <Grid>{rows}</Grid>
   }
 
+  makeLicenceUI(c: Collection) {
+
+    let l = getLicenceDetailsFromUseConstraints(c.metadata.useConstraints)
+    return (
+      <div>
+        <img src={require('../../images/licences/' + l.image)} height='100' width='200' />
+      </div>
+    )
+  }
+
   makeLidarMetadataLinkUI(c: Collection) {
 
     let getMetadataUrl = (title: string) => {
@@ -146,13 +158,8 @@ export class Collections extends React.Component<any, CollectionsState> {
     )
   }
 
-  // getLic(useConstraints: string): 'ogl' | 'none' {
-  //   if ()
-  // }
-  // makeLicenceLinkUI(c: Collection) {
-  //   let licence: 'ogl' | 'none' =
-  //     c.metadata.useConstraints.indexOf('Open Government Licence v3') !== -1
-  // }
+  makeLicenceLinkUI(c: Collection) {
+  }
 
   fetchCollections() {
     this.setState((prev) => ({ pending: prev.pending + 1 }))
