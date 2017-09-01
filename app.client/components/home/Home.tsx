@@ -10,6 +10,17 @@ import { config } from '../../config/config'
 let splashText: string;
 
 export function Home(props: any) {
+  return (
+    <div style={{display:'flex', alignItems:'center', justifyContent:'center', height: '100vh'}}>
+      <div>
+        The Scottish Remote Sensing Portal will appear here.
+      </div>
+    </div>
+  )
+
+}
+
+export function HomeX(props: any) {
 
   if (config.name === 'lidar') {
     splashText = require('./home-splash-lidar.md')
