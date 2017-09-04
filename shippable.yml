@@ -13,6 +13,7 @@ branches:
 
 build:
   ci:
+    - echo $FOO
     # tenant-specific configuration
     - TENANT=$(echo $BRANCH | cut -d'-' -f 1) # get e.g. 'lidar' from 'lidar' or lidar-beta'
     # todo if $TENANT === "master" then choose a default e.g. "lidar", and build master (but don't deploy!)
@@ -38,3 +39,5 @@ integrations:
       env_name: deli-$BRANCH # deploy to branch environment e.g. 'deli-lidar-beta'
       region: "eu-west-1"
 
+env:
+  - secure: CMTTcTj3Ygjj/i9TgpZy86JgddgsBoXGSZhZNdGhZajVs7kJZ2d6EkKxCvGCX5ufcXnHCdGMVl1zFzJEmnfjYqKgl/pLfzLpqkPscl75r8OMpLJ9pgAOHNYbgOtjbHxs1Tdz7le+8bGGjO0jh3NiJE/L0OfpGvaIbz+48md6rjrGXOMPCxPuCYjmszGdBqT1Aih34E7qWSYfOmueFnrF30EVaCj+gvDiXaid6xWn2GGRbS6TkTJpo6nEBMBVQq84CMejdNar8XEoO16NvWB1dCof5CA9usJNMfRnSA+E46fCkJMG5BDpJJU4L2vOx2+LHxoLTxIiI/gPk6mFWfr8rQ==
