@@ -80,8 +80,12 @@ export class Products extends React.Component<any, ProductsState> {
   }
 
   updateQueryFromQuerystring(query: Query) {
-    if (location.search) {
-      let parsedQuery = qs.parse(location.search)
+    if (location.hash) {
+      console.log(location.hash)
+      let s = location.hash.substr(location.hash.indexOf('?') + 1)
+      console.log(s)
+      let parsedQuery = qs.parse(s)
+      console.log(parsedQuery)
       let collections = ensureArray(parsedQuery.collections)
       return Object.assign({}, query, { collections })
     }

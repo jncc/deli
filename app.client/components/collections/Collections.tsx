@@ -58,7 +58,7 @@ export class Collections extends React.Component<any, CollectionsState> {
                   <Tooltip
                     content='See the products in this data collection'
                     position='bottom center'
-                    trigger={<Link to={'/app?collections=' + c.id}>
+                    trigger={<Link to={'/products?collections=' + c.id}>
                                 &nbsp;
                                 {c.metadata.title}
                              </Link>}
@@ -73,7 +73,7 @@ export class Collections extends React.Component<any, CollectionsState> {
           </Grid.Column>
           <Grid.Column width='4' verticalAlign='top'>
             <div className='spaced'>
-              <Link to={'/app?collections=' + c.id}>
+              <Link to={'/products?collections=' + c.id}>
                 <Button
                   content='View on Map'
                   icon='arrow right'
