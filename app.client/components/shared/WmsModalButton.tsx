@@ -22,7 +22,7 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
 
   render() {
     return <Modal
-      trigger={<Button {...this.props.buttonProps} />}
+      trigger={<Button icon='cloud download' {...this.props.buttonProps} />}
       dimmer='blurring'
       header={<Header icon='cloud download'
       content='Get a WMS link' />}

@@ -2,6 +2,7 @@
 export type Licence =
   | 'none'
   | 'oglv3'
+  | 'ncgl'
 
 export function getLicenceDetails(licence: Licence) {
 
@@ -9,14 +10,17 @@ export function getLicenceDetails(licence: Licence) {
     case 'none' : return {
       name:  'None',
       image: 'none.png',
-      description: 'No licence information was found',
       url: ''
     }
     case 'oglv3' : return {
       name: 'Open Government Licence v3',
       image: 'ogl.png',
-      description: 'Open Government Licence v3',
       url: 'http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
+    }
+    case 'ncgl' : return {
+      name: 'Non-Commercial Government Licence',
+      image: '',
+      url: 'http://www.nationalarchives.gov.uk/doc/non-commercial-government-licence/non-commercial-government-licence.htm'
     }
   }
 }

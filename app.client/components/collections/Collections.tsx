@@ -50,7 +50,7 @@ export class Collections extends React.Component<any, CollectionsState> {
   makeCollectionsListUI() {
     let rows = this.state.collections.map(c => {
       return (
-        <Grid.Row key={c.id}>
+        <Grid.Row key={c.id} className='collection'>
           <Grid.Column width='12'>
               <Header>
                 <Header.Content>
@@ -68,11 +68,11 @@ export class Collections extends React.Component<any, CollectionsState> {
               <div>
                 {c.metadata.abstract}
                 {config.name === 'lidar' && this.makeLidarMetadataLinkUI(c)}
-                {config.name === 'lidar' && this.makeLicenceUI(c)}
               </div>
+              {config.name === 'lidar' && this.makeLicenceUI(c)}
           </Grid.Column>
           <Grid.Column width='4' verticalAlign='top'>
-            <div className='spaced'>
+            <div className='spaced barely'>
               <Link to={'/products?collections=' + c.id}>
                 <Button
                   content='View on Map'
@@ -122,8 +122,13 @@ export class Collections extends React.Component<any, CollectionsState> {
 
     let l = getLicenceDetailsFromUseConstraints(c.metadata.useConstraints)
     return (
-      <div>
-        <img src={require('../../images/licences/' + l.image)} height='100' width='200' />
+      <div className='licence'>
+        {l.image &&
+        <img src={require('../../images/licences/' + l.image)}  />
+        }
+          <a href={l.url} target='_blank' >
+            {l.name} <Icon name='external' />
+          </a>
       </div>
     )
   }
@@ -142,18 +147,20 @@ export class Collections extends React.Component<any, CollectionsState> {
       }
     }
 
+    let linkUI =(
+      <span style={{ marginLeft: '0.5em' }}>
+        <a href={getMetadataUrl(c.metadata.title)} target='_blank' style={{fontWeight: 'bold'}}>
+          Metadata &nbsp;
+          <Icon name='external' />
+        </a>
+      </span>
+    )
+
     return (
       <Tooltip
         position='left center'
         content='More information about this data collection'
-        trigger={
-          <span style={{ marginLeft: '0.5em' }}>
-            <a href={getMetadataUrl(c.metadata.title)} target='_blank' style={{fontWeight: 'bold'}}>
-              Metadata &nbsp;
-              <Icon name='external' />
-            </a>
-          </span>
-        }
+        trigger={linkUI}
       />
     )
   }
