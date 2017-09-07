@@ -7,4 +7,4 @@ Here you can find, share and reuse remote sensed data provided by Scottish publi
 
 For more information on the LiDAR data please contact [gi-sat@gov.scot](mailto:gi-sat@gov.scot). For more information on a particular dataset, please use the contact information provided in the full metadata. For more information about this site, please [contact us](mailto:gi-sat@gov.scot).
 
-All data is made available under the [Open Government Licence v3](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+All data is made available under the [Open Government Licence v3](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/), unless otherwise stated.
