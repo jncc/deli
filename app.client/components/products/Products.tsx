@@ -8,7 +8,7 @@ import { Layout } from './Layout'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 import { ensureArray } from '../../../app.shared/util'
-import { S2_SCENE_NAMES } from "../../utility/S2_SCENE_NAMES";
+import { S2_SCENE_NAMES } from "../../misc/S2_SCENE_NAMES";
 
 interface ProductsState {
   query:    Query     // the current query

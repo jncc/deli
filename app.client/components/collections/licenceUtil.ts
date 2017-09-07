@@ -1,15 +1,15 @@
 
 export type Licence =
-  | 'none'
+  | 'unknown'
   | 'oglv3'
   | 'ncgl'
 
 export function getLicenceDetails(licence: Licence) {
 
   switch (licence) {
-    case 'none' : return {
-      name:  'None',
-      image: 'none.png',
+    case 'unknown' : return {
+      name:  'UNKNOWN',
+      image: '',
       url: ''
     }
     case 'oglv3' : return {
@@ -27,10 +27,14 @@ export function getLicenceDetails(licence: Licence) {
 
 export function getLicenceDetailsFromUseConstraints(s: string) {
 
-  let licence: Licence = 'none'
+  let licence: Licence = 'unknown'
 
   if (s.indexOf('Open Government Licence v3') !== -1) {
     licence = 'oglv3'
+  }
+
+  if (s.indexOf('Non-Commercial Government Licence') !== -1) {
+    licence = 'ncgl'
   }
 
   return getLicenceDetails(licence);

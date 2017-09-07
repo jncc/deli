@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid } from "semantic-ui-react"
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid, Reveal, Image } from "semantic-ui-react"
 
 import { getLicenceDetailsFromUseConstraints } from './licenceUtil'
 import { Head } from '../shared/Head'
@@ -55,6 +55,9 @@ export class Collections extends React.Component<any, CollectionsState> {
               <Header>
                 <Header.Content>
                   <Icon name='block layout' color='grey' />
+
+
+
                   <Tooltip
                     content='See the products in this data collection'
                     position='bottom center'
@@ -66,6 +69,17 @@ export class Collections extends React.Component<any, CollectionsState> {
                 </Header.Content>
               </Header>
               <div>
+
+              <Reveal animated='small fade'>
+              <Reveal.Content visible>
+                <Image src='https://react.semantic-ui.com/assets/images/wireframe/square-image.png' size='small' />
+              </Reveal.Content>
+              <Reveal.Content hidden>
+                <Image src='https://react.semantic-ui.com/assets/images/avatar/large/ade.jpg' size='small' />
+              </Reveal.Content>
+            </Reveal>
+
+
                 {c.metadata.abstract}
                 {config.name === 'lidar' && this.makeLidarMetadataLinkUI(c)}
               </div>
