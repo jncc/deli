@@ -1,5 +1,5 @@
 
-import * as express from 'express'
+import * as express  from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
@@ -66,11 +66,22 @@ app.post(`/api/storedQueries`, async (req, res) => {
 // serve static files from the specified directory
 app.use(express.static(env.dir))
 
-// no matches yet? it's 404
+app.get(`/test1`, (req, res) => {
+  res.sendFile('errors/404.html', { root: env.dir })
+})
+
+
+// 404 (no matches yet)
 app.use((req, res) => {
   res.status(404)
-  res.sendFile(__dirname + '../app.client/errors/404.html')
+  res.sendFile('errors/404.html', { root: env.dir })
 })
+
+// 500 (error)
+// app.use((err, req, res, next) => {
+//   console.error(err.stack)
+//   res.status(500).send('Something broke!')
+// })
 
 // start the express web server
 app.listen(env.port, () => {
@@ -78,3 +89,8 @@ app.listen(env.port, () => {
   console.log(`app.server is listening on: http://localhost:${env.port}`)
   console.log(`node environment is ${env.name}`)
 })
+
+let errorHandler: express.ErrorRequestHandler = (err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+}
