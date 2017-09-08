@@ -69,10 +69,9 @@ app.use(express.static(env.dir))
 
 // no matches yet? it's 404
 app.use((req, res) => {
-  res.status(404);
-  console.log(env.name)
-  console.log(env.dir)
-  res.sendFile(path.join(__dirname, '../app.client/errors', '404.html'))
+  res.status(404)
+  // res.sendFile(path.join(__dirname, '../app.client/errors', '404.html'))
+  res.sendFile('../app.client/errors/404.html', { root: __dirname })
 })
 
 // start the express web server
