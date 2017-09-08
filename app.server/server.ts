@@ -1,6 +1,5 @@
 
 import * as express from 'express'
-import * as path from 'path'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
@@ -70,8 +69,7 @@ app.use(express.static(env.dir))
 // no matches yet? it's 404
 app.use((req, res) => {
   res.status(404)
-  // res.sendFile(path.join(__dirname, '../app.client/errors', '404.html'))
-  res.sendFile('../app.client/errors/404.html', { root: __dirname })
+  res.sendFile(__dirname + '../app.client/errors/404.html')
 })
 
 // start the express web server
