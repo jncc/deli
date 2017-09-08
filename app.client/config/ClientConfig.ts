@@ -4,6 +4,7 @@ export interface ClientConfig {
     name: 'lidar' | 'eocoe',
     app: {
         title: string
+        feedbackEmail: string
     },
     logo: {
         name:   string

@@ -4,6 +4,7 @@ export const config: ClientConfig = {
     name: 'eocoe',
     app: {
         title: `EO Collaboration Platform`, // todo: not yet configurable
+        feedbackEmail: '' // todo
     },
     logo: {
         name:   `todo`,

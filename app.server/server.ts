@@ -1,5 +1,6 @@
 
 import * as express from 'express'
+import * as path from 'path'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
@@ -65,6 +66,14 @@ app.post(`/api/storedQueries`, async (req, res) => {
 
 // serve static files from the specified directory
 app.use(express.static(env.dir))
+
+// no matches yet? it's 404
+app.use((req, res) => {
+  res.status(404);
+  console.log(env.name)
+  console.log(env.dir)
+  res.sendFile(path.join(__dirname, '../app.client/errors', '404.html'))
+})
 
 // start the express web server
 app.listen(env.port, () => {

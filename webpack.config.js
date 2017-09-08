@@ -74,6 +74,10 @@ module.exports = function(env) {
       new CopyWebpackPlugin([
         { from: './app.client/images', to: 'images' }
       ]),
+      // // copy error pages
+      // new CopyWebpackPlugin([
+      //   { from: './app.client/errors', to: 'errors' }
+      // ]),
       // generate the index.html page (using the actual index.html as the input)
       // with all the things that we need (using plugin defaults)
       new HtmlWebpackPlugin({

@@ -3,7 +3,8 @@ import { ClientConfig } from './ClientConfig'
 export const config: ClientConfig = {
     name: 'lidar',
     app: {
-        title: `Scotland's Remote Sensed Data`, // todo: not yet configurable
+        title: `Remote Sensing Data Scotland`, // todo: not yet configurable
+        feedbackEmail: 'gi-sat@gov.scot'
     },
     logo: {
         name:   `ssdi-logo.png`,
