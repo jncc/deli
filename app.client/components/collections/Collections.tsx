@@ -146,7 +146,7 @@ export class Collections extends React.Component<any, CollectionsState> {
         {l.image &&
         <div>
           <a href={l.url} target='_blank' >
-            <img src={require('../../images/licences/' + l.image)}  />
+            <img src={require('../../images/licences/' + l.image)} width='62' height='27' />
           </a>
         </div>
         }
