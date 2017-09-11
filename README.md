@@ -32,6 +32,12 @@ We use Yarn instead of npm to make our build deterministic. Make sure to **insta
 
     yarn add --exact react-date-picker
 
+Upgrading packages
+------------------
+You can upgrade packages to their latest release with `yarn upgrade-interactive`, or one-at-a-time with:
+
+    yarn upgrade --latest express @types/express
+
 Style guide
 -----------
 This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension.

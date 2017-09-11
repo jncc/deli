@@ -70,14 +70,14 @@ export class Collections extends React.Component<any, CollectionsState> {
               </Header>
               <div>
 
-              <Reveal animated='small fade'>
+              {/* <Reveal animated='small fade'>
               <Reveal.Content visible>
                 <Image src='https://react.semantic-ui.com/assets/images/wireframe/square-image.png' size='small' />
               </Reveal.Content>
               <Reveal.Content hidden>
                 <Image src='https://react.semantic-ui.com/assets/images/avatar/large/ade.jpg' size='small' />
               </Reveal.Content>
-            </Reveal>
+            </Reveal> */}
 
 
                 {c.metadata.abstract}
@@ -135,14 +135,21 @@ export class Collections extends React.Component<any, CollectionsState> {
   makeLicenceUI(c: Collection) {
 
     let l = getLicenceDetailsFromUseConstraints(c.metadata.useConstraints)
+
     return (
       <div className='licence'>
-        {l.image &&
-        <img src={require('../../images/licences/' + l.image)}  />
-        }
+        <div>
           <a href={l.url} target='_blank' >
             {l.name} <Icon name='external' />
           </a>
+        </div>
+        {l.image &&
+        <div>
+          <a href={l.url} target='_blank' >
+            <img src={require('../../images/licences/' + l.image)}  />
+          </a>
+        </div>
+        }
       </div>
     )
   }
