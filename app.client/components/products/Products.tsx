@@ -127,7 +127,7 @@ export class Products extends React.Component<any, ProductsState> {
 
   addCustomerSpecificProductProperties = (p: Product) => {
     if (p.title.startsWith('LiDAR for Scotland')) {
-      let matches = p.title.match(/D[TS]M ([A-Z]+[0-9]+)/)
+      let matches = p.title.match(/ ([A-Z]+[0-9]+)$/)
       if (matches && matches.length > 1) {
         let gridsquare = matches[1]
         p.properties.gridsquare = gridsquare
