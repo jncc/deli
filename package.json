@@ -6,7 +6,7 @@
   "license": "OGL",
   "scripts": {
     "clean": "rimraf built",
-    "compile": "tsc --outDir built",
+    "compile": "tsc --outDir built && cp ./app.server/data/*.json ./built/app.server/data",
     "webpack": "npm run clean && webpack --progress",
     "build": "npm run clean && npm run compile && webpack",
     "build:prod": "npm run clean && npm run compile && webpack -p --env.name production",
