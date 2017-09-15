@@ -146,7 +146,7 @@ function setEocoeProperties(p: Product) {
   let row = p.properties.row
   if (orbit !== undefined && row !== undefined) {
     let scene = (S2_SCENE_NAMES as any)[orbit][parseInt(row) - 1]
-    // also, explicitly set the order of properties for usability
+    // also, reorder properties for usability
     p.properties = {
       scene: scene,
       orbit: p.properties.orbit,

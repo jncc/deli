@@ -70,6 +70,9 @@ app.get(`/test1`, (req, res) => {
   res.sendFile('errors/404.html', { root: env.dir })
 })
 
+app.get(`/collections`, (req, res) => {
+  res.sendfile('index.html', { root: env.dir })
+})
 
 // 404 (no matches yet)
 app.use((req, res) => {
