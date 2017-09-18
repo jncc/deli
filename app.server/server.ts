@@ -3,6 +3,7 @@ import * as express  from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
+import { pages } from './routes'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
@@ -66,25 +67,24 @@ app.post(`/api/storedQueries`, async (req, res) => {
 // serve static files from the specified directory
 app.use(express.static(env.dir))
 
-app.get(`/test1`, (req, res) => {
-  res.sendFile('errors/404.html', { root: env.dir })
-})
-
-app.get(`/collections`, (req, res) => {
+// single page app. any routes that are "pages" need to return the index.html and allow the client-side router to show the correct page
+app.get(pages, (req, res) => {
   res.sendfile('index.html', { root: env.dir })
 })
 
-// 404 (no matches yet)
+// no matches yet, return 404
 app.use((req, res) => {
   res.status(404)
   res.sendFile('errors/404.html', { root: env.dir })
 })
 
-// 500 (error)
-// app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-//   console.error(err.stack)
-//   res.status(500).send('Something broke!')
-// })
+// error, return 500
+if (!env.dev) {
+  app.use((err: any, req: any, res: any, next: any) => {
+    res.status(404)
+    res.sendFile('errors/500.html', { root: env.dir })
+  })
+}
 
 // start the express web server
 app.listen(env.port, () => {
