@@ -9,7 +9,7 @@ import { config } from '../../config/config'
 
 let splashText: string;
 
-export function Home(props: any) {
+export function HomeHoldingPage(props: any) {
   return (
     <div style={{display:'flex', alignItems:'center', justifyContent:'center', height: '100vh'}}>
       <div>
@@ -20,7 +20,7 @@ export function Home(props: any) {
 
 }
 
-export function HomeREAL(props: any) {
+export function Home(props: any) {
 
   if (config.name === 'lidar') {
     splashText = require('./home-splash-lidar.md')
