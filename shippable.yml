@@ -9,6 +9,7 @@ branches:
     - eocoe
     - eocoe-beta
     - lidar
+    - lidar-alpha
     - lidar-beta
 
 build:
