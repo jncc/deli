@@ -70,12 +70,16 @@ app.use(express.static(env.dir))
 // single page app. any routes that are "pages" need to return the index.html
 // and allow the client-side router to show the correct page
 app.get(pages, (req, res) => {
-  res.sendfile('index.html', { root: env.dir })
+  res.sendFile('index.html', { root: env.dir })
 })
 
 // exercise error handling
 app.get(`/error`, (req, res) => {
   throw 'You made an error.'
+})
+
+app.get(`/500`, (req, res) => {
+  res.sendFile('errors/500.html', { root: env.dir })
 })
 
 // no matches yet, return 404
@@ -87,7 +91,7 @@ app.use((req, res) => {
 // error, return 500
 if (!env.dev) {
   app.use((err: any, req: any, res: any, next: any) => {
-    res.status(404)
+    res.status(500)
     res.sendFile('errors/500.html', { root: env.dir })
   })
 }
