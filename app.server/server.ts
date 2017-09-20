@@ -67,9 +67,15 @@ app.post(`/api/storedQueries`, async (req, res) => {
 // serve static files from the specified directory
 app.use(express.static(env.dir))
 
-// single page app. any routes that are "pages" need to return the index.html and allow the client-side router to show the correct page
+// single page app. any routes that are "pages" need to return the index.html
+// and allow the client-side router to show the correct page
 app.get(pages, (req, res) => {
   res.sendfile('index.html', { root: env.dir })
+})
+
+// exercise error handling
+app.get(`/error`, (req, res) => {
+  throw 'You made an error.'
 })
 
 // no matches yet, return 404
