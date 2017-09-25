@@ -22,7 +22,7 @@ export function getEnvironmentSettings(env: string) {
 export function getRealWmsUrl(env: string, hostHeader: string, protocol: string) {
   if (env === 'development') {
     // no local dev geoserver (yet), so use the live one for convenience
-    return 'http://deli-live.eu-west-1.elasticbeanstalk.com/geoserver'
+    return 'http://deli-eocoe.eu-west-1.elasticbeanstalk.com/geoserver'
   }
   else {
     return protocol + '://' + hostHeader + '/geoserver'
