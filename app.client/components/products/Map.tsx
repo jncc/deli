@@ -79,7 +79,6 @@ export class Map extends React.Component<MapProps, {}> {
       layers: [
         L.tileLayer(config.map.baseLayerUrlTemplate, { attribution: config.map.attribution })
       ],
-      attributionControl: false,
       editable: true, // enable leaflet.editable plugin
     })
 
