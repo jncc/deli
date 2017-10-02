@@ -13,6 +13,7 @@ export interface ClientConfig {
     },
     map: {
         defaultZoom:          number
+        maximumZoom:          number
         defaultCenter:        [number, number]
         baseLayerUrlTemplate: string
         attribution:          string

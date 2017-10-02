@@ -29,9 +29,9 @@ export class Map extends React.Component<MapProps, {}> {
 
   // tuples of { product, footprint, wms }
   // associating a product with its corresponding leaflet map objects
-  productTuples: { product: Product,
+  productTuples: { product:   Product,
                    footprint: L.GeoJSON,
-                   wms: L.TileLayer.WMS | undefined }[] = []
+                   wms:       L.TileLayer.WMS | undefined }[] = []
 
   render() {
     // react has nothing to do with the leaflet map; all events will be handled manually
@@ -75,7 +75,7 @@ export class Map extends React.Component<MapProps, {}> {
   createLeafletMap() {
     let map = this.map = L.map(ReactDOM.findDOMNode(this) as HTMLElement, {
       minZoom: 2,
-      maxZoom: 20,
+      maxZoom: config.map.maximumZoom,
       layers: [
         L.tileLayer(config.map.baseLayerUrlTemplate, { attribution: config.map.attribution })
       ],
