@@ -42,6 +42,10 @@ export function Home(props: any) {
             <Button icon='chevron circle right' labelPosition='right' color='green' content='Get Started' />
           </Link>
         </p>
+        <span className='minor-text'>
+          By starting, you consent to receive cookies on your device to help make this website better.
+        </span>
+        <br />
         <br />
       </Container>
       <Foot />
