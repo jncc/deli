@@ -42,7 +42,16 @@ Google Analytics sets the following cookies:
 | _gat          | Used to manage the rate at which page view requests are made | 10 minutes | 
  
 You can [opt out](https://tools.google.com/dlpage/gaoptout) of Google Analytics cookies. 
- 
+
+### Content Delivery Networks
+
+We use Content Delivery Networks to delivery stylesheets efficiently to your broswer. They may set their own cookies to monitor and track service usage.
+
+| Name          | Purpose       | 
+| ------------- | ------------- | 
+| __cfduid      | [unpkg](ttps://unpkg.com) is a fast, global content delivery network for everything on npm | 
+| __cfduid      | [Cloudflare](https://www.cloudflare.com/) is a content delivery network. For more informatiom, please see the [Cloudflare cookies policy](https://www.cloudflare.com/cookie-policy/)              | 
+
 ### Mapbox 
  
 We use [Mapbox](https://www.mapbox.com) to serve our map backdrops ("base layers"). If you use our mapping tools, Mapbox will save extra cookies to your computer to track your usage of the service and optimize the map's performance. 
