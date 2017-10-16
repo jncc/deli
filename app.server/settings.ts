@@ -6,7 +6,7 @@ export function getEnvironmentSettings(env: string) {
       name: env,
       dev: true,
       port: 5000,
-      dir: 'app.client'
+      dir: 'built/app.client'
     }
   }
   else {

@@ -3,11 +3,11 @@ import * as React from 'react'
 import { Header, Segment, Icon, Input, Form as F, Grid } from 'semantic-ui-react'
 
 // imports for DateTimePikcer
-import { DateTimePicker } from 'react-widgets';
-import 'react-widgets/lib/less/react-widgets.less';
-let Moment = require('moment')
-let momentLocalizer = require('react-widgets/lib/localizers/moment')
-momentLocalizer(Moment)
+// import { DateTimePicker } from 'react-widgets';
+// import 'react-widgets/lib/less/react-widgets.less';
+// let Moment = require('moment')
+// let momentLocalizer = require('react-widgets/lib/localizers/moment')
+// momentLocalizer(Moment)
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -97,11 +97,11 @@ let getStartEndUI = (props: FormProps) => {
 }
 
 let getDatepickerUI = (props: FormProps) => {
-  return <DateTimePicker
-          defaultValue={new Date()}
-          time={false}
-          finalView='decade'
-          />
+  // return <DateTimePicker
+  //         defaultValue={new Date()}
+  //         time={false}
+  //         finalView='decade'
+  //         />
 }
 
 // https://stackoverflow.com/a/2901298

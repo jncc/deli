@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as ReactModal from 'react-modal'
 import { Container, Grid, Segment } from 'semantic-ui-react'
 import * as Sticky from 'react-stickynode'
-import * as _ from 'lodash'
+import { flatMap } from 'lodash'
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
@@ -56,13 +56,13 @@ export function Layout(props: LayoutProps) {
             />
             <Sticky innerZ={10}>
               <Summary
-                productCount={_.flatMap(props.result.collections, c => c.products).length}
+                productCount={flatMap(props.result.collections, c => c.products).length}
                 getWmsLinkClicked={props.getWmsLinkClicked}
                 wmsLink={props.wmsLink}
               />
             </Sticky>
             <List
-              products={_.flatMap(props.result.collections, c => c.products)}
+              products={flatMap(props.result.collections, c => c.products)}
               hovered={props.hovered}
               selected={props.selected}
               productHovered={props.productHovered}

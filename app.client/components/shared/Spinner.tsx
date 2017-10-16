@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Progress } from 'semantic-ui-react'
-import * as _ from 'lodash';
+import { debounce } from 'lodash';
 
 interface SpinnerProps {
   pending: number
@@ -14,7 +14,7 @@ interface SpinnerState {
 export class Spinner extends React.Component<SpinnerProps, SpinnerState> {
 
   // make sure we don't stop the progress bar too quickly
-  stopTheSpinner = _.debounce(() => this.setState({ spinning: false }), 1000)
+  stopTheSpinner = debounce(() => this.setState({ spinning: false }), 1000)
 
   constructor(props: SpinnerProps) {
     super(props)

@@ -3,7 +3,8 @@ import * as express  from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
-import { pages } from './routes'
+// import { pages } from './routes'
+import { pages } from './pages'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
@@ -16,26 +17,23 @@ let app = express()
 let env = getEnvironmentSettings(app.settings.env)
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository()
 
-//process.on('unhandledRejection', r => console.log(r))
-
 // parse json body requests
 app.use(bodyParser.json())
 
 // realistic speeds at dev time
-if (env.dev) {
-  app.use((req, res, next) => setTimeout(next, 500))
-}
+// if (env.dev) {
+//   app.use((req, res, next) => setTimeout(next, 500))
+// }
 
 // custom wms GetCapabilites handler
 app.get(`/wms/:key`, async (req, res) => {
-
   let storedQuery = await storedQueryRepository.load(req.params.key)
   let queryResult = getProducts(storedQuery.query)
 
   // get all the products out of the query result, ignoring the collection they're in
   let products = _.flatMap(queryResult.collections, c => c.products)
 
-  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`), req.protocol)
+  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`) || '', req.protocol)
   let result = getCapabilities(products, realWmsUrl)
 
   res.set(`Content-Type`, `text/xml`)
@@ -64,23 +62,26 @@ app.post(`/api/storedQueries`, async (req, res) => {
   res.json({ key: storedQuery.id })
 })
 
-// serve static files from the specified directory
-app.use(express.static(env.dir))
 
-// single page app. any routes that are "pages" need to return the index.html
-// and allow the client-side router to show the correct page
-app.get(pages, (req, res) => {
-  res.sendFile('index.html', { root: env.dir })
-})
+// serve our html pages
+// (note: webpack-dev-server serves the index.html pages from in-memory and doesn't reach this server)
+// for (let page of pages) {
+//   app.get(page.path, (req, res) => {
+//     res.sendFile(page.file, { root: env.dir })
+//   })
+// }
 
 // exercise error handling
 app.get(`/error`, (req, res) => {
-  throw 'You made an error.'
+  throw 'You made an error!'
 })
 
 app.get(`/500`, (req, res) => {
   res.sendFile('errors/500.html', { root: env.dir })
 })
+
+// serve static files from the specified directory
+app.use(express.static(env.dir))
 
 // no matches yet, return 404
 app.use((req, res) => {
