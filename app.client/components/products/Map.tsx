@@ -23,9 +23,9 @@ interface MapProps {
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map
-  productFootprintLayerGroup: L.LayerGroup
-  productWmsLayerGroup: L.LayerGroup
-  collectionWmsLayerGroup: L.LayerGroup
+  productFootprintLayerGroup: L.LayerGroup<L.GeoJSON>
+  productWmsLayerGroup: L.LayerGroup<L.TileLayer.WMS>
+  collectionWmsLayerGroup: L.LayerGroup<L.TileLayer.WMS>
 
   // tuples of { product, footprint, wms }
   // associating a product with its corresponding leaflet map objects
@@ -80,10 +80,12 @@ export class Map extends React.Component<MapProps, {}> {
         L.tileLayer(config.map.baseLayerUrlTemplate, { attribution: config.map.attribution })
       ],
       editable: true, // enable leaflet.editable plugin
+////      fullscreenControl: true, // enable leaflet-fullscreen plugin
     })
 
-    // enable leaflet.fullscreen plugin
-    new L.Control.Fullscreen({ position: 'topright' }).addTo(map)
+
+//    // enable leaflet.fullscreen plugin
+//    //new L.Control.Fullscreen({ position: 'topright' }).addTo(map)
 
     map.setView(config.map.defaultCenter, config.map.defaultZoom)
 
@@ -93,7 +95,7 @@ export class Map extends React.Component<MapProps, {}> {
     this.collectionWmsLayerGroup = L.layerGroup([]).addTo(map)
 
     // add the bbox rectangle
-    let bboxRect = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 })
+    let bboxRect = L.rectangle(L.latLngBounds(bboxFlatArrayToCoordArray(this.props.query.bbox)), { fillOpacity: 0 })
     bboxRect.addTo(map)
     bboxRect.enableEdit() // enable a moveable bbox with leaflet.editable
 
@@ -155,7 +157,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   makeProductFootprintLayer(p: Product) {
 
-    let footprint = L.geoJSON(p.footprint, productFootprintStyleOff)
+    let footprint = L.geoJson(p.footprint)  //style: productFootprintStyleOff
 
     footprint.on('mouseout', () => {
       footprint.setStyle(() => productFootprintStyleOff)

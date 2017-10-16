@@ -35,7 +35,7 @@ app.get(`/wms/:key`, async (req, res) => {
   // get all the products out of the query result, ignoring the collection they're in
   let products = _.flatMap(queryResult.collections, c => c.products)
 
-  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`), req.protocol)
+  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`) || '', req.protocol)
   let result = getCapabilities(products, realWmsUrl)
 
   res.set(`Content-Type`, `text/xml`)
