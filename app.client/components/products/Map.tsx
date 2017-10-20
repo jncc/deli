@@ -157,7 +157,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   makeProductFootprintLayer(p: Product) {
 
-    let footprint = L.geoJson(p.footprint)  //style: productFootprintStyleOff
+    let footprint = L.geoJson(p.footprint, { style: () => productFootprintStyleOff })
 
     footprint.on('mouseout', () => {
       footprint.setStyle(() => productFootprintStyleOff)
