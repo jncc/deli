@@ -6,3 +6,18 @@ declare module 'react-motion-flip'
 // @typings/query-string type definitions are currently incorrect (too restrictive)
 declare module 'query-string'
 
+// import { Modal } from 'semantic-ui-react';
+
+// // typings for leaflet-fullscreen plugin don't work
+// declare module 'leaflet' {
+
+//     namespace Map {
+//       interface MapOptions {
+//           fullscreenControl?: boolean;
+//       }
+//     }
+
+//     interface ControlStatic {
+//       Fullscreen: any
+//     }
+//   }

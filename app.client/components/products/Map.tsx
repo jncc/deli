@@ -80,12 +80,10 @@ export class Map extends React.Component<MapProps, {}> {
         L.tileLayer(config.map.baseLayerUrlTemplate, { attribution: config.map.attribution })
       ],
       editable: true, // enable leaflet.editable plugin
-////      fullscreenControl: true, // enable leaflet-fullscreen plugin
     })
 
-
-//    // enable leaflet.fullscreen plugin
-//    //new L.Control.Fullscreen({ position: 'topright' }).addTo(map)
+    // enable leaflet.fullscreen plugin
+    new L.Control.Fullscreen({ position: 'topright' }).addTo(map)
 
     map.setView(config.map.defaultCenter, config.map.defaultZoom)
 
