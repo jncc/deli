@@ -71,6 +71,10 @@ module.exports = function(env) {
 
     // plugins are for anything "loaders" can't do (?!)
     plugins: [
+
+      // experimental: ignore all the moment locales
+      //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
       // this is necessary for the extract-text loader... baffling!
       // https://webpack.js.org/guides/code-splitting-css/
       new ExtractTextPlugin('styles.css'),
