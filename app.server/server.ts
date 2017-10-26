@@ -70,6 +70,7 @@ app.use(express.static(env.dir))
 // single page app. any routes that are "pages" need to return the index.html
 // and allow the client-side router to show the correct page
 app.get(pages, (req, res) => {
+  req.path
   res.sendFile('index.html', { root: env.dir })
 })
 

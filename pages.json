@@ -1,4 +1,10 @@
 {
-  "index": {},
-  "help/cookies": {}
+  "index": {
+    "path": "/",
+    "file": "/index.html"
+  },
+  "help-cookies": {
+    "path": "/help/cookies",
+    "file": "/help/cookies.html"
+  }
 }
