@@ -1,5 +1,4 @@
 
-let pages = require('../pages.json')
 
 interface PageConfig {
   [key: string]: {
@@ -8,4 +7,14 @@ interface PageConfig {
   }
 }
 
-export
+export const pages: PageConfig =
+{
+  "index": {
+    "path": "/",
+    "file": "index.html"
+  },
+  "help-cookies": {
+    "path": "help/cookies",
+    "file": "help/cookies.html"
+  }
+}

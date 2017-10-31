@@ -3,7 +3,8 @@ import * as express  from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
-import { pages } from './routes'
+// import { pages } from './routes'
+import { pages } from './pages'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
@@ -67,11 +68,11 @@ app.post(`/api/storedQueries`, async (req, res) => {
 // serve static files from the specified directory
 app.use(express.static(env.dir))
 
-// single page app. any routes that are "pages" need to return the index.html
-// and allow the client-side router to show the correct page
-app.get(pages, (req, res) => {
-  req.path
-  res.sendFile('index.html', { root: env.dir })
+// serve our html pages
+_.each(pages, p => {
+  app.get(p.path, (req, res) => {
+    res.sendFile(p.file, { root: env.dir })
+  })
 })
 
 // exercise error handling
