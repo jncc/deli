@@ -17,15 +17,13 @@ let app = express()
 let env = getEnvironmentSettings(app.settings.env)
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository()
 
-//process.on('unhandledRejection', r => console.log(r))
-
 // parse json body requests
 app.use(bodyParser.json())
 
 // realistic speeds at dev time
-if (env.dev) {
-  app.use((req, res, next) => setTimeout(next, 500))
-}
+// if (env.dev) {
+//   app.use((req, res, next) => setTimeout(next, 500))
+// }
 
 // custom wms GetCapabilites handler
 app.get(`/wms/:key`, async (req, res) => {
@@ -65,24 +63,27 @@ app.post(`/api/storedQueries`, async (req, res) => {
   res.json({ key: storedQuery.id })
 })
 
-// serve static files from the specified directory
-app.use(express.static(env.dir))
 
 // serve our html pages
-_.each(pages, p => {
-  app.get(p.path, (req, res) => {
-    res.sendFile(p.file, { root: env.dir })
+// (note: webpack-dev-server serves the html pages such as '/' in-memory)
+for (let page of pages) {
+  app.get(page.path, (req, res) => {
+    res.sendFile(page.file, { root: env.dir })
   })
-})
+}
 
 // exercise error handling
 app.get(`/error`, (req, res) => {
-  throw 'You made an error.'
+  throw 'You made an error!'
 })
 
 app.get(`/500`, (req, res) => {
   res.sendFile('errors/500.html', { root: env.dir })
 })
+
+// serve static files from the specified directory
+//app.use(express.static(env.dir))
+
 
 // no matches yet, return 404
 app.use((req, res) => {
