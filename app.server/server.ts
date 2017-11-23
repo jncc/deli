@@ -27,7 +27,6 @@ app.use(bodyParser.json())
 
 // custom wms GetCapabilites handler
 app.get(`/wms/:key`, async (req, res) => {
-
   let storedQuery = await storedQueryRepository.load(req.params.key)
   let queryResult = getProducts(storedQuery.query)
 
@@ -82,8 +81,7 @@ app.get(`/500`, (req, res) => {
 })
 
 // serve static files from the specified directory
-//app.use(express.static(env.dir))
-
+app.use(express.static(env.dir))
 
 // no matches yet, return 404
 app.use((req, res) => {
