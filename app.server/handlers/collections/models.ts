@@ -4,9 +4,10 @@ export interface GetCollectionsResult {
 }
 
 export interface Collection {
-    id:         string,
-    metadata:   CollectionMetadata,
-    data:       CollectionData,
+    id:                    string,
+    metadata:              CollectionMetadata,
+    metadataExternalLink?: string,
+    data:                  CollectionData,
 }
 
 export interface CollectionMetadata {
