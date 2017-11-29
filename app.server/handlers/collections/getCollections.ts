@@ -14,6 +14,7 @@ export function getCollections(): GetCollectionsResult {
         .map(c => ({
             id: c.id,
             metadata: c.metadata,
+            metadataExternalLink: c.metadataExternalLink,
             data: c.data }))
         .sortBy(c => c.metadata.title)
         .value()

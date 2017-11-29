@@ -9,10 +9,11 @@ export interface GetProductsResult {
 }
 
 export interface ProductCollection {
-    id:         string,
-    products:   Product[],
-    metadata:   CollectionMetadata,
-    data:       CollectionData,
+    id:                    string,
+    products:              Product[],
+    metadata:              CollectionMetadata,
+    metadataExternalLink?: string,
+    data:                  CollectionData,
 }
 
 export interface Product {
