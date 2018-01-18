@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet-editable'
 import 'leaflet-fullscreen'
-import * as _ from 'lodash'
+import { flatMap, isEqual } from 'lodash'
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -46,7 +46,7 @@ export class Map extends React.Component<MapProps, {}> {
     // if the query has changed, update the map
     if (prevProps.result != this.props.result) {
 
-      let collectionsHaveChanged = !_.isEqual(
+      let collectionsHaveChanged = !isEqual(
         prevProps.result.collections.map(c => c.id),
         this.props.result.collections.map(c => c.id)
       )
@@ -54,9 +54,9 @@ export class Map extends React.Component<MapProps, {}> {
         this.addCollectionsToMap()
       }
 
-      let productsHaveChanged = !_.isEqual(
-        _.flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
-        _.flatMap(this.props.result.collections, c => c.products).map(p => p.id)
+      let productsHaveChanged = !isEqual(
+        flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
+        flatMap(this.props.result.collections, c => c.products).map(p => p.id)
       )
       if (productsHaveChanged) {
         this.updateProductList()
@@ -109,7 +109,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   updateProductList() {
     // just make a brand new list (sufficient for now)
-    this.productTuples = _.flatMap(this.props.result.collections, c => c.products)
+    this.productTuples = flatMap(this.props.result.collections, c => c.products)
       .map(p => ({
         product: p,
         footprint: this.makeProductFootprintLayer(p),
