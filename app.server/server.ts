@@ -81,7 +81,7 @@ app.get(`/500`, (req, res) => {
 })
 
 // serve static files from the specified directory
-app.use(express.static(env.dir))
+app.use(express.static(env.dir, { redirect: false }))
 
 // no matches yet, return 404
 app.use((req, res) => {
