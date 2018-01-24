@@ -1,5 +1,4 @@
 
-import * as _ from 'lodash'
 
 /** Converts [minX, minY, maxX, maxY] to [[minY, minX], [maxY, maxX]]. */
 export function bboxFlatArrayToCoordArray(bbox: number[]): [[number, number], [number, number]] {

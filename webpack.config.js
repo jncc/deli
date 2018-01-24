@@ -23,9 +23,12 @@ module.exports = function(env) {
 
   return {
     // the entry point for the webpack dependency analysis
-    entry: './app.client/index.tsx',
+    entry: {
+      app: "./app.client/index.tsx",
+      cookies: "./app.client/help/cookies.tsx"
+    },
 
-    // the webpacked output bundle
+    // the webpacked output bundle(s)
     output: {
       path: resolveRelativePath('built/app.client'),
       filename: '[name].[hash].js'
@@ -49,6 +52,7 @@ module.exports = function(env) {
             }]
         },
         // http://survivejs.com/webpack/understanding-loaders/loading-images/
+        // (currently images are not handled consistently; also copying whole images folder below)
         { test: /\.(jpg|png)$/, loader: 'file-loader', options: { name: '[path][name].[hash].[ext]' }},
         // markdown loader
         { test: /\.md$/, use: [ { loader: "html-loader" }, { loader: "markdown-loader", options: { /* your options here */ } } ] },
@@ -61,12 +65,16 @@ module.exports = function(env) {
     // tell webpack to use .tsx files
     resolve: { extensions: [".tsx", ".ts", ".js"] },
 
-    // devtool is the tool that generates source maps
+    // "devtool" generates source maps!
     // https://webpack.js.org/guides/webpack-and-typescript/#typescript-loaders
     devtool: env.name !== 'production' ? 'inline-source-map' : '',
 
-    // plugins are for anything "loaders" can't do
+    // plugins are for anything "loaders" can't do (?!)
     plugins: [
+
+      // experimental: ignore all the moment locales
+      //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
       // this is necessary for the extract-text loader... baffling!
       // https://webpack.js.org/guides/code-splitting-css/
       new ExtractTextPlugin('styles.css'),
@@ -80,15 +88,30 @@ module.exports = function(env) {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: './app.client/index.ejs',
+        chunks: ['app'],
         branch: grp.branch(),
         commit: grp.commithash()
       }),
+      new HtmlWebpackPlugin({
+        filename: 'help/index.html',
+        template: './app.client/help/index.ejs',
+        chunks: ['app'],
+        branch: grp.branch(),
+        commit: grp.commithash()
+      }),
+      // new HtmlWebpackPlugin({
+      //   filename: 'help/cookies.html',
+      //   template: './app.client/help/cookies.ejs',
+      //   chunks: ['cookies'],
+      //   branch: grp.branch(),
+      //   commit: grp.commithash()
+      // }),
 
     ],
 
     // configure webpack-dev-server - runs on the default port 8080
     // open a browser window, quietly, and proxy all requests to the app.server
     // nodejs server running on port 5000
-    devServer: { open: true, quiet: true, proxy: { '*': 'http://localhost:5000' } }
+    devServer: { open: true, quiet: true, proxy: { '*': 'http://localhost:5000' } , index: 'index.html'}
   }
 };

@@ -4,4 +4,7 @@ export const pages = [
   `/collections/`,
   `/products`,
   `/products/`,
+
+  `/help/cookies`,
+  `/help/cookies/`,
 ]

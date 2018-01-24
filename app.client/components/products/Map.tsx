@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import * as L from 'leaflet'
 import 'leaflet-editable'
 import 'leaflet-fullscreen'
-import * as _ from 'lodash'
+import { flatMap, isEqual } from 'lodash'
 
 import { config } from '../../config/config'
 import { Query } from '../models/Query'
@@ -23,9 +23,9 @@ interface MapProps {
 export class Map extends React.Component<MapProps, {}> {
 
   map: L.Map
-  productFootprintLayerGroup: L.LayerGroup
-  productWmsLayerGroup: L.LayerGroup
-  collectionWmsLayerGroup: L.LayerGroup
+  productFootprintLayerGroup: L.LayerGroup<L.GeoJSON>
+  productWmsLayerGroup: L.LayerGroup<L.TileLayer.WMS>
+  collectionWmsLayerGroup: L.LayerGroup<L.TileLayer.WMS>
 
   // tuples of { product, footprint, wms }
   // associating a product with its corresponding leaflet map objects
@@ -46,7 +46,7 @@ export class Map extends React.Component<MapProps, {}> {
     // if the query has changed, update the map
     if (prevProps.result != this.props.result) {
 
-      let collectionsHaveChanged = !_.isEqual(
+      let collectionsHaveChanged = !isEqual(
         prevProps.result.collections.map(c => c.id),
         this.props.result.collections.map(c => c.id)
       )
@@ -54,9 +54,9 @@ export class Map extends React.Component<MapProps, {}> {
         this.addCollectionsToMap()
       }
 
-      let productsHaveChanged = !_.isEqual(
-        _.flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
-        _.flatMap(this.props.result.collections, c => c.products).map(p => p.id)
+      let productsHaveChanged = !isEqual(
+        flatMap(prevProps.result.collections, c => c.products).map(p => p.id),
+        flatMap(this.props.result.collections, c => c.products).map(p => p.id)
       )
       if (productsHaveChanged) {
         this.updateProductList()
@@ -93,7 +93,7 @@ export class Map extends React.Component<MapProps, {}> {
     this.collectionWmsLayerGroup = L.layerGroup([]).addTo(map)
 
     // add the bbox rectangle
-    let bboxRect = L.rectangle(bboxFlatArrayToCoordArray(this.props.query.bbox), { fillOpacity: 0 })
+    let bboxRect = L.rectangle(L.latLngBounds(bboxFlatArrayToCoordArray(this.props.query.bbox)), { fillOpacity: 0 })
     bboxRect.addTo(map)
     bboxRect.enableEdit() // enable a moveable bbox with leaflet.editable
 
@@ -109,7 +109,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   updateProductList() {
     // just make a brand new list (sufficient for now)
-    this.productTuples = _.flatMap(this.props.result.collections, c => c.products)
+    this.productTuples = flatMap(this.props.result.collections, c => c.products)
       .map(p => ({
         product: p,
         footprint: this.makeProductFootprintLayer(p),
@@ -155,7 +155,7 @@ export class Map extends React.Component<MapProps, {}> {
 
   makeProductFootprintLayer(p: Product) {
 
-    let footprint = L.geoJSON(p.footprint, productFootprintStyleOff)
+    let footprint = L.geoJson(p.footprint, { style: () => productFootprintStyleOff })
 
     footprint.on('mouseout', () => {
       footprint.setStyle(() => productFootprintStyleOff)

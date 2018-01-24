@@ -1,11 +1,9 @@
 
 import * as React from 'react'
 import * as moment from 'moment'
-import * as _ from 'lodash';
-import { Button, Grid, Header, Checkbox } from 'semantic-ui-react'
-// const FlipMove = require('react-flip-move')
-// const ReactMotionFlip = require('react-motion-flip')
+import * as _ from 'lodash'
 import ReactMotionFlip from 'react-motion-flip'
+import { Button, Grid, Header, Checkbox } from 'semantic-ui-react'
 
 import { config } from '../../config/config'
 import { Tooltip } from './Widgets'
@@ -34,7 +32,7 @@ export function List(props: ListProps) {
 
   let rows = data.map(x =>
     <div
-      key={x.p.id + '-' + x.p.title} // in case id isn't unique for some bad data reason
+      key={x.p.id}
       className='product'
       onMouseOver={() => props.productHovered(x.p)} onMouseOut={() => props.productUnhovered(x.p)}
       >

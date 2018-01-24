@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-import * as _ from 'lodash'
+import { flatMap } from 'lodash'
 import * as qs from 'query-string'
 
 import { config } from '../../config/config'
@@ -96,7 +96,7 @@ export class Products extends React.Component<any, ProductsState> {
       .then(res => res.json()
         .then((r: GetProductsResult) => {
           // add customer-specific product properties that should be in the data
-          _.flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties)
+          flatMap(r.collections, c => c.products).map(this.addCustomerSpecificProductProperties)
           this.setState({ result: r })
           this.setState((prev) => ({ pending: prev.pending - 1 }))
         })).catch(ex => {
