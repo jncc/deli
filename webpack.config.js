@@ -36,10 +36,9 @@ module.exports = function(env) {
   console.log(`Hello from the Webpack build script. Environment name is '${env.name}'.`);
 
   return {
-    // the entry point for the webpack dependency analysis
+    // the entry point(s) for the webpack dependency analysis
     entry: {
-      app: "./app.client/index.tsx",
-      cookies: "./app.client/help/cookies.tsx"
+      app: "./app.client/index.tsx"
     },
 
     // the webpacked output bundle(s)
