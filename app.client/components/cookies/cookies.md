@@ -1,6 +1,4 @@
  
-Cookies 
-======= 
  
 **remotesensingdata.gov.scot** puts small files (known as ‘cookies’) on to your computer to collect information about how you browse the site. 
  

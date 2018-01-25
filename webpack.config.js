@@ -5,7 +5,8 @@ let NoOpWebpackPlugin = require('noop-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let GitRevisionPlugin = require('git-revision-webpack-plugin')
+let GitRevisionPlugin = require('git-revision-webpack-plugin');
+let WriteFilePlugin = require('write-file-webpack-plugin');
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
 let fs = require('fs');
 
@@ -94,7 +95,17 @@ module.exports = function(env) {
         { from: './app.client/errors', to: 'errors' }
       ]),
       // generate the html pages by making a HtmlWebpackPlugin object for each page
-      ...pages.map(makeHtmlPageConfig)
+      //...pages.map(makeHtmlPageConfig)
+      new WriteFilePlugin(), // boo hoo
+      new HtmlWebpackPlugin({
+        // the HtmlWebpackPlugin supports basic EJS templating by default
+        filename: 'index.html', // this is the output file
+        template: './app.client/index.html', // this is the input file
+        chunks:   ['app'],
+        branch:   gitRevision.branch(),
+        commit:   gitRevision.commithash(),
+
+      })
     ],
 
     // configure webpack-dev-server - runs on the default port 8080

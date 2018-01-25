@@ -1,0 +1,56 @@
+<%
+  let branch = htmlWebpackPlugin.options.branch
+  let commit = htmlWebpackPlugin.options.commit
+  let title = ''
+  let gtmId = ''
+  let partial = htmlWebpackPlugin.options.partial
+
+  switch (branch) {
+    case 'lidar' : {
+      title = 'Scottish Remote Sensing Portal'
+      gtmId = 'GTM-W9VKSC5'
+      break
+    }
+    case 'eocoe' : {
+      title = 'Earth Observation Collaboration Node'
+      gtmId = 'GTM-KDNH5VM'
+      break
+    }
+    default : {
+      title : 'Deli under development'
+    }
+  }
+
+%>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title><%=title %></title>
+  <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"></link>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','<%= gtmId %>');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= gtmId %>"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div id="app">Loading...</div>
+
+</body>
+
+<!-- branch::<%=branch %> commit::<%=commit %> -->
+</html>

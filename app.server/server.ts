@@ -3,8 +3,7 @@ import * as express  from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
 
-// import { pages } from './routes'
-import { pages } from './pages'
+import { pages } from './routes'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
@@ -62,7 +61,12 @@ app.post(`/api/storedQueries`, async (req, res) => {
   res.json({ key: storedQuery.id })
 })
 
-
+// single page app. any routes that are "pages" need to return the index.html
+// and allow the client-side router to show the correct page
+app.get(pages, (req, res) => {
+  console.log(req.url)
+  res.sendFile('index.html', { root: env.dir })
+})
 // serve our html pages
 // (note: webpack-dev-server serves the index.html pages from in-memory and doesn't reach this server)
 // for (let page of pages) {

@@ -5,6 +5,8 @@ export const pages = [
   `/products`,
   `/products/`,
 
-  `/help/cookies`,
-  `/help/cookies/`,
+  `/help`,
+  `/help/`,
+  `/cookies`,
+  `/cookies/`,
 ]
