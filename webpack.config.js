@@ -7,6 +7,25 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let GitRevisionPlugin = require('git-revision-webpack-plugin')
 let resolveRelativePath = (path) => require('path').resolve(__dirname, path);
+let fs = require('fs');
+
+let pages = [
+  { path: 'index.html' },
+  { path: 'help/index.html' },
+  { path: 'help/cookies/index.html' },
+]
+
+let gitRevision = new GitRevisionPlugin({ branch: true })
+
+let makeHtmlPageConfig = ({ path }) => new HtmlWebpackPlugin({
+  // the HtmlWebpackPlugin supports basic EJS templating by default
+  filename: path, // this is the output file
+  template: './app.client/index.ejs', // this is the input file
+  partial:  fs.readFileSync('./app.client/' + path.replace('index.html', 'index.partial.ejs') , 'utf8'), // naming convention
+  chunks:   ['app'],
+  branch:   gitRevision.branch(),
+  commit:   gitRevision.commithash()
+})
 
 module.exports = function(env) {
 
@@ -15,11 +34,6 @@ module.exports = function(env) {
   // but we don't see it here in the build script!)
   if (!env) { env = { name:'development' } };
   console.log(`Hello from the Webpack build script. Environment name is '${env.name}'.`);
-
-  // get git revision plugin - branch determines build time config
-  let grp = new GitRevisionPlugin({
-    branch: true
-  })
 
   return {
     // the entry point for the webpack dependency analysis
@@ -43,13 +57,11 @@ module.exports = function(env) {
         // https://webpack.js.org/guides/code-splitting-css/
         { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
         // https://webpack.js.org/loaders/less-loader/ (we import the less in index.tsx)
-        { test: /\.less$/, use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "less-loader" // compiles Less to CSS
-            }]
+        { test: /\.less$/, use: [
+            { loader: "style-loader" }, // creates style nodes from JS strings
+            { loader: "css-loader" },   // translates CSS into CommonJS
+            { loader: "less-loader" }   // compiles Less to CSS
+          ]
         },
         // http://survivejs.com/webpack/understanding-loaders/loading-images/
         // (currently images are not handled consistently; also copying whole images folder below)
@@ -71,7 +83,6 @@ module.exports = function(env) {
 
     // plugins are for anything "loaders" can't do (?!)
     plugins: [
-
       // experimental: ignore all the moment locales
       //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
@@ -83,30 +94,8 @@ module.exports = function(env) {
         { from: './app.client/images', to: 'images' },
         { from: './app.client/errors', to: 'errors' }
       ]),
-      // generate the index.html page (using the actual index.html as the input)
-      // with all the things that we need (using plugin defaults)
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: './app.client/index.ejs',
-        chunks: ['app'],
-        branch: grp.branch(),
-        commit: grp.commithash()
-      }),
-      new HtmlWebpackPlugin({
-        filename: 'help/index.html',
-        template: './app.client/help/index.ejs',
-        chunks: ['app'],
-        branch: grp.branch(),
-        commit: grp.commithash()
-      }),
-      // new HtmlWebpackPlugin({
-      //   filename: 'help/cookies.html',
-      //   template: './app.client/help/cookies.ejs',
-      //   chunks: ['cookies'],
-      //   branch: grp.branch(),
-      //   commit: grp.commithash()
-      // }),
-
+      // generate the html pages by making a HtmlWebpackPlugin object for each page
+      ...pages.map(makeHtmlPageConfig)
     ],
 
     // configure webpack-dev-server - runs on the default port 8080

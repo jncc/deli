@@ -3,6 +3,7 @@
   let commit = htmlWebpackPlugin.options.commit
   let title = ''
   let gtmId = ''
+  let partial = htmlWebpackPlugin.options.partial
 
   switch (branch) {
     case 'lidar' : {
@@ -47,7 +48,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <div id="app">Loading...</div>
+  <%= partial %>
 </body>
 
 <!-- branch::<%=branch %> commit::<%=commit %> -->
