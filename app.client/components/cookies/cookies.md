@@ -1,20 +1,29 @@
  
  
-**remotesensingdata.gov.scot** puts small files (known as ‘cookies’) on to your computer to collect information about how you browse the site. 
+This website (portal) **remotesensingdata.gov.scot** puts small files (known as ‘cookies’) on to your computer to collect information about how you browse the site. 
  
 Cookies are used to: 
  
 - measure how you use the website so it can be updated and improved based on your needs 
 - remember the notifications you’ve seen so that we don’t show them to you again 
  
-> **remotesensingdata.gov.scot** cookies aren’t used to identify you personally. 
+**remotesensingdata.gov.scot** cookies aren’t used to identify you personally. 
  
 Find out more about how to [manage cookies](https://www.aboutcookies.org/). 
  
 How cookies are used on **remotesensingdata.gov.scot** 
 ----------------------- 
- 
-Measuring website usage (Google Analytics) 
+
+We use a cookie to remember to not show you our cookie banner again.
+
+### Cookie consent
+
+| Name          | Purpose       | Expires  | 
+| ------------- | ------------- | -------  | 
+| cookieConsent  | Remember not to show our cookie banner again | One year
+
+
+### Measuring website usage (Google Analytics) 
  
 We use Google Analytics software to collect information about how you use **remotesensingdata.gov.scot**. We do this to help make sure the site is meeting the needs of its users and to help us make improvements. 
  

@@ -32,6 +32,7 @@
     "query-string": "5.0.0",
     "random-key": "0.3.2",
     "react": "16.0.0",
+    "react-cookie": "2.1.2",
     "react-copy-to-clipboard": "5.0.1",
     "react-dom": "16.0.0",
     "react-leaflet": "1.7.1",

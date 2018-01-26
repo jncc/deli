@@ -1,19 +1,31 @@
 
 import * as React from 'react'
 import { Link } from "react-router-dom";
-import { Container, Icon, Accordion, Segment } from 'semantic-ui-react'
+import { Container, Icon, Accordion, Segment, Transition } from 'semantic-ui-react'
 
 import { config } from '../../config/config'
 import { Spinner } from './Spinner'
 
 interface HeadProps {
-  pending: number
+  pending: number,
+  cookieBanner: boolean
 }
 
 export const Head = (props: HeadProps) => {
 
   return (
     <div className='head'>
+
+      <Transition.Group animation='fade' duration={500}>
+        {props.cookieBanner &&
+          <div className="cookie-banner">
+            <Container>
+              We use cookies to make this site simpler. &nbsp; <Link to='/cookies'>Find out more about cookies</Link>
+            </Container>
+          </div>
+        }
+      </Transition.Group>
+
       {getHeaderUI()}
       <Spinner pending={props.pending} />
     </div>

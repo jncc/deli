@@ -1,7 +1,8 @@
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
+import { CookiesProvider } from 'react-cookie';
 
 // support es5 browsers such as IE11
 import 'es6-shim' // polyfill to support es6 methods and functions
@@ -15,6 +16,8 @@ import { Routes } from './routes'
 import { store } from './state/store'
 
 ReactDOM.render(
-    <Provider store={store}>{Routes}</Provider>,
-    document.getElementById('app')
+  <CookiesProvider>
+    <ReduxProvider store={store}>{Routes}</ReduxProvider>
+  </CookiesProvider>,
+  document.getElementById('app')
 )

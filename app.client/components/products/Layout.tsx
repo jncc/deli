@@ -33,7 +33,7 @@ export function Layout(props: LayoutProps) {
 
   return (
     <div>
-      <Head pending={props.pending} />
+      <Head pending={props.pending} cookieBanner={false} />
       <Container fluid className='deli-container'>
         <Grid>
           <Grid.Column width={6}>

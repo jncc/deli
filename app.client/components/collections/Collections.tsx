@@ -31,7 +31,7 @@ export class Collections extends React.Component<any, CollectionsState> {
   render() {
     return (
       <div>
-        <Head pending={this.state.pending} />
+        <Head pending={this.state.pending} cookieBanner={false} />
         <Container>
           <Header
             as='h1'

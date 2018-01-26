@@ -2,10 +2,10 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { Home } from './components/home/Home';
+import Home from './components/home/Home';
 import { Collections } from './components/collections/Collections';
 import { Products } from './components/products/Products';
-import { Cookies } from './components/cookies/Cookies';
+import Cookies from './components/cookies/Cookies';
 
 import { DevWmsModalButton } from './components/shared/WmsModalButton'
 
