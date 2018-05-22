@@ -14,8 +14,11 @@ export function Foot() {
               JNCC
             </a> <Icon name='external' />
           </span>
-          <span className='cookies-link'>
+          <span>
             <Link to='/cookies'>Cookies</Link>
+          </span>
+          <span>
+            <Link to='/privacy'>Privacy</Link>
           </span>
           {config.name === 'lidar' &&
           <span className='feedback-link'>

@@ -31,6 +31,9 @@ function Cookies(props: any) {
 
         <div dangerouslySetInnerHTML={ {__html: contentStyled } } ></div>
 
+        <br />
+        <br />
+
       </Container>
       <Foot />
     </div>
