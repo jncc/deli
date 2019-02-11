@@ -25,7 +25,8 @@ export const config: ClientConfig = {
         end:         `2016-06-31`,
     },
     defaultQueryResultInfo: {
-        bboxArea:    13679
+        bboxArea:    13679,
+        total:       0
     },
     form: {
         start:       false,

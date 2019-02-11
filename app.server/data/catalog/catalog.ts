@@ -117,8 +117,8 @@ export class Catalog {
           collection: this.getCollectionNameFromID(query.collections[0]),
           footprint: this.generateGeoJSONFromBBOX(query.bbox),
           spatialOp: 'overlaps',
-          limit: 50,
-          offset: 0
+          limit: query.limit,
+          offset: query.offset
         },
         json: true
     }).then(async (retJson) => {
@@ -156,7 +156,10 @@ export class Catalog {
             }
           })
         } ],
-        query: { bboxArea: Math.round(turf.area(turf.bboxPolygon(query.bbox)) / 1000000) }
+        query: {
+          bboxArea: Math.round(turf.area(turf.bboxPolygon(query.bbox)) / 1000000),
+          total: retJson.query.total
+        }
       }
     });
   }

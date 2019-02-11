@@ -28,7 +28,7 @@ const getProductCountUI = (productCount: number, tooManyProducts: boolean) => {
   if (tooManyProducts) {
     return (
       <div className='summary-count'>
-        <Label size='huge' circular color='purple'>{config.maxProductCount}+</Label>
+        <Label size='huge' circular color='purple'>{productCount}</Label>
         <span className='summary-count-header'>products found</span>
         <span className='summary-count-subheader'>Only the first {config.maxProductCount} are shown</span>
       </div>

@@ -25,7 +25,8 @@ export interface ClientConfig {
         end:         string
     },
     defaultQueryResultInfo: {
-        bboxArea:    number
+        bboxArea:    number,
+        total:       number
     },
     form: {
         start: boolean

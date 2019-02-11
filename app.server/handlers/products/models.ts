@@ -5,6 +5,7 @@ export interface GetProductsResult {
     collections: ProductCollection[]
     query: {
       bboxArea: number // incidental info in km2 calculated for the user
+      total: number
     }
 }
 
