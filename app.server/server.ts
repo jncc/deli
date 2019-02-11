@@ -7,15 +7,16 @@ import { pages } from './routes'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { getCapabilities } from './handlers/wms/getCapabilities'
 import { getProducts } from './handlers/products/getProducts'
-import { getCollections } from './handlers/collections/getCollections'
+// import { getCollections } from './handlers/collections/getCollections'
 import { validateQuery } from './query/validateQuery'
 import { parseQuerystring } from './query/parseQuerystring'
 import { StoredQueryRepository, FakeStoredQueryRepository } from './data/storedQueryRepository'
+import { Catalog } from './data/catalog/catalog';
 
 let app = express()
 let env = getEnvironmentSettings(app.settings.env)
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository()
-
+let catalog = new Catalog();
 // parse json body requests
 app.use(bodyParser.json())
 
@@ -26,30 +27,32 @@ app.use(bodyParser.json())
 
 // custom wms GetCapabilites handler
 app.get(`/wms/:key`, async (req, res) => {
-  let storedQuery = await storedQueryRepository.load(req.params.key)
-  let queryResult = getProducts(storedQuery.query)
+  let storedQuery = await storedQueryRepository.load(req.params.key);
+  let queryResult = getProducts(storedQuery.query);
 
   // get all the products out of the query result, ignoring the collection they're in
-  let products = _.flatMap(queryResult.collections, c => c.products)
+  let products = _.flatMap(queryResult.collections, c => c.products);
 
-  let realWmsUrl = getRealWmsUrl(app.settings.env, req.header(`Host`) || '', req.protocol)
-  let result = getCapabilities(products, realWmsUrl)
+  let realWmsUrl = getRealWmsUrl();
+  let result = getCapabilities(products, realWmsUrl);
 
-  res.set(`Content-Type`, `text/xml`)
-  res.send(result)
+  res.set(`Content-Type`, `text/xml`);
+  res.send(result);
 })
 
 // return collections to the ui
-app.get(`/api/collections`, (req, res) => {
-  let result = getCollections()
+app.get(`/api/collections`, async (req, res) => {
+  let result = await catalog.getCollections().catch((err) => {throw err});
   res.json(result)
 })
 
 // return products to the ui
-app.get(`/api/products`, (req, res) => {
+app.get(`/api/products`, async (req, res) => {
   let q = parseQuerystring(req.query)
   validateQuery(q)
-  let result = getProducts(q)
+
+  let result = await catalog.getProducts(q).catch((err) => {throw err});
+  //let result = getProducts(q)
   res.json(result)
 })
 

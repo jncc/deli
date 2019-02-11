@@ -22,8 +22,10 @@ export interface CollectionData {
         url:  string,
         size: number,
     },
-    wms?: {
-        base_url: string,
-        name:     string,
-    }
+    wms?: WMSData
+}
+
+export interface WMSData {
+  base_url: string,
+  name: string
 }

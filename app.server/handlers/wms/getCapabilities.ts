@@ -2,6 +2,7 @@
 
 import { Product } from './../products/models'
 import { template } from './template'
+import * as config from '../../config/config';
 
 export function getCapabilities(products: Product[], wmsUrl: string): String {
 
@@ -15,7 +16,7 @@ export function getCapabilities(products: Product[], wmsUrl: string): String {
   // (split + join is javascript for 'String.replaceAll'!)
   return template
     .replace('{{{products}}}', productsXml)
-    .split('https://eodip.jncc.gov.uk:443/geoserver').join(wmsUrl)
+    .split(config.GEOSERVER_URL).join(wmsUrl)
 }
 
 export function makeLayerXml(p: Product): string {
@@ -36,5 +37,3 @@ export function makeLayerXml(p: Product): string {
 
   return xml.trim()
 }
-
-
