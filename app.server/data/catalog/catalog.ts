@@ -109,10 +109,9 @@ export class Catalog {
           },
           products: (retJson.result).map((product: any) => {
             let productSearchResult = {
-              id: product.name,
+              id: `${query.collections[0]}/${product.name}`,
               title: product.metadata.title,
               bbox: [product.metadata.boundingBox.west, product.metadata.boundingBox.south, product.metadata.boundingBox.east, product.metadata.boundingBox.north],
-              osgbBbox: [product.metadata.boundingBox.west, product.metadata.boundingBox.south, product.metadata.boundingBox.east, product.metadata.boundingBox.north],
               footprint: {
                 "type": "Feature",
                 "properties": {
@@ -160,7 +159,9 @@ export class Catalog {
         }],
         query: {
           bboxArea: Math.round(turf.area(turf.bboxPolygon(query.bbox)) / 1000000),
-          total: retJson.query.total
+          total: retJson.query.total,
+          limit: retJson.query.limit,
+          offset: retJson.query.offset
         }
       }
     });
