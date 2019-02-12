@@ -12,19 +12,6 @@ function getIntFromEnvVariable(env: string | undefined, defaultValue: number) : 
 
 dotenv.config();
 
-// // switch (process.env.NODE_ENV) {
-// //   case "development":
-// //     console.log(`${__dirname}/../.env.development`);
-// //     path = `${__dirname}/../.env.development`;
-// //     break;
-// //   default:
-// //     console.log('======================================')
-// //     path = `${__dirname}/../.env`
-// // }
-// let path = `${__dirname}/../.env`;
-// console.log(path);
-// dotenv.config({path: path});
-
 export const POSTGRES_HOST = process.env.POSTGRES_HOST;
 export const POSTGRES_PORT = getIntFromEnvVariable(process.env.POSTGRES_PORT, 5432);
 export const POSTGRES_USER = process.env.POSTGRES_USER;

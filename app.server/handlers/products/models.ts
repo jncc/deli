@@ -37,6 +37,10 @@ export interface Product {
         wms?: {
             name:     string,
             base_url: string
+        },
+        catalog?: {
+          collection: string,
+          product?: string
         }
     }
 }
