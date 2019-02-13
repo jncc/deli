@@ -30,7 +30,8 @@ export function validateQuery(o: Query) {
       o.offset = 0;
     }
     // Set limit (page size) to default of 50 if not present or invalid
-    if (!(o.limit && o.limit > 0)) {
+    // i.e. < 0 OR > 50
+    if (!(o.limit && o.limit > 0 && o.limit <= 50)) {
       o.limit = 50;
     }
 

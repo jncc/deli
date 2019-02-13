@@ -1,17 +1,17 @@
 import * as config from '../../config/config';
-import { GetCollectionsResult, Collection, WMSData } from '../../handlers/collections/models'
+import { GetCollectionsResult, WMSData } from '../../handlers/collections/models';
 import * as request from 'request-promise-native';
 import { Query } from '../../../app.client/components/models/Query';
 import { GetProductsResult } from '../../handlers/products/models';
 
 import urljoin = require('url-join');
-import turf = require('turf')
+import turf = require('turf');
 
 export class Catalog {
   collectionSearchEndpoint: string = 'search/collection';
   collectionSearchOGCPattern: string = 'scotland-gov/lidar/ogc';
   collectionSearchLidarPattern: string = 'scotland-gov/lidar/phase*';
-  productSearchEndpoint: string = 'search/product'
+  productSearchEndpoint: string = 'search/product';
 
   geoserverLayers: { [id: string]: { base_url: string, name: string } };
 
@@ -76,13 +76,13 @@ export class Catalog {
     });
   }
 
-  private generateGeoJSONFromBBOX(bbox: number[]): string {
+  private generateWKTFromBBOX(bbox: number[]): string {
     // [minX, minY, maxX, maxY]
     let minX = 0;
     let minY = 1;
     let maxX = 2;
     let maxY = 3;
-    return `POLYGON((${bbox[minX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[minY]}))`
+    return `POLYGON((${bbox[minX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[minY]}))`;
   }
 
   public async getProducts(query: Query): Promise<GetProductsResult> {
@@ -91,7 +91,7 @@ export class Catalog {
       method: 'POST',
       body: {
         collection: query.collections[0],
-        footprint: this.generateGeoJSONFromBBOX(query.bbox),
+        footprint: this.generateWKTFromBBOX(query.bbox),
         spatialOp: 'overlaps',
         limit: query.limit,
         offset: query.offset
@@ -130,28 +130,24 @@ export class Catalog {
             };
 
             if (product.data.product.http) {
-              productSearchResult.data.download = {
-                url: product.data.product.http.url,
-                size: product.data.product.http.size,
-                type: product.data.product.http.type
-              }
+              productSearchResult.data.download = product.data.product.http;
             } else {
-              delete productSearchResult.data.download
+              delete productSearchResult.data.download;
             }
 
             if (product.data.product.wms) {
               productSearchResult.data.wms = {
                 base_url: product.data.product.wms.url,
                 name: product.data.product.wms.name
-              }
+              };
             } else {
               delete productSearchResult.data.wms;
             }
 
             if (product.data.product.catalog) {
-              productSearchResult.data.catalog = product.data.product.catalog
+              productSearchResult.data.catalog = product.data.product.catalog;
             } else {
-              delete productSearchResult.data.catalog
+              delete productSearchResult.data.catalog;
             }
 
             return productSearchResult;
@@ -159,11 +155,11 @@ export class Catalog {
         }],
         query: {
           bboxArea: Math.round(turf.area(turf.bboxPolygon(query.bbox)) / 1000000),
-          total: retJson.query.total,
-          limit: retJson.query.limit,
-          offset: retJson.query.offset
+          total: parseInt(retJson.query.total),
+          limit: parseInt(retJson.query.limit),
+          offset: parseInt(retJson.query.offset)
         }
-      }
+      };
     });
   }
 }
