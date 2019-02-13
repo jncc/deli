@@ -24,7 +24,7 @@
     "leaflet-editable": "1.1.0",
     "leaflet-fullscreen": "1.0.2",
     "leaflet.path.drag": "0.0.6",
-    "lodash": "4.17.4",
+    "lodash": "4.17.11",
     "moment": "2.22.1",
     "nprogress": "0.2.0",
     "pg-promise": "7.0.2",
@@ -90,7 +90,7 @@
     "typescript": "2.5.3",
     "url-loader": "0.6.2",
     "webpack": "3.7.1",
-    "webpack-dev-server": "2.9.4",
+    "webpack-dev-server": "3.1.11",
     "write-file-webpack-plugin": "4.2.0"
   }
 }
