@@ -19,9 +19,16 @@ let env = getEnvironmentSettings(app.settings.env)
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository()
 let catalog = new Catalog();
 
+// TODO: Returns a finished app at the end of an async call to build a
+// list of OGC layers for the known collections. This shouldn't be here
+// but we need to marry the list of OGC services in the OGC collection
+// to the list of lidar collections, so need to know which collection
+// maps to which OGC layer at runtime, lazy loading didn't work well
+// for some reason so it lives here for the moment.
 exports.appPromise = catalog.getOGCServiceList()
   .then(() => catalog.getCollections()
     .then((collectionsResult) => {
+      // Cache the list of collections as it doesn't change regularly
       let storedCollections: GetCollectionsResult = collectionsResult;
 
       // parse json body requests
@@ -49,6 +56,7 @@ exports.appPromise = catalog.getOGCServiceList()
 
       // return collections to the ui
       app.get(`/api/collections`, async (req, res) => {
+        // Return cached collections list
         return res.json(storedCollections)
       })
 
@@ -122,4 +130,5 @@ exports.appPromise = catalog.getOGCServiceList()
 
 
       return app;
-    }));
+    })
+  );

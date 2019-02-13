@@ -2,7 +2,7 @@
 language: node_js
 
 node_js:
-  - 6.9.4
+  - 10.15.0
 
 branches:
   only:
@@ -30,10 +30,12 @@ build:
     # workaround https://github.com/Shippable/support/issues/3304
     - pip install --upgrade botocore
     - pip install setuptools==34.0.1
+    - pip install --upgrade awscli
+    - pip install --upgrade awsebcli
 
 integrations:
   deploy:
-    - integrationName: "aws-jncc-prod-subscription-integration"
+    - integrationName: "shippable-iam-role"
       type: aws
       target: eb_paas
       platform: "Node.js"
