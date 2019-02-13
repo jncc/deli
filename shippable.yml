@@ -30,6 +30,8 @@ build:
     # workaround https://github.com/Shippable/support/issues/3304
     - pip install --upgrade botocore
     - pip install setuptools==34.0.1
+    - pip install --upgrade awscli
+    - pip install --upgrade awsebcli
 
 integrations:
   deploy:
