@@ -1,7 +1,7 @@
 Welcome
 =======
 
-**The Scottish Remote Sesnsing Portal will be down for maintenance on the 20th Feburary 2019, we apologise for any inconveninence and will try to keep this period of downtime to a minimum.**
+> **The Scottish Remote Sensing Portal will be down for maintenance on the 20th Feburary 2019, we apologise for any inconvenience and will try to keep this period of downtime to a minimum.**
 
 Welcome to the Scottish Remote Sensing Portal.
 
