@@ -24,7 +24,7 @@
     "leaflet-editable": "1.1.0",
     "leaflet-fullscreen": "1.0.2",
     "leaflet.path.drag": "0.0.6",
-    "lodash": "4.17.4",
+    "lodash": "4.17.11",
     "moment": "2.22.1",
     "nprogress": "0.2.0",
     "pg-promise": "7.0.2",
