@@ -20,7 +20,7 @@ build:
     - cp -f ./app.client/config/config.$TENANT.ts ./app.client/config/config.ts
     - cp -f ./app.client/styles/config.$TENANT.ts ./app.client/styles/config.ts
     - cp -f ./app.client/images/favicon.$TENANT.png ./app.client/images/favicon.png
-    - cp -f ./app.server/config/config.$TENANT.ts ./app.server/config/config.ts
+    #- cp -f ./app.server/config/config.$TENANT.ts ./app.server/config/config.ts
     - cp -f ./app.server/data/data.$TENANT.ts ./app.server/data/data.ts
     # set the ssl certificate identifier for lidar (todo: this will presumably break other builds)
     - sed -i 's|{{SSL_ARN}}|'$LIDAR_SSL_ARN'|g' ./.ebextensions/securelistener.config
