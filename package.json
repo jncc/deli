@@ -14,6 +14,7 @@
     "start": "node built/app.server/server.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "1.18.2",
     "dotenv": "^6.2.0",
     "es6-shim": "0.35.3",
@@ -43,9 +44,6 @@
     "react-stickynode": "1.4.0",
     "react-widgets": "4.0.2",
     "redux": "3.7.2",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "request-promise-native": "^1.0.5",
     "semantic-ui-react": "0.75.0",
     "turf": "3.0.14",
     "url": "0.11.0",
@@ -71,7 +69,6 @@
     "@types/react-router-dom": "4.0.8",
     "@types/react-widgets": "3.2.32",
     "@types/redux": "3.6.0",
-    "@types/request-promise-native": "^1.0.15",
     "@types/turf": "3.5.32",
     "@types/url-join": "^4.0.0",
     "awesome-typescript-loader": "3.2.3",

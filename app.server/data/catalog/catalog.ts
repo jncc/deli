@@ -1,8 +1,8 @@
 import * as config from '../../config/config';
 import { GetCollectionsResult, WMSData } from '../../handlers/collections/models';
-import * as request from 'request-promise-native';
 import { Query } from '../../../app.client/components/models/Query';
 import { GetProductsResult } from '../../handlers/products/models';
+import axios from 'axios';
 
 import urljoin = require('url-join');
 import turf = require('turf');
@@ -53,12 +53,9 @@ export class Catalog {
   }
 
   public async getCollections(pattern: string = this.collectionSearchLidarPattern): Promise<GetCollectionsResult> {
-    return request({
-      uri: urljoin(config.CATALOG_API_URL, this.collectionSearchEndpoint, pattern),
-      json: true
-    }).then((retJson) => {
+    return axios.get(urljoin(config.CATALOG_API_URL, this.collectionSearchEndpoint, pattern)).then((response) => {
       return {
-        collections: (retJson.result).map((collection: any) => {
+        collections: (response.data.result).map((collection: any) => {
           return {
             id: collection.name,
             metadata: {
@@ -86,18 +83,13 @@ export class Catalog {
   }
 
   public async getProducts(query: Query): Promise<GetProductsResult> {
-    return request({
-      uri: urljoin(config.CATALOG_API_URL, this.productSearchEndpoint),
-      method: 'POST',
-      body: {
-        collection: query.collections[0],
-        footprint: this.generateWKTFromBBOX(query.bbox),
-        spatialOp: 'overlaps',
-        limit: query.limit,
-        offset: query.offset
-      },
-      json: true
-    }).then(async (retJson) => {
+    return axios.post(urljoin(config.CATALOG_API_URL, this.productSearchEndpoint), {
+      collection: query.collections[0],
+      footprint: this.generateWKTFromBBOX(query.bbox),
+      spatialOp: 'overlaps',
+      limit: query.limit,
+      offset: query.offset
+    }).then((response) => {
       return {
         collections: [{
           id: query.collections[0],
@@ -105,9 +97,9 @@ export class Catalog {
           metadataExternalLink: '',
           // If we are fetching the ogc layer don't set the wms for this collection
           data: query.collections[0] === this.collectionSearchOGCPattern ? {} : {
-            wms: await this.getOGCServiceForCollection(query.collections[0])
+            wms: this.getOGCServiceForCollection(query.collections[0])
           },
-          products: (retJson.result).map((product: any) => {
+          products: (response.data.result).map((product: any) => {
             let productSearchResult = {
               id: `${query.collections[0]}/${product.name}`,
               title: product.metadata.title,
@@ -155,9 +147,9 @@ export class Catalog {
         }],
         query: {
           bboxArea: Math.round(turf.area(turf.bboxPolygon(query.bbox)) / 1000000),
-          total: parseInt(retJson.query.total),
-          limit: parseInt(retJson.query.limit),
-          offset: parseInt(retJson.query.offset)
+          total: parseInt(response.data.query.total),
+          limit: parseInt(response.data.query.limit),
+          offset: parseInt(response.data.query.offset)
         }
       };
     });
