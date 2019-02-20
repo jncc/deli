@@ -1,5 +1,4 @@
 
-
 export interface ClientConfig {
     name: 'lidar' | 'eocoe',
     app: {

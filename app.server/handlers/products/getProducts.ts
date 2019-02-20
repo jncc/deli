@@ -50,4 +50,3 @@ export function getProducts(q: Query): GetProductsResult {
 
   return { collections: results, query: { bboxArea, total: results.length } }
 }
-

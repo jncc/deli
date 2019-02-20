@@ -38,5 +38,4 @@ export const config: ClientConfig = {
     shoppingBasket:  false,
     maxProductCount: 50, // be sure to update server config too
     collectionWmsUrl: 'https://eo.jncc.gov.uk/geoserver/scotland/wms', // temp
-};
-
+}

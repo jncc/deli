@@ -11,13 +11,13 @@ import { getEnvironmentSettings, getRealWmsUrl } from './settings'
 import { validateQuery } from './query/validateQuery'
 import { parseQuerystring } from './query/parseQuerystring'
 import { StoredQueryRepository, FakeStoredQueryRepository } from './data/storedQueryRepository'
-import { Catalog } from './data/catalog/catalog';
-import { GetCollectionsResult } from './handlers/collections/models';
+import { Catalog } from './data/catalog/catalog'
+import { GetCollectionsResult } from './handlers/collections/models'
 
 let app = express()
 let env = getEnvironmentSettings(app.settings.env)
 let storedQueryRepository = env.dev ? new FakeStoredQueryRepository : new StoredQueryRepository()
-let catalog = new Catalog();
+let catalog = new Catalog()
 
 // TODO: Returns a finished app at the end of an async call to build a
 // list of OGC layers for the known collections. This shouldn't be here
@@ -29,7 +29,7 @@ exports.appPromise = catalog.getOGCServiceList()
   .then(() => catalog.getCollections()
     .then((collectionsResult) => {
       // Cache the list of collections as it doesn't change regularly
-      let storedCollections: GetCollectionsResult = collectionsResult;
+      let storedCollections: GetCollectionsResult = collectionsResult
 
       // parse json body requests
       app.use(bodyParser.json())
@@ -65,7 +65,7 @@ exports.appPromise = catalog.getOGCServiceList()
         let q = parseQuerystring(req.query)
         validateQuery(q)
 
-        let result = await catalog.getProducts(q).catch((err) => { throw err });
+        let result = await catalog.getProducts(q).catch((err) => { throw err })
         res.json(result)
       })
 
@@ -128,7 +128,6 @@ exports.appPromise = catalog.getOGCServiceList()
         res.status(500).send('Something broke!')
       }
 
-
-      return app;
+      return app
     })
-  );
+  )

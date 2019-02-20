@@ -1,1 +1,1 @@
-import './config.lidar.less';
+import './config.lidar.less'

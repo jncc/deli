@@ -53,7 +53,7 @@ Javascript and Typescript are fairly verbose, so we choose to optimise for white
 - do use `'single quotes'` for strings
 - **please** don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
 
-TSLint will catch (and optionally fix) these style rules for you.
+TSLint will check these some of these style rules for you (and optionally fix them).
 
 Deployment
 ----------

@@ -1,2 +1,2 @@
 
-import './config.eocoe.less';
+import './config.eocoe.less'

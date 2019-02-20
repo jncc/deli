@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid, Reveal, Image } from "semantic-ui-react"
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid, Reveal, Image } from 'semantic-ui-react'
 
 import { getLicenceDetailsFromUseConstraints } from './licenceUtil'
 import { Head } from '../shared/Head'
@@ -9,8 +9,8 @@ import { Foot } from '../shared/Foot'
 import { formatBytes } from '../../utility/formatBytes'
 import { Collection, GetCollectionsResult } from '../../../app.server/handlers/collections/models'
 import { config } from '../../config/config'
-import { WmsModalButton } from "../shared/WmsModalButton"
-import { Tooltip } from "../products/Widgets"
+import { WmsModalButton } from '../shared/WmsModalButton'
+import { Tooltip } from '../products/Widgets'
 
 interface CollectionsState {
   collections: Collection[]
@@ -75,7 +75,6 @@ export class Collections extends React.Component<any, CollectionsState> {
                 <Image src='https://react.semantic-ui.com/assets/images/avatar/large/ade.jpg' size='small' />
               </Reveal.Content>
             </Reveal> */}
-
 
                 {c.metadata.abstract}
                 {c.metadataExternalLink && this.makeExternalMetadataLinkUI(c)}
@@ -182,7 +181,7 @@ export class Collections extends React.Component<any, CollectionsState> {
           this.setState({ collections: r.collections })
           this.setState((prev) => ({ pending: prev.pending - 1 }))
         })).catch(ex => {
-          console.log(`couldn't get data`, ex)
+          // console.log(`couldn't get data`, ex)
           this.setState((prev) => ({ pending: prev.pending - 1 }))
         })
   }

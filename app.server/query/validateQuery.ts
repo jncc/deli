@@ -27,12 +27,12 @@ export function validateQuery(o: Query) {
 
     // Set offset (page start) to default of 0 if not present or invalid
     if (!(o.offset && o.offset >= 0)) {
-      o.offset = 0;
+      o.offset = 0
     }
     // Set limit (page size) to default of 50 if not present or invalid
     // i.e. < 0 OR > 50
     if (!(o.limit && o.limit > 0 && o.limit <= 50)) {
-      o.limit = 50;
+      o.limit = 50
     }
 
     // todo.... more validations

@@ -1,5 +1,4 @@
 
-
 /** Converts [minX, minY, maxX, maxY] to [[minY, minX], [maxY, maxX]]. */
 export function bboxFlatArrayToCoordArray(bbox: number[]): [[number, number], [number, number]] {
     let [minX, minY, maxX, maxY] = bbox

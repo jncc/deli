@@ -1,4 +1,4 @@
-import * as config from './config/config';
+import * as config from './config/config'
 
 export function getEnvironmentSettings(env: string) {
   if (env === 'development') {
@@ -7,7 +7,7 @@ export function getEnvironmentSettings(env: string) {
       dev: true,
       port: 5000,
       dir: 'built/app.client'
-    };
+    }
   }
   else {
     return {
@@ -15,10 +15,10 @@ export function getEnvironmentSettings(env: string) {
       dev: false,
       port: 8081,  // elastic beanstalk: the default nginx configuration forwards traffic to an upstream server named nodejs at 127.0.0.1:8081
       dir: 'built/app.client'
-    };
+    }
   }
 }
 
 export function getRealWmsUrl() {
-  return config.GEOSERVER_URL;
+  return config.GEOSERVER_URL
 }

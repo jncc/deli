@@ -1,16 +1,14 @@
 
-import * as React from 'react';
+import * as React from 'react'
 
-import { Query } from '../models/Query';
+import { Query } from '../models/Query'
 
 interface DebugProps {
-  query: Query;
+  query: Query
 }
 
 export function Debug(props: DebugProps) {
 
-  return <div>{JSON.stringify(props.query)}</div>;
+  return <div>{JSON.stringify(props.query)}</div>
 
 }
-
-

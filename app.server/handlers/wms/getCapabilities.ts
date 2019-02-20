@@ -1,8 +1,7 @@
 
-
 import { Product } from './../products/models'
 import { template } from './template'
-import * as config from '../../config/config';
+import * as config from '../../config/config'
 
 export function getCapabilities(products: Product[], wmsUrl: string): String {
 

@@ -1,8 +1,8 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid, Reveal, Image } from "semantic-ui-react"
-import { withCookies } from 'react-cookie';
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Grid, Reveal, Image } from 'semantic-ui-react'
+import { withCookies } from 'react-cookie'
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'
