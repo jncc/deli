@@ -19,7 +19,7 @@ export const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD;
 export const POSTGRES_DATABASE = process.env.POSTGRES_DATABASE;
 export const POSTGRES_SSL = process.env.POSTGRES_SSL === 'true' ? true : false;
 
-export const CATALOG_API_URL = `${process.env.CATALOG_API_PROTOCOL}://${process.env.CATALOG_API}`;
+export const CATALOG_API_URL = `${process.env.CATALOG_API_PROTOCOL}://${process.env.CATALOG_API_HOST}`;
 
 export const GEOSERVER_URL = `${process.env.GEOSERVER_PROTOCOL}://${process.env.GEOSERVER_HOST}`
 
