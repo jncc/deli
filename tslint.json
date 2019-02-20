@@ -1,0 +1,17 @@
+{
+  "linterOptions": {
+    "exclude": [
+        "app.server/data/**"
+    ]
+  },
+  "rules": {
+    "max-line-length":            [true, 200],
+    "no-consecutive-blank-lines": true,
+    "no-console":                 true,
+    "quotemark":                  [true, "single"],
+    "semicolon":                  [true, "never"]
+  },
+  "jsRules": {
+    "max-line-length":            [true, 120]
+  }
+}
