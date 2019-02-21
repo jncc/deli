@@ -1,7 +1,7 @@
 
 import * as pgPromise from 'pg-promise'
 import { IMain, IDatabase } from 'pg-promise'
-import  * as config from '../config/config';
+import { env } from '../env'
 
 /* Singleton database client. */
 export class Database {
@@ -12,12 +12,12 @@ export class Database {
     constructor() {
         let pgp = pgPromise()
         let cn = {
-          host: config.POSTGRES_HOST,
-          port: config.POSTGRES_PORT,
-          database: config.POSTGRES_DATABASE,
-          username: config.POSTGRES_USER,
-          password: config.POSTGRES_PASSWORD,
-          ssl: config.POSTGRES_SSL
+          host: env.POSTGRES_HOST,
+          port: env.POSTGRES_PORT,
+          database: env.POSTGRES_DATABASE,
+          username: env.POSTGRES_USER,
+          password: env.POSTGRES_PASSWORD,
+          ssl: env.POSTGRES_SSL
         }
         this.connection = pgp(cn)
     }

@@ -1,7 +1,7 @@
 
 import { Product } from './../products/models'
 import { template } from './template'
-import * as config from '../../config/config'
+import { env } from '../../env'
 
 export function getCapabilities(products: Product[], wmsUrl: string): String {
 
@@ -15,7 +15,7 @@ export function getCapabilities(products: Product[], wmsUrl: string): String {
   // (split + join is javascript for 'String.replaceAll'!)
   return template
     .replace('{{{products}}}', productsXml)
-    .split(config.GEOSERVER_URL).join(wmsUrl)
+    .split(env.GEOSERVER_URL).join(wmsUrl)
 }
 
 export function makeLayerXml(p: Product): string {
