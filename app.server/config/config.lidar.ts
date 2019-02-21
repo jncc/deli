@@ -7,7 +7,8 @@ export const config: ServerConfig = {
   collectionSearchEndpoint: 'search/collection',
   collectionSearchOGCPattern: 'scotland-gov/lidar/ogc',
   collectionSearchPattern: 'scotland-gov/lidar/phase*',
-  productSearchEndpoint: 'search/product'
+  productSearchEndpoint: 'search/product',
+  productOGC: false
 }
 
 function getIntFromEnvVariable(env: string | undefined, defaultValue: number) : number {
