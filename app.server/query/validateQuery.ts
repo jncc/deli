@@ -25,6 +25,8 @@ export function validateQuery(o: Query) {
         throw 'Query validation failed. Bbox wrong length.'
     }
 
+    // todo: see https://github.com/jncc/deli/pull/48#discussion_r258567981
+
     // Set offset (page start) to default of 0 if not present or invalid
     if (!(o.offset && o.offset >= 0)) {
       o.offset = 0
