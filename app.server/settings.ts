@@ -1,4 +1,6 @@
-import * as config from './config/config'
+import { env } from './env'
+
+// these dyanmic environment values could be possibiliy be combined with the newer `env.ts`
 
 export function getEnvironmentSettings(env: string) {
   if (env === 'development') {
@@ -20,5 +22,5 @@ export function getEnvironmentSettings(env: string) {
 }
 
 export function getRealWmsUrl() {
-  return config.GEOSERVER_URL
+  return env.GEOSERVER_URL
 }

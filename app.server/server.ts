@@ -2,6 +2,7 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as _ from 'lodash'
+import * as dotenv from 'dotenv'
 
 import { pages } from './routes'
 import { getEnvironmentSettings, getRealWmsUrl } from './settings'
@@ -13,6 +14,8 @@ import { parseQuerystring } from './query/parseQuerystring'
 import { StoredQueryRepository, FakeStoredQueryRepository } from './data/storedQueryRepository'
 import { Catalog } from './data/catalog/catalog'
 import { GetCollectionsResult } from './handlers/collections/models'
+
+dotenv.config()
 
 let app = express()
 let env = getEnvironmentSettings(app.settings.env)

@@ -1,4 +1,5 @@
-import * as config from '../../config/config';
+import { env } from '../../env';
+import { config } from '../../config/config';
 import { GetCollectionsResult, WMSData } from '../../handlers/collections/models';
 import { Query } from '../../../app.client/components/models/Query';
 import { GetProductsResult } from '../../handlers/products/models';
@@ -23,7 +24,7 @@ export class Catalog {
   async getOGCServiceList(): Promise<{ [id: string]: WMSData }> {
     let entireWorldBbox = [-180.0, -85.06, 180.0, 85.06]
     let layers = await this.getProducts({
-      collections: [config.config.collectionSearchOGCPattern],
+      collections: [config.collectionSearchOGCPattern],
       offset: 0,
       limit: 50,
       bbox: entireWorldBbox,
@@ -47,8 +48,8 @@ export class Catalog {
     return this.geoserverLayers[collection];
   }
 
-  public async getCollections(pattern: string = config.config.collectionSearchPattern): Promise<GetCollectionsResult> {
-    return axios.get(urljoin(config.CATALOG_API_URL, config.config.collectionSearchEndpoint, pattern)).then((response) => {
+  public async getCollections(pattern: string = config.collectionSearchPattern): Promise<GetCollectionsResult> {
+    return axios.get(urljoin(env.CATALOG_API_URL, config.collectionSearchEndpoint, pattern)).then((response) => {
       return {
         collections: (response.data.result).map((collection: any) => {
           return {
@@ -74,7 +75,7 @@ export class Catalog {
   }
 
   public async getProducts(query: Query): Promise<GetProductsResult> {
-    return axios.post(urljoin(config.CATALOG_API_URL, config.config.productSearchEndpoint), {
+    return axios.post(urljoin(env.CATALOG_API_URL, config.productSearchEndpoint), {
       collection: query.collections[0],
       footprint: this.generateWKTFromBBOX(query.bbox),
       spatialOp: 'overlaps',
@@ -87,7 +88,7 @@ export class Catalog {
           metadata: { title: '', abstract: '', useConstraints: '' },
           metadataExternalLink: '',
           // If we are fetching the ogc layer don't set the wms for this collection
-          data: query.collections[0] === config.config.collectionSearchOGCPattern ? {} : {
+          data: query.collections[0] === config.collectionSearchOGCPattern ? {} : {
             wms: this.getOGCServiceForCollection(query.collections[0])
           },
           products: (response.data.result).map((product: any) => {
