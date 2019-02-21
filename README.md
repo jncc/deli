@@ -19,34 +19,44 @@ Make sure you have globally installed Typescript and Yarn (a better package mana
 
 You're good to go.
 
-    yarn install
-    yarn run dev
+    yarn
+    yarn dev
 
 A browser window will open at http://localhost:8080
 
 Tip: It's often handy to run the Typescript compiler `tsc` to more quickly check for compile errors.
 
+Note: In VSCode, to use the version of TypeScript that the Deli was actually built against, set the typescript.tsdk setting for the workspace.
+
+    File > Preferences > User/Workspace Settings
+    "typescript.tsdk": "node_modules/typescript/lib"
+
 Adding packages
 ---------------
+
 We use Yarn instead of npm to make our build deterministic. Make sure to **install any new packages with Yarn and not npm** - e.g.
 
     yarn add --exact react-date-picker
 
 Upgrading packages
 ------------------
+
 You can upgrade packages to their latest release with `yarn upgrade-interactive`, or one-at-a-time with:
 
     yarn upgrade --latest express @types/express
 
 Style guide
 -----------
-This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension.
+
+This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension and should install the TSLint extension too.
 
 Javascript and Typescript are fairly verbose, so we choose to optimise for whitespace.
 
 - don't use `semicolons;` to terminate lines (unnecessary in Javascript!)
 - do use `'single quotes'` for strings
 - **please** don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
+
+TSLint will check these some of these style rules for you (and optionally fix them).
 
 Deployment
 ----------
@@ -69,7 +79,6 @@ Make sure you have committed any code you want to deploy to your local Git repo,
     eb deploy
 
 The Deli requires access to two backend services; Postgres database and Geoserver. This part of the system is not described here.
-
 
 Using Postman to access the HTTP API
 ------------------------------------
@@ -99,7 +108,23 @@ For a pre-cooked example
 
 The pre-cooked examples are available in the development time fake in-memory database as well as the live Postgres database.
 
+Docker catalog for local development
+====================================
+
+Pull Container
+--------------
+
+This image is currently being hosted at docker hub under our JNCC account if you want to pull a particular verison (1.0.0 - 1.0.4 currently) or just the latest run `docker pull jncc/catalog:latest`.
+
+Run container
+-------------
+
+If you need to run the container locally for testing you can run with the following command `docker run -p 9001:8081 -d --env-file .env jncc/catalog` where the `--env-file .env` parameter points to a .env with all the configuration required as in the `.env.example` file, documented in the [Catalog Repo](https://github.com/jncc/catalog)
+
+This will run a container with the port exposed at `http://localhost:9001`.
+
 Thank you
----------
+=========
+
 Thanks to [Browserstack](http://browserstack.com) for helping us out with cross-browser testing. Much appreciated! 
 ![Browserstack](https://www.browserstack.com/images/layout/browserstack-logo-600x315.png)

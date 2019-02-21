@@ -48,6 +48,5 @@ export function getProducts(q: Query): GetProductsResult {
 
   let bboxArea = Math.round(turf.area(boundingBox) / 1000000)
 
-  return { collections: results, query: { bboxArea } }
+  return { collections: results, query: { bboxArea, total: results.length } }
 }
-

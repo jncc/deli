@@ -20,7 +20,6 @@ function spike() {
     }
   } as GeoJSON.Feature<GeoJSON.Polygon>
 
-
   let inside = {
     'type': 'Feature',
     'properties': {},
@@ -39,10 +38,10 @@ function spike() {
   } as GeoJSON.Feature<GeoJSON.Polygon>
 
   let fails = turf.intersect(outside, northernBbox)
-  console.log(fails)
+  // console.log(fails)
 
   let succeeds = turf.intersect(inside, northernBbox)
-  console.log(succeeds)
+  // console.log(succeeds)
 }
 
 spike()

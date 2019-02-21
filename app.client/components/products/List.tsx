@@ -10,7 +10,6 @@ import { Tooltip } from './Widgets'
 import { Product } from '../../../app.server/handlers/products/models'
 import { formatBytes } from '../../utility/formatBytes'
 
-
 interface ListProps {
   products:         Product[]
   hovered:          Product | undefined

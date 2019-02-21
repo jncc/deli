@@ -56,7 +56,7 @@ export function Layout(props: LayoutProps) {
             />
             <Sticky innerZ={10}>
               <Summary
-                productCount={flatMap(props.result.collections, c => c.products).length}
+                productCount={props.result.query.total}
                 getWmsLinkClicked={props.getWmsLinkClicked}
                 wmsLink={props.wmsLink}
               />

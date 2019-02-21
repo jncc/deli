@@ -1,4 +1,6 @@
+import { env } from './env'
 
+// these dyanmic environment values could be possibiliy be combined with the newer `env.ts`
 
 export function getEnvironmentSettings(env: string) {
   if (env === 'development') {
@@ -19,12 +21,6 @@ export function getEnvironmentSettings(env: string) {
   }
 }
 
-export function getRealWmsUrl(env: string, hostHeader: string, protocol: string) {
-  if (env === 'development') {
-    // no local dev geoserver (yet), so use the live one for convenience
-    return 'http://deli-eocoe.eu-west-1.elasticbeanstalk.com/geoserver'
-  }
-  else {
-    return protocol + '://' + hostHeader + '/geoserver'
-  }
+export function getRealWmsUrl() {
+  return env.GEOSERVER_URL
 }

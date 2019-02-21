@@ -5,6 +5,7 @@ export interface GetProductsResult {
     collections: ProductCollection[]
     query: {
       bboxArea: number // incidental info in km2 calculated for the user
+      total: number
     }
 }
 
@@ -36,6 +37,10 @@ export interface Product {
         wms?: {
             name:     string,
             base_url: string
+        },
+        catalog?: {
+          collection: string,
+          product?: string
         }
     }
 }

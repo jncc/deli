@@ -37,6 +37,5 @@ export function getLicenceDetailsFromUseConstraints(s: string) {
     licence = 'ncgl'
   }
 
-  return getLicenceDetails(licence);
+  return getLicenceDetails(licence)
 }
-

@@ -1,10 +1,10 @@
 
 import * as React from 'react'
-import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Reveal, Grid, Divider, ButtonProps } from "semantic-ui-react";
-import * as CopyToClipboard from 'react-copy-to-clipboard';
-import * as _ from 'lodash';
+import { Container, Modal, Button, Header, ModalProps, Segment, Input, Label, Icon, Form, Reveal, Grid, Divider, ButtonProps } from 'semantic-ui-react'
+import * as CopyToClipboard from 'react-copy-to-clipboard'
+import * as _ from 'lodash'
 
-import { Tooltip } from "../products/Widgets";
+import { Tooltip } from '../products/Widgets'
 interface WmsModalProps {
   url: string,
   buttonProps?: ButtonProps
@@ -77,7 +77,6 @@ export class WmsModalButton extends React.Component<WmsModalProps, WmsModalState
     this.resetCopiedToClipboardState()
   }
 }
-
 
 // use this to easily dev the modal
 export function DevWmsModalButton() {

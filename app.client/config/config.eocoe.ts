@@ -25,7 +25,8 @@ export const config: ClientConfig = {
         end:         `2016-06-08`,
     },
     defaultQueryResultInfo: {
-        bboxArea:    0
+        bboxArea:    0,
+        total:       0
     },
     form: {
         start:       true,
@@ -37,5 +38,4 @@ export const config: ClientConfig = {
     shoppingBasket: false,
     maxProductCount: 10, // be sure to update server config too
     collectionWmsUrl: 'is this used?', // temp
-};
-
+}

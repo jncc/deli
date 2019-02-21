@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "clean": "rimraf built",
-    "compile": "tsc --outDir built && cp ./app.server/data/*.json ./built/app.server/data",
+    "lint": "tslint --project .",
+    "compile": "tsc --outDir built && npm run lint && cp ./app.server/data/*.json ./built/app.server/data",
     "webpack": "npm run clean && webpack --progress",
     "build": "npm run clean && npm run compile && webpack",
     "build:prod": "npm run clean && npm run compile && webpack -p --env.name production",
@@ -14,8 +15,9 @@
     "start": "node built/app.server/server.js"
   },
   "dependencies": {
+    "axios": "0.18.0",
     "body-parser": "1.18.2",
-    "dotenv": "4.0.0",
+    "dotenv": "6.2.0",
     "es6-shim": "0.35.3",
     "exports-loader": "0.6.4",
     "express": "4.16.2",
@@ -44,12 +46,15 @@
     "react-widgets": "4.0.2",
     "redux": "3.7.2",
     "semantic-ui-react": "0.75.0",
+    "tslint": "5.12.1",
     "turf": "3.0.14",
     "url": "0.11.0",
+    "url-join": "4.0.0",
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
     "@types/body-parser": "1.16.5",
+    "@types/dotenv": "6.1.0",
     "@types/express": "4.0.37",
     "@types/leaflet": "1.2.0",
     "@types/leaflet-editable": "0.7.31",
@@ -67,6 +72,7 @@
     "@types/react-widgets": "3.2.32",
     "@types/redux": "3.6.0",
     "@types/turf": "3.5.32",
+    "@types/url-join": "4.0.0",
     "awesome-typescript-loader": "3.2.3",
     "concurrently": "3.5.0",
     "copy-webpack-plugin": "4.1.1",

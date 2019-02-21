@@ -1,6 +1,6 @@
 
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { Container, Icon } from 'semantic-ui-react'
 import { config } from '../../config/config'
 
@@ -22,11 +22,11 @@ export function Foot() {
           </span>
           {config.name === 'lidar' &&
           <span className='feedback-link'>
-            Feedback welcome. <a href="mailto:gi-sat@gov.scot">gi-sat@gov.scot</a>
+            Feedback welcome. <a href='mailto:gi-sat@gov.scot'>gi-sat@gov.scot</a>
           </span>
           }
 
       </Container>
     </div>
-  );
+  )
 }
