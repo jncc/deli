@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Header } from "semantic-ui-react"
+import { Container, Header } from 'semantic-ui-react'
 
 import { Head } from '../shared/Head'
 import { Foot } from '../shared/Foot'

@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import { Progress } from 'semantic-ui-react'
-import { debounce } from 'lodash';
+import { debounce } from 'lodash'
 
 interface SpinnerProps {
   pending: number

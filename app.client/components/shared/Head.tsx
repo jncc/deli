@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { Container, Icon, Accordion, Segment, Transition } from 'semantic-ui-react'
 
 import { config } from '../../config/config'
@@ -18,7 +18,7 @@ export const Head = (props: HeadProps) => {
 
       <Transition.Group animation='fade' duration={500}>
         {props.cookieBanner &&
-          <div className="cookie-banner">
+          <div className='cookie-banner'>
             <Container>
               We use cookies to make this site simpler. &nbsp; <Link to='/cookies'>Find out more about cookies</Link>
             </Container>

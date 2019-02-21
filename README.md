@@ -19,12 +19,17 @@ Make sure you have globally installed Typescript and Yarn (a better package mana
 
 You're good to go.
 
-    yarn install
-    yarn run dev
+    yarn
+    yarn dev
 
 A browser window will open at http://localhost:8080
 
 Tip: It's often handy to run the Typescript compiler `tsc` to more quickly check for compile errors.
+
+Note: In VSCode, to use the version of TypeScript that the Deli was actually built against, set the typescript.tsdk setting for the workspace.
+
+    File > Preferences > User/Workspace Settings
+    "typescript.tsdk": "node_modules/typescript/lib"
 
 Adding packages
 ---------------
@@ -40,13 +45,15 @@ You can upgrade packages to their latest release with `yarn upgrade-interactive`
 
 Style guide
 -----------
-This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension.
+This project has an `.editorconfig` file. Make sure to enable support in your editor. For VSCode, you need to install the EditorConfig extension and should install the TSLint extension too.
 
 Javascript and Typescript are fairly verbose, so we choose to optimise for whitespace.
 
 - don't use `semicolons;` to terminate lines (unnecessary in Javascript!)
 - do use `'single quotes'` for strings
 - **please** don't use `const` instead of `let` unless it's really a constant (accidental variable rebinding is not a real problem!)
+
+TSLint will check these some of these style rules for you (and optionally fix them).
 
 Deployment
 ----------

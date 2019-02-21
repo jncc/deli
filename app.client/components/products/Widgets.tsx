@@ -1,6 +1,6 @@
 
-import * as React from 'react';
-import { Popup, PopupProps } from 'semantic-ui-react';
+import * as React from 'react'
+import { Popup, PopupProps } from 'semantic-ui-react'
 
 /** A Semantic UI Popup, with defaults set for this app. */
 export const Tooltip = (props: PopupProps) => {
@@ -10,5 +10,4 @@ export const Tooltip = (props: PopupProps) => {
     position='top center'
     {...props}
     />
-};
-
+}

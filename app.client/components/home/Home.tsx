@@ -1,14 +1,14 @@
 
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Button } from "semantic-ui-react";
-import { withCookies } from 'react-cookie';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import { Container, Button } from 'semantic-ui-react'
+import { withCookies } from 'react-cookie'
 
-import { Head } from '../shared/Head';
-import { Foot } from '../shared/Foot';
+import { Head } from '../shared/Head'
+import { Foot } from '../shared/Foot'
 import { config } from '../../config/config'
 
-let splashText: string;
+let splashText: string
 
 function Home(props: any) {
 
@@ -38,7 +38,7 @@ function Home(props: any) {
       </Container>
       <Foot />
     </div>
-  );
+  )
 }
 
 export default withCookies(Home)

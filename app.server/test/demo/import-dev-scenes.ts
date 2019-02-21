@@ -1,5 +1,4 @@
 
-
 var csv = require('csv-parser')
 import * as fs from 'fs'
 
@@ -19,4 +18,3 @@ fs.createReadStream('test/scenes.csv')
     console.log(`Read ${scenes.length} scenes.`)
     fs.writeFileSync('test/scenes.json', JSON.stringify(scenes))
   })
-

@@ -1,5 +1,4 @@
 
-
 export interface Query {
 
   collections: string[]

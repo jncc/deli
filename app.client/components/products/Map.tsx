@@ -12,7 +12,7 @@ import { GetProductsResult, Product } from '../../../app.server/handlers/product
 import { bboxFlatArrayToCoordArray } from '../../../app.shared/util'
 
 interface MapProps {
-  query: Query;
+  query: Query
   result: GetProductsResult
   hovered: Product | undefined
   productHovered: (product: Product) => void

@@ -8,7 +8,7 @@ import { Layout } from './Layout'
 import { Query } from '../models/Query'
 import { GetProductsResult, Product } from '../../../app.server/handlers/products/models'
 import { ensureArray } from '../../../app.shared/util'
-import { S2_SCENE_NAMES } from "../../misc/S2_SCENE_NAMES";
+import { S2_SCENE_NAMES } from '../../misc/S2_SCENE_NAMES'
 
 interface ProductsState {
   query:    Query     // the current query
@@ -101,7 +101,7 @@ export class Products extends React.Component<any, ProductsState> {
           this.setState((prev) => ({ pending: prev.pending - 1 }))
         })).catch(ex => {
           this.setState((prev) => ({ pending: prev.pending - 1 }))
-          console.log(`couldn't get data`, ex)
+          // console.log(`couldn't get data`, ex)
         })
   }
 
@@ -117,7 +117,7 @@ export class Products extends React.Component<any, ProductsState> {
           let wmsLink = `http://deli-eocoe.eu-west-1.elasticbeanstalk.com/wms/${json.key}`
           this.setState({ wmsLink })
         }).catch(ex => {
-          console.log(`couldn't get data`, ex)
+          // console.log(`couldn't get data`, ex)
         }))
   }
 
