@@ -1,4 +1,12 @@
+/** This file gets overwritten in a production build with one of the
+ *  tenant-specific config files in this directory */
 import * as dotenv from 'dotenv'
+import { ServerConfig } from './ServerConfig'
+
+// feel free to change the below import to switch between tenant configs at dev time
+import { config as c}  from './config.lidar'
+
+export const config: ServerConfig = c
 
 function getIntFromEnvVariable(env: string | undefined, defaultValue: number) : number {
   try {
@@ -22,13 +30,3 @@ export const POSTGRES_SSL = process.env.POSTGRES_SSL === 'true' ? true : false
 export const CATALOG_API_URL = `${process.env.CATALOG_API_PROTOCOL}://${process.env.CATALOG_API_HOST}`
 
 export const GEOSERVER_URL = `${process.env.GEOSERVER_PROTOCOL}://${process.env.GEOSERVER_HOST}`
-
-/** This file gets overwritten in a production build with one of the
- *  tenant-specific config files in this directory */
-
-import { ServerConfig } from './ServerConfig'
-
-// feel free to change the below import to switch between tenant configs at dev time
-import { config as c}  from './config.lidar'
-
-export const config: ServerConfig = c

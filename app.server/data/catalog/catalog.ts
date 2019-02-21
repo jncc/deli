@@ -8,11 +8,6 @@ import urljoin = require('url-join');
 import turf = require('turf');
 
 export class Catalog {
-  collectionSearchEndpoint: string = 'search/collection';
-  collectionSearchOGCPattern: string = 'scotland-gov/lidar/ogc';
-  collectionSearchLidarPattern: string = 'scotland-gov/lidar/phase*';
-  productSearchEndpoint: string = 'search/product';
-
   geoserverLayers: { [id: string]: { base_url: string, name: string } };
 
   private addToGeoserverLayers(name: string, wms: WMSData) {
@@ -28,7 +23,7 @@ export class Catalog {
   async getOGCServiceList(): Promise<{ [id: string]: WMSData }> {
     let maxBbox = [-180.0, -85.06, 180.0, 85.06]
     let layers = await this.getProducts({
-      collections: [this.collectionSearchOGCPattern],
+      collections: [config.config.collectionSearchOGCPattern],
       offset: 0,
       limit: 50,
       bbox: maxBbox,
@@ -52,8 +47,8 @@ export class Catalog {
     return this.geoserverLayers[collection];
   }
 
-  public async getCollections(pattern: string = this.collectionSearchLidarPattern): Promise<GetCollectionsResult> {
-    return axios.get(urljoin(config.CATALOG_API_URL, this.collectionSearchEndpoint, pattern)).then((response) => {
+  public async getCollections(pattern: string = config.config.collectionSearchPattern): Promise<GetCollectionsResult> {
+    return axios.get(urljoin(config.CATALOG_API_URL, config.config.collectionSearchEndpoint, pattern)).then((response) => {
       return {
         collections: (response.data.result).map((collection: any) => {
           return {
@@ -79,7 +74,7 @@ export class Catalog {
   }
 
   public async getProducts(query: Query): Promise<GetProductsResult> {
-    return axios.post(urljoin(config.CATALOG_API_URL, this.productSearchEndpoint), {
+    return axios.post(urljoin(config.CATALOG_API_URL, config.config.productSearchEndpoint), {
       collection: query.collections[0],
       footprint: this.generateWKTFromBBOX(query.bbox),
       spatialOp: 'overlaps',
@@ -92,7 +87,7 @@ export class Catalog {
           metadata: { title: '', abstract: '', useConstraints: '' },
           metadataExternalLink: '',
           // If we are fetching the ogc layer don't set the wms for this collection
-          data: query.collections[0] === this.collectionSearchOGCPattern ? {} : {
+          data: query.collections[0] === config.config.collectionSearchOGCPattern ? {} : {
             wms: this.getOGCServiceForCollection(query.collections[0])
           },
           products: (response.data.result).map((product: any) => {
