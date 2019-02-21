@@ -74,12 +74,8 @@ export class Catalog {
   }
 
   private generateWKTFromBBOX(bbox: number[]): string {
-    // [minX, minY, maxX, maxY]
-    let minX = 0;
-    let minY = 1;
-    let maxX = 2;
-    let maxY = 3;
-    return `POLYGON((${bbox[minX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[maxY]}, ${bbox[maxX]} ${bbox[minY]}, ${bbox[minX]} ${bbox[minY]}))`;
+    let [minX, minY, maxX, maxY] = bbox
+    return `POLYGON((${minX} ${minY}, ${minX} ${maxY}, ${maxX} ${maxY}, ${maxX} ${minY}, ${minX} ${minY}))`
   }
 
   public async getProducts(query: Query): Promise<GetProductsResult> {
