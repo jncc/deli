@@ -21,12 +21,12 @@ export class Catalog {
   }
 
   async getOGCServiceList(): Promise<{ [id: string]: WMSData }> {
-    let maxBbox = [-180.0, -85.06, 180.0, 85.06]
+    let entireWorldBbox = [-180.0, -85.06, 180.0, 85.06]
     let layers = await this.getProducts({
       collections: [config.config.collectionSearchOGCPattern],
       offset: 0,
       limit: 50,
-      bbox: maxBbox,
+      bbox: entireWorldBbox,
       start: '',
       end: ''
     }).catch((err) => { console.error(err); throw err });
