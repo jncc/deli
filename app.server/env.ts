@@ -1,3 +1,7 @@
+import * as dotenv from 'dotenv'
+
+// Need to do this here otherwise the const will return undefined
+dotenv.config()
 
 export const env = {
   POSTGRES_HOST: process.env.POSTGRES_HOST || '',
