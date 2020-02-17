@@ -13,3 +13,6 @@ built/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# python venvs
+.venv
