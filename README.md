@@ -1,8 +1,12 @@
-
 D-Node Deli
 ===========
 
 Our "deli counter" web app to make spatial data products available to GIS users.
+
+This repository has been archived
+=========
+
+This repository has been archived and will not be under development any more.
 
 Development
 -----------
